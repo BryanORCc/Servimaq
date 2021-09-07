@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:shape="rectangle">
+            <stroke
+                android:color="@color/colorPrimary"
+                android:width="0dp" />
+        </shape>
+
+    </item>
+
+    <item
+        android:drawable="@drawable/registro_neumatico"
+        android:bottom="10px"
+        android:left="10px"
+        android:right="10px"
+        android:top="10px" />
+
+
+
+</layer-list>
