@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
 
         etUsuario = findViewById(R.id.etUsuario);
         etContra = findViewById(R.id.etContra);
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
                 SQLConexion db = new SQLConexion();
                 if(db.Validar(getBaseContext(),usuario,contra)==true){
-                    getSupportActionBar().show();
                     Intent i = new Intent(MainActivity.this,menu_opciones.class);
                     finish();
                     overridePendingTransition(0, 0);
@@ -54,30 +52,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //MENU------------------------------------------------------------
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    //SELECCION OPCION EN MENU-----------------------------------------------
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
-            case R.id.mnOrdenCompra:
-                //presiono en item1
-                return true;
-            case R.id.mnEstadistica:
-                //presiono en item2
-                return true;
-            default:
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 }

@@ -33,21 +33,44 @@ public class SQLConexion {
         return conexion;
     }
 
-    //--REGISTRO--------------------------------------------------------
-    public void Registro(Context c,String codigo, String usuario, String contra){
+    //--REGISTRO VEHICULO--------------------------------------------------------
+    public void RegistroVehiculo(Context c, String TipoVehiculo, String FotoVehiculo, String MarcaVehiculo, String ModeloVehiculo){
 
         PreparedStatement registro;
-        try {
-            registro = ConexionDB(c).prepareStatement("insert into Cuenta values(?,?,?)");
-            registro.setString(1,codigo);
-            registro.setString(2,usuario);
-            registro.setString(3,contra);
-            registro.executeUpdate();
-            registro.close();
+        int contar= 1;
+        String VehiculoId="";
 
-            /*if(rs.next()){
-                etUsuario.setText(rs.getString(2));
-            }*/
+        try {
+            //CONTAR REGISTROS------------------------------------------------------------------------
+            Statement st = ConexionDB(c).createStatement();
+            ResultSet rs = st.executeQuery("select * from T_Vehiculo");
+
+            if (!rs.next()) {
+                VehiculoId = "VH01";
+            }
+            else {
+                do {
+                    contar++;
+                } while (rs.next());
+            }
+
+            if(contar<=9){
+                VehiculoId = "VH0"+contar;
+            }else if(contar>=10 && contar<=99){
+                VehiculoId = "VH"+contar;
+            }
+
+
+            //REGISTRAR EN TABLA----------------------------------------------------------------------
+            registro = ConexionDB(c).prepareStatement("insert into T_Vehiculo values(?,?,?,?,?)");
+            registro.setString(1,VehiculoId);
+            registro.setString(2,TipoVehiculo);
+            registro.setString(3,FotoVehiculo);
+            registro.setString(4,MarcaVehiculo);
+            registro.setString(5,ModeloVehiculo);
+            registro.executeUpdate();
+            Toast.makeText(c,"Registro exitoso",Toast.LENGTH_SHORT).show();
+            registro.close();
 
         } catch (Exception e) {
             Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();

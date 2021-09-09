@@ -5,9 +5,13 @@
       <map>
         <entry key="..\:/Users/heart/AndroidStudioProjects/SERVIMAQ/app/src/main/res/drawable/estilo_registro.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/heart/AndroidStudioProjects/SERVIMAQ/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/heart/AndroidStudioProjects/SERVIMAQ/app/src/main/res/layout/activity_ingreso_productos.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/heart/AndroidStudioProjects/SERVIMAQ/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/heart/AndroidStudioProjects/SERVIMAQ/app/src/main/res/layout/activity_menu_lateral.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/heart/AndroidStudioProjects/SERVIMAQ/app/src/main/res/layout/activity_menu_opciones.xml" value="0.25" />
+        <entry key="..\:/Users/heart/AndroidStudioProjects/SERVIMAQ/app/src/main/res/layout/content_menu_lateral.xml" value="0.20625" />
         <entry key="..\:/Users/heart/AndroidStudioProjects/SERVIMAQ/app/src/main/res/layout/fragment_menu.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/heart/AndroidStudioProjects/SERVIMAQ/app/src/main/res/layout/fragment_vehiculo.xml" value="0.23697916666666666" />
         <entry key="..\:/Users/heart/AndroidStudioProjects/SERVIMAQ/app/src/main/res/layout/menu.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/heart/AndroidStudioProjects/SERVIMAQ/app/src/main/res/menu/menu.xml" value="0.20364583333333333" />
       </map>
