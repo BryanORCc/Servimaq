@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.servimaq.fragments.detalle_llanta;
+import com.example.servimaq.fragments.fragment_medidas;
+import com.example.servimaq.fragments.fragment_neumatico;
 import com.example.servimaq.fragments.fragment_vehiculo;
 
 public class ingreso_productos extends AppCompatActivity {
@@ -36,7 +39,7 @@ public class ingreso_productos extends AppCompatActivity {
         btnMedida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragment_vehiculo frgMedida = new fragment_vehiculo();
+                fragment_medidas frgMedida = new fragment_medidas();
                 FragmentTransaction cambioFragment = getSupportFragmentManager().beginTransaction();
                 cambioFragment.replace(R.id.frgContenedor,frgMedida);
                 cambioFragment.commit();
@@ -46,7 +49,7 @@ public class ingreso_productos extends AppCompatActivity {
         btnDetalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragment_vehiculo frgDetalle = new fragment_vehiculo();
+                detalle_llanta frgDetalle = new detalle_llanta();
                 FragmentTransaction cambioFragment = getSupportFragmentManager().beginTransaction();
                 cambioFragment.replace(R.id.frgContenedor,frgDetalle);
                 cambioFragment.commit();
@@ -56,7 +59,7 @@ public class ingreso_productos extends AppCompatActivity {
         btnNeumatico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragment_vehiculo frgNeumatico = new fragment_vehiculo();
+                fragment_neumatico frgNeumatico = new fragment_neumatico();
                 FragmentTransaction cambioFragment = getSupportFragmentManager().beginTransaction();
                 cambioFragment.replace(R.id.frgContenedor,frgNeumatico);
                 cambioFragment.commit();
