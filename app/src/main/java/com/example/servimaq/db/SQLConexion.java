@@ -77,7 +77,7 @@ public class SQLConexion {
         }
     }
 
-    //--VALIDAR--------------------------------------------------------
+    //--VALIDAR LOGIN--------------------------------------------------------
     public boolean Validar(Context c, String usuario, String contra){
         boolean estado = false;
         try {
@@ -97,4 +97,7 @@ public class SQLConexion {
         }
         return estado;
     }
+
+
+
 }
