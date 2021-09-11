@@ -20,9 +20,9 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class fragment_neumatico extends Fragment {
-    Spinner spinner1;
+
     View vista;
-    List<String> name;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -69,13 +69,8 @@ public class fragment_neumatico extends Fragment {
 
 
         vista = inflater.inflate(R.layout.fragment_neumatico, container, false);
-        spinner1=vista.findViewById(R.id.Spi_Vehiculo_ID);
-        ArrayList<String> opciones = new ArrayList<>();
-        opciones.add("opcion1");
-        opciones.add("opcion2");
-        opciones.add("opcion3");
-        ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, opciones);
-        spinner1.setAdapter(adapter);
+
+
 
 
         return vista;

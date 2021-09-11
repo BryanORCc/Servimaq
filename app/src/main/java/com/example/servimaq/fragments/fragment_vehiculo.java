@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
@@ -25,6 +26,7 @@ public class fragment_vehiculo extends Fragment {
     EditText etTipoVehiculo, etMarcaVehiculo, etModeloVehiculo;
     Button btnFoto, btnRegistrar, btnCancelar;
     ImageView ivFoto;
+
     Uri ruta = null;
 
     // TODO: Rename parameter arguments, choose names that match
