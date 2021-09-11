@@ -26,7 +26,7 @@ public class SQLConexion {
             StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
-            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.12;databaseName=Servimaq;user=sa;password=qwer;");
+            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.11;databaseName=Servimaq;user=sa;password=12345;");
         }catch (Exception e){
             Toast.makeText(c,"Falla de conexion",Toast.LENGTH_SHORT).show();
         }
@@ -104,7 +104,6 @@ public class SQLConexion {
         int contar= 1;
         String MedidaLlantaId="";
 
-
         try {
             //CONTAR REGISTROS------------------------------------------------------------------------
             Statement st = ConexionDB(c).createStatement();
@@ -120,9 +119,9 @@ public class SQLConexion {
             }
 
             if(contar<=9){
-                MedidaLlantaId = "MD01"+contar;
+                MedidaLlantaId = "MD0"+contar;
             }else if(contar>=10 && contar<=99){
-                MedidaLlantaId= "MD01"+contar;
+                MedidaLlantaId= "MD"+contar;
             }
 
 

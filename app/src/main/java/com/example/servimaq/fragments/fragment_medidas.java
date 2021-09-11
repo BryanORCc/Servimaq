@@ -22,10 +22,7 @@ import com.example.servimaq.db.SQLConexion;
 public class fragment_medidas extends Fragment {
 
     View vista;
- EditText etAncho;
- EditText etDiametro;
-    EditText etPerfil;
-    EditText etMmcocada;
+    EditText etAncho, etDiametro, etPerfil, etMmcocada;
     Button  btnRegistrar, btnCancelar;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -73,21 +70,46 @@ public class fragment_medidas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.fragment_medidas, container, false);
+
         etAncho=vista.findViewById(R.id.etAncho);
         etDiametro=vista.findViewById(R.id.etDiametro);
         etPerfil=vista.findViewById(R.id.etPerfil);
         etMmcocada=vista.findViewById(R.id.etMmcocada);
 
-         btnRegistrar=vista.findViewById(R.id.btnRegistrar);
-         btnCancelar=vista.findViewById(R.id.btnCancelar);
+        btnRegistrar=vista.findViewById(R.id.btnRegistrar);
+        btnCancelar=vista.findViewById(R.id.btnCancelar);
 
-        int Ancho=Integer.parseInt(etAncho.getText().toString());
-        int Diametro=Integer.parseInt(etDiametro.getText().toString());
-        int Perfil=Integer.parseInt(etPerfil.getText().toString());
-        int MmCocada=Integer.parseInt(etMmcocada.getText().toString());
-        SQLConexion db = new SQLConexion();
-        db.RegistroMedida(getContext(),Ancho,Diametro,Perfil,MmCocada);
+
+
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int Ancho=Integer.parseInt(etAncho.getText().toString());
+                int Diametro=Integer.parseInt(etDiametro.getText().toString());
+                int Perfil=Integer.parseInt(etPerfil.getText().toString());
+                int MmCocada=Integer.parseInt(etMmcocada.getText().toString());
+
+                SQLConexion db = new SQLConexion();
+                db.RegistroMedida(getContext(),Ancho,Diametro,Perfil,MmCocada);
+                //Limpiar();
+            }
+        });
+
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Limpiar();
+            }
+        });
 
         return vista;
+    }
+
+    //LIMPIAR CAMPOS--------------------------------------------------------------------------------------
+    public void Limpiar(){
+        etAncho.setText("");
+        etDiametro.setText("");
+        etPerfil.setText("");
+        etMmcocada.setText("");
     }
 }
