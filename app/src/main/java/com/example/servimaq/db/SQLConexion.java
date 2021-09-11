@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,9 +26,7 @@ public class SQLConexion {
             StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
-           // conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.11;databaseName=Servimaq;user=sa;password=12345;");
-            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.0.18;databaseName=Servimaq;user=sa;password=123;");
-
+            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.12;databaseName=Servimaq;user=sa;password=qwer;");
         }catch (Exception e){
             Toast.makeText(c,"Falla de conexion",Toast.LENGTH_SHORT).show();
         }
@@ -101,19 +98,20 @@ public class SQLConexion {
         return estado;
     }
 
-    //--REGISTRO TIPO LLANTA--------------------------------------------------------
-    public void RegistroDetalleLlanta(Context c, String NombreMarca, int IndiceCarga, String IndiceVelocidad, String FotoLlanta, String Construccion, int PresionMaxima, String Clasificacion, String FechaFabricacion, String MedidaLlantaId){
+    public void RegistroMedida(Context c, int Ancho, int Diametro, int Perfil ,int MmCocada){
 
         PreparedStatement registro;
         int contar= 1;
-        String DetalleLlantaId="";
+        String MedidaLlantaId="";
+
+
         try {
             //CONTAR REGISTROS------------------------------------------------------------------------
             Statement st = ConexionDB(c).createStatement();
-            ResultSet rs = st.executeQuery("select * from T_DetalleLlanta");
+            ResultSet rs = st.executeQuery("select * from T_MedidaLlanta");
 
             if (!rs.next()) {
-                DetalleLlantaId = "DN01";
+                MedidaLlantaId= "MD01";
             }
             else {
                 do {
@@ -122,35 +120,27 @@ public class SQLConexion {
             }
 
             if(contar<=9){
-                DetalleLlantaId = "DN0"+contar;
+                MedidaLlantaId = "MD01"+contar;
             }else if(contar>=10 && contar<=99){
-                DetalleLlantaId = "DN"+contar;
+                MedidaLlantaId= "MD01"+contar;
             }
 
+
             //REGISTRAR EN TABLA----------------------------------------------------------------------
-            registro = ConexionDB(c).prepareStatement("insert into T_DetalleLlanta values(?,?,?,?,?,?,?,?,?,?)");
-            registro.setString(1,DetalleLlantaId);
-            registro.setString(2,NombreMarca);
-            registro.setInt(3,IndiceCarga);
-            registro.setString(4,IndiceVelocidad);
-            registro.setString(5,FotoLlanta);
-            registro.setString(6,Construccion);
-            registro.setInt(7,PresionMaxima);
-            registro.setString(8,Clasificacion);
-            registro.setString(9,FechaFabricacion);
-            registro.setString(10,MedidaLlantaId);
+            registro = ConexionDB(c).prepareStatement("insert into T_MedidaLlanta values(?,?,?,?,?)");
+            registro.setString(1,MedidaLlantaId);
+            registro.setInt(2,Ancho);
+            registro.setInt(3,Diametro);
+            registro.setInt(4,Perfil);
+            registro.setInt(5,MmCocada);
             registro.executeUpdate();
             Toast.makeText(c,"Registro exitoso",Toast.LENGTH_SHORT).show();
             registro.close();
+
         } catch (Exception e) {
             Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-
-
 
 
 }
