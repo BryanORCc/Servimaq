@@ -1,5 +1,6 @@
 package com.example.servimaq.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.servimaq.R;
+import com.example.servimaq.db.SQLConexion;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +22,11 @@ import com.example.servimaq.R;
 public class fragment_medidas extends Fragment {
 
     View vista;
+ EditText etAncho;
+ EditText etDiametro;
+    EditText etPerfil;
+    EditText etMmcocada;
+    Button  btnRegistrar, btnCancelar;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +36,7 @@ public class fragment_medidas extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
 
     public fragment_medidas() {
         // Required empty public constructor
@@ -63,7 +73,20 @@ public class fragment_medidas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.fragment_medidas, container, false);
+        etAncho=vista.findViewById(R.id.etAncho);
+        etDiametro=vista.findViewById(R.id.etDiametro);
+        etPerfil=vista.findViewById(R.id.etPerfil);
+        etMmcocada=vista.findViewById(R.id.etMmcocada);
 
+         btnRegistrar=vista.findViewById(R.id.btnRegistrar);
+         btnCancelar=vista.findViewById(R.id.btnCancelar);
+
+        int Ancho=Integer.parseInt(etAncho.getText().toString());
+        int Diametro=Integer.parseInt(etDiametro.getText().toString());
+        int Perfil=Integer.parseInt(etPerfil.getText().toString());
+        int MmCocada=Integer.parseInt(etMmcocada.getText().toString());
+        SQLConexion db = new SQLConexion();
+        db.RegistroMedida(getContext(),Ancho,Diametro,Perfil,MmCocada);
 
         return vista;
     }
