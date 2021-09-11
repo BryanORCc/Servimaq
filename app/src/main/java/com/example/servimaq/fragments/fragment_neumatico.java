@@ -7,8 +7,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import com.example.servimaq.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,14 +20,13 @@ import com.example.servimaq.R;
  * create an instance of this fragment.
  */
 public class fragment_neumatico extends Fragment {
-
+    Spinner spinner1;
     View vista;
-
+    List<String> name;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -50,6 +53,7 @@ public class fragment_neumatico extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +67,15 @@ public class fragment_neumatico extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         vista = inflater.inflate(R.layout.fragment_neumatico, container, false);
+        spinner1=vista.findViewById(R.id.Spi_Vehiculo_ID);
+        ArrayList<String> opciones = new ArrayList<>();
+        opciones.add("opcion1");
+        opciones.add("opcion2");
+        opciones.add("opcion3");
+        ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, opciones);
+        spinner1.setAdapter(adapter);
 
 
         return vista;
