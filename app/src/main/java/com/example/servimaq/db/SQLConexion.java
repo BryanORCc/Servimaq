@@ -147,10 +147,49 @@ public class SQLConexion {
         }
     }
 
+    //--REGISTRO MEDIDAS--------------------------------------------------------
+    public void RegistroMedida(Context c, int Ancho, int Diametro, int Perfil ,int MmCocada){
+
+        PreparedStatement registro;
+        int contar= 1;
+        String MedidaLlantaId="";
+
+        try {
+            //CONTAR REGISTROS------------------------------------------------------------------------
+            Statement st = ConexionDB(c).createStatement();
+            ResultSet rs = st.executeQuery("select * from T_MedidaLlanta");
+
+            if (!rs.next()) {
+                MedidaLlantaId= "MD01";
+            }
+            else {
+                do {
+                    contar++;
+                } while (rs.next());
+            }
+
+            if(contar<=9){
+                MedidaLlantaId = "MD0"+contar;
+            }else if(contar>=10 && contar<=99){
+                MedidaLlantaId= "MD"+contar;
+            }
 
 
+            //REGISTRAR EN TABLA----------------------------------------------------------------------
+            registro = ConexionDB(c).prepareStatement("insert into T_MedidaLlanta values(?,?,?,?,?)");
+            registro.setString(1,MedidaLlantaId);
+            registro.setInt(2,Ancho);
+            registro.setInt(3,Diametro);
+            registro.setInt(4,Perfil);
+            registro.setInt(5,MmCocada);
+            registro.executeUpdate();
+            Toast.makeText(c,"Registro exitoso",Toast.LENGTH_SHORT).show();
+            registro.close();
 
-
+        } catch (Exception e) {
+            Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
 }
