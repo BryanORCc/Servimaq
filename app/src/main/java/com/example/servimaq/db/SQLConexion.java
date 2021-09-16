@@ -27,10 +27,8 @@ public class SQLConexion {
             StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
-
-            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.11;databaseName=Servimaq;user=sa;password=12345;");
+            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.10;databaseName=Servimaq;user=mssql;password=123;");
             //conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.0.18;databaseName=Servimaq;user=sa;password=123;");
-
 
         }catch (Exception e){
             Toast.makeText(c,"Falla de conexion",Toast.LENGTH_SHORT).show();
@@ -99,6 +97,7 @@ public class SQLConexion {
 
         } catch (Exception e) {
             Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
+            Log.e("afsaasf","-----------------------------------------"+e.getMessage());
         }
         return estado;
     }
