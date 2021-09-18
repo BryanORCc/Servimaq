@@ -192,5 +192,50 @@ public class SQLConexion {
         }
     }
 
+    //--REGISTRAR LLANTAS MAS NA --------------------------------------------------------
+
+    public void RegistroLlanta(Context c, double Precio , int Stock ,String DetalleLlantaId,String VehiculoId){
+
+        PreparedStatement registro;
+        int contar= 1;
+        String LlantaId="";
+
+        try {
+            //CONTAR REGISTROS------------------------------------------------------------------------
+            Statement st = ConexionDB(c).createStatement();
+            ResultSet rs = st.executeQuery("select * from T_Llanta");
+
+            if (!rs.next()) {
+                LlantaId= "Ll01";
+            }
+            else {
+                do {
+                    contar++;
+                } while (rs.next());
+            }
+
+            if(contar<=9){
+                LlantaId = "Ll0"+contar;
+            }else if(contar>=10 && contar<=99){
+                LlantaId= "Ll"+contar;
+            }
+
+
+            //REGISTRAR EN TABLA----------------------------------------------------------------------
+            registro = ConexionDB(c).prepareStatement("insert into T_Llanta values(?,?,?,?,?)");
+            registro.setString(1,LlantaId);
+            registro.setDouble(2,Precio);
+            registro.setInt(3,Stock);
+            registro.setString(4,DetalleLlantaId);
+            registro.setString(5,VehiculoId);
+            registro.executeUpdate();
+            Toast.makeText(c,"Registro exitoso",Toast.LENGTH_SHORT).show();
+
+            registro.close();
+
+        } catch (Exception e) {
+            Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
