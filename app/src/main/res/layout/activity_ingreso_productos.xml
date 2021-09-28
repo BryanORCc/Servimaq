@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ingreso_productos"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/Toolbar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.08"
+        android:layout_height="50dp"
         android:background="#F0FF4209"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
@@ -65,8 +65,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.92">
+        android:layout_height="match_parent">
         <fragment
             android:name="com.example.servimaq.fragments.fragment_vehiculo"
             android:layout_width="match_parent"

@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.servimaq.fragments.detalle_llanta;
@@ -20,6 +21,7 @@ public class ingreso_productos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingreso_productos);
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         btnVehiculo = findViewById(R.id.btnVehiculo);
         btnMedida = findViewById(R.id.btnMedida);
