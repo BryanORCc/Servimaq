@@ -23,7 +23,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="Registrar Neumatico"
                 android:textAlignment="center"
-                android:textSize="40dp" />ad
+                android:textSize="40dp" />
 
             <!--precio-->
             <TextView
