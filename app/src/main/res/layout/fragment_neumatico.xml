@@ -23,7 +23,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="Registrar Neumatico"
                 android:textAlignment="center"
-                android:textSize="41dp" />
+                android:textSize="40dp" />ad
 
             <!--precio-->
             <TextView
@@ -63,7 +63,6 @@
 
             <!--especificacion-->
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,47 +72,43 @@
 
 
             <!--tipo de vehiculo-->
-
-
             <Spinner
                 android:id="@+id/Spi_especificacion"
-                android:layout_width="370dp"
-                android:layout_height="38dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="80dp"
-                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="20dp"
                 android:baselineAligned="false"
-                android:rotationX="-17"
-                android:textSize="30dp"
-                android:visibility="visible"
-                tools:visibility="visible" />
+                android:rotationX="-12"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/Tv_ver"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
+                android:hint="Detalle del neumatico..."
+                android:fontFamily="sans-serif-black"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="25dp"
-                android:fontFamily="sans-serif-black"
-                android:hint="Detalle Llantas"
                 android:textSize="15dp" />
 
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="99dp"
-                android:orientation="horizontal">
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="35dp">
 
                 <ImageView
                     android:id="@+id/ivFoto_neumatico"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_marginHorizontal="5dp"
-                    android:src="@drawable/no_imagen" />
-
+                    android:src="@drawable/no_imagen"
+                    android:layout_marginVertical="10dp"
+                    />
 
             </LinearLayout>
 
@@ -127,41 +122,38 @@
 
             <Spinner
                 android:id="@+id/Spi_vehiculo"
-                android:layout_width="372dp"
-                android:layout_height="38dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="80dp"
-                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="20dp"
                 android:baselineAligned="false"
                 android:rotationX="-12"
-                android:textSize="30dp"
-                android:visibility="visible"
-                tools:visibility="visible" />
+                android:textSize="20dp" />
             <TextView
                 android:id="@+id/Tv_ver1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
+                android:hint="Tipo de vehiculo"
+                android:fontFamily="sans-serif-black"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="25dp"
-                android:fontFamily="sans-serif-black"
-                android:hint="Tipo de Vehiculo"
                 android:textSize="15dp" />
 
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="115dp"
-                android:orientation="horizontal">
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="35dp">
 
                 <ImageView
                     android:id="@+id/ivFoto_vehiculo"
-                    android:layout_width="106dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:src="@drawable/no_imagen" />
-
-
+                    android:src="@drawable/no_imagen"
+                    android:layout_marginVertical="10dp" />
             </LinearLayout>
 
 
