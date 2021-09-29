@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.servimaq.contenedores.ingreso_productos;
+
 public class menu_opciones extends AppCompatActivity {
 
     Button btnProductos, btnCatalogo;
@@ -35,7 +37,7 @@ public class menu_opciones extends AppCompatActivity {
         btnCatalogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(menu_opciones.this, ingreso_productos.class);
+                Intent i = new Intent(menu_opciones.this, Catalogo.class);
                 startActivity(i);
             }
         });

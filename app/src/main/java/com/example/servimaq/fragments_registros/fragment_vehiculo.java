@@ -1,4 +1,4 @@
-package com.example.servimaq.fragments;
+package com.example.servimaq.fragments_registros;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;

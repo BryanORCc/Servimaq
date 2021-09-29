@@ -193,7 +193,6 @@ public class SQLConexion {
     }
 
     //--REGISTRAR LLANTAS MAS NA --------------------------------------------------------
-
     public void RegistroLlanta(Context c, double Precio , int Stock ,String DetalleLlantaId,String VehiculoId){
 
         PreparedStatement registro;
@@ -237,5 +236,6 @@ public class SQLConexion {
             Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }

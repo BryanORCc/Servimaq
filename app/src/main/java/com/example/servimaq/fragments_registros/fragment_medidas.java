@@ -1,6 +1,5 @@
-package com.example.servimaq.fragments;
+package com.example.servimaq.fragments_registros;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 

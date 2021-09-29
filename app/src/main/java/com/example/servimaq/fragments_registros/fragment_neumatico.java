@@ -1,4 +1,4 @@
-package com.example.servimaq.fragments;
+package com.example.servimaq.fragments_registros;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +23,6 @@ import com.example.servimaq.menu_opciones;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -205,7 +204,7 @@ public class fragment_neumatico extends Fragment {
 
 
                 SQLConexion db = new SQLConexion();
-              db.RegistroLlanta(getContext(),Double.parseDouble(precio),Integer.parseInt(stock),DetalleLlantaId,VehiculoId);
+                db.RegistroLlanta(getContext(),Double.parseDouble(precio),Integer.parseInt(stock),DetalleLlantaId,VehiculoId);
                 Limpiar();
 
 

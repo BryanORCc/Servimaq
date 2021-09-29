@@ -12,14 +12,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".ingreso_productos"
+            android:name=".Catalogo"
+            android:exported="true" />
+        <activity
+            android:name=".contenedores.ingreso_productos"
             android:exported="true" />
         <activity
             android:name=".menu_opciones"
             android:exported="true" />
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

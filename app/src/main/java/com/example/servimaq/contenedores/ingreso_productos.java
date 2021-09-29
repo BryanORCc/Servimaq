@@ -1,17 +1,17 @@
-package com.example.servimaq;
+package com.example.servimaq.contenedores;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 
-import com.example.servimaq.fragments.detalle_llanta;
-import com.example.servimaq.fragments.fragment_medidas;
-import com.example.servimaq.fragments.fragment_neumatico;
-import com.example.servimaq.fragments.fragment_vehiculo;
+import com.example.servimaq.R;
+import com.example.servimaq.fragments_registros.detalle_llanta;
+import com.example.servimaq.fragments_registros.fragment_medidas;
+import com.example.servimaq.fragments_registros.fragment_neumatico;
+import com.example.servimaq.fragments_registros.fragment_vehiculo;
 
 public class ingreso_productos extends AppCompatActivity {
 
