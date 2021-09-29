@@ -1,6 +1,7 @@
 package com.example.servimaq.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
+import com.example.servimaq.menu_opciones;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +25,7 @@ public class fragment_medidas extends Fragment {
 
     View vista;
     EditText etAncho, etDiametro, etPerfil, etMmcocada;
-    Button  btnRegistrar, btnCancelar;
+    Button  btnRegistrar, btnCancelar, btnAtras;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,10 +77,9 @@ public class fragment_medidas extends Fragment {
         etDiametro=vista.findViewById(R.id.etDiametro);
         etPerfil=vista.findViewById(R.id.etPerfil);
         etMmcocada=vista.findViewById(R.id.etMmcocada);
-
+        btnAtras=vista.findViewById(R.id.btnAtras);
         btnRegistrar=vista.findViewById(R.id.btnRegistrar);
         btnCancelar=vista.findViewById(R.id.btnCancelar);
-
 
 
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +100,15 @@ public class fragment_medidas extends Fragment {
             @Override
             public void onClick(View view) {
                 Limpiar();
+            }
+        });
+
+        //BOTON ATRAS - MENU ---------------------------------------------------------------------------------
+        btnAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), menu_opciones.class);
+                startActivity(i);
             }
         });
 

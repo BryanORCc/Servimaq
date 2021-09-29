@@ -1,5 +1,6 @@
 package com.example.servimaq.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
+import com.example.servimaq.menu_opciones;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -32,7 +34,7 @@ public class fragment_neumatico extends Fragment {
 
     View vista;
     EditText etprecio,etstock;
-    Button btnRegistrar, btnCancelar;
+    Button btnRegistrar, btnCancelar, btnAtras;
     Spinner Spi_especificacion,Spi_vehiculo;
     TextView Tv_ver,Tv_ver1;
 
@@ -90,14 +92,14 @@ public class fragment_neumatico extends Fragment {
         btnCancelar=vista.findViewById(R.id.btnCancelar);
         Tv_ver = vista.findViewById(R.id.Tv_ver);
         Tv_ver1 = vista.findViewById(R.id.Tv_ver1);
+        btnAtras = vista.findViewById(R.id.btnAtras);
 
         Spi_especificacion=vista.findViewById(R.id.Spi_especificacion);
         Spi_vehiculo=vista.findViewById(R.id.Spi_vehiculo);
 
 
 
-        //CARGAR DATO DEL SPINNER DE VEHICULO -----
-
+        //CARGAR DATO DEL SPINNER DE VEHICULO ------------------------------------------------------------------
         try {
             SQLConexion conexion =new SQLConexion();
             Statement st = conexion.ConexionDB(getContext()).createStatement();
@@ -116,7 +118,6 @@ public class fragment_neumatico extends Fragment {
                             "\n-ModeloVehiculo: "+rs.getString(4)+
                             "\n-FotoVehiculo: "+rs.getString(3);
 
-
                     info.add(vehiculo);
                 } while (rs.next());///va agregando cada ID
 
@@ -126,7 +127,6 @@ public class fragment_neumatico extends Fragment {
 
             }
         }
-
         catch (Exception e) {
             Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
         }
@@ -145,10 +145,7 @@ public class fragment_neumatico extends Fragment {
             }
         });
 
-//----------------------------------------------------------------------------------------------------------------------------------------------
-
-//CARGAR DATO DEL SPINNER DE DETALLE DE LLANTA  -----
-
+        //CARGAR DATO DEL SPINNER DE DETALLE DE LLANTA  ----------------------------------------------------------------------
         try {
             SQLConexion conexion =new SQLConexion();
             Statement st = conexion.ConexionDB(getContext()).createStatement();
@@ -171,8 +168,6 @@ public class fragment_neumatico extends Fragment {
                             "\n-MedidaLlantaId: "+rs.getString(10)+
                             "\n-FotoLlanta: "+rs.getString(5);
 
-
-
                     info1.add(especificacion);
                 } while (rs.next());///va agregando cada ID
 
@@ -181,7 +176,6 @@ public class fragment_neumatico extends Fragment {
 
             }
         }
-
         catch (Exception e) {
             Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
         }
@@ -202,8 +196,7 @@ public class fragment_neumatico extends Fragment {
 
 
 
-
-// registrar---------
+        // registrar--------------------------------------------------------------------------
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -218,7 +211,8 @@ public class fragment_neumatico extends Fragment {
 
             }
         });
-// cancelar -----------------------
+
+        // cancelar -----------------------*-----------------------------------------------------
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -226,12 +220,17 @@ public class fragment_neumatico extends Fragment {
             }
         });
 
+        //BOTON ATRAS - MENU ---------------------------------------------------------------------------------
+        btnAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), menu_opciones.class);
+                startActivity(i);
+            }
+        });
 
         return vista;
     }
-
-
-
 
 
 

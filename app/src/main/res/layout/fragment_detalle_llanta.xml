@@ -15,44 +15,58 @@
             android:layout_marginHorizontal="15dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="25dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Registrar Detalle Neumatico"
-                android:textAlignment="center"
-                android:textSize="40dp" />
+            <!--TITULO_______________________________________-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btnAtras"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.15"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/menu_atras"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.85"
+                    android:layout_height="wrap_content"
+                    android:text="Registrar Detalle Neumatico"
+                    android:textSize="30dp"
+                    android:layout_marginVertical="25dp"
+                    android:textAlignment="center"
+                    android:fontFamily="sans-serif-black"
+                    />
+            </LinearLayout>
+
 
             <EditText
                 android:id="@+id/EtNombreMarca"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="80dp"
-                android:layout_marginTop="25dp"
                 android:hint="Marca de Neumatico:"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/EtIndiceCarga"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="80dp"
                 android:layout_marginTop="25dp"
                 android:hint="Indice de carga:"
                 android:inputType="number"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/EtIndiceVelocidad"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="80dp"
                 android:layout_marginTop="25dp"
                 android:hint="Indice de Velocidad:"
                 android:inputType="text"
                 android:maxLength="1"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,28 +97,25 @@
                 android:id="@+id/EtConstruccion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="80dp"
                 android:layout_marginTop="25dp"
                 android:hint="Construccion:"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/EtPresionMaxima"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="80dp"
                 android:layout_marginTop="25dp"
                 android:inputType="number"
                 android:hint="Presion Maxima:"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
             <EditText
                 android:id="@+id/EtClasificacion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="80dp"
                 android:layout_marginTop="25dp"
                 android:hint="Clasificacion:"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/EtFechaFabricacion"
@@ -113,11 +124,10 @@
                 android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="80dp"
                 android:layout_marginTop="25dp"
                 android:hint="Insertar fecha"
                 android:justificationMode="inter_word"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,13 +146,13 @@
                 android:layout_marginBottom="20dp"
                 android:baselineAligned="false"
                 android:rotationX="-12"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/Tv_cargar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Datos de medida"
+                android:hint="Datos de medida..."
                 android:fontFamily="sans-serif-black"
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"

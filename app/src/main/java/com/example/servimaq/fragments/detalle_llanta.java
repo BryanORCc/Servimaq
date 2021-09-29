@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
+import com.example.servimaq.menu_opciones;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -45,7 +46,7 @@ import java.util.Calendar;
 public class detalle_llanta extends Fragment {
     EditText MarcaVehiculo,IndiceCarga,IndiceVelocidad,Construccion,PresionMaxima,Clasificacion;
     ImageView ivFotoLlanta;
-    Button BtnFotoLlanta,btnRegistrar, btnCancelar;
+    Button BtnFotoLlanta,btnRegistrar, btnCancelar, btnAtras;
     Spinner spinner1;
     View vista;
     Uri ruta = null;
@@ -113,13 +114,13 @@ public class detalle_llanta extends Fragment {
         ivFotoLlanta = vista.findViewById(R.id.ivFoto_Llanta);
         btnRegistrar = vista.findViewById(R.id.btnRegistrar);
         btnCancelar = vista.findViewById(R.id.btnCancelar);
+        btnAtras = vista.findViewById(R.id.btnAtras);
         Tv_cargar=vista.findViewById(R.id.Tv_cargar);
         spinner1=vista.findViewById(R.id.Spi_MedidaLlanta);
         BtnFotoLlanta=vista.findViewById(R.id.btnFoto_Llanta);
 
 
-        //CARGAR DATO DEL SPINNER XD-----
-
+        //CARGAR DATO DEL SPINNER XD----------------------------------------------------------------
         try {
             SQLConexion conexion =new SQLConexion();
             Statement st = conexion.ConexionDB(getContext()).createStatement();
@@ -146,7 +147,6 @@ public class detalle_llanta extends Fragment {
         catch (Exception e) {
             Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
         }
-
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -166,6 +166,8 @@ public class detalle_llanta extends Fragment {
                 CargarImagen();
             }
         });
+
+        //BOTON REGISTRO -----------------------------------------------------------------------------------------
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -191,13 +193,15 @@ public class detalle_llanta extends Fragment {
             }
         });
 
+        //BOTON CANCELAR -----------------------------------------------------------------------------------------
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Limpiar();
             }
         });
-    //Mostrar calendario********************
+
+        //Mostrar calendario*************************************************************************
         Fecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -205,6 +209,16 @@ public class detalle_llanta extends Fragment {
                 newFragment.show(getFragmentManager(), "datePicker");
             }
         });
+
+        //BOTON ATRAS - MENU ---------------------------------------------------------------------------------
+        btnAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), menu_opciones.class);
+                startActivity(i);
+            }
+        });
+
         return vista;
     }
 
