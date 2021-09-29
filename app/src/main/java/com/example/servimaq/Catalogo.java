@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ public class Catalogo extends AppCompatActivity {
     ListView lvListaProductos;
     ArrayList<items_lista> lista = new ArrayList<>();;
     producto_catalogo prod_catalogo;
+    Button btnAgregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +43,11 @@ public class Catalogo extends AppCompatActivity {
         tvPrecio = findViewById(R.id.tvPrecio);
         tvStock = findViewById(R.id.tvStock);
 
+        btnAgregar = findViewById(R.id.btnAgregar);
+
         SQLConexion db = new SQLConexion();
 
-        //--SELECT INFORMACION NEUMATICO--------------------------------------------------------
+        //--SELECT INFORMACION NEUMATICO------------------------------------------------------------------------------
         try {
             Statement st = db.ConexionDB(getApplicationContext()).createStatement();
             ResultSet rs = st.executeQuery("select L.LlantaId, L.Precio, L.Stock, D.DetalleLlantaId, D.NombreMarca, D.IndiceCarga, D.IndiceVelocidad, D.FotoLlanta, D.Construccion, D.PresionMaxima,"+
@@ -65,6 +70,14 @@ public class Catalogo extends AppCompatActivity {
 
         prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
         lvListaProductos.setAdapter(prod_catalogo);
+
+        //BOTON AGREGAR A LISTA -----------------------------------------------------------------------------------------------------------
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 }

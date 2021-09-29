@@ -9,22 +9,63 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!--IMAGEN_______________________________________________________________-->
-        <ImageView
-            android:id="@+id/ivFoto"
+
+
+        <!--BOTONES_______________________________________________________________-->
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.4"
-            android:layout_height="150dp"
-            android:background="@drawable/no_imagen"
-            />
+            android:layout_weight="0.35"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <!--IMAGEN__________________________________________________________-->
+            <ImageView
+                android:id="@+id/ivFoto"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/no_imagen"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/agregar_prod"
+                    android:layout_marginHorizontal="6dp"
+                    android:id="@+id/btnAgregar"
+                    />
+                <Button
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/modificar_prod"
+                    android:layout_marginHorizontal="6dp"
+                    android:id="@+id/btnModificar"
+                    />
+                <Button
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/eliminar_prod"
+                    android:layout_marginHorizontal="6dp"
+                    android:id="@+id/btnEliminar"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <!--DESC_________________________________________________________________-->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.6"
+            android:layout_weight="0.65"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="15dp"
+            android:id="@+id/btnDetalle"
+            >
 
             <!--BLOQUE___________________________________________________-->
             <LinearLayout
