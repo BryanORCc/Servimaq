@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class menu_opciones extends AppCompatActivity {
 
-    Button btnProductos;
+    Button btnProductos, btnCatalogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +20,19 @@ public class menu_opciones extends AppCompatActivity {
         setContentView(R.layout.activity_menu_opciones);
 
         btnProductos = findViewById(R.id.btnProductos);
+        btnCatalogo = findViewById(R.id.btnCatalogo);
 
-        //CRUD PRODUCTOS
+        //PANTALLA REGISTROS---------------------------------------------------------------------------------
         btnProductos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(menu_opciones.this, ingreso_productos.class);
+                startActivity(i);
+            }
+        });
+
+        //PANTALLA CATALOGO---------------------------------------------------------------------------------
+        btnCatalogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(menu_opciones.this, ingreso_productos.class);
