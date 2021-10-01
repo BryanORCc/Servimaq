@@ -4,46 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:background="@drawable/img_2"
+
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.3"
         android:layout_margin="15dp"
-        android:orientation="vertical"
-        >
+        android:layout_weight="0.3"
 
-        <EditText
+        android:orientation="vertical">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="80dp"
+            android:layout_marginHorizontal="130dp"
             android:layout_marginTop="15dp"
-            android:hint="usuario..."
+            android:hint="Iniciar Sesion"
+
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="41dp"
+            android:textStyle="italic"></TextView>
+
+
+
+        <EditText
             android:id="@+id/etUsuario"
-            >
-        </EditText>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="80dp"
+            android:layout_marginTop="110dp"
+            android:background="#9AFFFFFF"
+            android:hint="usuario..."></EditText>
 
         <EditText
+            android:id="@+id/etContra"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="80dp"
             android:layout_marginTop="15dp"
+
+            android:background="#9AFFFFFF"
             android:hint="contraseña..."
-            android:inputType="textPassword"
-            android:id="@+id/etContra"
-            >
-        </EditText>
+            android:inputType="textPassword"></EditText>
 
         <Button
+            android:id="@+id/btnIngresar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Ingresar"
             android:layout_marginHorizontal="80dp"
             android:layout_marginTop="15dp"
-            android:id="@+id/btnIngresar"
-            >
-        </Button>
+            android:background="#E0AF03"
+            android:text="Ingresar"></Button>
 
     </LinearLayout>
 
