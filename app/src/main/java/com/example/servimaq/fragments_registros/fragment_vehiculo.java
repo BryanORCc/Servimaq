@@ -147,6 +147,7 @@ public class fragment_vehiculo extends Fragment {
         if(resultCode==getActivity().RESULT_OK){
             ruta = data.getData();
             ivFoto.setImageURI(ruta);
+            Log.e("asdasd",""+ruta);
 
             /*try {
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), ruta);

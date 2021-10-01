@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +28,9 @@ public class Catalogo extends AppCompatActivity {
     ListView lvListaProductos;
     ArrayList<items_lista> lista = new ArrayList<>();;
     producto_catalogo prod_catalogo;
-    String cadena_texto_buscar = null;
+    String cadena_texto_buscar = null, tipo_busqueda = "codigo", campo_busqueda = null;
+    Spinner spTipoBusqueda;
+    ArrayList<String> tipos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class Catalogo extends AppCompatActivity {
         setContentView(R.layout.activity_catalogo);
 
         svBusqueda = findViewById(R.id.svBusqueda);
+        spTipoBusqueda = findViewById(R.id.spTipoBusqueda);
         lvListaProductos = findViewById(R.id.lvListaProductos);
 
         tvMarca = findViewById(R.id.tvMarca);
@@ -42,6 +48,33 @@ public class Catalogo extends AppCompatActivity {
         tvMmCocada = findViewById(R.id.tvMmCocada);
         tvPrecio = findViewById(R.id.tvPrecio);
         tvStock = findViewById(R.id.tvStock);
+
+        //ELEGIR TIPO DE BUSQUEDA--------------------------------------------------------------------------------------------
+        tipos.add(0,"Seleccionar busqueda por...");
+        tipos.add("codigo");
+        tipos.add("marca");
+
+        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, tipos);
+        spTipoBusqueda.setAdapter(adapter);
+
+        spTipoBusqueda.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                tipo_busqueda = tipos.get(i);
+                if(tipo_busqueda.equalsIgnoreCase("codigo")){
+                    campo_busqueda = "L.LlantaId";
+                }else if(tipo_busqueda.equalsIgnoreCase("marca")){
+                    campo_busqueda = "D.NombreMarca";
+                }
+
+                //Toast.makeText(getApplicationContext(),tipo_busqueda,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         //INICIAR CONEXION A LA DB--------------------------
         SQLConexion db = new SQLConexion();
@@ -100,7 +133,7 @@ public class Catalogo extends AppCompatActivity {
                             "D.Clasificacion, D.FechaFabricacion, V.VehiculoId, V.FotoVehiculo, V.MarcaVehiculo, V.ModeloVehiculo, M.MedidaLlantaId, M.Ancho, M.Diametro,"+
                             "M.Perfil, M.MmCocada from T_Llanta L inner join T_DetalleLlanta D on L.DetalleLlantaId = D.DetalleLlantaId "+
                             "inner join T_Vehiculo V on L.VehiculoId = V.VehiculoId inner join T_MedidaLlanta M on M.MedidaLlantaId = D.MedidaLlantaId "+
-                            "where L.LlantaId like '%"+ cadena_texto_buscar +"%';");
+                            "where "+ campo_busqueda +" like '%"+ cadena_texto_buscar +"%';");
 
                     if (!rs.next()) {
                         Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();

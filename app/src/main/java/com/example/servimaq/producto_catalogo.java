@@ -12,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.wifi.EasyConnectStatusCallback;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.renderscript.Sampler;
 import android.util.Log;
@@ -95,6 +96,7 @@ public class producto_catalogo extends BaseAdapter {
         tvMmCocada.setText(""+Lista.get(i).getMmCocada());
         tvPrecio.setText(""+Lista.get(i).getPrecio());
         tvStock.setText(""+Lista.get(i).getStock());
+
 
 
         //BOTON AGREGAR A LISTA -----------------------------------------------------------------------------------------------------------

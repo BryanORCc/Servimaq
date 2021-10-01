@@ -8,12 +8,27 @@
     android:orientation="vertical"
     >
 
-    <SearchView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:queryHint="ingresar texto..."
-        android:id="@+id/svBusqueda"
-        />
+        android:orientation="horizontal">
+        <SearchView
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:queryHint="ingresar texto..."
+            android:id="@+id/svBusqueda"
+            />
+        <Spinner
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="match_parent"
+            android:id="@+id/spTipoBusqueda"
+            android:spinnerMode="dropdown"
+            />
+    </LinearLayout>
+
 
     <ListView
         android:layout_width="match_parent"
