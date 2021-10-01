@@ -16,6 +16,13 @@
             android:orientation="vertical"
             android:layout_marginHorizontal="15dp"
             >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:src="@drawable/img"
+                android:layout_marginVertical="1dp"
+                />
+
             <!--TITULO_______________________________________-->
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -125,20 +132,29 @@
                 android:layout_marginBottom="20dp">
 
                 <Button
+                    android:id="@+id/btnRegistrar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:text="Registrar"
-                    android:id="@+id/btnRegistrar"/>
+                    android:background="#E0AF03"
+                    android:text="Registrar" />
 
                 <Button
+                    android:id="@+id/btnCancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:text="Cancelar"
-                    android:id="@+id/btnCancelar"/>
+                    android:background="#E0AF03"
+                    android:text="Cancelar" />
 
             </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:src="@drawable/img_1"
+                android:layout_marginVertical="1dp"
+
+                />
 
         </LinearLayout>
 
