@@ -236,7 +236,6 @@ public class SQLConexion {
             Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
-
     //--REGISTRO Pedido de cliente--------------------------------------------------------
     public void RegistroPedidoCliente(Context c, String NombreCliente, String ApellidoCliente, String Correo, String FechaActual, String FechaEntrega, String ModoDePago , int Dni){
 
@@ -260,7 +259,8 @@ public class SQLConexion {
             if(contar<=9){
                 CodPedidoId = "CP0"+contar;
             }else if(contar>=10 && contar<=99){
-                CodPedidoId = "CP"+contar;
+                CodPedidoId = "C" +
+                        "P"+contar;
             }
 
             //REGISTRAR EN TABLA----------------------------------------------------------------------

@@ -65,7 +65,6 @@ public class menu_opciones extends AppCompatActivity {
     }
 
     //SELECCION OPCION EN MENU-----------------------------------------------
-    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -77,7 +76,11 @@ public class menu_opciones extends AppCompatActivity {
             case R.id.mnEstadistica:
                 //presiono en item2
                 return true;
-            default:
+            case R.id.mnListaPedidos:
+                //presiono en item3
+                Intent intent=new Intent(this,Listar_pedidos.class);
+                this.startActivity(intent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

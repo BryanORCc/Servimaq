@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Listar_pedidos"
+            android:exported="true" />
+        <activity
             android:name=".registro_cliente"
             android:exported="true" />
         <activity

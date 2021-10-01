@@ -12,4 +12,10 @@
         android:title="Estadisticas"
         app:showAsAction="collapseActionView"
         />
+    <item
+        android:id="@+id/mnListaPedidos"
+        android:title="Lista de pedidos"
+        app:showAsAction="collapseActionView"
+        />
+
 </menu>
