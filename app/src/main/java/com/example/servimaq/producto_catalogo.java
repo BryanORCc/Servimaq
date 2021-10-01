@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,7 @@ public class producto_catalogo extends BaseAdapter {
     LayoutInflater inflater;
     ArrayList<items_lista> Lista;
     Button btnAgregar;
+    LinearLayout btnDetalle;
     ImageView ivFoto;
 
     public producto_catalogo(Context c, ArrayList<items_lista> Lista){
@@ -83,9 +85,10 @@ public class producto_catalogo extends BaseAdapter {
         tvStock = itemView.findViewById(R.id.tvStock);
 
         btnAgregar = itemView.findViewById(R.id.btnAgregar);
+        btnDetalle = itemView.findViewById(R.id.btnDetalle);
         ivFoto = (ImageView) itemView.findViewById(R.id.ivFoto);
 
-        tvMarca.setText(Lista.get(i).getMarcaNeumatico());
+        tvMarca.setText(Lista.get(i).getNombreMarca());
         tvAncho.setText(""+Lista.get(i).getAncho());
         tvDiametro.setText(""+Lista.get(i).getDiametro());
         tvPerfil.setText(""+Lista.get(i).getPerfil());
@@ -99,6 +102,57 @@ public class producto_catalogo extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Toast.makeText(c.getApplicationContext(), "Boton Agregar",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnDetalle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String llantaId = Lista.get(i).getLlantaId(),
+                NombreMarca = Lista.get(i).getNombreMarca(),
+                IndiceCarga = Lista.get(i).getIndiceCarga(),
+                IndiceVelocidad = Lista.get(i).getIndiceVelocidad(),
+                Construccion = Lista.get(i).getConstruccion(),
+                Clasificacion = Lista.get(i).getClasificacion(),
+                FechaFabricacion = Lista.get(i).getFechaFabricacion(),
+                FotoLlanta = Lista.get(i).getFotoLlanta(),
+                FotoVehiculo = Lista.get(i).getFotoVehiculo(),
+                MarcaVehiculo = Lista.get(i).getMarcaVehiculo(),
+                ModeloVehiculo = Lista.get(i).getModeloVehiculo();
+                int Ancho = Lista.get(i).getAncho(),
+                Diametro = Lista.get(i).getDiametro(),
+                Perfil = Lista.get(i).getPerfil(),
+                MmCocada = Lista.get(i).getMmCocada(),
+                Stock = Lista.get(i).getStock(),
+                PresionMaxima = Lista.get(i).getPresionMaxima();
+                double Precio = Lista.get(i).getPrecio();
+
+                Intent detalle = new Intent(c,detalle_producto.class);
+
+                //Permite abrir una nueva vista
+                detalle.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                detalle.putExtra("llantaId",llantaId);
+                detalle.putExtra("NombreMarca",NombreMarca);
+                detalle.putExtra("IndiceCarga",IndiceCarga);
+                detalle.putExtra("IndiceVelocidad",IndiceVelocidad);
+                detalle.putExtra("Construccion",Construccion);
+                detalle.putExtra("Clasificacion",Clasificacion);
+                detalle.putExtra("FechaFabricacion",FechaFabricacion);
+                detalle.putExtra("FotoLlanta",FotoLlanta);
+                detalle.putExtra("FotoVehiculo",FotoVehiculo);
+                detalle.putExtra("MarcaVehiculo",MarcaVehiculo);
+                detalle.putExtra("ModeloVehiculo",ModeloVehiculo);
+                detalle.putExtra("Ancho",Ancho);
+                detalle.putExtra("Diametro",Diametro);
+                detalle.putExtra("Perfil",Perfil);
+                detalle.putExtra("MmCocada",MmCocada);
+                detalle.putExtra("Stock",Stock);
+                detalle.putExtra("PresionMaxima",PresionMaxima);
+                detalle.putExtra("Precio",Precio);
+
+                view.getContext().startActivity(detalle);
+
             }
         });
 

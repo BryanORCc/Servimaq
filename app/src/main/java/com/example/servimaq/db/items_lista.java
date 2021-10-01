@@ -2,20 +2,29 @@ package com.example.servimaq.db;
 
 public class items_lista {
 
-    private String LlantaId, MarcaNeumatico, FotoLlanta;
-    private int Ancho, Diametro, Perfil, MmCocada, Stock;
+    private String LlantaId, NombreMarca, IndiceCarga, IndiceVelocidad, Construccion, Clasificacion, FechaFabricacion, FotoLlanta, FotoVehiculo, MarcaVehiculo, ModeloVehiculo;
+    private int Ancho, Diametro, Perfil, MmCocada, Stock, PresionMaxima;
     private double Precio;
 
-    public items_lista(String LlantaId,String MarcaNeumatico, int Ancho, int Diametro, int Perfil, int MmCocada, double Precio, int Stock, String FotoLlanta){
-        this.LlantaId = LlantaId;
-        this.MarcaNeumatico = MarcaNeumatico;
-        this.Ancho = Ancho;
-        this.Diametro = Diametro;
-        this.Perfil = Perfil;
-        this.MmCocada = MmCocada;
-        this.Precio = Precio;
-        this.Stock = Stock;
-        this.FotoLlanta = FotoLlanta;
+    public items_lista(String llantaId, String nombreMarca, String indiceCarga, String indiceVelocidad, String construccion, String clasificacion, String fechaFabricacion, String fotoLlanta, String fotoVehiculo, String marcaVehiculo, String modeloVehiculo, int ancho, int diametro, int perfil, int mmCocada, int stock, int presionMaxima, double precio) {
+        LlantaId = llantaId;
+        NombreMarca = nombreMarca;
+        IndiceCarga = indiceCarga;
+        IndiceVelocidad = indiceVelocidad;
+        Construccion = construccion;
+        Clasificacion = clasificacion;
+        FechaFabricacion = fechaFabricacion;
+        FotoLlanta = fotoLlanta;
+        FotoVehiculo = fotoVehiculo;
+        MarcaVehiculo = marcaVehiculo;
+        ModeloVehiculo = modeloVehiculo;
+        Ancho = ancho;
+        Diametro = diametro;
+        Perfil = perfil;
+        MmCocada = mmCocada;
+        Stock = stock;
+        PresionMaxima = presionMaxima;
+        Precio = precio;
     }
 
     public String getLlantaId() {
@@ -26,12 +35,84 @@ public class items_lista {
         LlantaId = llantaId;
     }
 
-    public String getMarcaNeumatico() {
-        return MarcaNeumatico;
+    public String getNombreMarca() {
+        return NombreMarca;
     }
 
-    public void setMarcaNeumatico(String marcaNeumatico) {
-        MarcaNeumatico = marcaNeumatico;
+    public void setNombreMarca(String nombreMarca) {
+        NombreMarca = nombreMarca;
+    }
+
+    public String getIndiceCarga() {
+        return IndiceCarga;
+    }
+
+    public void setIndiceCarga(String indiceCarga) {
+        IndiceCarga = indiceCarga;
+    }
+
+    public String getIndiceVelocidad() {
+        return IndiceVelocidad;
+    }
+
+    public void setIndiceVelocidad(String indiceVelocidad) {
+        IndiceVelocidad = indiceVelocidad;
+    }
+
+    public String getConstruccion() {
+        return Construccion;
+    }
+
+    public void setConstruccion(String construccion) {
+        Construccion = construccion;
+    }
+
+    public String getClasificacion() {
+        return Clasificacion;
+    }
+
+    public void setClasificacion(String clasificacion) {
+        Clasificacion = clasificacion;
+    }
+
+    public String getFechaFabricacion() {
+        return FechaFabricacion;
+    }
+
+    public void setFechaFabricacion(String fechaFabricacion) {
+        FechaFabricacion = fechaFabricacion;
+    }
+
+    public String getFotoLlanta() {
+        return FotoLlanta;
+    }
+
+    public void setFotoLlanta(String fotoLlanta) {
+        FotoLlanta = fotoLlanta;
+    }
+
+    public String getFotoVehiculo() {
+        return FotoVehiculo;
+    }
+
+    public void setFotoVehiculo(String fotoVehiculo) {
+        FotoVehiculo = fotoVehiculo;
+    }
+
+    public String getMarcaVehiculo() {
+        return MarcaVehiculo;
+    }
+
+    public void setMarcaVehiculo(String marcaVehiculo) {
+        MarcaVehiculo = marcaVehiculo;
+    }
+
+    public String getModeloVehiculo() {
+        return ModeloVehiculo;
+    }
+
+    public void setModeloVehiculo(String modeloVehiculo) {
+        ModeloVehiculo = modeloVehiculo;
     }
 
     public int getAncho() {
@@ -74,19 +155,19 @@ public class items_lista {
         Stock = stock;
     }
 
+    public int getPresionMaxima() {
+        return PresionMaxima;
+    }
+
+    public void setPresionMaxima(int presionMaxima) {
+        PresionMaxima = presionMaxima;
+    }
+
     public double getPrecio() {
         return Precio;
     }
 
     public void setPrecio(double precio) {
         Precio = precio;
-    }
-
-    public String getFotoLlanta() {
-        return FotoLlanta;
-    }
-
-    public void setFotoLlanta(String fotoLlanta) {
-        FotoLlanta = fotoLlanta;
     }
 }
