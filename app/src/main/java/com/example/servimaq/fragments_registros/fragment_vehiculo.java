@@ -1,6 +1,9 @@
 package com.example.servimaq.fragments_registros;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -8,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +23,9 @@ import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.menu_opciones;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 
 public class fragment_vehiculo extends Fragment {
 
@@ -26,6 +33,8 @@ public class fragment_vehiculo extends Fragment {
     EditText etTipoVehiculo, etMarcaVehiculo, etModeloVehiculo;
     Button btnFoto, btnRegistrar, btnCancelar, btnAtras;
     ImageView ivFoto;
+    String Imagen;
+    Bitmap bitmap;
 
     Uri ruta = null;
 
@@ -96,8 +105,9 @@ public class fragment_vehiculo extends Fragment {
                     Foto = ruta.toString();
                 }
 
+
                 SQLConexion db = new SQLConexion();
-                db.RegistroVehiculo(getContext(),TipoVehiculo,Foto,MarcaVehiculo,ModeloVehiculo);
+                db.RegistroVehiculo(getContext(),TipoVehiculo, Foto,MarcaVehiculo,ModeloVehiculo);
                 Limpiar();
             }
         });
@@ -137,6 +147,15 @@ public class fragment_vehiculo extends Fragment {
         if(resultCode==getActivity().RESULT_OK){
             ruta = data.getData();
             ivFoto.setImageURI(ruta);
+
+            /*try {
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), ruta);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }*/
+            //bitmap = ((BitmapDrawable)ivFoto.getDrawable()).getBitmap();
+            //Log.e("afsaf",""+ruta);
+            //Imagen = bitmap.toString();
         }
     }
 

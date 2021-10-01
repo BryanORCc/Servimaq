@@ -2,6 +2,7 @@ package com.example.servimaq.db;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
@@ -27,7 +28,7 @@ public class SQLConexion {
             StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
-            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.13;databaseName=Servimaq;user=mssql;password=123;");
+            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.5;databaseName=Servimaq;user=mssql;password=123;");
             //conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.0.18;databaseName=Servimaq;user=sa;password=123;");
 
         }catch (Exception e){

@@ -30,6 +30,7 @@
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/menu_atras"
+                    android:foreground="?android:attr/selectableItemBackground"
                     />
                 <TextView
                     android:layout_width="0dp"

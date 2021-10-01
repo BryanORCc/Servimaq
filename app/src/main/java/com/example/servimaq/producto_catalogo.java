@@ -1,8 +1,18 @@
 package com.example.servimaq;
 
+import static androidx.core.app.ActivityCompat.startActivityForResult;
 import static java.lang.String.valueOf;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.net.wifi.EasyConnectStatusCallback;
+import android.provider.MediaStore;
 import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,13 +20,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URI;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -26,6 +43,8 @@ public class producto_catalogo extends BaseAdapter {
     Context c;
     LayoutInflater inflater;
     ArrayList<items_lista> Lista;
+    Button btnAgregar;
+    ImageView ivFoto;
 
     public producto_catalogo(Context c, ArrayList<items_lista> Lista){
         this.c = c;
@@ -63,6 +82,8 @@ public class producto_catalogo extends BaseAdapter {
         tvPrecio = itemView.findViewById(R.id.tvPrecio);
         tvStock = itemView.findViewById(R.id.tvStock);
 
+        btnAgregar = itemView.findViewById(R.id.btnAgregar);
+        ivFoto = (ImageView) itemView.findViewById(R.id.ivFoto);
 
         tvMarca.setText(Lista.get(i).getMarcaNeumatico());
         tvAncho.setText(""+Lista.get(i).getAncho());
@@ -72,6 +93,16 @@ public class producto_catalogo extends BaseAdapter {
         tvPrecio.setText(""+Lista.get(i).getPrecio());
         tvStock.setText(""+Lista.get(i).getStock());
 
+
+        //BOTON AGREGAR A LISTA -----------------------------------------------------------------------------------------------------------
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(c.getApplicationContext(), "Boton Agregar",Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return itemView;
     }
+
 }

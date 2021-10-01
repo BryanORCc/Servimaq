@@ -25,7 +25,7 @@ public class Catalogo extends AppCompatActivity {
     ListView lvListaProductos;
     ArrayList<items_lista> lista = new ArrayList<>();;
     producto_catalogo prod_catalogo;
-    Button btnAgregar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class Catalogo extends AppCompatActivity {
         tvPrecio = findViewById(R.id.tvPrecio);
         tvStock = findViewById(R.id.tvStock);
 
-        btnAgregar = findViewById(R.id.btnAgregar);
+
 
         SQLConexion db = new SQLConexion();
 
@@ -59,7 +59,7 @@ public class Catalogo extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
             }else {
                 do {
-                    lista.add(new items_lista(rs.getString(5), rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getDouble(2), rs.getInt(3)));
+                    lista.add(new items_lista(rs.getString(1),rs.getString(5), rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getDouble(2), rs.getInt(3), rs.getString(8)));
                 } while (rs.next());///va agregando cada ID
 
             }
@@ -71,13 +71,6 @@ public class Catalogo extends AppCompatActivity {
         prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
         lvListaProductos.setAdapter(prod_catalogo);
 
-        //BOTON AGREGAR A LISTA -----------------------------------------------------------------------------------------------------------
-        btnAgregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
     }
 }

@@ -2,11 +2,12 @@ package com.example.servimaq.db;
 
 public class items_lista {
 
-    private String MarcaNeumatico;
+    private String LlantaId, MarcaNeumatico, FotoLlanta;
     private int Ancho, Diametro, Perfil, MmCocada, Stock;
     private double Precio;
 
-    public items_lista(String MarcaNeumatico, int Ancho, int Diametro, int Perfil, int MmCocada, double Precio, int Stock){
+    public items_lista(String LlantaId,String MarcaNeumatico, int Ancho, int Diametro, int Perfil, int MmCocada, double Precio, int Stock, String FotoLlanta){
+        this.LlantaId = LlantaId;
         this.MarcaNeumatico = MarcaNeumatico;
         this.Ancho = Ancho;
         this.Diametro = Diametro;
@@ -14,6 +15,15 @@ public class items_lista {
         this.MmCocada = MmCocada;
         this.Precio = Precio;
         this.Stock = Stock;
+        this.FotoLlanta = FotoLlanta;
+    }
+
+    public String getLlantaId() {
+        return LlantaId;
+    }
+
+    public void setLlantaId(String llantaId) {
+        LlantaId = llantaId;
     }
 
     public String getMarcaNeumatico() {
@@ -70,5 +80,13 @@ public class items_lista {
 
     public void setPrecio(double precio) {
         Precio = precio;
+    }
+
+    public String getFotoLlanta() {
+        return FotoLlanta;
+    }
+
+    public void setFotoLlanta(String fotoLlanta) {
+        FotoLlanta = fotoLlanta;
     }
 }

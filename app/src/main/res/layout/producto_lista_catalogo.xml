@@ -7,9 +7,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        >
 
         <!--BOTONES_______________________________________________________________-->
         <LinearLayout
@@ -37,6 +37,7 @@
                     android:background="@drawable/agregar_prod"
                     android:layout_marginHorizontal="6dp"
                     android:id="@+id/btnAgregar"
+                    android:foreground="?android:attr/selectableItemBackground"
                     />
                 <Button
                     android:layout_width="35dp"
@@ -44,6 +45,7 @@
                     android:background="@drawable/modificar_prod"
                     android:layout_marginHorizontal="6dp"
                     android:id="@+id/btnModificar"
+                    android:foreground="?android:attr/selectableItemBackground"
                     />
                 <Button
                     android:layout_width="35dp"
@@ -51,6 +53,7 @@
                     android:background="@drawable/eliminar_prod"
                     android:layout_marginHorizontal="6dp"
                     android:id="@+id/btnEliminar"
+                    android:foreground="?android:attr/selectableItemBackground"
                     />
 
             </LinearLayout>
@@ -65,6 +68,7 @@
             android:orientation="vertical"
             android:padding="15dp"
             android:id="@+id/btnDetalle"
+            android:foreground="?android:attr/selectableItemBackground"
             >
 
             <!--BLOQUE___________________________________________________-->
