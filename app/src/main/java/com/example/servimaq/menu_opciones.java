@@ -2,6 +2,7 @@ package com.example.servimaq;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +15,7 @@ import com.example.servimaq.contenedores.ingreso_productos;
 
 public class menu_opciones extends AppCompatActivity {
 
-    Button btnProductos, btnCatalogo;
+    Button btnProductos, btnCatalogo,btnRegistroCliente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +24,12 @@ public class menu_opciones extends AppCompatActivity {
 
         btnProductos = findViewById(R.id.btnProductos);
         btnCatalogo = findViewById(R.id.btnCatalogo);
+        btnRegistroCliente=findViewById(R.id.btnRegistroCliente);
 
         //PANTALLA REGISTROS---------------------------------------------------------------------------------
-        btnProductos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(menu_opciones.this, ingreso_productos.class);
-                startActivity(i);
-            }
+        btnProductos.setOnClickListener(view -> {
+            Intent i = new Intent(menu_opciones.this, ingreso_productos.class);
+            startActivity(i);
         });
 
         //PANTALLA CATALOGO---------------------------------------------------------------------------------
@@ -41,6 +40,17 @@ public class menu_opciones extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        //PANTALLA DE REGISTRO DE CLIENTE--------------------------------------
+        btnRegistroCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(menu_opciones.this, registro_cliente.class);
+                startActivity(i);
+            }
+        });
+
+
 
     }
 
@@ -55,6 +65,7 @@ public class menu_opciones extends AppCompatActivity {
     }
 
     //SELECCION OPCION EN MENU-----------------------------------------------
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
