@@ -65,12 +65,13 @@ public class Catalogo extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 tipo_busqueda = tipos.get(i);
-                if(tipo_busqueda.equalsIgnoreCase("codigo")){
+                if(tipo_busqueda.equalsIgnoreCase("Seleccionar busqueda por...")){
+                    campo_busqueda = "L.LlantaId";
+                }else if(tipo_busqueda.equalsIgnoreCase("codigo")){
                     campo_busqueda = "L.LlantaId";
                 }else if(tipo_busqueda.equalsIgnoreCase("marca")){
                     campo_busqueda = "D.NombreMarca";
                 }
-
                 //Toast.makeText(getApplicationContext(),tipo_busqueda,Toast.LENGTH_SHORT).show();
             }
 
