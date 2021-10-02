@@ -134,12 +134,43 @@
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/llOpcionVehiculoId"
+                    android:background="#BBE0E4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="ID Vehiculo: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <Spinner
+                            android:id="@+id/spVehiculoId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp" />
+
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
 
                 <!--BLOQUEEE_________________________________________________________________________-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#BBE0E4">
 
                     <TextView
                         android:layout_width="0dp"
@@ -176,7 +207,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#BBE0E4">
 
                     <TextView
                         android:layout_width="0dp"
@@ -213,7 +245,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#BBE0E4">
 
                     <TextView
                         android:layout_width="0dp"
@@ -245,12 +278,43 @@
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/llOpcionDetalleLlantaId"
+                    android:background="#9DD4ED">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="ID Detalle Neumatico: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <Spinner
+                            android:id="@+id/spDetalleLlantaId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp" />
+
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
 
                 <!--BLOQUEEE_________________________________________________________________________-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
 
                     <TextView
                         android:layout_width="0dp"
@@ -287,7 +351,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
 
                     <TextView
                         android:layout_width="0dp"
@@ -325,7 +390,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
 
                     <TextView
                         android:layout_width="0dp"
@@ -364,7 +430,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
 
                     <TextView
                         android:layout_width="0dp"
@@ -401,7 +468,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
 
                     <TextView
                         android:layout_width="0dp"
@@ -438,7 +506,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
 
                     <TextView
                         android:layout_width="0dp"
@@ -475,7 +544,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
 
                     <TextView
                         android:layout_width="0dp"
@@ -500,25 +570,56 @@
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
                             android:id="@+id/etFechaFabricacion"
+                            android:inputType="date"
+                            android:focusable="false"
+                            android:clickable="true"
+                            android:layout_marginTop="25dp"
+                            android:justificationMode="inter_word"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="............"
+                            android:hint="Insertar Fecha..."
                             android:textSize="15dp" />
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
-
-
-
-
-
-
 
 
                 <!--BLOQUEEE_________________________________________________________________________-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:id="@+id/llOpcionMedidaLlantaId"
+                    android:background="#91C7F1">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="ID Medida Neumatico: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <Spinner
+                            android:id="@+id/spMedidaLlantaId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp" />
+
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#91C7F1">
 
                     <TextView
                         android:layout_width="0dp"
@@ -556,7 +657,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#91C7F1">
 
                     <TextView
                         android:layout_width="0dp"
@@ -594,7 +696,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#91C7F1">
 
                     <TextView
                         android:layout_width="0dp"
@@ -632,7 +735,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#91C7F1">
 
                     <TextView
                         android:layout_width="0dp"
@@ -666,10 +770,48 @@
                 </LinearLayout><!--FIN______________________________________________________________-->
 
 
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
 
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/btnModificar"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:layout_height="wrap_content"
+                            android:text="Modificar"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"/>
 
+                        <Button
+                            android:id="@+id/btnConfirmar"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:layout_height="wrap_content"
+                            android:text="Confirmar"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"/>
+                    </TableLayout>
 
-
+                    <Button
+                        android:id="@+id/btnCancelar"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="wrap_content"
+                        android:text="Cancelar"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout><!--FIN______________________________________________________________-->
 
 
             </LinearLayout>

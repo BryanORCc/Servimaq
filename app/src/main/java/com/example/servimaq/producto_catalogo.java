@@ -72,11 +72,12 @@ public class producto_catalogo extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
-        TextView tvMarca, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPrecio, tvStock;
+        TextView tvLlantaId, tvMarca, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPrecio, tvStock;
 
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View itemView = inflater.inflate(R.layout.producto_lista_catalogo, viewGroup, false);
 
+        tvLlantaId = itemView.findViewById(R.id.tvLlantaId);
         tvMarca = itemView.findViewById(R.id.tvMarca);
         tvAncho = itemView.findViewById(R.id.tvAncho);
         tvDiametro = itemView.findViewById(R.id.tvDiametro);
@@ -89,6 +90,7 @@ public class producto_catalogo extends BaseAdapter {
         btnDetalle = itemView.findViewById(R.id.btnDetalle);
         ivFoto = (ImageView) itemView.findViewById(R.id.ivFoto);
 
+        tvLlantaId.setText(Lista.get(i).getLlantaId());
         tvMarca.setText(Lista.get(i).getNombreMarca());
         tvAncho.setText(""+Lista.get(i).getAncho());
         tvDiametro.setText(""+Lista.get(i).getDiametro());

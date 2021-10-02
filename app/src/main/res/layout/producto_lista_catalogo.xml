@@ -81,6 +81,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:text="ID Neumatico: "/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="marca..."
+                    android:id="@+id/tvLlantaId"/>
+            </LinearLayout>
+
+            <!--BLOQUE___________________________________________________-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:text="Marca: "/>
                 <TextView
                     android:layout_width="wrap_content"
