@@ -11,9 +11,9 @@ import android.widget.TextView;
 public class detalle_producto extends AppCompatActivity {
 
     TextView tvllantaId, tvNombreMarca, tvIndiceCarga, tvIndiceVelocidad, tvConstruccion, tvClasificacion, tvFechaFabricacion, tvMarcaVehiculo,
-            tvModeloVehiculo, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPresionMaxima, tvStock, tvPrecio;
-    EditText etllantaId, etNombreMarca, etIndiceCarga, etIndiceVelocidad, etConstruccion, etClasificacion, etFechaFabricacion, etMarcaVehiculo,
-            etModeloVehiculo, etAncho, etDiametro, etPerfil, etMmCocada, etPresionMaxima, etStock, etPrecio;
+            tvModeloVehiculo, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPresionMaxima, tvStock, tvPrecio, tvTipoVehiculo;
+    EditText etNombreMarca, etIndiceCarga, etIndiceVelocidad, etConstruccion, etClasificacion, etFechaFabricacion, etMarcaVehiculo,
+            etModeloVehiculo, etAncho, etDiametro, etPerfil, etMmCocada, etPresionMaxima, etStock, etPrecio, etTipoVehiculo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,10 @@ public class detalle_producto extends AppCompatActivity {
                 Stock = datos.getIntExtra("Stock",0),
                 PresionMaxima = datos.getIntExtra("PresionMaxima",0);
         double Precio = datos.getDoubleExtra("Precio",0.0);
+        String TipoVehiculo = datos.getStringExtra("TipoVehiculo"),
+                DetalleLlantaId = datos.getStringExtra("DetalleLlantaId"),
+                VehiculoId = datos.getStringExtra("VehiculoId"),
+                MedidaLlantaId = datos.getStringExtra("MedidaLlantaId");
 
         //TEXT VIEWS ----------------------------------------------------------------
         tvllantaId = findViewById(R.id.tvllantaId);
@@ -61,7 +65,6 @@ public class detalle_producto extends AppCompatActivity {
 
 
         //EDITS TEXT ----------------------------------------------------------------
-        etllantaId = findViewById(R.id.etllantaId);
         etNombreMarca = findViewById(R.id.etNombreMarca);
         etIndiceCarga = findViewById(R.id.etIndiceCarga);
         etIndiceVelocidad = findViewById(R.id.etIndiceVelocidad);
@@ -104,7 +107,6 @@ public class detalle_producto extends AppCompatActivity {
 
     //OCULTAR EDIT TEXT DE LA PANTALLA DETALLE PRODUCTO
     public void OcultarEditText(){
-        etllantaId.setVisibility(View.GONE);
         etNombreMarca.setVisibility(View.GONE);
         etIndiceCarga.setVisibility(View.GONE);
         etIndiceVelocidad.setVisibility(View.GONE);

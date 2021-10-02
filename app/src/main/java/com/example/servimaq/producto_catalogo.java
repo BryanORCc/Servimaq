@@ -128,6 +128,10 @@ public class producto_catalogo extends BaseAdapter {
                 Stock = Lista.get(i).getStock(),
                 PresionMaxima = Lista.get(i).getPresionMaxima();
                 double Precio = Lista.get(i).getPrecio();
+                String TipoVehiculo = Lista.get(i).getTipoVehiculo(),
+                        DetalleLlantaId = Lista.get(i).getDetalleLlantaId(),
+                        VehiculoId = Lista.get(i).getVehiculoId(),
+                        MedidaLlantaId = Lista.get(i).getMedidaLlantaId();
 
                 Intent detalle = new Intent(c,detalle_producto.class);
 
@@ -152,6 +156,10 @@ public class producto_catalogo extends BaseAdapter {
                 detalle.putExtra("Stock",Stock);
                 detalle.putExtra("PresionMaxima",PresionMaxima);
                 detalle.putExtra("Precio",Precio);
+                detalle.putExtra("TipoVehiculo",TipoVehiculo);
+                detalle.putExtra("DetalleLlantaId",DetalleLlantaId);
+                detalle.putExtra("VehiculoId",VehiculoId);
+                detalle.putExtra("MedidaLlantaId",MedidaLlantaId);
 
                 view.getContext().startActivity(detalle);
 

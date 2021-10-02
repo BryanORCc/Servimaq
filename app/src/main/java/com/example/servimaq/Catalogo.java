@@ -86,7 +86,7 @@ public class Catalogo extends AppCompatActivity {
                 Statement st = db.ConexionDB(getApplicationContext()).createStatement();
                 ResultSet rs = st.executeQuery("select L.LlantaId, L.Precio, L.Stock, D.DetalleLlantaId, D.NombreMarca, D.IndiceCarga, D.IndiceVelocidad, D.FotoLlanta, D.Construccion, D.PresionMaxima,"+
                         "D.Clasificacion, D.FechaFabricacion, V.VehiculoId, V.FotoVehiculo, V.MarcaVehiculo, V.ModeloVehiculo, M.MedidaLlantaId, M.Ancho, M.Diametro,"+
-                        "M.Perfil, M.MmCocada from T_Llanta L inner join T_DetalleLlanta D on L.DetalleLlantaId = D.DetalleLlantaId "+
+                        "M.Perfil, M.MmCocada, V.TipoVehiculo from T_Llanta L inner join T_DetalleLlanta D on L.DetalleLlantaId = D.DetalleLlantaId "+
                         "inner join T_Vehiculo V on L.VehiculoId = V.VehiculoId inner join T_MedidaLlanta M on M.MedidaLlantaId = D.MedidaLlantaId;");
 
                 if (!rs.next()) {
@@ -95,7 +95,8 @@ public class Catalogo extends AppCompatActivity {
                     do {
                         lista.add(new items_lista(rs.getString(1), rs.getString(5), rs.getString(6),rs.getString(7), rs.getString(9),
                                 rs.getString(11), rs.getString(12), rs.getString(8), rs.getString(14), rs.getString(15), rs.getString(16),
-                                rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(3), rs.getInt(10), rs.getDouble(2)));
+                                rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(3), rs.getInt(10), rs.getDouble(2),
+                                rs.getString(22), rs.getString(4), rs.getString(13), rs.getString(17)));
                     } while (rs.next());///va agregando cada ID
 
                 }
@@ -131,7 +132,7 @@ public class Catalogo extends AppCompatActivity {
                     Statement st = db.ConexionDB(getApplicationContext()).createStatement();
                     ResultSet rs = st.executeQuery("select L.LlantaId, L.Precio, L.Stock, D.DetalleLlantaId, D.NombreMarca, D.IndiceCarga, D.IndiceVelocidad, D.FotoLlanta, D.Construccion, D.PresionMaxima,"+
                             "D.Clasificacion, D.FechaFabricacion, V.VehiculoId, V.FotoVehiculo, V.MarcaVehiculo, V.ModeloVehiculo, M.MedidaLlantaId, M.Ancho, M.Diametro,"+
-                            "M.Perfil, M.MmCocada from T_Llanta L inner join T_DetalleLlanta D on L.DetalleLlantaId = D.DetalleLlantaId "+
+                            "M.Perfil, M.MmCocada, V.TipoVehiculo from T_Llanta L inner join T_DetalleLlanta D on L.DetalleLlantaId = D.DetalleLlantaId "+
                             "inner join T_Vehiculo V on L.VehiculoId = V.VehiculoId inner join T_MedidaLlanta M on M.MedidaLlantaId = D.MedidaLlantaId "+
                             "where "+ campo_busqueda +" like '%"+ cadena_texto_buscar +"%';");
 
@@ -141,7 +142,8 @@ public class Catalogo extends AppCompatActivity {
                         do {
                             lista.add(new items_lista(rs.getString(1), rs.getString(5), rs.getString(6),rs.getString(7), rs.getString(9),
                                     rs.getString(11), rs.getString(12), rs.getString(8), rs.getString(14), rs.getString(15), rs.getString(16),
-                                    rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(3), rs.getInt(10), rs.getDouble(2)));
+                                    rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(3), rs.getInt(10), rs.getDouble(2),
+                                    rs.getString(22), rs.getString(4), rs.getString(13), rs.getString(17)));
                         } while (rs.next());///va agregando cada ID
 
                     }

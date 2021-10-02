@@ -2,11 +2,15 @@ package com.example.servimaq.db;
 
 public class items_lista {
 
-    private String LlantaId, NombreMarca, IndiceCarga, IndiceVelocidad, Construccion, Clasificacion, FechaFabricacion, FotoLlanta, FotoVehiculo, MarcaVehiculo, ModeloVehiculo;
+    private String LlantaId, NombreMarca, IndiceCarga, IndiceVelocidad, Construccion, Clasificacion, FechaFabricacion, FotoLlanta,
+            FotoVehiculo, MarcaVehiculo, ModeloVehiculo;
     private int Ancho, Diametro, Perfil, MmCocada, Stock, PresionMaxima;
     private double Precio;
+    private String TipoVehiculo, DetalleLlantaId, VehiculoId, MedidaLlantaId;
 
-    public items_lista(String llantaId, String nombreMarca, String indiceCarga, String indiceVelocidad, String construccion, String clasificacion, String fechaFabricacion, String fotoLlanta, String fotoVehiculo, String marcaVehiculo, String modeloVehiculo, int ancho, int diametro, int perfil, int mmCocada, int stock, int presionMaxima, double precio) {
+    public items_lista(String llantaId, String nombreMarca, String indiceCarga, String indiceVelocidad, String construccion, String clasificacion, String fechaFabricacion,
+                       String fotoLlanta, String fotoVehiculo, String marcaVehiculo, String modeloVehiculo, int ancho, int diametro, int perfil, int mmCocada, int stock,
+                       int presionMaxima, double precio, String tipoVehiculo, String detalleLlantaId, String vehiculoId, String medidaLlantaId) {
         LlantaId = llantaId;
         NombreMarca = nombreMarca;
         IndiceCarga = indiceCarga;
@@ -25,6 +29,10 @@ public class items_lista {
         Stock = stock;
         PresionMaxima = presionMaxima;
         Precio = precio;
+        TipoVehiculo = tipoVehiculo;
+        DetalleLlantaId = detalleLlantaId;
+        VehiculoId = vehiculoId;
+        MedidaLlantaId = medidaLlantaId;
     }
 
     public String getLlantaId() {
@@ -169,5 +177,37 @@ public class items_lista {
 
     public void setPrecio(double precio) {
         Precio = precio;
+    }
+
+    public String getTipoVehiculo() {
+        return TipoVehiculo;
+    }
+
+    public void setTipoVehiculo(String tipoVehiculo) {
+        TipoVehiculo = tipoVehiculo;
+    }
+
+    public String getDetalleLlantaId() {
+        return DetalleLlantaId;
+    }
+
+    public void setDetalleLlantaId(String detalleLlantaId) {
+        DetalleLlantaId = detalleLlantaId;
+    }
+
+    public String getVehiculoId() {
+        return VehiculoId;
+    }
+
+    public void setVehiculoId(String vehiculoId) {
+        VehiculoId = vehiculoId;
+    }
+
+    public String getMedidaLlantaId() {
+        return MedidaLlantaId;
+    }
+
+    public void setMedidaLlantaId(String medidaLlantaId) {
+        MedidaLlantaId = medidaLlantaId;
     }
 }
