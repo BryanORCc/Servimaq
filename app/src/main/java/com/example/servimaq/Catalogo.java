@@ -3,7 +3,9 @@ package com.example.servimaq;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,6 +33,7 @@ public class Catalogo extends AppCompatActivity {
     String cadena_texto_buscar = null, tipo_busqueda = "codigo", campo_busqueda = null;
     Spinner spTipoBusqueda;
     ArrayList<String> tipos = new ArrayList<>();
+    int recarga = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +81,8 @@ public class Catalogo extends AppCompatActivity {
 
         //INICIAR CONEXION A LA DB--------------------------
         SQLConexion db = new SQLConexion();
+
+
 
         //CONDICION PARA MOSTRAR DATOS-------------------------------------------------------------------------------------------------------
         if(cadena_texto_buscar==null){
@@ -155,11 +160,11 @@ public class Catalogo extends AppCompatActivity {
                 prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
                 lvListaProductos.setAdapter(prod_catalogo);
 
+
                 return true;
             }
 
         });
-
 
     }
 }

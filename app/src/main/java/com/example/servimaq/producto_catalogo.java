@@ -4,6 +4,7 @@ import static androidx.core.app.ActivityCompat.startActivityForResult;
 import static java.lang.String.valueOf;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
@@ -48,6 +50,7 @@ public class producto_catalogo extends BaseAdapter {
     Button btnAgregar;
     LinearLayout btnDetalle;
     ImageView ivFoto;
+    int recarga;
 
     public producto_catalogo(Context c, ArrayList<items_lista> Lista){
         this.c = c;
@@ -98,6 +101,8 @@ public class producto_catalogo extends BaseAdapter {
         tvMmCocada.setText(""+Lista.get(i).getMmCocada());
         tvPrecio.setText(""+Lista.get(i).getPrecio());
         tvStock.setText(""+Lista.get(i).getStock());
+
+
 
 
 

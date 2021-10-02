@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -128,67 +129,6 @@ public class detalle_producto extends AppCompatActivity {
         etPrecio = findViewById(R.id.etPrecio);
         etTipoVehiculo = findViewById(R.id.etTipoVehiculo);
 
-
-        //MOSTRAR DETALLE EN LOS TEXT VIEWS ------------------------------------------
-        tvllantaId.setText(llantaId);
-        tvNombreMarca.setText(NombreMarca);
-        tvIndiceCarga.setText(IndiceCarga);
-        tvIndiceVelocidad.setText(IndiceVelocidad);
-        tvConstruccion.setText(Construccion);
-        tvClasificacion.setText(Clasificacion);
-        tvFechaFabricacion.setText(FechaFabricacion);
-        tvMarcaVehiculo.setText(MarcaVehiculo);
-        tvModeloVehiculo.setText(ModeloVehiculo);
-        tvAncho.setText(""+Ancho);
-        tvDiametro.setText(""+Diametro);
-        tvPerfil.setText(""+Perfil);
-        tvMmCocada.setText(""+MmCocada);
-        tvPresionMaxima.setText(""+PresionMaxima);
-        tvStock.setText(""+Stock);
-        tvPrecio.setText(""+Precio);
-        tvTipoVehiculo.setText(TipoVehiculo);
-
-        //OCULTAR ----------------------------------------
-        OcultarEditText();
-        btnConfirmar.setVisibility(View.GONE);
-        llOpcionVehiculoId.setVisibility(View.GONE);
-        llOpcionDetalleLlantaId.setVisibility(View.GONE);
-        llOpcionMedidaLlantaId.setVisibility(View.GONE);
-
-        //CAMBIAR VISTA CON EDIT TEXT----------------------------------------------------------------------
-        btnModificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OcultarTextView();
-                MostrarEditText();
-                btnModificar.setVisibility(View.GONE);
-                btnConfirmar.setVisibility(View.VISIBLE);
-                llOpcionVehiculoId.setVisibility(View.VISIBLE);
-                llOpcionDetalleLlantaId.setVisibility(View.VISIBLE);
-                llOpcionMedidaLlantaId.setVisibility(View.VISIBLE);
-
-                //CARGAR DATOS A LOS EDIT TEXT--------------------------------------
-                etStock.setText(""+Stock);
-                etPrecio.setText(""+Precio);
-                etTipoVehiculo.setText(TipoVehiculo);
-                etMarcaVehiculo.setText(MarcaVehiculo);
-                etModeloVehiculo.setText(ModeloVehiculo);
-                etNombreMarca.setText(NombreMarca);
-                etIndiceCarga.setText(IndiceCarga);
-                etIndiceVelocidad.setText(IndiceVelocidad);
-                etConstruccion.setText(Construccion);
-                etPresionMaxima.setText(""+PresionMaxima);
-                etClasificacion.setText(Clasificacion);
-                etFechaFabricacion.setText(FechaFabricacion);
-                etAncho.setText(""+Ancho);
-                etDiametro.setText(""+Diametro);
-                etPerfil.setText(""+Perfil);
-                etMmCocada.setText(""+MmCocada);
-
-
-            }
-        });
-
         //--CARGAR DATOS A LOS SPINNERS - VEHICULO ------------------------------------------------------------------------------
         try {
             SQLConexion conexion =new SQLConexion();
@@ -236,7 +176,7 @@ public class detalle_producto extends AppCompatActivity {
         }//FIN Carga--------------------------------------------------------------------------------
 
 
-        //--CARGAR DATOS A LOS SPINNERS - MEDIDA ------------------------------------------------------------------------------
+        //--CARGAR DATOS A LOS SPINNERS - MEDIDA ------------------------------------------------------------------------------:::::::
         try {
             SQLConexion conexion =new SQLConexion();
             Statement st = conexion.ConexionDB(getApplicationContext()).createStatement();
@@ -252,6 +192,12 @@ public class detalle_producto extends AppCompatActivity {
                 } while (rs.next());///va agregando cada ID
                 ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, datosMedida);
                 spMedidaLlantaId.setAdapter(adapter);
+
+                int x = -1;
+                do{
+                    x++;
+                }while (datosMedida.get(x).equalsIgnoreCase(MedidaLlantaId));
+                spMedidaLlantaId.setSelection(x);
             }
         }
         catch (Exception e) {
@@ -373,6 +319,116 @@ public class detalle_producto extends AppCompatActivity {
             }
         });
 
+        //**************************SELECT INFORMACION NEUMATICO EDIT TEXT---**************************************************************************
+        //****************************************************************************************************
+        try {
+            SQLConexion conexion =new SQLConexion();
+            Statement st = conexion.ConexionDB(getApplicationContext()).createStatement();
+            ResultSet rs = st.executeQuery("select L.LlantaId, L.Stock, L.Precio, V.TipoVehiculo, V.MarcaVehiculo, V.ModeloVehiculo, D.NombreMarca," +
+                    " D.IndiceCarga, D.IndiceVelocidad,  D.Construccion, D.PresionMaxima, D.Clasificacion, D.FechaFabricacion, M.Ancho, M.Diametro," +
+                    " M.Perfil, M.MmCocada, V.VehiculoId, M.MedidaLlantaId, D.DetalleLlantaId, V.FotoVehiculo, D.FotoLlanta from T_Llanta L " +
+                    "inner join T_DetalleLlanta D on L.DetalleLlantaId = D.DetalleLlantaId inner join T_Vehiculo V on L.VehiculoId = V.VehiculoId " +
+                    "inner join T_MedidaLlanta M on M.MedidaLlantaId = D.MedidaLlantaId where L.LlantaId = '"+ llantaId +"';");
+
+            if (!rs.next()) {
+                Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
+            }else {
+                do {
+                    //CARGAR DATOS A LOS TEXT VIEW--------------------------------------
+                    tvllantaId.setText(rs.getString(1));
+                    tvStock.setText(""+rs.getInt(2));
+                    tvPrecio.setText(""+rs.getDouble(3));
+                    tvTipoVehiculo.setText(rs.getString(4));
+                    tvMarcaVehiculo.setText(rs.getString(5));
+                    tvModeloVehiculo.setText(rs.getString(6));
+                    tvNombreMarca.setText(rs.getString(7));
+                    tvIndiceCarga.setText(""+rs.getInt(8));
+                    tvIndiceVelocidad.setText(rs.getString(9));
+                    tvConstruccion.setText(rs.getString(10));
+                    tvPresionMaxima.setText(""+rs.getInt(11));
+                    tvClasificacion.setText(rs.getString(12));
+                    tvFechaFabricacion.setText(rs.getString(13));
+                    tvAncho.setText(""+rs.getInt(14));
+                    tvDiametro.setText(""+rs.getInt(15));
+                    tvPerfil.setText(""+rs.getInt(16));
+                    tvMmCocada.setText(""+rs.getInt(17));
+                } while (rs.next());///va agregando cada ID
+            }
+            rs.close();
+
+            int x = -1;
+            do{
+                x++;
+            }while (datosMedida.get(x).equalsIgnoreCase(MedidaLlantaId));
+            spMedidaLlantaId.setSelection(x);
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+        }//FIN SELECT-------------
+
+
+        //OCULTAR ----------------------------------------
+        OcultarEditText();
+        btnConfirmar.setVisibility(View.GONE);
+        llOpcionVehiculoId.setVisibility(View.GONE);
+        llOpcionDetalleLlantaId.setVisibility(View.GONE);
+        llOpcionMedidaLlantaId.setVisibility(View.GONE);
+
+        //CAMBIAR VISTA CON EDIT TEXT----------------------------------------------------------------------
+        btnModificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OcultarTextView();
+                MostrarEditText();
+                btnModificar.setVisibility(View.GONE);
+                btnConfirmar.setVisibility(View.VISIBLE);
+                llOpcionVehiculoId.setVisibility(View.VISIBLE);
+                llOpcionDetalleLlantaId.setVisibility(View.VISIBLE);
+                llOpcionMedidaLlantaId.setVisibility(View.VISIBLE);
+
+                //--SELECT INFORMACION NEUMATICO EDIT TEXT-----------------------------------------------------------------------------
+                try {
+                    SQLConexion conexion =new SQLConexion();
+                    Statement st = conexion.ConexionDB(getApplicationContext()).createStatement();
+                    ResultSet rs = st.executeQuery("select L.LlantaId, L.Stock, L.Precio, V.TipoVehiculo, V.MarcaVehiculo, V.ModeloVehiculo, D.NombreMarca," +
+                            " D.IndiceCarga, D.IndiceVelocidad,  D.Construccion, D.PresionMaxima, D.Clasificacion, D.FechaFabricacion, M.Ancho, M.Diametro," +
+                            " M.Perfil, M.MmCocada, V.VehiculoId, M.MedidaLlantaId, D.DetalleLlantaId, V.FotoVehiculo, D.FotoLlanta from T_Llanta L " +
+                            "inner join T_DetalleLlanta D on L.DetalleLlantaId = D.DetalleLlantaId inner join T_Vehiculo V on L.VehiculoId = V.VehiculoId " +
+                            "inner join T_MedidaLlanta M on M.MedidaLlantaId = D.MedidaLlantaId where L.LlantaId = '"+ llantaId +"';");
+
+                    if (!rs.next()) {
+                        Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
+                    }else {
+                        do {
+                            //CARGAR DATOS A LOS EDIT TEXT--------------------------------------
+                            etStock.setText(""+rs.getInt(2));
+                            etPrecio.setText(""+rs.getDouble(3));
+                            etTipoVehiculo.setText(rs.getString(4));
+                            etMarcaVehiculo.setText(rs.getString(5));
+                            etModeloVehiculo.setText(rs.getString(6));
+                            etNombreMarca.setText(rs.getString(7));
+                            etIndiceCarga.setText(""+rs.getInt(8));
+                            etIndiceVelocidad.setText(rs.getString(9));
+                            etConstruccion.setText(rs.getString(10));
+                            etPresionMaxima.setText(""+rs.getInt(11));
+                            etClasificacion.setText(rs.getString(12));
+                            etFechaFabricacion.setText(rs.getString(13));
+                            etAncho.setText(""+rs.getInt(14));
+                            etDiametro.setText(""+rs.getInt(15));
+                            etPerfil.setText(""+rs.getInt(16));
+                            etMmCocada.setText(""+rs.getInt(17));
+                        } while (rs.next());///va agregando cada ID
+                    }
+                    rs.close();
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }//FIN SELECT-------------
+
+            }
+        });
+
+
+
         //Mostrar calendario*************************************************************************
         etFechaFabricacion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -389,7 +445,7 @@ public class detalle_producto extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //--ACTUALIZAR DATOS DE LA TABLA MEDIDA------------------------------------------------------------------------------
+                //--**ACTUALIZAR DATOS DE LA TABLA MEDIDA------------------------------------------------------------------------------::::
                 try {
                     SQLConexion conexion =new SQLConexion();
                     PreparedStatement ps = conexion.ConexionDB(getApplicationContext()).prepareStatement(
@@ -402,13 +458,24 @@ public class detalle_producto extends AppCompatActivity {
                     ps.setString(5,MedidaLlantaId);
                     ps.executeUpdate();
                     ps.close();
+
+                    tvAncho.setText(etAncho.getText().toString());
+                    tvDiametro.setText(etDiametro.getText().toString());
+                    tvPerfil.setText(etPerfil.getText().toString());
+                    tvMmCocada.setText(etMmCocada.getText().toString());
+
+                    int x = -1;
+                    do{
+                        x++;
+                    }while (datosMedida.get(x).equalsIgnoreCase(MedidaLlantaId));
+                    spMedidaLlantaId.setSelection(x);
                 }
                 catch (Exception e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
 
 
-                //--ACTUALIZAR DATOS DE LA TABLA VEHICULO------------------------------------------------------------------------------
+                //--**ACTUALIZAR DATOS DE LA TABLA VEHICULO------------------------------------------------------------------------------
                 try {
                     SQLConexion conexion =new SQLConexion();
                     PreparedStatement ps = conexion.ConexionDB(getApplicationContext()).prepareStatement(
@@ -424,7 +491,7 @@ public class detalle_producto extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
 
-                //--ACTUALIZAR DATOS DE LA TABLA DETALLE------------------------------------------------------------------------------
+                //--**ACTUALIZAR DATOS DE LA TABLA DETALLE------------------------------------------------------------------------------
                 try {
                     SQLConexion conexion =new SQLConexion();
                     PreparedStatement ps = conexion.ConexionDB(getApplicationContext()).prepareStatement(
