@@ -33,7 +33,8 @@ public class Catalogo extends AppCompatActivity {
     String cadena_texto_buscar = null, tipo_busqueda = "codigo", campo_busqueda = null;
     Spinner spTipoBusqueda;
     ArrayList<String> tipos = new ArrayList<>();
-    int recarga = 0;
+
+    int valor = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

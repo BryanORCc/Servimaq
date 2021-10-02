@@ -38,6 +38,7 @@ import com.example.servimaq.db.items_lista;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URI;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class producto_catalogo extends BaseAdapter {
     Context c;
     LayoutInflater inflater;
     ArrayList<items_lista> Lista;
-    Button btnAgregar;
+    Button btnAgregar, btnEliminar;
     LinearLayout btnDetalle;
     ImageView ivFoto;
     int recarga;
@@ -91,6 +92,7 @@ public class producto_catalogo extends BaseAdapter {
 
         btnAgregar = itemView.findViewById(R.id.btnAgregar);
         btnDetalle = itemView.findViewById(R.id.btnDetalle);
+        btnEliminar = itemView.findViewById(R.id.btnEliminar);
         ivFoto = (ImageView) itemView.findViewById(R.id.ivFoto);
 
         tvLlantaId.setText(Lista.get(i).getLlantaId());
@@ -167,6 +169,33 @@ public class producto_catalogo extends BaseAdapter {
                 detalle.putExtra("DetalleLlantaId",DetalleLlantaId);
                 detalle.putExtra("VehiculoId",VehiculoId);
                 detalle.putExtra("MedidaLlantaId",MedidaLlantaId);
+
+                view.getContext().startActivity(detalle);
+
+            }
+        });
+
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //--ACTUALIZAR DATOS DE LA TABLA NEUMATICO------------------------------------------------------------------------------
+                try {
+                    SQLConexion conexion =new SQLConexion();
+                    PreparedStatement ps = conexion.ConexionDB(c.getApplicationContext()).prepareStatement(
+                            "delete from T_Llanta where LlantaId = ?;");
+                    ps.setString(1,tvLlantaId.getText().toString());
+                    ps.executeUpdate();
+                    ps.close();
+                    Toast.makeText(c.getApplicationContext(),"Producto Eliminado",Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception e) {
+                    Toast.makeText(c.getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+
+                Intent detalle = new Intent(c,Catalogo.class);
+                //Permite abrir una nueva vista
+                detalle.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 view.getContext().startActivity(detalle);
 

@@ -543,6 +543,15 @@ public class detalle_producto extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==event.KEYCODE_BACK){
+            Intent intent = new Intent(detalle_producto.this, Catalogo.class);
+            startActivity(intent);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     //OCULTAR EDIT TEXT DE LA PANTALLA DETALLE PRODUCTO
     public void OcultarEditText(){
         etNombreMarca.setVisibility(View.GONE);
