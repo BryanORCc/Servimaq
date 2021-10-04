@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,6 +41,15 @@ public class Catalogo extends AppCompatActivity {
     ArrayList<String> tipos = new ArrayList<>();
 
     int valor = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==event.KEYCODE_BACK){
+            Intent intent = new Intent(Catalogo.this, menu_opciones.class);
+            startActivity(intent);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,6 +201,7 @@ public class Catalogo extends AppCompatActivity {
             }
 
         });
+
 
     }
 }

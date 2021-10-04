@@ -1,10 +1,12 @@
 package com.example.servimaq;
 
+import static androidx.core.app.ActivityCompat.finishAfterTransition;
 import static androidx.core.app.ActivityCompat.startActivityForResult;
 import static java.lang.String.valueOf;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -193,10 +195,10 @@ public class producto_catalogo extends BaseAdapter {
                     Toast.makeText(c.getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
 
+
                 Intent detalle = new Intent(c,Catalogo.class);
                 //Permite abrir una nueva vista
                 detalle.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
                 view.getContext().startActivity(detalle);
 
             }
