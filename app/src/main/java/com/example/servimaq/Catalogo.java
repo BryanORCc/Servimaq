@@ -4,8 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -67,17 +72,19 @@ public class Catalogo extends AppCompatActivity {
                 tipo_busqueda = tipos.get(i);
                 if(tipo_busqueda.equalsIgnoreCase("Seleccionar busqueda por...")){
                     campo_busqueda = "L.LlantaId";
+                    svBusqueda.setQueryHint("ingresar codigo...");
                 }else if(tipo_busqueda.equalsIgnoreCase("codigo")){
                     campo_busqueda = "L.LlantaId";
+                    svBusqueda.setQueryHint("ingresar codigo...");
                 }else if(tipo_busqueda.equalsIgnoreCase("marca")){
                     campo_busqueda = "D.NombreMarca";
+                    svBusqueda.setQueryHint("ingresar marca...");
                 }
                 //Toast.makeText(getApplicationContext(),tipo_busqueda,Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
@@ -120,7 +127,24 @@ public class Catalogo extends AppCompatActivity {
             lvListaProductos.setAdapter(prod_catalogo);
         }
 
+        //EXPANDIR CUADRO DE BUSQUEDA*********************************************
+        svBusqueda.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                spTipoBusqueda.setVisibility(View.GONE);
+            }
+        });
 
+        //CERRAR CUADRO DE BUSQUEDA*********************************************
+        svBusqueda.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                spTipoBusqueda.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+
+        //BUSCAR POR INGRESO DE TEXTO
         svBusqueda.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String texto_buscar) {

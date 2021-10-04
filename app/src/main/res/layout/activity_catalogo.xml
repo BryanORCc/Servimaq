@@ -14,7 +14,7 @@
         android:orientation="horizontal">
         <SearchView
             android:layout_width="0dp"
-            android:layout_weight="0.3"
+            android:layout_weight="0.15"
             android:layout_height="wrap_content"
             android:queryHint="ingresar texto..."
             android:id="@+id/svBusqueda"
@@ -22,10 +22,14 @@
         <Spinner
             android:layout_gravity="center"
             android:layout_width="0dp"
-            android:layout_weight="0.7"
+            android:layout_weight="0.85"
             android:layout_height="match_parent"
             android:id="@+id/spTipoBusqueda"
             android:spinnerMode="dropdown"
+            android:scrollbarStyle="insideOverlay"
+            android:backgroundTint="#216CBC"
+            android:backgroundTintMode="add"
+            android:popupBackground="#68A3E3"
             />
     </LinearLayout>
 
