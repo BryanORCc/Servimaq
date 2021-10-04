@@ -1,5 +1,6 @@
 package com.example.servimaq;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -45,6 +46,7 @@ public class Catalogo extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==event.KEYCODE_BACK){
+            finish();
             Intent intent = new Intent(Catalogo.this, menu_opciones.class);
             startActivity(intent);
         }
@@ -55,6 +57,9 @@ public class Catalogo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         svBusqueda = findViewById(R.id.svBusqueda);
         spTipoBusqueda = findViewById(R.id.spTipoBusqueda);

@@ -3,13 +3,19 @@ package com.example.servimaq.db;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+
+import com.example.servimaq.R;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -35,6 +41,39 @@ public class SQLConexion {
             Toast.makeText(c,"Falla de conexion",Toast.LENGTH_SHORT).show();
         }
         return conexion;
+    }
+
+    //--VALIDAR LOGIN--------------------------------------------------------
+    public boolean Validar(Context c, String usuario, String contra){
+        boolean estado = false;
+        try {
+            Statement st = ConexionDB(c).createStatement();
+            ResultSet rs = st.executeQuery("select * from Cuenta where Usuario='"+usuario+"' and Contraseña='"+contra+"';");
+            if(rs.next()){
+                estado = true;
+                Toast toast = Toast.makeText(c,"Bienvenido", Toast.LENGTH_SHORT);
+                View vista = toast.getView();
+                vista.setBackgroundResource(R.drawable.estilo_color_x);
+                toast.setGravity(Gravity.CENTER,0,0);
+                TextView text = (TextView) vista.findViewById(android.R.id.message);
+                text.setTextColor(Color.parseColor("#FFF1F9FA"));
+                toast.show();
+            }else{
+                Toast toast = Toast.makeText(c,"Usuario o Contraseña incorrecto", Toast.LENGTH_SHORT);
+                View vista = toast.getView();
+                vista.setBackgroundResource(R.drawable.estilo_color_x);
+                toast.setGravity(Gravity.CENTER,0,0);
+                TextView text = (TextView) vista.findViewById(android.R.id.message);
+                text.setTextColor(Color.parseColor("#FFF1F9FA"));
+                toast.show();
+                estado = false;
+            }
+            rs.close();
+
+        } catch (Exception e) {
+            Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+        return estado;
     }
 
     //--REGISTRO VEHICULO--------------------------------------------------------
@@ -79,28 +118,6 @@ public class SQLConexion {
         } catch (Exception e) {
             Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
-    }
-
-    //--VALIDAR LOGIN--------------------------------------------------------
-    public boolean Validar(Context c, String usuario, String contra){
-        boolean estado = false;
-        try {
-            Statement st = ConexionDB(c).createStatement();
-            ResultSet rs = st.executeQuery("select * from Cuenta where Usuario='"+usuario+"' and Contraseña='"+contra+"';");
-            if(rs.next()){
-                estado = true;
-                Toast.makeText(c,"Bienvenido",Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(c,"Usuario o Contraseña incorrecto",Toast.LENGTH_SHORT).show();
-                estado = false;
-            }
-            rs.close();
-
-        } catch (Exception e) {
-            Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
-            Log.e("afsaasf","-----------------------------------------"+e.getMessage());
-        }
-        return estado;
     }
 
     //--REGISTRO TIPO LLANTA--------------------------------------------------------

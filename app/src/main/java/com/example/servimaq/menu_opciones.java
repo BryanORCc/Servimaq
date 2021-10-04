@@ -2,6 +2,8 @@ package com.example.servimaq;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -60,11 +62,28 @@ public class menu_opciones extends AppCompatActivity {
     {
         switch (item.getItemId())
         {
-            case R.id.mnOrdenCompra:
-                //presiono en item1
+            case R.id.mnOrdenCompra: //presiono en item1
+
                 return true;
-            case R.id.mnEstadistica:
-                //presiono en item2
+            case R.id.mnSalir: //presiono en item2
+                AlertDialog alertDialog = new AlertDialog.Builder(menu_opciones.this).create();
+                alertDialog.setTitle("Salir de la aplicación");
+                alertDialog.setMessage("Cerrar Sesión");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Aceptar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                finishAffinity();
+                                System.exit(0);
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancelar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                alertDialog.show();
                 return true;
             default:
         }

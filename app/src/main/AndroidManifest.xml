@@ -18,12 +18,15 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".detalle_producto"
+            android:parentActivityName=".Catalogo"
             android:exported="true" />
         <activity
             android:name=".Catalogo"
+            android:parentActivityName=".menu_opciones"
             android:exported="true" />
         <activity
             android:name=".contenedores.ingreso_productos"
+            android:parentActivityName=".menu_opciones"
             android:exported="true" />
         <activity
             android:name=".menu_opciones"

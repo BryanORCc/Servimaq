@@ -31,10 +31,8 @@ public class fragment_vehiculo extends Fragment {
 
     View vista;
     EditText etTipoVehiculo, etMarcaVehiculo, etModeloVehiculo;
-    Button btnFoto, btnRegistrar, btnCancelar, btnAtras;
+    Button btnFoto, btnRegistrar, btnCancelar;
     ImageView ivFoto;
-    String Imagen;
-    Bitmap bitmap;
 
     Uri ruta = null;
 
@@ -81,7 +79,6 @@ public class fragment_vehiculo extends Fragment {
         btnFoto = vista.findViewById(R.id.btnFoto);
         btnRegistrar = vista.findViewById(R.id.btnRegistrar);
         btnCancelar = vista.findViewById(R.id.btnCancelar);
-        btnAtras = vista.findViewById(R.id.btnAtras);
         ivFoto = vista.findViewById(R.id.ivFoto);
 
         btnFoto.setOnClickListener(new View.OnClickListener() {
@@ -117,15 +114,6 @@ public class fragment_vehiculo extends Fragment {
             @Override
             public void onClick(View view) {
                 Limpiar();
-            }
-        });
-
-        //BOTON ATRAS - MENU ---------------------------------------------------------------------------------
-        btnAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), menu_opciones.class);
-                startActivity(i);
             }
         });
 

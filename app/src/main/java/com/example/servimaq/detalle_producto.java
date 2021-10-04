@@ -1,13 +1,19 @@
 package com.example.servimaq;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.transition.Slide;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.AndroidException;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -45,6 +51,10 @@ public class detalle_producto extends AppCompatActivity {
     ArrayList<String> datosMedida = new ArrayList<>();
     String llantaId, VehiculoId, DetalleLlantaId, MedidaLlantaId;
 
+    String mensajeToast = null;
+
+    boolean opcionModificar = false;
+
     public static EditText etFechaFabricacion;
     public static int dia, mes, año;
 
@@ -52,6 +62,9 @@ public class detalle_producto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_producto);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         //BOTONES--------------------------------------------------
         btnModificar = findViewById(R.id.btnModificar);
@@ -538,8 +551,64 @@ public class detalle_producto extends AppCompatActivity {
                 llOpcionDetalleLlantaId.setVisibility(View.GONE);
                 llOpcionMedidaLlantaId.setVisibility(View.GONE);
 
+                //CAMBIO DE ESTADO y Mostrar TOAST
+                opcionModificar = false;
+                mensajeToast = "Producto Modificado";
+                MostrarToast(mensajeToast);
+
             }
         });
+
+        //BOTON MODIFICAR DEL LISTADO DE NEUMATICOS -  SEGUNDA ENTRADA *************************************
+        Intent opcMod = getIntent();
+        opcionModificar = opcMod.getBooleanExtra("estado",false);
+        if(opcionModificar==true){
+            OcultarTextView();
+            MostrarEditText();
+            btnModificar.setVisibility(View.GONE);
+            btnConfirmar.setVisibility(View.VISIBLE);
+            llOpcionVehiculoId.setVisibility(View.VISIBLE);
+            llOpcionDetalleLlantaId.setVisibility(View.VISIBLE);
+            llOpcionMedidaLlantaId.setVisibility(View.VISIBLE);
+
+            //--SELECT INFORMACION NEUMATICO EDIT TEXT-----------------------------------------------------------------------------
+            try {
+                SQLConexion conexion =new SQLConexion();
+                Statement st = conexion.ConexionDB(getApplicationContext()).createStatement();
+                ResultSet rs = st.executeQuery("select L.LlantaId, L.Stock, L.Precio, V.TipoVehiculo, V.MarcaVehiculo, V.ModeloVehiculo, D.NombreMarca," +
+                        " D.IndiceCarga, D.IndiceVelocidad,  D.Construccion, D.PresionMaxima, D.Clasificacion, D.FechaFabricacion, M.Ancho, M.Diametro," +
+                        " M.Perfil, M.MmCocada, V.VehiculoId, M.MedidaLlantaId, D.DetalleLlantaId, V.FotoVehiculo, D.FotoLlanta from T_Llanta L " +
+                        "inner join T_DetalleLlanta D on L.DetalleLlantaId = D.DetalleLlantaId inner join T_Vehiculo V on L.VehiculoId = V.VehiculoId " +
+                        "inner join T_MedidaLlanta M on M.MedidaLlantaId = D.MedidaLlantaId where L.LlantaId = '"+ llantaId +"';");
+
+                if (!rs.next()) {
+                    Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
+                }else {
+                    do {
+                        //CARGAR DATOS A LOS EDIT TEXT--------------------------------------
+                        etStock.setText(""+rs.getInt(2));
+                        etPrecio.setText(""+rs.getDouble(3));
+                        etTipoVehiculo.setText(rs.getString(4));
+                        etMarcaVehiculo.setText(rs.getString(5));
+                        etModeloVehiculo.setText(rs.getString(6));
+                        etNombreMarca.setText(rs.getString(7));
+                        etIndiceCarga.setText(""+rs.getInt(8));
+                        etIndiceVelocidad.setText(rs.getString(9));
+                        etConstruccion.setText(rs.getString(10));
+                        etPresionMaxima.setText(""+rs.getInt(11));
+                        etClasificacion.setText(rs.getString(12));
+                        etFechaFabricacion.setText(rs.getString(13));
+                        etAncho.setText(""+rs.getInt(14));
+                        etDiametro.setText(""+rs.getInt(15));
+                        etPerfil.setText(""+rs.getInt(16));
+                        etMmCocada.setText(""+rs.getInt(17));
+                    } while (rs.next());///va agregando cada ID
+                }
+                rs.close();
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+            }//FIN SELECT-------------
+        }
 
     }
 
@@ -550,6 +619,17 @@ public class detalle_producto extends AppCompatActivity {
             startActivity(intent);
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    //**MENSAJE DE CONFIRMACION*************************************************************************************
+    public void MostrarToast(String mensaje){
+        Toast toast = Toast.makeText(getApplicationContext(),mensaje, Toast.LENGTH_SHORT);
+        View vista = toast.getView();
+        vista.setBackgroundResource(R.drawable.estilo_color_x);
+        toast.setGravity(Gravity.CENTER,0,0);
+        TextView text = (TextView) vista.findViewById(android.R.id.message);
+        text.setTextColor(Color.parseColor("#FFF1F9FA"));
+        toast.show();
     }
 
     //OCULTAR EDIT TEXT DE LA PANTALLA DETALLE PRODUCTO
@@ -628,6 +708,7 @@ public class detalle_producto extends AppCompatActivity {
         tvPrecio.setVisibility(View.VISIBLE);
         tvTipoVehiculo.setVisibility(View.VISIBLE);
     }
+
 
     ///BLOQUE FECHA DINAMICA**************************************************
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {

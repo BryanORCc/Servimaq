@@ -8,8 +8,8 @@
         />
 
     <item
-        android:id="@+id/mnEstadistica"
-        android:title="Estadisticas"
+        android:id="@+id/mnSalir"
+        android:title="Salir"
         app:showAsAction="collapseActionView"
         />
 </menu>
