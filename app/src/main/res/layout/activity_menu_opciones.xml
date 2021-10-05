@@ -45,21 +45,22 @@
 
         <Button
             android:layout_width="0dp"
-            android:layout_weight="0.5"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="0.5"
             android:background="@drawable/ic_baseline_add_24"
             android:scaleX="0.5"
-            android:scaleY="0.7"
-            android:layout_margin="10dp"
-            />
+            android:scaleY="0.7" />
+
         <Button
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="match_parent"
-            android:background="@drawable/ic_baseline_add_24"
-            android:scaleX="0.5"
-            android:scaleY="0.7"
+            android:background="@drawable/salida_producto"
+            android:scaleX="0.7"
+            android:scaleY="0.8"
             android:layout_margin="10dp"
+            android:id="@+id/btnSalida_Producto"
             />
     </LinearLayout>
 

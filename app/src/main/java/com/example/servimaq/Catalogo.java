@@ -21,8 +21,9 @@ public class Catalogo extends AppCompatActivity {
     TextView tvMarca, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPrecio, tvStock;
     SearchView svBusqueda;
     ListView lvListaProductos;
-    ArrayList<items_lista> lista = new ArrayList<>();;
+    ArrayList<items_lista> lista = new ArrayList<>();
     producto_catalogo prod_catalogo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class Catalogo extends AppCompatActivity {
 
         SQLConexion db = new SQLConexion();
 
-        //--SELECT INFORMACION NEUMATICO--------------------------------------------------------
+        //--SELECT INFORMACION NEUMATICO --------------------------------------------------------
         try {
             Statement st = db.ConexionDB(getApplicationContext()).createStatement();
             ResultSet rs = st.executeQuery("select L.LlantaId, L.Precio, L.Stock, D.DetalleLlantaId, D.NombreMarca, D.IndiceCarga, D.IndiceVelocidad, D.FotoLlanta, D.Construccion, D.PresionMaxima,"+

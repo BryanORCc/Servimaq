@@ -11,10 +11,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.servimaq.contenedores.ingreso_productos;
+import com.example.servimaq.fragments_registros.Salida_Prod;
 
 public class menu_opciones extends AppCompatActivity {
 
-    Button btnProductos, btnCatalogo;
+    Button btnProductos, btnCatalogo ,btnSalida_Producto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class menu_opciones extends AppCompatActivity {
 
         btnProductos = findViewById(R.id.btnProductos);
         btnCatalogo = findViewById(R.id.btnCatalogo);
+        btnSalida_Producto= findViewById(R.id.btnSalida_Producto);
 
         //PANTALLA REGISTROS---------------------------------------------------------------------------------
         btnProductos.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +43,19 @@ public class menu_opciones extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        //  PANTALLA SALIDA DE PRODUCTO
+
+        btnSalida_Producto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(menu_opciones.this, Salida_Prod.class);
+                startActivity(i);
+            }
+        });
+
+
+
 
     }
 
