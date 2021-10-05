@@ -248,7 +248,7 @@ public class SQLConexion {
             ResultSet rs = st.executeQuery("select * from T_Pedido");
 
             if (!rs.next()) {
-                CodPedidoId = "CP01";
+                CodPedidoId = "COD-001";
             }
             else {
                 do {
@@ -257,12 +257,13 @@ public class SQLConexion {
             }
 
             if(contar<=9){
-                CodPedidoId = "CP0"+contar;
+                CodPedidoId = "COD-00"+contar;
             }else if(contar>=10 && contar<=99){
-                CodPedidoId = "C" +
-                        "P"+contar;
+                CodPedidoId = "COD-0"+contar;
             }
-
+            else if(contar>=100 && contar<=999) {
+                CodPedidoId = "COD-" + contar;
+            }
             //REGISTRAR EN TABLA----------------------------------------------------------------------
             registro = ConexionDB(c).prepareStatement("insert into T_Pedido values(?,?,?,?,?,?,?,?)");
             registro.setString(1,CodPedidoId);

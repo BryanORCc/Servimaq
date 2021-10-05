@@ -42,7 +42,7 @@ public class Listar_pedidos extends AppCompatActivity {
 
         SQLConexion db = new SQLConexion();
 
-        //--SELECT INFORMACION NEUMATICO--------------------------------------------------------
+
         try {
             Statement st = db.ConexionDB(getApplicationContext()).createStatement();
             ResultSet rs = st.executeQuery("select codPedido,NombresCliente,ApellidosCliente,Correo,FechaActual,FechaEntrega,ModoPago,DNI from T_Pedido;");

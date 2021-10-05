@@ -64,7 +64,7 @@ public class registro_cliente extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item, opciones);
         spinner1.setAdapter(adapter);
        //////cargar fecha actual --------
-        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         FechaActual.setText(date);
         ///////////////////////////////
 
@@ -152,16 +152,6 @@ public class registro_cliente extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
-
-
-
-
-
-
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
