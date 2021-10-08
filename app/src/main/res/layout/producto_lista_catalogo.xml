@@ -2,14 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@drawable/img"
-        android:layout_marginVertical="1dp"
+    android:orientation="vertical"
+    android:background="@drawable/fondo">
 
-        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,11 +36,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textColorHint="#DA1F1F20"
                     android:text="Marca: "/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="marca..."
+                    android:textColorHint="#DA1F1F20"
                     android:id="@+id/tvMarca"/>
             </LinearLayout>
 
@@ -58,11 +55,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textColorHint="#DA1F1F20"
                     android:text="Ancho: "/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="ancho..."
+                    android:textColorHint="#DA1F1F20"
                     android:id="@+id/tvAncho"/>
             </LinearLayout>
 
@@ -80,6 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="diametro..."
+                    android:textColorHint="#DA1F1F20"
                     android:id="@+id/tvDiametro"/>
             </LinearLayout>
 
@@ -97,6 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="perfil..."
+                    android:textColorHint="#DA1F1F20"
                     android:id="@+id/tvPerfil"/>
             </LinearLayout>
 
@@ -114,6 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="mmCocada..."
+                    android:textColorHint="#DA1F1F20"
                     android:id="@+id/tvMmCocada"/>
             </LinearLayout>
 
@@ -131,6 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="precio..."
+                    android:textColorHint="#DA1F1F20"
                     android:id="@+id/tvPrecio"/>
             </LinearLayout>
 
@@ -148,17 +151,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="stock..."
+                    android:textColorHint="#DA1F1F20"
                     android:id="@+id/tvStock"/>
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:src="@drawable/img_1"
-        android:layout_marginVertical="1dp"
 
-        />
 </LinearLayout>

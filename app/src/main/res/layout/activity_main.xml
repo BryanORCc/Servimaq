@@ -4,50 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@drawable/img_2"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    tools:context=".MainActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:layout_marginHorizontal="130dp"
+        android:layout_marginTop="15dp"
+        android:hint="Iniciar Sesion"
+        android:gravity="center"
+
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="41dp"
+        android:textStyle="italic"
+        android:paddingVertical="20dp"/>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_margin="15dp"
-        android:layout_weight="0.3"
-
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="130dp"
-            android:layout_marginTop="15dp"
-            android:hint="Iniciar Sesion"
-
-            android:textColor="#FFFFFF"
-            android:textColorHighlight="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:textSize="41dp"
-            android:textStyle="italic"></TextView>
-
-
+        android:layout_weight="0.7"
+        android:orientation="vertical"
+        android:gravity="start">
 
         <EditText
             android:id="@+id/etUsuario"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="80dp"
-            android:layout_marginTop="110dp"
             android:background="#9AFFFFFF"
-            android:hint="usuario..."></EditText>
+            android:hint="usuario..."
+            android:padding="10dp"/>
 
         <EditText
             android:id="@+id/etContra"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="80dp"
             android:layout_marginTop="15dp"
-
+            android:padding="10dp"
             android:background="#9AFFFFFF"
             android:hint="contraseña..."
             android:inputType="textPassword"></EditText>
@@ -55,13 +55,14 @@
         <Button
             android:id="@+id/btnIngresar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="80dp"
             android:layout_marginTop="15dp"
-            android:background="#E0AF03"
+            android:background="@drawable/bordesredondos"
             android:text="Ingresar"></Button>
 
     </LinearLayout>
+
 
 
 </LinearLayout>

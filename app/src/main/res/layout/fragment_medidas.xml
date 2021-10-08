@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     tools:context=".fragments_registros.fragment_medidas"
-    android:background="#F1EEEE">
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:text="Registrar Medida"
                     android:textSize="35dp"
+                    android:textColor="#DA1F1F20"
                     android:layout_marginVertical="25dp"
                     android:textAlignment="center"
                     android:fontFamily="sans-serif-black"
@@ -57,12 +59,15 @@
                 android:text="Ancho:"
                 android:fontFamily="sans-serif-black"
                 android:textSize="15dp"
+                android:textColor="#DA1F1F20"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Ancho..."
+
                 android:textSize="15dp"
+                android:textColorHint="#DA1F1F20"
                 android:layout_marginBottom="30dp"
                 android:inputType="number"
                 android:id="@+id/etAncho"
@@ -75,12 +80,14 @@
                 android:text="Diametro:"
                 android:fontFamily="sans-serif-black"
                 android:textSize="15dp"
+                android:textColor="#DA1F1F20"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Diametro..."
                 android:textSize="15dp"
+                android:textColorHint="#DA1F1F20"
                 android:layout_marginBottom="30dp"
                 android:inputType="number"
                 android:id="@+id/etDiametro"
@@ -92,15 +99,18 @@
                 android:text="Perfil:"
                 android:fontFamily="sans-serif-black"
                 android:textSize="15dp"
+                android:textColor="#DA1F1F20"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Perfil..."
                 android:textSize="15dp"
+                android:textColorHint="#DA1F1F20"
                 android:layout_marginBottom="30dp"
                 android:inputType="number"
                 android:id="@+id/etPerfil"
+                android:textColor="#DA1F1F20"
                 />
             <!--BLOQUE_____________________________________-->
             <TextView
@@ -109,12 +119,14 @@
                 android:text="Mmcocada:"
                 android:fontFamily="sans-serif-black"
                 android:textSize="15dp"
+                android:textColor="#DA1F1F20"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Mmcocada..."
                 android:textSize="15dp"
+                android:textColorHint="#DA1F1F20"
                 android:layout_marginBottom="30dp"
                 android:inputType="number"
                 android:id="@+id/etMmcocada"
@@ -130,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:background="#E0AF03"
+                    android:background="@drawable/bordesredondos"
                     android:text="Registrar" />
 
                 <Button
@@ -138,17 +150,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:background="#E0AF03"
+                    android:background="@drawable/bordesredondos"
                     android:text="Cancelar" />
 
             </LinearLayout>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:src="@drawable/img_1"
-                android:layout_marginVertical="70dp"
 
-                />
         </LinearLayout>
 
     </ScrollView>
