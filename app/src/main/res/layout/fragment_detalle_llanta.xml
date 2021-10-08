@@ -14,12 +14,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="15dp"
             android:orientation="vertical">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:src="@drawable/img"
-                android:layout_marginVertical="1dp"
-                />
+
             <!--TITULO_______________________________________-->
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -196,12 +191,6 @@
                     android:text="Cancelar" />
 
             </LinearLayout>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:src="@drawable/img_1"
-                android:layout_marginVertical="1dp"
-                />
 
         </LinearLayout>
 

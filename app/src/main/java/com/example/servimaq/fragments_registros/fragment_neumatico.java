@@ -96,7 +96,6 @@ public class fragment_neumatico extends Fragment {
         Spi_vehiculo=vista.findViewById(R.id.Spi_vehiculo);
 
 
-
         //CARGAR DATO DEL SPINNER DE VEHICULO ------------------------------------------------------------------
         try {
             SQLConexion conexion =new SQLConexion();
@@ -191,7 +190,6 @@ public class fragment_neumatico extends Fragment {
 
             }
         });
-
 
 
         // registrar--------------------------------------------------------------------------

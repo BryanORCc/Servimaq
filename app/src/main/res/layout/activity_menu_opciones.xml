@@ -4,102 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
     tools:context=".menu_opciones"
     android:orientation="vertical"
     >
-    <ImageView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:src="@drawable/img"
-        android:layout_marginVertical="1dp"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.33"
-        android:layout_margin="5dp">
+        android:layout_height="match_parent">
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="match_parent"
-                android:background="@drawable/estilo_registro"
-                android:scaleX="0.5"
-                android:scaleY="0.7"
-                android:layout_margin="10dp"
-                android:id="@+id/btnProductos"
-                />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="match_parent"
-                android:background="@drawable/catalogo"
-                android:scaleX="0.5"
-                android:scaleY="0.7"
-                android:layout_margin="10dp"
-                android:id="@+id/btnCatalogo"
-                />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.33"
-        android:layout_margin="5dp">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
+        <VideoView
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/registro_cliente"
-            android:scaleX="0.5"
-            android:scaleY="0.7"
-            android:layout_margin="10dp"
-            android:id="@+id/btnRegistroCliente"
+            android:id="@+id/mc_fondo_video"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
             />
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/en_proceso"
-            android:scaleX="0.5"
-            android:scaleY="0.7"
-            android:layout_margin="10dp"
-            />
-    </LinearLayout>
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.33"
-        android:layout_margin="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.33"
+                android:layout_margin="5dp">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="match_parent"
-            android:background="@drawable/en_proceso"
-            android:scaleX="0.5"
-            android:scaleY="0.7"
-            android:layout_margin="10dp"
-            />
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="match_parent"
-            android:background="@drawable/en_proceso"
-            android:scaleX="0.5"
-            android:scaleY="0.7"
-            android:layout_margin="10dp"
-            />
-    </LinearLayout>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/estilo_registro"
+                    android:scaleX="0.5"
+                    android:scaleY="0.7"
+                    android:layout_margin="10dp"
+                    android:id="@+id/btnProductos"
+                    />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/catalogo"
+                    android:scaleX="0.5"
+                    android:scaleY="0.7"
+                    android:layout_margin="10dp"
+                    android:id="@+id/btnCatalogo"
+                    />
 
 
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.33"
+                android:layout_margin="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/registro_cliente"
+                    android:scaleX="0.5"
+                    android:scaleY="0.7"
+                    android:layout_margin="10dp"
+                    android:id="@+id/btnRegistroCliente"
+                    />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/en_proceso"
+                    android:scaleX="0.5"
+                    android:scaleY="0.7"
+                    android:layout_margin="10dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.33"
+                android:layout_margin="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/en_proceso"
+                    android:scaleX="0.5"
+                    android:scaleY="0.7"
+                    android:layout_margin="10dp"
+                    />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/en_proceso"
+                    android:scaleX="0.5"
+                    android:scaleY="0.7"
+                    android:layout_margin="10dp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
 
 
 </LinearLayout>

@@ -23,6 +23,7 @@ public class ingreso_productos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingreso_productos);
 
+        //BOTON "ATRAS" - MOSTRAR EN LA BARRA DE NAVEGACION
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
