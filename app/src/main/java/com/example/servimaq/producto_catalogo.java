@@ -1,48 +1,27 @@
 package com.example.servimaq;
 
-import static androidx.core.app.ActivityCompat.finishAfterTransition;
-import static androidx.core.app.ActivityCompat.startActivityForResult;
-import static java.lang.String.valueOf;
-
-import android.Manifest;
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.net.wifi.EasyConnectStatusCallback;
-import android.os.Build;
-import android.provider.MediaStore;
-import android.renderscript.Sampler;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
 
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URI;
+import java.io.IOException;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class producto_catalogo extends BaseAdapter {
@@ -53,7 +32,7 @@ public class producto_catalogo extends BaseAdapter {
     Button btnAgregar, btnModificar, btnEliminar;
     LinearLayout btnDetalle;
     ImageView ivFoto;
-    int recarga;
+
 
     public producto_catalogo(Context c, ArrayList<items_lista> Lista){
         this.c = c;
@@ -96,7 +75,7 @@ public class producto_catalogo extends BaseAdapter {
         btnDetalle = itemView.findViewById(R.id.btnDetalle);
         btnModificar = itemView.findViewById(R.id.btnModificar);
         btnEliminar = itemView.findViewById(R.id.btnEliminar);
-        ivFoto = (ImageView) itemView.findViewById(R.id.ivFoto);
+        ivFoto = itemView.findViewById(R.id.ivFoto);
 
         tvLlantaId.setText(Lista.get(i).getLlantaId());
         tvMarca.setText(Lista.get(i).getNombreMarca());
@@ -108,8 +87,7 @@ public class producto_catalogo extends BaseAdapter {
         tvStock.setText(""+Lista.get(i).getStock());
 
 
-
-        //BOTON AGREGAR A LISTA -----------------------------------------------------------------------------------------------------------
+        //BOTON AGREGAR A LISTA ------------************************------------------------------------------------------------------------
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -262,7 +240,6 @@ public class producto_catalogo extends BaseAdapter {
 
             }
         });
-
         return itemView;
     }
 

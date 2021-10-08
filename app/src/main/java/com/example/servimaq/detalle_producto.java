@@ -430,6 +430,26 @@ public class detalle_producto extends AppCompatActivity {
                             etDiametro.setText(""+rs.getInt(15));
                             etPerfil.setText(""+rs.getInt(16));
                             etMmCocada.setText(""+rs.getInt(17));
+
+                            int x = -1;
+                            do{
+                                x++;
+                            }
+                            while (!datosVehiculo.get(x).equalsIgnoreCase(rs.getString(18)));
+                            spVehiculoId.setSelection(x);
+
+                            int y = -1;
+                            do{
+                                y++;
+                            }while (!datosMedida.get(y).equalsIgnoreCase(rs.getString(19)));
+                            spMedidaLlantaId.setSelection(y);
+
+                            int z = -1;
+                            do{
+                                z++;
+                            }while (!datosDetalle.get(z).equalsIgnoreCase(rs.getString(20)));
+                            spDetalleLlantaId.setSelection(z);
+
                         } while (rs.next());///va agregando cada ID
                     }
                     rs.close();
@@ -477,11 +497,6 @@ public class detalle_producto extends AppCompatActivity {
                     tvPerfil.setText(etPerfil.getText().toString());
                     tvMmCocada.setText(etMmCocada.getText().toString());
 
-                    int x = -1;
-                    do{
-                        x++;
-                    }while (datosMedida.get(x).equalsIgnoreCase(MedidaLlantaId));
-                    spMedidaLlantaId.setSelection(x);
                 }
                 catch (Exception e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -499,6 +514,11 @@ public class detalle_producto extends AppCompatActivity {
                     ps.setString(4,VehiculoId);
                     ps.executeUpdate();
                     ps.close();
+
+                    tvTipoVehiculo.setText(etTipoVehiculo.getText().toString());
+                    tvMarcaVehiculo.setText(etMarcaVehiculo.getText().toString());
+                    tvModeloVehiculo.setText(etModeloVehiculo.getText().toString());
+
                 }
                 catch (Exception e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -516,11 +536,20 @@ public class detalle_producto extends AppCompatActivity {
                     ps.setString(4,etConstruccion.getText().toString());
                     ps.setInt(5,Integer.parseInt(etPresionMaxima.getText().toString()));
                     ps.setString(6,etClasificacion.getText().toString());
-                    ps.setString(7,tvFechaFabricacion.getText().toString());
+                    ps.setString(7,etFechaFabricacion.getText().toString());
                     ps.setString(8,MedidaLlantaId);
                     ps.setString(9,DetalleLlantaId);
                     ps.executeUpdate();
                     ps.close();
+
+                    tvNombreMarca.setText(etNombreMarca.getText().toString());
+                    tvIndiceCarga.setText(etIndiceCarga.getText().toString());
+                    tvIndiceVelocidad.setText(etIndiceVelocidad.getText().toString());
+                    tvConstruccion.setText(etConstruccion.getText().toString());
+                    tvPresionMaxima.setText(etPresionMaxima.getText().toString());
+                    tvClasificacion.setText(etClasificacion.getText().toString());
+                    tvFechaFabricacion.setText(etFechaFabricacion.getText().toString());
+
                 }
                 catch (Exception e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -538,6 +567,10 @@ public class detalle_producto extends AppCompatActivity {
                     ps.setString(5,llantaId);
                     ps.executeUpdate();
                     ps.close();
+
+                    tvPrecio.setText(etPrecio.getText().toString());
+                    tvStock.setText(etStock.getText().toString());
+
                 }
                 catch (Exception e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -602,6 +635,27 @@ public class detalle_producto extends AppCompatActivity {
                         etDiametro.setText(""+rs.getInt(15));
                         etPerfil.setText(""+rs.getInt(16));
                         etMmCocada.setText(""+rs.getInt(17));
+
+                        int x = -1;
+                        do{
+                            x++;
+                        }
+                        while (!datosVehiculo.get(x).equalsIgnoreCase(rs.getString(18)));
+                        spVehiculoId.setSelection(x);
+
+                        int y = -1;
+                        do{
+                            y++;
+                        }while (!datosMedida.get(y).equalsIgnoreCase(rs.getString(19)));
+                        spMedidaLlantaId.setSelection(y);
+
+                        int z = -1;
+                        do{
+                            z++;
+                        }while (!datosDetalle.get(z).equalsIgnoreCase(rs.getString(20)));
+                        spDetalleLlantaId.setSelection(z);
+
+
                     } while (rs.next());///va agregando cada ID
                 }
                 rs.close();

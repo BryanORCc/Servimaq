@@ -2,13 +2,19 @@ package com.example.servimaq;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -35,13 +41,11 @@ public class Catalogo extends AppCompatActivity {
     TextView tvMarca, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPrecio, tvStock;
     SearchView svBusqueda;
     ListView lvListaProductos;
-    ArrayList<items_lista> lista = new ArrayList<>();;
+    ArrayList<items_lista> lista = new ArrayList<>();
     producto_catalogo prod_catalogo;
     String cadena_texto_buscar = null, tipo_busqueda = "codigo", campo_busqueda = null;
     Spinner spTipoBusqueda;
     ArrayList<String> tipos = new ArrayList<>();
-
-    int valor = 0;
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -58,6 +62,11 @@ public class Catalogo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
 
+        //QUITAR ANIMACION DE CARGA DE VISTA*****************************
+        overridePendingTransition(0, 0);
+        overridePendingTransition(0, 0);
+
+        //HABILITAR BOTON - ATRAS - EN LA BARRA DE NAVEGACION************
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -127,7 +136,6 @@ public class Catalogo extends AppCompatActivity {
                                 rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(3), rs.getInt(10), rs.getDouble(2),
                                 rs.getString(22), rs.getString(4), rs.getString(13), rs.getString(17)));
                     } while (rs.next());///va agregando cada ID
-
                 }
                 rs.close();
             } catch (Exception e) {

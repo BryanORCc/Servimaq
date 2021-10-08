@@ -3,13 +3,16 @@ package com.example.servimaq.fragments_registros;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Path;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.session.MediaSession;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.TokenWatcher;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,9 +21,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
+import com.example.servimaq.db.Save;
 import com.example.servimaq.menu_opciones;
 
 import java.io.FileNotFoundException;
@@ -34,7 +39,10 @@ public class fragment_vehiculo extends Fragment {
     Button btnFoto, btnRegistrar, btnCancelar;
     ImageView ivFoto;
 
+
+    private static final int Galeria = 1;
     Uri ruta = null;
+    String ruta2 = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -99,9 +107,8 @@ public class fragment_vehiculo extends Fragment {
                 if(ruta==null){
                     Foto = "";
                 }else{
-                    Foto = ruta.toString();
+                    Foto = ruta2;
                 }
-
 
                 SQLConexion db = new SQLConexion();
                 db.RegistroVehiculo(getContext(),TipoVehiculo, Foto,MarcaVehiculo,ModeloVehiculo);
@@ -126,25 +133,27 @@ public class fragment_vehiculo extends Fragment {
         Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         i.setType("image/");
         startActivityForResult(i.createChooser(i,"seleccione la aplicación"),10);
+
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
 
-        if(resultCode==getActivity().RESULT_OK){
+        Save guardarImg = new Save();
+        if( resultCode==getActivity().RESULT_OK){
             ruta = data.getData();
-            ivFoto.setImageURI(ruta);
-            Log.e("asdasd",""+ruta);
-
-            /*try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), ruta);
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), ruta);
             } catch (IOException e) {
                 e.printStackTrace();
-            }*/
-            //bitmap = ((BitmapDrawable)ivFoto.getDrawable()).getBitmap();
-            //Log.e("afsaf",""+ruta);
-            //Imagen = bitmap.toString();
+            }
+            ruta2 = ruta.toString();
+            Log.e("FOTO::::","-----------" + ruta2);
+
+            ivFoto.setImageURI(ruta);
         }
     }
 
