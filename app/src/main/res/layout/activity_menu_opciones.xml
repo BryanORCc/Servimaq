@@ -68,7 +68,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="match_parent"
-                    android:background="@drawable/registro_cliente"
+                    android:background="@drawable/pedido"
                     android:scaleX="0.5"
                     android:scaleY="0.7"
                     android:layout_margin="10dp"
