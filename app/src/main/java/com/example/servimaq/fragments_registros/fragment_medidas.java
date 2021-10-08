@@ -24,7 +24,7 @@ public class fragment_medidas extends Fragment {
 
     View vista;
     EditText etAncho, etDiametro, etPerfil, etMmcocada;
-    Button  btnRegistrar, btnCancelar, btnAtras;
+    Button  btnRegistrar, btnCancelar;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,7 +76,6 @@ public class fragment_medidas extends Fragment {
         etDiametro=vista.findViewById(R.id.etDiametro);
         etPerfil=vista.findViewById(R.id.etPerfil);
         etMmcocada=vista.findViewById(R.id.etMmcocada);
-        btnAtras=vista.findViewById(R.id.btnAtras);
         btnRegistrar=vista.findViewById(R.id.btnRegistrar);
         btnCancelar=vista.findViewById(R.id.btnCancelar);
 
@@ -99,15 +98,6 @@ public class fragment_medidas extends Fragment {
             @Override
             public void onClick(View view) {
                 Limpiar();
-            }
-        });
-
-        //BOTON ATRAS - MENU ---------------------------------------------------------------------------------
-        btnAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), menu_opciones.class);
-                startActivity(i);
             }
         });
 

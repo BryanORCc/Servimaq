@@ -4,7 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="Android.permission.MANAGE_DOCUMENTS" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="Android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,10 +19,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".detalle_producto"
+            android:parentActivityName=".Catalogo"
+            android:exported="true" />
+        <activity
+            android:name=".detalle_pedido"
+            android:parentActivityName=".Listar_pedidos"
+            android:exported="true" />
+        <activity
+            android:name=".Listar_pedidos"
+            android:parentActivityName=".registro_cliente"
+            android:exported="true" />
+        <activity
+            android:name=".registro_cliente"
+            android:parentActivityName=".menu_opciones"
+            android:exported="true" />
+        <activity
             android:name=".Catalogo"
+            android:parentActivityName=".menu_opciones"
             android:exported="true" />
         <activity
             android:name=".contenedores.ingreso_productos"
+            android:parentActivityName=".menu_opciones"
             android:exported="true" />
         <activity
             android:name=".menu_opciones"
@@ -29,6 +52,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+
     </application>
 
 </manifest>
+

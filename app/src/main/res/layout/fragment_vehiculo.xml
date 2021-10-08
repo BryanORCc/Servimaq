@@ -22,20 +22,11 @@
             <!--TITULO_______________________________________-->
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/btnAtras"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.15"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/menu_atras"
-                    />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.85"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Registrar Vehiculo"
                     android:textSize="35dp"

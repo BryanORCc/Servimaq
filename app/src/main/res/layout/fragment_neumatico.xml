@@ -21,23 +21,15 @@
             <!--TITULO_______________________________________-->
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-                <Button
-                    android:id="@+id/btnAtras"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.15"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/menu_atras"
-                    />
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.85"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Registrar Neumatico"
-                    android:textSize="33dp"
+                    android:textSize="35dp"
                     android:textColor="#DA1F1F20"
                     android:layout_marginVertical="25dp"
                     android:textAlignment="center"

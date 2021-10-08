@@ -33,16 +33,17 @@
         android:gravity="start">
 
         <EditText
-            android:id="@+id/etUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="80dp"
             android:background="#9AFFFFFF"
             android:hint="usuario..."
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:id="@+id/etUsuario"
+            android:text="admin"
+            />
 
         <EditText
-            android:id="@+id/etContra"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="80dp"
@@ -50,7 +51,11 @@
             android:padding="10dp"
             android:background="#9AFFFFFF"
             android:hint="contraseña..."
-            android:inputType="textPassword"></EditText>
+            android:inputType="textPassword"
+            android:id="@+id/etContra"
+            android:text="admin"
+            >
+        </EditText>
 
         <Button
             android:id="@+id/btnIngresar"
