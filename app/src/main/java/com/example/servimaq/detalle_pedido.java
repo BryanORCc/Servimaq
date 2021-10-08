@@ -1,5 +1,6 @@
 package com.example.servimaq;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -35,6 +36,9 @@ public class detalle_pedido extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_pedido);
 
+        //BOTON "ATRAS" EN LA BARRA DE NAVEGACION****************
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         nombrecliente=findViewById(R.id.EtNombreCliente);
         apellidocliente=findViewById(R.id.EtApellidoCliente);
@@ -48,9 +52,9 @@ public class detalle_pedido extends AppCompatActivity {
         spinner1=findViewById(R.id.Spi_Modo_Pago);
         codigoPedido=findViewById(R.id.Spi_codigoPedido);
 
-        opciones.add("opcion1");
-        opciones.add("opcion2");
-        opciones.add("opcion3");
+        opciones.add("Deposito");
+        opciones.add("Efectivo");
+        opciones.add("Plazos");
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item, opciones);
         spinner1.setAdapter(adapter);
 
@@ -80,6 +84,14 @@ public class detalle_pedido extends AppCompatActivity {
                     dni.setText(""+rs.getInt(8));
                 } while (rs.next());
 
+                //MOSTRAR OPCION DEL PEDIDO SELECCIONADO -----*******************
+                int x = -1;
+                do{
+                    x++;
+                }
+                while (!opciones.get(x).equalsIgnoreCase(rs.getString(7)));
+                spinner1.setSelection(x);
+
             }
         }
         catch (Exception e) {
@@ -87,7 +99,7 @@ public class detalle_pedido extends AppCompatActivity {
         }
 
 
-//////////////cargando los ID en un array/////
+        //////////////cargando los ID en un array/////
         try {
             SQLConexion conexion =new SQLConexion();
             Statement st = conexion.ConexionDB(getApplicationContext()).createStatement();

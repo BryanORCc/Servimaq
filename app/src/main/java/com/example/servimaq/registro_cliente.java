@@ -1,11 +1,14 @@
 package com.example.servimaq;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -44,7 +47,11 @@ public class registro_cliente extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_cliente);
 
-    nombrecliente=(EditText) findViewById(R.id.EtNombreCliente);
+        //BOTON "ATRAS" EN LA BARRA DE NAVEGACION****************
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        nombrecliente=(EditText) findViewById(R.id.EtNombreCliente);
         apellidocliente=(EditText) findViewById(R.id.EtApellidoCliente);
         correo=(EditText) findViewById(R.id.EtCorreo);
         FechaActual=(EditText) findViewById(R.id.EtFechaActual);
@@ -54,13 +61,10 @@ public class registro_cliente extends AppCompatActivity {
         spinner1=(Spinner) findViewById(R.id.Spi_Modo_Pago);
         Fecha = (EditText) findViewById(R.id.EtFechaEntrega);
 
-
-
-
         ///////Spinner//////
-        opciones.add("opcion1");
-        opciones.add("opcion2");
-        opciones.add("opcion3");
+        opciones.add("Deposito");
+        opciones.add("Efectivo");
+        opciones.add("Plazos");
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item, opciones);
         spinner1.setAdapter(adapter);
        //////cargar fecha actual --------
@@ -72,7 +76,6 @@ public class registro_cliente extends AppCompatActivity {
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 opcion = spinner1.getItemAtPosition(position).toString();
             }
 
@@ -100,7 +103,6 @@ public class registro_cliente extends AppCompatActivity {
                         FechaAct = FechaActual.getText().toString(),
                         FechaEntr=Fecha.getText().toString(),
                         documento=dni.getText().toString();
-
 
                 SQLConexion db = new SQLConexion();
                 db.RegistroPedidoCliente(registro_cliente.this,nombreC,apellidoC,corre,FechaAct,FechaEntr, opcion ,Integer.parseInt(documento));
@@ -141,8 +143,25 @@ public class registro_cliente extends AppCompatActivity {
             case R.id.mnOrdenCompra:
                 //presiono en item1
                 return true;
-            case R.id.mnEstadistica:
-                //presiono en item2
+            case R.id.mnSalir: //presiono en item2
+                AlertDialog alertDialog = new AlertDialog.Builder(registro_cliente.this).create();
+                alertDialog.setTitle("Salir de la aplicación");
+                alertDialog.setMessage("Cerrar Sesión");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Aceptar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                finishAffinity();
+                                System.exit(0);
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancelar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                alertDialog.show();
                 return true;
             case R.id.mnListaPedidos:
                 //presiono en item3
@@ -181,11 +200,8 @@ public class registro_cliente extends AppCompatActivity {
             }else{
                 Fecha.setText(dia+"/"+mes+"/"+año);
             }
-
         }
-
-
-        }
+    }
 
     //LIMPIAR CAMPOS--------------------------------------------------------------------------------------
     public void Limpiar() {

@@ -6,15 +6,14 @@
         android:title="Orden de Compra"
         app:showAsAction="collapseActionView"
         />
-
-    <item
-        android:id="@+id/mnSalir"
-        android:title="Salir"
-        app:showAsAction="collapseActionView"
-        />
     <item
         android:id="@+id/mnListaPedidos"
         android:title="Lista de pedidos"
+        app:showAsAction="collapseActionView"
+        />
+    <item
+        android:id="@+id/mnSalir"
+        android:title="Salir"
         app:showAsAction="collapseActionView"
         />
 

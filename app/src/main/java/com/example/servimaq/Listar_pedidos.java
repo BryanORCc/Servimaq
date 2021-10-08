@@ -1,5 +1,6 @@
 package com.example.servimaq;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -27,6 +28,9 @@ public class Listar_pedidos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_pedidos);
 
+        //BOTON "ATRAS" EN LA BARRA DE NAVEGACION****************
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         svBusquedaPedidos = findViewById(R.id.svBusquedaPedidos);
 

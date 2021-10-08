@@ -24,12 +24,15 @@
             android:exported="true" />
         <activity
             android:name=".detalle_pedido"
+            android:parentActivityName=".Listar_pedidos"
             android:exported="true" />
         <activity
             android:name=".Listar_pedidos"
+            android:parentActivityName=".registro_cliente"
             android:exported="true" />
         <activity
             android:name=".registro_cliente"
+            android:parentActivityName=".menu_opciones"
             android:exported="true" />
         <activity
             android:name=".Catalogo"
