@@ -23,6 +23,15 @@
             android:parentActivityName=".Catalogo"
             android:exported="true" />
         <activity
+            android:name=".detalle_pedido"
+            android:exported="true" />
+        <activity
+            android:name=".Listar_pedidos"
+            android:exported="true" />
+        <activity
+            android:name=".registro_cliente"
+            android:exported="true" />
+        <activity
             android:name=".Catalogo"
             android:parentActivityName=".menu_opciones"
             android:exported="true" />
@@ -42,7 +51,7 @@
         </activity>
 
 
-        
+
     </application>
 
 </manifest>

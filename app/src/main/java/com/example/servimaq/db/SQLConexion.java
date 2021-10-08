@@ -34,7 +34,7 @@ public class SQLConexion {
             StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
-            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.3;databaseName=Servimaq;user=mssql;password=123;");
+            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.5;databaseName=Servimaq;user=mssql;password=123;");
             //conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.0.18;databaseName=Servimaq;user=sa;password=123;");
 
         }catch (Exception e){
@@ -254,6 +254,67 @@ public class SQLConexion {
             Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
+    //--REGISTRO Pedido de cliente--------------------------------------------------------
+    public void RegistroPedidoCliente(Context c, String NombreCliente, String ApellidoCliente, String Correo, String FechaActual, String FechaEntrega, String ModoDePago , int Dni){
+
+        PreparedStatement registro;
+        int contar= 1;
+        String CodPedidoId="";
+        try {
+            //CONTAR REGISTROS------------------------------------------------------------------------
+            Statement st = ConexionDB(c).createStatement();
+            ResultSet rs = st.executeQuery("select * from T_Pedido");
+
+            if (!rs.next()) {
+                CodPedidoId = "COD-001";
+            }
+            else {
+                do {
+                    contar++;
+                } while (rs.next());
+            }
+
+            if(contar<=9){
+                CodPedidoId = "COD-00"+contar;
+            }else if(contar>=10 && contar<=99){
+                CodPedidoId = "COD-0"+contar;
+            }
+            else if(contar>=100 && contar<=999) {
+                CodPedidoId = "COD-" + contar;
+            }
+            //REGISTRAR EN TABLA----------------------------------------------------------------------
+            registro = ConexionDB(c).prepareStatement("insert into T_Pedido values(?,?,?,?,?,?,?,?)");
+            registro.setString(1,CodPedidoId);
+            registro.setString(2,NombreCliente);
+            registro.setString(3,ApellidoCliente);
+            registro.setString(4,Correo);
+            registro.setString(5,FechaActual);
+            registro.setString(6,FechaEntrega);
+            registro.setString(7,ModoDePago);
+            registro.setInt(8,Dni);
+            registro.executeUpdate();
+            Toast.makeText(c,"Registro exitoso",Toast.LENGTH_SHORT).show();
+            registro.close();
+        } catch (Exception e) {
+            Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

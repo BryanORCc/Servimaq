@@ -35,6 +35,8 @@
                 android:layout_margin="10dp"
                 android:id="@+id/btnCatalogo"
                 />
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -47,16 +49,17 @@
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="match_parent"
-            android:background="@drawable/ic_baseline_add_24"
+            android:background="@drawable/registro_cliente"
             android:scaleX="0.5"
             android:scaleY="0.7"
             android:layout_margin="10dp"
+            android:id="@+id/btnRegistroCliente"
             />
         <Button
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="match_parent"
-            android:background="@drawable/ic_baseline_add_24"
+            android:background="@drawable/en_proceso"
             android:scaleX="0.5"
             android:scaleY="0.7"
             android:layout_margin="10dp"
@@ -73,7 +76,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="match_parent"
-            android:background="@drawable/ic_baseline_add_24"
+            android:background="@drawable/en_proceso"
             android:scaleX="0.5"
             android:scaleY="0.7"
             android:layout_margin="10dp"
@@ -82,7 +85,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="match_parent"
-            android:background="@drawable/ic_baseline_add_24"
+            android:background="@drawable/en_proceso"
             android:scaleX="0.5"
             android:scaleY="0.7"
             android:layout_margin="10dp"
