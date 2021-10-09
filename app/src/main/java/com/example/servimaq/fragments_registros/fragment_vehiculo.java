@@ -1,18 +1,24 @@
 package com.example.servimaq.fragments_registros;
 
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
+
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Path;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.session.MediaSession;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import android.os.TokenWatcher;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,12 +31,12 @@ import android.widget.Toast;
 
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
-import com.example.servimaq.db.Save;
-import com.example.servimaq.menu_opciones;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-
+import java.io.OutputStream;
 
 public class fragment_vehiculo extends Fragment {
 
@@ -39,10 +45,10 @@ public class fragment_vehiculo extends Fragment {
     Button btnFoto, btnRegistrar, btnCancelar;
     ImageView ivFoto;
 
+    String ruta = null;
 
-    private static final int Galeria = 1;
-    Uri ruta = null;
-    String ruta2 = null;
+    Bitmap bitmap;
+    Uri uri = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,6 +95,7 @@ public class fragment_vehiculo extends Fragment {
         btnCancelar = vista.findViewById(R.id.btnCancelar);
         ivFoto = vista.findViewById(R.id.ivFoto);
 
+
         btnFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +107,7 @@ public class fragment_vehiculo extends Fragment {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String TipoVehiculo = etTipoVehiculo.getText().toString(),
                         MarcaVehiculo = etMarcaVehiculo.getText().toString(),
                         ModeloVehiculo = etModeloVehiculo.getText().toString(),
@@ -107,7 +115,7 @@ public class fragment_vehiculo extends Fragment {
                 if(ruta==null){
                     Foto = "";
                 }else{
-                    Foto = ruta2;
+                    Foto = ruta;
                 }
 
                 SQLConexion db = new SQLConexion();
@@ -127,33 +135,20 @@ public class fragment_vehiculo extends Fragment {
         return vista;
     }
 
-
-    //CARGA DE IMAGEN--------------------------------------------------------------------------------------
     private void CargarImagen(){
-        Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        i.setType("image/");
-        startActivityForResult(i.createChooser(i,"seleccione la aplicación"),10);
-
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/");
+        startActivityForResult(intent.createChooser(intent,"seleccione la aplicación"),10);
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
 
-        Save guardarImg = new Save();
         if( resultCode==getActivity().RESULT_OK){
-            ruta = data.getData();
-            Bitmap bitmap = null;
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), ruta);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            ruta2 = ruta.toString();
-            Log.e("FOTO::::","-----------" + ruta2);
-
-            ivFoto.setImageURI(ruta);
+            ivFoto.setImageURI(data.getData());
+            Log.e("$$$$$$$$","____"+data.getData());
+            ruta = data.getData().toString();
         }
     }
 
@@ -166,4 +161,6 @@ public class fragment_vehiculo extends Fragment {
         etModeloVehiculo.setText("");
         ruta = null;
     }
+
+
 }

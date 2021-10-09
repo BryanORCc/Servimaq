@@ -1,9 +1,16 @@
 package com.example.servimaq;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -86,6 +95,15 @@ public class producto_catalogo extends BaseAdapter {
         tvPrecio.setText(""+Lista.get(i).getPrecio());
         tvStock.setText(""+Lista.get(i).getStock());
 
+        /*if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.P){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if(ActivityCompat.checkSelfPermission(c.getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    ivFoto.setImageURI(Uri.parse(Lista.get(i).getFotoVehiculo()));
+                }
+            }
+        }else{
+
+        }*/
 
         //BOTON AGREGAR A LISTA ------------************************------------------------------------------------------------------------
         btnAgregar.setOnClickListener(new View.OnClickListener() {

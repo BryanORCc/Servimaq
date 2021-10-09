@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
+import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -17,6 +18,9 @@ import androidx.annotation.RequiresApi;
 
 import com.example.servimaq.R;
 
+import net.sourceforge.jtds.util.BlobBuffer;
+
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -108,7 +112,7 @@ public class SQLConexion {
             registro = ConexionDB(c).prepareStatement("insert into T_Vehiculo values(?,?,?,?,?)");
             registro.setString(1,VehiculoId);
             registro.setString(2,TipoVehiculo);
-            registro.setString(3,FotoVehiculo);
+            registro.setString(3, FotoVehiculo);
             registro.setString(4,MarcaVehiculo);
             registro.setString(5,ModeloVehiculo);
             registro.executeUpdate();
