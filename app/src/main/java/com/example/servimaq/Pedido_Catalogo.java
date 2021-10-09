@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.pedido_lista;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -49,9 +50,6 @@ public class Pedido_Catalogo extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-
-
-
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View itemView = inflater.inflate(R.layout.pedido_lista, viewGroup, false);
         SQLConexion db = new SQLConexion();
@@ -67,8 +65,7 @@ public class Pedido_Catalogo extends BaseAdapter {
         btnborrar=itemView.findViewById(R.id.btnborrarPedido);
         btneditar=itemView.findViewById(R.id.btneditarPedido);
 
-
-
+////// listar pedidos*******
         tvcodigo.setText(Lista.get(i).getCodigo());
         tvNombre.setText(Lista.get(i).getNombre());
         tvApellido.setText(""+Lista.get(i).getApellidos());
@@ -107,30 +104,34 @@ public class Pedido_Catalogo extends BaseAdapter {
 
        //////////////eliminar////////
 
+        btnborrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //--ACTUALIZAR DATOS DE LA TABLA NEUMATICO------------------------------------------------------------------------------
+                try {
+                    SQLConexion conexion =new SQLConexion();
+                    PreparedStatement ps = conexion.ConexionDB(c.getApplicationContext()).prepareStatement(
+                            "delete from T_Pedido where codPedido = ?;");
+                    ps.setString(1,tvcodigo.getText().toString());
+                    ps.executeUpdate();
+                    ps.close();
+                    Toast.makeText(c.getApplicationContext(),"Producto Eliminado",Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception e) {
+                    Toast.makeText(c.getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
 
 
+                Intent detalle = new Intent(c,Listar_pedidos.class);
+                //Permite abrir una nueva vista
+                detalle.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                view.getContext().startActivity(detalle);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            }
+        });
 
         return itemView;
-
-
     }
 
 }

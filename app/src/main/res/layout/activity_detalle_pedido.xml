@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".detalle_pedido">
+    tools:context=".detalle_pedido"
+    android:usesCleartextTraffic="true">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -119,7 +120,7 @@
                 android:id="@+id/EtFechaActual"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
+                android:focusable="false"
                 android:textSize="15dp" />
             <TextView
                 android:layout_width="wrap_content"
@@ -129,6 +130,7 @@
                 android:layout_marginTop="25dp"
                 android:textSize="15dp"
                 />
+
             <EditText
                 android:id="@+id/EtFechaEntrega"
                 android:inputType="date"
@@ -136,7 +138,8 @@
                 android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="fecha de Entrega"
+                android:layout_marginTop="25dp"
+                android:hint="Ingresar fecha de Entrega"
                 android:justificationMode="inter_word"
                 android:textSize="15dp" />
 
@@ -167,16 +170,6 @@
                 android:layout_marginTop="15dp">
 
                     <Button
-                        android:id="@+id/btnModificarP"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.5"
-                        android:layout_height="wrap_content"
-                        android:text="Modificar"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="10dp"/>
-
-                    <Button
                         android:id="@+id/btnConfirmarP"
                         android:layout_width="0dp"
                         android:layout_weight="0.5"
@@ -185,17 +178,6 @@
                         android:textStyle="bold"
                         android:layout_gravity="center"
                         android:layout_marginRight="10dp"/>
-
-
-                <Button
-                    android:id="@+id/btnCancelarP"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.5"
-                    android:layout_height="wrap_content"
-                    android:text="Cancelar"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"/>
 
             </LinearLayout><!--FIN______________________________________________________________-->
 
