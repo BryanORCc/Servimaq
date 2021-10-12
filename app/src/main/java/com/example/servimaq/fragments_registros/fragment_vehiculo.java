@@ -121,7 +121,7 @@ public class fragment_vehiculo extends Fragment {
                 SQLConexion db = new SQLConexion();
                 db.RegistroVehiculo(getContext(),TipoVehiculo, Foto,MarcaVehiculo,ModeloVehiculo);
                 Limpiar();
-                etTipoVehiculo.findFocus();
+                etTipoVehiculo.requestFocus();
             }
         });
 

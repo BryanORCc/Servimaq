@@ -203,7 +203,7 @@ public class fragment_neumatico extends Fragment {
                 SQLConexion db = new SQLConexion();
                 db.RegistroLlanta(getContext(),Double.parseDouble(precio),Integer.parseInt(stock),DetalleLlantaId,VehiculoId);
                 Limpiar();
-
+                etprecio.requestFocus();
 
             }
         });

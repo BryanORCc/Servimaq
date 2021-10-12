@@ -90,7 +90,8 @@ public class fragment_medidas extends Fragment {
 
                 SQLConexion db = new SQLConexion();
                 db.RegistroMedida(getContext(),Ancho,Diametro,Perfil,MmCocada);
-                //Limpiar();
+                Limpiar();
+                etAncho.requestFocus();
             }
         });
 
