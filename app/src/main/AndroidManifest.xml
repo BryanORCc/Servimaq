@@ -19,7 +19,7 @@
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/file_paths" />
-
+        <!--
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -28,7 +28,7 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider>
+        </provider>-->
 
         <activity
             android:name=".op_catalogo.detalle_producto"
