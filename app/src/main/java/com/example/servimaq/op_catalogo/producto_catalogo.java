@@ -1,16 +1,8 @@
-package com.example.servimaq;
+package com.example.servimaq.op_catalogo;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Build;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-
+import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
+import com.example.servimaq.op_catalogo.Catalogo;
+import com.example.servimaq.op_catalogo.detalle_producto;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
@@ -141,7 +130,7 @@ public class producto_catalogo extends BaseAdapter {
                         VehiculoId = Lista.get(i).getVehiculoId(),
                         MedidaLlantaId = Lista.get(i).getMedidaLlantaId();
 
-                Intent detalle = new Intent(c,detalle_producto.class);
+                Intent detalle = new Intent(c, detalle_producto.class);
                 //Permite abrir una nueva vista
                 detalle.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -251,7 +240,7 @@ public class producto_catalogo extends BaseAdapter {
                 }
 
 
-                Intent detalle = new Intent(c,Catalogo.class);
+                Intent detalle = new Intent(c, Catalogo.class);
                 //Permite abrir una nueva vista
                 detalle.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(detalle);

@@ -31,9 +31,9 @@
         </provider>
 
         <activity
-            android:name=".detalle_producto"
+            android:name=".op_catalogo.detalle_producto"
             android:exported="true"
-            android:parentActivityName=".Catalogo" />
+            android:parentActivityName=".op_catalogo.Catalogo" />
         <activity
             android:name=".detalle_pedido"
             android:exported="true"
@@ -47,7 +47,7 @@
             android:exported="true"
             android:parentActivityName=".menu_opciones" />
         <activity
-            android:name=".Catalogo"
+            android:name=".op_catalogo.Catalogo"
             android:exported="true"
             android:parentActivityName=".menu_opciones" />
         <activity

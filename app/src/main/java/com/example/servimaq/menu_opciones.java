@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -17,6 +16,7 @@ import android.widget.Button;
 import android.widget.VideoView;
 
 import com.example.servimaq.contenedores.ingreso_productos;
+import com.example.servimaq.op_catalogo.Catalogo;
 
 public class menu_opciones extends AppCompatActivity {
 
