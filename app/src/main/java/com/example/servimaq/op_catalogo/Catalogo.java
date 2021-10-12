@@ -34,6 +34,7 @@ public class Catalogo extends AppCompatActivity {
     String cadena_texto_buscar = null, tipo_busqueda = "codigo", campo_busqueda = null;
     Spinner spTipoBusqueda;
     ArrayList<String> tipos = new ArrayList<>();
+    boolean estado = false;
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -70,6 +71,7 @@ public class Catalogo extends AppCompatActivity {
         tvPrecio = findViewById(R.id.tvPrecio);
         tvStock = findViewById(R.id.tvStock);
 
+
         //ELEGIR TIPO DE BUSQUEDA--------------------------------------------------------------------------------------------
         tipos.add(0,"Seleccionar busqueda por...");
         tipos.add("codigo");
@@ -103,8 +105,6 @@ public class Catalogo extends AppCompatActivity {
         //INICIAR CONEXION A LA DB--------------------------
         SQLConexion db = new SQLConexion();
 
-
-
         //CONDICION PARA MOSTRAR DATOS-------------------------------------------------------------------------------------------------------
         if(cadena_texto_buscar==null){
             //--SELECT INFORMACION NEUMATICO------------------------------------------------------------------------------
@@ -130,11 +130,11 @@ public class Catalogo extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
             }//FIN SELECT-------------
 
-            prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
+            prod_catalogo = new producto_catalogo(Catalogo.this,lista);
             lvListaProductos.setAdapter(prod_catalogo);
 
         }else{ //Uso del buscador---------------------------------------------
-            prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
+            prod_catalogo = new producto_catalogo(Catalogo.this,lista);
             lvListaProductos.setAdapter(prod_catalogo);
         }
 
@@ -194,7 +194,7 @@ public class Catalogo extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }//FIN SELECT-------------
 
-                prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
+                prod_catalogo = new producto_catalogo(Catalogo.this,lista);
                 lvListaProductos.setAdapter(prod_catalogo);
 
 

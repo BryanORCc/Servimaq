@@ -1,6 +1,10 @@
 package com.example.servimaq.op_catalogo;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.view.LayoutInflater;
@@ -16,25 +20,28 @@ import android.widget.Toast;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
-import com.example.servimaq.op_catalogo.Catalogo;
-import com.example.servimaq.op_catalogo.detalle_producto;
+import com.example.servimaq.menu_opciones;
 
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.zip.DeflaterInputStream;
 
 public class producto_catalogo extends BaseAdapter {
 
-    Context c;
+    private Catalogo c;
     LayoutInflater inflater;
     ArrayList<items_lista> Lista;
     Button btnAgregar, btnModificar, btnEliminar;
     LinearLayout btnDetalle;
     ImageView ivFoto;
 
-
-    public producto_catalogo(Context c, ArrayList<items_lista> Lista){
+    public producto_catalogo(Catalogo c, ArrayList<items_lista> Lista){
         this.c = c;
         this.Lista = Lista;
+    }
+
+    public producto_catalogo() {
+
     }
 
     @Override
@@ -98,7 +105,21 @@ public class producto_catalogo extends BaseAdapter {
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(c.getApplicationContext(), "Boton Agregar",Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(c, Catalogo.class);
+                //Permite abrir una nueva vista
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("estado",true);
+                view.getContext().startActivity(intent);*/
+
+                /*agregar ag = new agregar();
+                FragmentManager manager = ((AppCompatActivity)c).getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.add(R.id.FLAgregar,ag);
+                transaction.addToBackStack(null);
+                transaction.commit();*/
+
+                createCustomDialog().show();
+
             }
         });
 
@@ -248,6 +269,40 @@ public class producto_catalogo extends BaseAdapter {
             }
         });
         return itemView;
+    }
+
+    public AlertDialog createCustomDialog() {
+        final AlertDialog alertDialog;
+        final AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        // Get the layout inflater
+        LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        // Inflar y establecer el layout para el dialogo
+        // Pasar nulo como vista principal porque va en el diseño del diálogo
+        View v = inflater.inflate(R.layout.dialog_agregar, null);
+        //builder.setView(inflater.inflate(R.layout.dialog_signin, null))
+        builder.setView(v);
+        alertDialog = builder.create();
+
+        // Add action buttons
+        /*btnFire.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Aceptar
+                        alertDialog.dismiss();
+                    }
+                }
+        );
+        btnCancel.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                }
+        );*/
+
+        return alertDialog;
     }
 
 }
