@@ -15,27 +15,29 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Save {
+/*public class Save {
     private Context TheThis;
-    private String NameOfFolder = "/Imagenes";
-    private String NameOfFile = "imagen";
+    private String NameOfFolder = "/ImgServimaq";
+    private String NameOfFile = "imagen_";
 
-    public String SaveImage(Context context, Bitmap ImageToSave) {
+    public String SaveImage(Context context, Bitmap ImageToSave) throws IOException {
 
         TheThis = context;
-        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + NameOfFolder;
+        //String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + NameOfFolder;
+        //String file_path = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
         String CurrentDateAndTime = getCurrentDateAndTime();
-        File dir = new File(file_path);
 
+        //Log.e("safsa", "--------:: "+file_path);File dir = new File(file_path);
         if (!dir.exists()) {
             dir.mkdirs();
         }
 
-        File file = new File(dir, NameOfFile + CurrentDateAndTime + ".jpg");
+        //File file = new File(dir, NameOfFile + CurrentDateAndTime + ".jpg");
+        //File imagen = File.createTempFile(file,".jpg",file_path);
+
 
         try {
             FileOutputStream fOut = new FileOutputStream(file);
-
             ImageToSave.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
             fOut.flush();
             fOut.close();
@@ -48,7 +50,7 @@ public class Save {
         catch(IOException e) {
             UnableToSave();
         }
-        return file.toString();
+        return file.getAbsolutePath();
     }
 
     private void MakeSureFileWasCreatedThenMakeAvabile(File file){
@@ -75,4 +77,4 @@ public class Save {
     private void AbleToSave() {
         Toast.makeText(TheThis, "Imagen guardada en la galería.", Toast.LENGTH_SHORT).show();
     }
-}
+}*/

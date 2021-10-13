@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     tools:context=".fragments_registros.fragment_neumatico"
-    android:background="#F1EEEE">
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="15dp"
             android:orientation="vertical">
+
 
             <!--TITULO_______________________________________-->
             <LinearLayout
@@ -27,8 +29,9 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Registrar Neumatico"
-                    android:textSize="35dp"
-                    android:layout_marginVertical="25dp"
+                    android:textSize="25dp"
+                    android:textColor="#DA1F1F20"
+                    android:layout_marginVertical="20dp"
                     android:textAlignment="center"
                     android:fontFamily="sans-serif-black"
                     />
@@ -40,14 +43,16 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="Precio:"
+                android:textColor="#DA1F1F20"
                 android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/etprecio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="10dp"
                 android:hint="Precio..."
+                android:textColorHint="#DA1F1F20"
                 android:inputType="number|numberDecimal"
                 android:textSize="15dp" />
             <!--_____________________________________-->
@@ -58,14 +63,16 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="Stock:"
+                android:textColor="#DA1F1F20"
                 android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/etstock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="10dp"
                 android:hint="Stock..."
+                android:textColorHint="#DA1F1F20"
                 android:inputType="number"
                 android:textSize="15dp" />
             <!--_____________________________________-->
@@ -77,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="Detalle de Neumatico:"
+                android:textColor="#DA1F1F20"
                 android:textSize="15dp" />
 
 
@@ -84,24 +92,21 @@
             <Spinner
                 android:id="@+id/Spi_especificacion"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
                 android:baselineAligned="false"
                 android:rotationX="-12"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/Tv_ver"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Detalle del neumatico..."
-                android:fontFamily="sans-serif-black"
+                android:textColorHint="#DA1F1F20"
                 android:layout_gravity="center"
-                android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="10dp"
                 android:textSize="15dp" />
 
 
@@ -109,14 +114,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="35dp">
+                android:layout_marginBottom="15dp">
 
                 <ImageView
                     android:id="@+id/ivFoto_neumatico"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:src="@drawable/no_imagen"
-                    android:layout_marginVertical="10dp"
                     />
 
             </LinearLayout>
@@ -127,28 +131,27 @@
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-black"
                 android:text="Tipo de Vehiculo:"
+                android:textColor="#DA1F1F20"
                 android:textSize="15dp" />
 
             <Spinner
                 android:id="@+id/Spi_vehiculo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
                 android:baselineAligned="false"
                 android:rotationX="-12"
                 android:textSize="20dp" />
+
             <TextView
                 android:id="@+id/Tv_ver1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHint="#DA1F1F20"
                 android:hint="Tipo de vehiculo"
-                android:fontFamily="sans-serif-black"
                 android:layout_gravity="center"
-                android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="10dp"
                 android:textSize="15dp" />
 
             <LinearLayout
@@ -161,11 +164,8 @@
                     android:id="@+id/ivFoto_vehiculo"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:src="@drawable/no_imagen"
-                    android:layout_marginVertical="10dp" />
+                    android:src="@drawable/no_imagen" />
             </LinearLayout>
-
-
 
 
             <!--_______botones de registrar  y cancelar _____________________________-->
@@ -180,18 +180,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:text="Registrar"
+                    android:background="@drawable/bordesredondos"
 
-                    />
+                    android:text="Registrar" />
 
                 <Button
                     android:id="@+id/btnCancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
+                    android:background="@drawable/bordesredondos"
                     android:text="Cancelar" />
 
             </LinearLayout>
+
 
         </LinearLayout>
 

@@ -1,36 +1,24 @@
-package com.example.servimaq;
+package com.example.servimaq.op_catalogo;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
+import com.example.servimaq.menu_opciones;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -46,6 +34,7 @@ public class Catalogo extends AppCompatActivity {
     String cadena_texto_buscar = null, tipo_busqueda = "codigo", campo_busqueda = null;
     Spinner spTipoBusqueda;
     ArrayList<String> tipos = new ArrayList<>();
+    boolean estado = false;
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -83,6 +72,7 @@ public class Catalogo extends AppCompatActivity {
         tvPrecio = findViewById(R.id.tvPrecio);
         tvStock = findViewById(R.id.tvStock);
 
+
         //ELEGIR TIPO DE BUSQUEDA--------------------------------------------------------------------------------------------
         tipos.add(0,"Seleccionar busqueda por...");
         tipos.add("codigo");
@@ -116,8 +106,6 @@ public class Catalogo extends AppCompatActivity {
         //INICIAR CONEXION A LA DB--------------------------
         SQLConexion db = new SQLConexion();
 
-
-
         //CONDICION PARA MOSTRAR DATOS-------------------------------------------------------------------------------------------------------
         if(cadena_texto_buscar==null){
             //--SELECT INFORMACION NEUMATICO------------------------------------------------------------------------------
@@ -143,11 +131,11 @@ public class Catalogo extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
             }//FIN SELECT-------------
 
-            prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
+            prod_catalogo = new producto_catalogo(Catalogo.this,lista);
             lvListaProductos.setAdapter(prod_catalogo);
 
         }else{ //Uso del buscador---------------------------------------------
-            prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
+            prod_catalogo = new producto_catalogo(Catalogo.this,lista);
             lvListaProductos.setAdapter(prod_catalogo);
         }
 
@@ -207,7 +195,7 @@ public class Catalogo extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }//FIN SELECT-------------
 
-                prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
+                prod_catalogo = new producto_catalogo(Catalogo.this,lista);
                 lvListaProductos.setAdapter(prod_catalogo);
 
 

@@ -180,10 +180,10 @@ public class detalle_llanta extends Fragment {
                     Foto = ruta.toString();
                 }
 
-
                 SQLConexion db = new SQLConexion();
                 db.RegistroDetalleLlanta(getContext(),MarcaV,Integer.parseInt(IndiceCarg),IndiceVeloci,Foto,Construcc,Integer.parseInt(PresionMax),Clasi,fech ,MedidaLlantaId);
                 Limpiar();
+                MarcaVehiculo.requestFocus();
             }
         });
 

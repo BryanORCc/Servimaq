@@ -4,16 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.VideoView;
 
 import com.example.servimaq.contenedores.ingreso_productos;
+import com.example.servimaq.op_catalogo.Catalogo;
 import com.example.servimaq.fragments_registros.Salida_Prod;
 
 public class menu_opciones extends AppCompatActivity {
@@ -24,6 +27,17 @@ public class menu_opciones extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_opciones);
+
+        final VideoView videofondo = (VideoView) findViewById(R.id.mc_fondo_video);
+        videofondo.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videofondo));
+        videofondo.start();
+
+        videofondo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.setLooping(true);
+            }
+        });
 
         btnProductos = findViewById(R.id.btnProductos);
         btnCatalogo = findViewById(R.id.btnCatalogo);
