@@ -41,7 +41,7 @@ import java.util.Calendar;
 public class detalle_llanta extends Fragment {
     EditText MarcaVehiculo,IndiceCarga,IndiceVelocidad,Construccion,PresionMaxima,Clasificacion;
     ImageView ivFotoLlanta;
-    Button BtnFotoLlanta,btnRegistrar, btnCancelar, btnAtras;
+    Button BtnFotoLlanta,btnRegistrar, btnCancelar;
     Spinner spinner1;
     View vista;
     Uri ruta = null;
@@ -109,7 +109,6 @@ public class detalle_llanta extends Fragment {
         ivFotoLlanta = vista.findViewById(R.id.ivFoto_Llanta);
         btnRegistrar = vista.findViewById(R.id.btnRegistrar);
         btnCancelar = vista.findViewById(R.id.btnCancelar);
-        btnAtras = vista.findViewById(R.id.btnAtras);
         Tv_cargar=vista.findViewById(R.id.Tv_cargar);
         spinner1=vista.findViewById(R.id.Spi_MedidaLlanta);
         BtnFotoLlanta=vista.findViewById(R.id.btnFoto_Llanta);
@@ -202,15 +201,6 @@ public class detalle_llanta extends Fragment {
             public void onClick(View view) {
                 DialogFragment newFragment = new DatePickerFragment();
                 newFragment.show(getFragmentManager(), "datePicker");
-            }
-        });
-
-        //BOTON ATRAS - MENU ---------------------------------------------------------------------------------
-        btnAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), menu_opciones.class);
-                startActivity(i);
             }
         });
 

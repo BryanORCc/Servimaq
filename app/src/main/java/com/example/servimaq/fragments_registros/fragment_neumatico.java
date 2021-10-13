@@ -33,7 +33,7 @@ public class fragment_neumatico extends Fragment {
 
     View vista;
     EditText etprecio,etstock;
-    Button btnRegistrar, btnCancelar, btnAtras;
+    Button btnRegistrar, btnCancelar;
     Spinner Spi_especificacion,Spi_vehiculo;
     TextView Tv_ver,Tv_ver1;
 
@@ -91,7 +91,6 @@ public class fragment_neumatico extends Fragment {
         btnCancelar=vista.findViewById(R.id.btnCancelar);
         Tv_ver = vista.findViewById(R.id.Tv_ver);
         Tv_ver1 = vista.findViewById(R.id.Tv_ver1);
-        btnAtras = vista.findViewById(R.id.btnAtras);
 
         Spi_especificacion=vista.findViewById(R.id.Spi_especificacion);
         Spi_vehiculo=vista.findViewById(R.id.Spi_vehiculo);
@@ -219,18 +218,8 @@ public class fragment_neumatico extends Fragment {
             }
         });
 
-        //BOTON ATRAS - MENU ---------------------------------------------------------------------------------
-        btnAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), menu_opciones.class);
-                startActivity(i);
-            }
-        });
-
         return vista;
     }
-
 
 
     //LIMPIAR llanta--------------------------------------------------------------------------------------

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments_registros.detalle_llanta"
-    android:background="#F1EEEE">
+    tools:context=".registro_cliente">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,119 +18,76 @@
             <!--TITULO_______________________________________-->
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.85"
                     android:layout_height="wrap_content"
-                    android:text="Registrar Detalle Neumatico"
-                    android:textSize="35dp"
+                    android:text="Registro de pedido de cliente"
+                    android:textSize="30dp"
                     android:layout_marginVertical="25dp"
                     android:textAlignment="center"
                     android:fontFamily="sans-serif-black"
                     />
             </LinearLayout>
 
-
             <EditText
-                android:id="@+id/EtNombreMarca"
+                android:id="@+id/EtNombreCliente"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Marca de Neumatico:"
-                android:textSize="15dp" />
-
-            <EditText
-                android:id="@+id/EtIndiceCarga"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
-                android:hint="Indice de carga:"
-                android:inputType="number"
-                android:textSize="15dp" />
-
-            <EditText
-                android:id="@+id/EtIndiceVelocidad"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
-                android:hint="Indice de Velocidad:"
                 android:inputType="text"
-                android:maxLength="1"
+                android:hint="Nombre:"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/EtApellidoCliente"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:hint="Apellidos:"
+                android:inputType="text"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/EtCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:hint="Correo:"
+                android:inputType="textEmailAddress"
                 android:textSize="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Imagen De la LLanta:"
+                android:text="fecha actual:"
                 android:fontFamily="sans-serif-black"
                 android:layout_marginTop="25dp"
                 android:textSize="15dp"
                 />
-
-            <ImageView
-                android:id="@+id/ivFoto_Llanta"
+            <EditText
+                android:id="@+id/EtFechaActual"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginVertical="10dp"
-                android:src="@drawable/no_imagen" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Seleccionar imagen"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
                 android:textSize="15dp"
-                android:layout_marginBottom="30dp"
-                android:id="@+id/btnFoto_Llanta"
-                />
+                android:focusable="false"/>
 
             <EditText
-                android:id="@+id/EtConstruccion"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
-                android:hint="Construccion:"
-                android:textSize="15dp" />
-
-            <EditText
-                android:id="@+id/EtPresionMaxima"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
-                android:inputType="number"
-                android:hint="Presion Maxima:"
-                android:textSize="15dp" />
-            <EditText
-                android:id="@+id/EtClasificacion"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
-                android:hint="Clasificacion:"
-                android:textSize="15dp" />
-
-            <EditText
-                android:id="@+id/EtFechaFabricacion"
+                android:id="@+id/EtFechaEntrega"
                 android:inputType="date"
                 android:focusable="false"
                 android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="25dp"
-                android:hint="Insertar fecha"
+                android:hint="Ingresar fecha de Entrega"
                 android:justificationMode="inter_word"
                 android:textSize="15dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Id de la Medidda de la llanta:"
-                android:fontFamily="sans-serif-black"
-                android:layout_marginTop="25dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="15dp"
-                />
+
             <Spinner
-                android:id="@+id/Spi_MedidaLlanta"
+                android:id="@+id/Spi_Modo_Pago"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="80dp"
@@ -140,18 +97,16 @@
                 android:rotationX="-12"
                 android:textSize="15dp" />
 
-            <TextView
-                android:id="@+id/Tv_cargar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Datos de medida..."
-                android:fontFamily="sans-serif-black"
-                android:layout_gravity="center"
+            <EditText
+                android:id="@+id/EtDni"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="25dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="25dp"
-                android:textSize="15dp"
-                />
+                android:hint="Insertar Dni:"
+                android:inputType="number"
+                android:maxLength="8"
+                android:textSize="15dp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -164,19 +119,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:text="Registrar"
-                    android:id="@+id/btnRegistrar"/>
+                    android:id="@+id/btnRegistrarCliente"/>
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:text="Cancelar"
-                    android:id="@+id/btnCancelar"/>
+                    android:id="@+id/btnCancelarCliente"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
-
-</FrameLayout>
+</LinearLayout>
