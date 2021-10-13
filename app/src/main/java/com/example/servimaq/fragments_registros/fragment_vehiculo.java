@@ -1,24 +1,14 @@
 package com.example.servimaq.fragments_registros;
 
-import android.Manifest;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Intent;
 
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,14 +19,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+
 
 public class fragment_vehiculo extends Fragment {
 
@@ -45,10 +38,11 @@ public class fragment_vehiculo extends Fragment {
     Button btnFoto, btnRegistrar, btnCancelar;
     ImageView ivFoto;
 
-    String ruta = null;
+    String ruta;
 
-    Bitmap bitmap;
-    Uri uri = null;
+    private StorageReference mStorage;
+    StorageReference FilePath;
+    Uri uri;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -87,6 +81,9 @@ public class fragment_vehiculo extends Fragment {
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.fragment_vehiculo, container, false);
 
+        //STORAGE FIREBASE*****************************
+        mStorage = FirebaseStorage.getInstance().getReference();
+
         etTipoVehiculo = vista.findViewById(R.id.etTipoVehiculo);
         etMarcaVehiculo = vista.findViewById(R.id.etMarcaVehiculo);
         etModeloVehiculo = vista.findViewById(R.id.etModeloVehiculo);
@@ -107,21 +104,32 @@ public class fragment_vehiculo extends Fragment {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String TipoVehiculo = etTipoVehiculo.getText().toString(),
                         MarcaVehiculo = etMarcaVehiculo.getText().toString(),
                         ModeloVehiculo = etModeloVehiculo.getText().toString(),
-                        Foto="";
-                if(ruta==null){
-                    Foto = "";
-                }else{
-                    Foto = ruta;
-                }
+                        Foto;
 
-                SQLConexion db = new SQLConexion();
-                db.RegistroVehiculo(getContext(),TipoVehiculo, Foto,MarcaVehiculo,ModeloVehiculo);
-                Limpiar();
-                etTipoVehiculo.requestFocus();
+                FilePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        ruta = taskSnapshot.getMetadata().getPath();
+                        Log.e("direccion: ","++"+ruta);
+
+                        if(ruta==null){
+                            ruta = "";
+                        }else{
+                            ruta = ruta;
+                        }
+
+                        SQLConexion db = new SQLConexion();
+                        db.RegistroVehiculo(getContext(),TipoVehiculo, ruta,MarcaVehiculo,ModeloVehiculo);
+                        Limpiar();
+                        etTipoVehiculo.requestFocus();
+                    }
+                });
+
+
+
             }
         });
 
@@ -138,7 +146,7 @@ public class fragment_vehiculo extends Fragment {
 
     private void CargarImagen(){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/");
+        intent.setType("image/*");
         startActivityForResult(intent.createChooser(intent,"seleccione la aplicación"),10);
     }
 
@@ -147,9 +155,9 @@ public class fragment_vehiculo extends Fragment {
         super.onActivityResult(requestCode,resultCode,data);
 
         if( resultCode==getActivity().RESULT_OK){
-            ivFoto.setImageURI(data.getData());
-            Log.e("$$$$$$$$","____"+data.getData());
-            ruta = data.getData().toString();
+            uri = data.getData();
+            FilePath = mStorage.child("fotos").child(uri.getLastPathSegment());
+            ivFoto.setImageURI(uri);
         }
     }
 

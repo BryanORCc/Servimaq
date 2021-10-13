@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,10 +25,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.bumptech.glide.Glide;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
 import com.example.servimaq.menu_opciones;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,7 +55,7 @@ public class producto_catalogo extends BaseAdapter {
 
     Spinner spncodPedido;
     ArrayList<String> datos_codPedido = new ArrayList<>();
-    Context context;
+
     TextView tvNombresCliente, tvApellidosCliente, tvCorreo, tvFechaActual, tvFechaEntrega, tvModoPago, tvDNI;
     String op_codPedido;
     Button btnDgAgregar, btnDgCancelar;
@@ -105,21 +116,31 @@ public class producto_catalogo extends BaseAdapter {
         tvPrecio.setText(""+Lista.get(i).getPrecio());
         tvStock.setText(""+Lista.get(i).getStock());
 
-        /*if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.P){
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if(ActivityCompat.checkSelfPermission(c.getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                    ivFoto.setImageURI(Uri.parse(Lista.get(i).getFotoVehiculo()));
-                }
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference islandRef = storageRef.child(Lista.get(i).getFotoVehiculo());
+
+        ArrayList<Bitmap> imagenes = new ArrayList<>();
+        final long ONE_MEGABYTE = 1024 * 1024;
+        islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                imagenes.add(bitmap);
+                Log.e("Contar","___: "+imagenes.size());
+                ivFoto.setImageBitmap(bitmap);
             }
-        }else{
-
-        }*/
-
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
 
         //BOTON AGREGAR A LISTA ------------************************------------------------------------------------------------------------XXX
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                datos_codPedido.clear();
                 createCustomDialog().show();
             }
         });
@@ -298,7 +319,6 @@ public class producto_catalogo extends BaseAdapter {
         //**********CARGAR DATOS AL DIALOG ***************************************************
         //--CARGAR DATOS A LOS SPINNERS - PEDIDO ------------------------------------------------------------------------------
         try {
-
             SQLConexion conexion =new SQLConexion();
             Statement st = conexion.ConexionDB(v.getContext()).createStatement();
             ResultSet rs = st.executeQuery("select codPedido from T_Pedido;");
