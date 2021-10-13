@@ -82,6 +82,7 @@
                     android:scaleX="0.5"
                     android:scaleY="0.7"
                     android:layout_margin="10dp"
+                    android:id="@+id/btnSalida_Producto"
                     />
             </LinearLayout>
 

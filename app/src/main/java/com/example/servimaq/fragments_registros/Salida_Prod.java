@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista_salida_P;
-import com.example.servimaq.producto_catalogo;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
