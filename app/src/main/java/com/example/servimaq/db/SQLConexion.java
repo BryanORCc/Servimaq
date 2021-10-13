@@ -28,6 +28,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class SQLConexion {
 
@@ -304,21 +305,59 @@ public class SQLConexion {
         }
     }
 
+    //--REGISTRO LISTADO--------------------------------------------------------
+    public void RegistroListado(Context c, int Cantidad, double Precio ,double Total, String codPedido, String LlantaId){
+        int contar= 1;
+        String ItemId="";
+        PreparedStatement registro;
+        try {
+            //CONTAR REGISTROS------------------------------------------------------------------------
+            Statement st = ConexionDB(c).createStatement();
+            ResultSet rs = st.executeQuery("select * from T_Listado");
 
+            if (!rs.next()) {
+                ItemId = "SVQSAC-001";
+            }
+            else {
+                do {
+                    contar++;
+                } while (rs.next());
+            }
 
+            if(contar<=9){
+                ItemId = "SVQSAC-00"+contar;
+            }else if(contar>=10 && contar<=99){
+                ItemId = "SVQSAC-0"+contar;
+            }
+            else if(contar>=100 && contar<=999) {
+                ItemId = "SVQSAC-" + contar;
+            }
 
+            //VALIDAR DATOS REGISTRADOS------------------------------------------------------------------------
+            Statement st2 = ConexionDB(c).createStatement();
+            ResultSet rs2 = st2.executeQuery("select * from T_Listado where codPedido = '"+codPedido+"' AND LlantaId = '"+LlantaId+"';");
 
+            if (!rs2.next()) {
+                //REGISTRAR EN TABLA----------------------------------------------------------------------
+                registro = ConexionDB(c).prepareStatement("insert into T_Listado values(?,?,?,?,?,?)");
+                registro.setString(1,ItemId);
+                registro.setInt(2,Cantidad);
+                registro.setDouble(3,Precio);
+                registro.setDouble(4,Total);
+                registro.setString(5,codPedido);
+                registro.setString(6,LlantaId);
+                registro.executeUpdate();
+                Toast.makeText(c,"Agregacion exitosa",Toast.LENGTH_SHORT).show();
+                registro.close();
+            }
+            else {
+                Toast.makeText(c,"Neumatico ya registrado en la Lista de salida de productos\nPor favor, verificar en su listado",Toast.LENGTH_LONG).show();
+            }
 
-
-
-
-
-
-
-
-
-
-
+        } catch (Exception e) {
+            Toast.makeText(c,e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+    }
 
 
 }

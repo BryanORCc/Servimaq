@@ -7,13 +7,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +28,8 @@ import com.example.servimaq.db.items_lista;
 import com.example.servimaq.menu_opciones;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.zip.DeflaterInputStream;
 
@@ -35,13 +42,17 @@ public class producto_catalogo extends BaseAdapter {
     LinearLayout btnDetalle;
     ImageView ivFoto;
 
+    Spinner spncodPedido;
+    ArrayList<String> datos_codPedido = new ArrayList<>();
+    Context context;
+    TextView tvNombresCliente, tvApellidosCliente, tvCorreo, tvFechaActual, tvFechaEntrega, tvModoPago, tvDNI;
+    String op_codPedido;
+    Button btnDgAgregar, btnDgCancelar;
+    int posicion;
+
     public producto_catalogo(Catalogo c, ArrayList<items_lista> Lista){
         this.c = c;
         this.Lista = Lista;
-    }
-
-    public producto_catalogo() {
-
     }
 
     @Override
@@ -61,6 +72,8 @@ public class producto_catalogo extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        //OBTENER POSICION PARA EL DIALOG
+        posicion = i;
 
         TextView tvLlantaId, tvMarca, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPrecio, tvStock;
 
@@ -82,6 +95,7 @@ public class producto_catalogo extends BaseAdapter {
         btnEliminar = itemView.findViewById(R.id.btnEliminar);
         ivFoto = itemView.findViewById(R.id.ivFoto);
 
+        //CARGAR DATOS DE LISTA *******************************
         tvLlantaId.setText(Lista.get(i).getLlantaId());
         tvMarca.setText(Lista.get(i).getNombreMarca());
         tvAncho.setText(""+Lista.get(i).getAncho());
@@ -101,25 +115,12 @@ public class producto_catalogo extends BaseAdapter {
 
         }*/
 
-        //BOTON AGREGAR A LISTA ------------************************------------------------------------------------------------------------
+
+        //BOTON AGREGAR A LISTA ------------************************------------------------------------------------------------------------XXX
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(c, Catalogo.class);
-                //Permite abrir una nueva vista
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("estado",true);
-                view.getContext().startActivity(intent);*/
-
-                /*agregar ag = new agregar();
-                FragmentManager manager = ((AppCompatActivity)c).getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.add(R.id.FLAgregar,ag);
-                transaction.addToBackStack(null);
-                transaction.commit();*/
-
                 createCustomDialog().show();
-
             }
         });
 
@@ -272,6 +273,7 @@ public class producto_catalogo extends BaseAdapter {
     }
 
     public AlertDialog createCustomDialog() {
+
         final AlertDialog alertDialog;
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         // Get the layout inflater
@@ -279,28 +281,145 @@ public class producto_catalogo extends BaseAdapter {
         // Inflar y establecer el layout para el dialogo
         // Pasar nulo como vista principal porque va en el diseño del diálogo
         View v = inflater.inflate(R.layout.dialog_agregar, null);
-        //builder.setView(inflater.inflate(R.layout.dialog_signin, null))
+
+        //DIALOG DE AGREGAR -- REFERENCIAS ID'S******************************
+        spncodPedido = v.findViewById(R.id.spncodPedido);
+        tvNombresCliente = v.findViewById(R.id.tvNombresCliente);
+        tvApellidosCliente = v.findViewById(R.id.tvApellidosCliente);
+        tvCorreo = v.findViewById(R.id.tvCorreo);
+        tvFechaActual = v.findViewById(R.id.tvFechaActual);
+        tvFechaEntrega = v.findViewById(R.id.tvFechaEntrega);
+        tvModoPago = v.findViewById(R.id.tvModoPago);
+        tvDNI = v.findViewById(R.id.tvDNI);
+
+        btnDgAgregar = v.findViewById(R.id.btnDgAgregar);
+        btnDgCancelar = v.findViewById(R.id.btnDgCancelar);
+
+        //**********CARGAR DATOS AL DIALOG ***************************************************
+        //--CARGAR DATOS A LOS SPINNERS - PEDIDO ------------------------------------------------------------------------------
+        try {
+
+            SQLConexion conexion =new SQLConexion();
+            Statement st = conexion.ConexionDB(v.getContext()).createStatement();
+            ResultSet rs = st.executeQuery("select codPedido from T_Pedido;");
+            if (!rs.next()) {
+                Toast.makeText(c,"No se encontraron registros",Toast.LENGTH_SHORT).show();
+                op_codPedido = null;
+            }
+            else {
+                do {
+                    //ARRAY LIST - INFORMACION PARA EL SPINNER-------------
+                    datos_codPedido.add(rs.getString(1));
+                } while (rs.next());///va agregando cada ID
+
+                ArrayAdapter adapter = new ArrayAdapter(v.getContext(),android.R.layout.simple_spinner_dropdown_item, datos_codPedido);
+                spncodPedido.setAdapter(adapter);
+            }
+            rs.close();
+        }
+        catch (Exception e) {
+            Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+        }//FIN Carga--------------------------------------------------------------------------------
+
+        //--CARGAR INICIAL DE DATOS - PEDIDO ------------------------------------------------------------------------------
+        try {
+            SQLConexion conexion =new SQLConexion();
+            Statement st = conexion.ConexionDB(v.getContext()).createStatement();
+            ResultSet rs = st.executeQuery("select * from T_Pedido where codPedido = 'COD-001';");
+            if (!rs.next()) {
+                Toast.makeText(c,"No se encontraron registros",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                tvNombresCliente.setText(rs.getString(2));
+                tvApellidosCliente.setText(rs.getString(3));
+                tvCorreo.setText(rs.getString(4));
+                tvFechaActual.setText(rs.getString(5));
+                tvFechaEntrega.setText(rs.getString(6));
+                tvModoPago.setText(rs.getString(7));
+                tvDNI.setText(rs.getString(8));
+            }
+            rs.close();
+        }
+        catch (Exception e) {
+            Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+        }//FIN Carga--------------------------------------------------------------------------------
+
+
+        //OBTENER ID DE LA POSICION*************************************************************************
+        spncodPedido.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                op_codPedido = datos_codPedido.get(i);
+                Log.e("MENSAJE","____ "+op_codPedido);
+                //CARGAR DATOS SELECCIONADOS POR EL SPINNER
+                try {
+                    SQLConexion db =new SQLConexion();
+                    Statement st = db.ConexionDB(v.getContext()).createStatement();
+                    ResultSet rs = st.executeQuery("select * from T_Pedido where codPedido = '"+op_codPedido +"';");
+                    if (!rs.next()) {
+                        Toast.makeText(v.getContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
+                    }else {
+                        do {
+                            tvNombresCliente.setText(rs.getString(2));
+                            tvApellidosCliente.setText(rs.getString(3));
+                            tvCorreo.setText(rs.getString(4));
+                            tvFechaActual.setText(rs.getString(5));
+                            tvFechaEntrega.setText(rs.getString(6));
+                            tvModoPago.setText(rs.getString(7));
+                            tvDNI.setText(rs.getString(8));
+                        } while (rs.next());///va agregando cada pedido
+                    }
+                    rs.close();
+                } catch (Exception e) {
+                    Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }//FIN SELECT-------------
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        //CONSTRUCCION DE LA VISTA DIALOG************************
         builder.setView(v);
         alertDialog = builder.create();
 
-        // Add action buttons
-        /*btnFire.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Aceptar
-                        alertDialog.dismiss();
+        //BOTONES DEL DIALOG*************************************************
+        btnDgAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int cantidad = 1;
+                double precio = 0.0, total = 0.0; //op_codPedido
+                String codigo = Lista.get(posicion).getLlantaId();
+
+                //OBTENER PRECIO DEL ITEM AGREGADO AL LISTADO***************************
+                try {
+                    SQLConexion db =new SQLConexion();
+                    Statement st = db.ConexionDB(v.getContext()).createStatement();
+                    ResultSet rs = st.executeQuery("select Precio from T_Llanta where LlantaId = '"+codigo+"';");
+                    if (!rs.next()) {
+                        Toast.makeText(c,"No se encontraron registros",Toast.LENGTH_SHORT).show();
+                    }else {
+                        do {
+                            precio = rs.getDouble(1);
+                            total = precio;
+                        } while (rs.next());///va agregando cada pedido
                     }
-                }
-        );
-        btnCancel.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                }
-        );*/
+                    rs.close();
+                    db.RegistroListado(v.getContext(),cantidad,precio,total,op_codPedido,codigo);
+                } catch (Exception e) {
+                    Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }//FIN SELECT-------------
+
+            }
+        });
+
+        btnDgCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
 
         return alertDialog;
     }

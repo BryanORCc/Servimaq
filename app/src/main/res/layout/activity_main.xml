@@ -12,15 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.4"
-        android:layout_marginHorizontal="130dp"
         android:layout_marginTop="15dp"
-        android:hint="Iniciar Sesion"
+        android:hint="Iniciar\nSesion"
         android:gravity="center"
-
         android:textColor="#FFFFFF"
         android:textColorHighlight="#FFFFFF"
         android:textColorHint="#FFFFFF"
-        android:textSize="41dp"
+        android:textSize="45dp"
         android:textStyle="italic"
         android:paddingVertical="20dp"/>
 
