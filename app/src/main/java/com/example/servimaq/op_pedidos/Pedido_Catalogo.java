@@ -1,24 +1,22 @@
-package com.example.servimaq;
-
-import static androidx.core.app.ActivityCompat.startActivityForResult;
+package com.example.servimaq.op_pedidos;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.pedido_lista;
+import com.example.servimaq.op_pedidos.Listar_pedidos;
+import com.example.servimaq.op_pedidos.detalle_pedido;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Pedido_Catalogo extends BaseAdapter {
@@ -88,7 +86,7 @@ public class Pedido_Catalogo extends BaseAdapter {
                         fechaP = Lista.get(i).getFechaP();
                 int  dni = Lista.get(i).getDni();
 
-                Intent detalle = new Intent(c,detalle_pedido.class);
+                Intent detalle = new Intent(c, detalle_pedido.class);
                 detalle.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 detalle.putExtra("codigo",PedidoId);
@@ -123,7 +121,7 @@ public class Pedido_Catalogo extends BaseAdapter {
                 }
 
 
-                Intent detalle = new Intent(c,Listar_pedidos.class);
+                Intent detalle = new Intent(c, Listar_pedidos.class);
                 //Permite abrir una nueva vista
                 detalle.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(detalle);

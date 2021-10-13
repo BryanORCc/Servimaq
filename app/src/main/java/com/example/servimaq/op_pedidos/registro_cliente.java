@@ -1,4 +1,4 @@
-package com.example.servimaq;
+package com.example.servimaq.op_pedidos;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,9 +23,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -165,7 +165,7 @@ public class registro_cliente extends AppCompatActivity {
                 return true;
             case R.id.mnListaPedidos:
                 //presiono en item3
-                Intent intent=new Intent(this,Listar_pedidos.class);
+                Intent intent=new Intent(this, Listar_pedidos.class);
                 this.startActivity(intent);
                 return true;
         }

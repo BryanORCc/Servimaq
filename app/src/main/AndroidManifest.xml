@@ -32,15 +32,15 @@
             android:exported="true"
             android:parentActivityName=".op_catalogo.Catalogo" />
         <activity
-            android:name=".detalle_pedido"
+            android:name=".op_pedidos.detalle_pedido"
             android:exported="true"
-            android:parentActivityName=".Listar_pedidos" />
+            android:parentActivityName=".op_pedidos.Listar_pedidos" />
         <activity
-            android:name=".Listar_pedidos"
+            android:name=".op_pedidos.Listar_pedidos"
             android:exported="true"
-            android:parentActivityName=".registro_cliente" />
+            android:parentActivityName=".op_pedidos.registro_cliente" />
         <activity
-            android:name=".registro_cliente"
+            android:name=".op_pedidos.registro_cliente"
             android:exported="true"
             android:parentActivityName=".menu_opciones" />
         <activity

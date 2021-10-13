@@ -18,6 +18,8 @@ import android.widget.VideoView;
 import com.example.servimaq.contenedores.ingreso_productos;
 import com.example.servimaq.op_catalogo.Catalogo;
 import com.example.servimaq.fragments_registros.Salida_Prod;
+import com.example.servimaq.op_pedidos.Listar_pedidos;
+import com.example.servimaq.op_pedidos.registro_cliente;
 
 public class menu_opciones extends AppCompatActivity {
 
@@ -124,7 +126,7 @@ public class menu_opciones extends AppCompatActivity {
                 return true;
             case R.id.mnListaPedidos:
                 //presiono en item3
-                Intent intent=new Intent(this,Listar_pedidos.class);
+                Intent intent=new Intent(this, Listar_pedidos.class);
                 this.startActivity(intent);
                 return true;
         }
