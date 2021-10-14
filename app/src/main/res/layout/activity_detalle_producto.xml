@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".op_catalogo.detalle_producto"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginHorizontal="135dp"
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:background="@drawable/no_imagen"
+            />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <!--BLOQUEEE ID NEUMATICO_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="ID Neumatico: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvllantaId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Stock: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvStock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etStock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Precio: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvPrecio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etPrecio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/llOpcionVehiculoId"
+                    android:background="#BBE0E4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="ID Vehiculo: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <Spinner
+                            android:id="@+id/spVehiculoId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp" />
+
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#BBE0E4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo de Vehiculo: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvTipoVehiculo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etTipoVehiculo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#BBE0E4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Vehiculo compatible: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvMarcaVehiculo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etMarcaVehiculo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#BBE0E4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Modelo de Vehiculo: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvModeloVehiculo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etModeloVehiculo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/llOpcionDetalleLlantaId"
+                    android:background="#9DD4ED">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="ID Detalle Neumatico: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <Spinner
+                            android:id="@+id/spDetalleLlantaId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp" />
+
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Marca Neumatico: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvNombreMarca"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etNombreMarca"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Indice de Carga: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvIndiceCarga"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etIndiceCarga"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Indice de Velocidad: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvIndiceVelocidad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etIndiceVelocidad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:maxLength="1"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Construccion: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvConstruccion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etConstruccion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Presion Maxima: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvPresionMaxima"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etPresionMaxima"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Clasificacion: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvClasificacion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etClasificacion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#9DD4ED">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha de Fabricacion: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvFechaFabricacion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etFechaFabricacion"
+                            android:inputType="date"
+                            android:focusable="false"
+                            android:clickable="true"
+                            android:layout_marginTop="25dp"
+                            android:justificationMode="inter_word"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Insertar Fecha..."
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/llOpcionMedidaLlantaId"
+                    android:background="#91C7F1">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="ID Medida Neumatico: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <Spinner
+                            android:id="@+id/spMedidaLlantaId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp" />
+
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#91C7F1">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Ancho: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvAncho"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etAncho"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#91C7F1">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Diametro: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvDiametro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etDiametro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#91C7F1">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Perfil: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvPerfil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etPerfil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#91C7F1">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Milimetro de Cocada: "
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+                        <TextView
+                            android:id="@+id/tvMmCocada"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="............"
+                            android:textSize="15dp" />
+
+                        <!--EDITAR TEXTO____________________________-->
+                        <EditText
+                            android:id="@+id/etMmCocada"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="............"
+                            android:textSize="15dp" />
+                    </TableLayout>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+                <!--BLOQUEEE_________________________________________________________________________-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
+
+                    <TableLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/btnModificar"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:layout_height="wrap_content"
+                            android:text="Modificar"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"/>
+
+                        <Button
+                            android:id="@+id/btnConfirmar"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:layout_height="wrap_content"
+                            android:text="Confirmar"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"/>
+                    </TableLayout>
+
+                    <Button
+                        android:id="@+id/btnCancelar"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="wrap_content"
+                        android:text="Cancelar"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout><!--FIN______________________________________________________________-->
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

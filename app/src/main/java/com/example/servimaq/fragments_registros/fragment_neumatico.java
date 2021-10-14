@@ -33,7 +33,7 @@ public class fragment_neumatico extends Fragment {
 
     View vista;
     EditText etprecio,etstock;
-    Button btnRegistrar, btnCancelar, btnAtras;
+    Button btnRegistrar, btnCancelar;
     Spinner Spi_especificacion,Spi_vehiculo;
     TextView Tv_ver,Tv_ver1;
 
@@ -91,11 +91,9 @@ public class fragment_neumatico extends Fragment {
         btnCancelar=vista.findViewById(R.id.btnCancelar);
         Tv_ver = vista.findViewById(R.id.Tv_ver);
         Tv_ver1 = vista.findViewById(R.id.Tv_ver1);
-        btnAtras = vista.findViewById(R.id.btnAtras);
 
         Spi_especificacion=vista.findViewById(R.id.Spi_especificacion);
         Spi_vehiculo=vista.findViewById(R.id.Spi_vehiculo);
-
 
 
         //CARGAR DATO DEL SPINNER DE VEHICULO ------------------------------------------------------------------
@@ -114,8 +112,8 @@ public class fragment_neumatico extends Fragment {
 
                     vehiculo="-TipoVehiculo: "+rs.getString(2)+
                             "\n-MarcaVehiculo: "+rs.getString(5) +
-                            "\n-ModeloVehiculo: "+rs.getString(4)+
-                            "\n-FotoVehiculo: "+rs.getString(3);
+                            "\n-ModeloVehiculo: "+rs.getString(4);
+                            //FotoVehiculo: "+rs.getString(3);
 
                     info.add(vehiculo);
                 } while (rs.next());///va agregando cada ID
@@ -164,8 +162,8 @@ public class fragment_neumatico extends Fragment {
                             "\n-PresionMaxima: "+rs.getString(7)+
                             "\n-Clasificacion: "+rs.getString(8)+
                             "\n-FechaFabricacion: "+rs.getString(9)+
-                            "\n-MedidaLlantaId: "+rs.getString(10)+
-                            "\n-FotoLlanta: "+rs.getString(5);
+                            "\n-MedidaLlantaId: "+rs.getString(10);
+                            //FotoLlanta: "+rs.getString(5);
 
                     info1.add(especificacion);
                 } while (rs.next());///va agregando cada ID
@@ -194,7 +192,6 @@ public class fragment_neumatico extends Fragment {
         });
 
 
-
         // registrar--------------------------------------------------------------------------
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,7 +203,7 @@ public class fragment_neumatico extends Fragment {
                 SQLConexion db = new SQLConexion();
                 db.RegistroLlanta(getContext(),Double.parseDouble(precio),Integer.parseInt(stock),DetalleLlantaId,VehiculoId);
                 Limpiar();
-
+                etprecio.requestFocus();
 
             }
         });
@@ -219,18 +216,8 @@ public class fragment_neumatico extends Fragment {
             }
         });
 
-        //BOTON ATRAS - MENU ---------------------------------------------------------------------------------
-        btnAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), menu_opciones.class);
-                startActivity(i);
-            }
-        });
-
         return vista;
     }
-
 
 
     //LIMPIAR llanta--------------------------------------------------------------------------------------

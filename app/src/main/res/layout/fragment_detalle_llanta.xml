@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments_registros.detalle_llanta"
-    android:background="#F1EEEE">
+    android:background="@drawable/fondo"
+    tools:context=".fragments_registros.detalle_llanta">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,24 +18,18 @@
             <!--TITULO_______________________________________-->
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-                <Button
-                    android:id="@+id/btnAtras"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.15"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/menu_atras"
-                    />
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.85"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Registrar Detalle Neumatico"
-                    android:textSize="30dp"
-                    android:layout_marginVertical="25dp"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textColor="#DA1F1F20"
+                    android:layout_marginVertical="20dp"
                     android:textAlignment="center"
                     android:fontFamily="sans-serif-black"
                     />
@@ -45,26 +39,30 @@
             <EditText
                 android:id="@+id/EtNombreMarca"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="Marca de Neumatico:"
-                android:textSize="15dp" />
+                android:textColorHint="#DA1F1F20"
+                android:textSize="15dp"
+                android:shadowRadius="1.8"/>
 
             <EditText
                 android:id="@+id/EtIndiceCarga"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:hint="Indice de carga:"
+                android:textColorHint="#DA1F1F20"
                 android:inputType="number"
                 android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/EtIndiceVelocidad"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:hint="Indice de Velocidad:"
                 android:inputType="text"
+                android:textColorHint="#DA1F1F20"
                 android:maxLength="1"
                 android:textSize="15dp" />
 
@@ -73,8 +71,9 @@
                 android:layout_height="wrap_content"
                 android:text="Imagen De la LLanta:"
                 android:fontFamily="sans-serif-black"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:textSize="15dp"
+                android:textColor="#DA1F1F20"
                 />
 
             <ImageView
@@ -85,35 +84,38 @@
                 android:src="@drawable/no_imagen" />
 
             <Button
+                android:id="@+id/btnFoto_Llanta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:typeface="sans"
                 android:text="Seleccionar imagen"
-                android:textSize="15dp"
-                android:layout_marginBottom="30dp"
-                android:id="@+id/btnFoto_Llanta"
-                />
+                android:background="@drawable/bordesredondos"
+                android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/EtConstruccion"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
+                android:layout_height="wrap_content"
                 android:hint="Construccion:"
+                android:textColorHint="#DA1F1F20"
                 android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/EtPresionMaxima"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:inputType="number"
                 android:hint="Presion Maxima:"
+                android:textColorHint="#DA1F1F20"
                 android:textSize="15dp" />
             <EditText
                 android:id="@+id/EtClasificacion"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColorHint="#DA1F1F20"
                 android:hint="Clasificacion:"
                 android:textSize="15dp" />
 
@@ -123,9 +125,10 @@
                 android:focusable="false"
                 android:clickable="true"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:hint="Insertar fecha"
+                android:textColorHint="#DA1F1F20"
                 android:justificationMode="inter_word"
                 android:textSize="15dp" />
             <TextView
@@ -133,6 +136,7 @@
                 android:layout_height="wrap_content"
                 android:text="Id de la Medidda de la llanta:"
                 android:fontFamily="sans-serif-black"
+                android:textColor="#DA1F1F20"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
                 android:textSize="15dp"
@@ -140,24 +144,22 @@
             <Spinner
                 android:id="@+id/Spi_MedidaLlanta"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
                 android:baselineAligned="false"
                 android:rotationX="-12"
                 android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/Tv_cargar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Datos de medida..."
-                android:fontFamily="sans-serif-black"
                 android:layout_gravity="center"
-                android:layout_marginTop="25dp"
+                android:textColor="#DA1F1F20"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="25dp"
+                android:textColorHint="#DA1F1F20"
                 android:textSize="15dp"
                 />
 
@@ -168,18 +170,20 @@
                 android:layout_marginBottom="20dp">
 
                 <Button
+                    android:id="@+id/btnRegistrar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:text="Registrar"
-                    android:id="@+id/btnRegistrar"/>
+                    android:background="@drawable/bordesredondos"
+                    android:text="Registrar" />
 
                 <Button
+                    android:id="@+id/btnCancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bordesredondos"
                     android:layout_marginHorizontal="15dp"
-                    android:text="Cancelar"
-                    android:id="@+id/btnCancelar"/>
+                    android:text="Cancelar" />
 
             </LinearLayout>
 

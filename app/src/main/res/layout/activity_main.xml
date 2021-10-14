@@ -4,48 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@drawable/img_2"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:layout_marginTop="15dp"
+        android:hint="Iniciar\nSesion"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="45dp"
+        android:textStyle="italic"
+        android:paddingVertical="20dp"/>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_margin="15dp"
+        android:layout_weight="0.7"
         android:orientation="vertical"
-        >
+        android:gravity="start">
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="80dp"
-            android:layout_marginTop="15dp"
+            android:background="#9AFFFFFF"
             android:hint="usuario..."
+            android:padding="10dp"
             android:id="@+id/etUsuario"
-            >
-        </EditText>
+            android:text="admin"
+            />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="80dp"
             android:layout_marginTop="15dp"
+            android:padding="10dp"
+            android:background="#9AFFFFFF"
             android:hint="contraseña..."
             android:inputType="textPassword"
             android:id="@+id/etContra"
+            android:text="admin"
             >
         </EditText>
 
         <Button
+            android:id="@+id/btnIngresar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Ingresar"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="80dp"
             android:layout_marginTop="15dp"
-            android:id="@+id/btnIngresar"
-            >
-        </Button>
+            android:background="@drawable/bordesredondos"
+            android:text="Ingresar"></Button>
 
     </LinearLayout>
+
 
 
 </LinearLayout>

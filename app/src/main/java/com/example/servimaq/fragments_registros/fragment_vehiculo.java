@@ -1,33 +1,54 @@
 package com.example.servimaq.fragments_registros;
 
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
+
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
-import com.example.servimaq.menu_opciones;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class fragment_vehiculo extends Fragment {
 
     View vista;
     EditText etTipoVehiculo, etMarcaVehiculo, etModeloVehiculo;
-    Button btnFoto, btnRegistrar, btnCancelar, btnAtras;
+    Button btnFoto, btnRegistrar, btnCancelar;
     ImageView ivFoto;
 
-    Uri ruta = null;
+    String ruta = null;
+
+    Bitmap bitmap;
+    Uri uri = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,8 +93,8 @@ public class fragment_vehiculo extends Fragment {
         btnFoto = vista.findViewById(R.id.btnFoto);
         btnRegistrar = vista.findViewById(R.id.btnRegistrar);
         btnCancelar = vista.findViewById(R.id.btnCancelar);
-        btnAtras = vista.findViewById(R.id.btnAtras);
         ivFoto = vista.findViewById(R.id.ivFoto);
+
 
         btnFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +107,7 @@ public class fragment_vehiculo extends Fragment {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String TipoVehiculo = etTipoVehiculo.getText().toString(),
                         MarcaVehiculo = etMarcaVehiculo.getText().toString(),
                         ModeloVehiculo = etModeloVehiculo.getText().toString(),
@@ -93,12 +115,13 @@ public class fragment_vehiculo extends Fragment {
                 if(ruta==null){
                     Foto = "";
                 }else{
-                    Foto = ruta.toString();
+                    Foto = ruta;
                 }
 
                 SQLConexion db = new SQLConexion();
-                db.RegistroVehiculo(getContext(),TipoVehiculo,Foto,MarcaVehiculo,ModeloVehiculo);
+                db.RegistroVehiculo(getContext(),TipoVehiculo, Foto,MarcaVehiculo,ModeloVehiculo);
                 Limpiar();
+                etTipoVehiculo.requestFocus();
             }
         });
 
@@ -110,33 +133,23 @@ public class fragment_vehiculo extends Fragment {
             }
         });
 
-        //BOTON ATRAS - MENU ---------------------------------------------------------------------------------
-        btnAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), menu_opciones.class);
-                startActivity(i);
-            }
-        });
-
         return vista;
     }
 
-
-    //CARGA DE IMAGEN--------------------------------------------------------------------------------------
     private void CargarImagen(){
-        Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        i.setType("image/");
-        startActivityForResult(i.createChooser(i,"seleccione la aplicación"),10);
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/");
+        startActivityForResult(intent.createChooser(intent,"seleccione la aplicación"),10);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
 
-        if(resultCode==getActivity().RESULT_OK){
-            ruta = data.getData();
-            ivFoto.setImageURI(ruta);
+        if( resultCode==getActivity().RESULT_OK){
+            ivFoto.setImageURI(data.getData());
+            Log.e("$$$$$$$$","____"+data.getData());
+            ruta = data.getData().toString();
         }
     }
 
@@ -149,4 +162,6 @@ public class fragment_vehiculo extends Fragment {
         etModeloVehiculo.setText("");
         ruta = null;
     }
+
+
 }

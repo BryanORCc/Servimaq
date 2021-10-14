@@ -1,10 +1,15 @@
 package com.example.servimaq.contenedores;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.WindowDecorActionBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 import com.example.servimaq.R;
@@ -21,7 +26,10 @@ public class ingreso_productos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingreso_productos);
-        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        //BOTON "ATRAS" - MOSTRAR EN LA BARRA DE NAVEGACION
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         btnVehiculo = findViewById(R.id.btnVehiculo);
         btnMedida = findViewById(R.id.btnMedida);
