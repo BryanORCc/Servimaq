@@ -54,18 +54,20 @@ public class lista_salida_producto extends BaseAdapter {
 
       //  tvcod =itemView.findViewById(R.id.tvcod);
         tvnombre =itemView.findViewById(R.id.tvnombre);
-        tvmodopago =itemView.findViewById(R.id.tvmodopago);
         tventrega =itemView.findViewById(R.id.tventrega);
-        etstock = itemView.findViewById(R.id.etstock);
+        tvmodopago =itemView.findViewById(R.id.tvmodopago);
         tvPrecio =itemView.findViewById(R.id.tvPrecio);
+        etstock = itemView.findViewById(R.id.etstock);
+
 
 
 
         tvnombre.setText(""+Lista.get(i).getnombre());
         tvmodopago.setText(""+Lista.get(i).getmodopago());
-      //  tventrega.setText(""+Lista.get(i).getAncho());
-        etstock.setText(""+Lista.get(i).getStock());
+         tventrega.setText(""+Lista.get(i).getFentrega());
         tvPrecio.setText(""+Lista.get(i).getPrecio());
+        etstock.setText(""+Lista.get(i).getStock());
+
 
 
         return itemView;

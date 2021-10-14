@@ -9,10 +9,11 @@ public class items_lista_salida_P {
     private String nombre,modopago;
     private int   Stock;
     private double Precio;
-   // private Runtime fentrega;
+   private String fentrega;
 
-    public items_lista_salida_P(String nombre,String modopago , int Stock,double Precio){
+    public items_lista_salida_P(String nombre,String fentrega,String modopago ,double Precio,int Stock){
         this.nombre = nombre;
+        this.fentrega = fentrega;
         this.modopago = modopago;
         this.Precio = Precio;
         this.Stock = Stock;
@@ -25,6 +26,12 @@ public class items_lista_salida_P {
 
     public void setnombre(String nombre) {
         nombre = nombre;
+    }
+
+    public String getFentrega() { return fentrega; }
+
+    public void setFentrega(String fentrega) {
+        this.fentrega = fentrega;
     }
 
     public String getmodopago() {
