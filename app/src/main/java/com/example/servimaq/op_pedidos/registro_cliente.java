@@ -68,7 +68,7 @@ public class registro_cliente extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item, opciones);
         spinner1.setAdapter(adapter);
        //////cargar fecha actual --------
-        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         FechaActual.setText(date);
         ///////////////////////////////
 
@@ -192,13 +192,13 @@ public class registro_cliente extends AppCompatActivity {
             mes = i1+1;
             año = i;
             if(dia<10 && mes<10){
-                Fecha.setText("0"+dia+"/"+"0"+mes+"/"+año);
+                Fecha.setText("0"+año+"-"+"0"+mes+"-"+dia);
             }else if(dia<10 && mes>9){
-                Fecha.setText("0"+dia+"/"+mes+"/"+año);
+                Fecha.setText("0"+año+"-"+mes+"-"+dia);
             }else if(dia>9 && mes<10){
-                Fecha.setText(dia+"/"+"0"+mes+"/"+año);
+                Fecha.setText(año+"-"+"0"+mes+"-"+dia);
             }else{
-                Fecha.setText(dia+"/"+mes+"/"+año);
+                Fecha.setText(año+"-"+mes+"-"+dia);
             }
         }
     }
