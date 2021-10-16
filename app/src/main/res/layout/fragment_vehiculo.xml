@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    android:background="@drawable/foadmi"
     tools:context=".fragments_registros.fragment_vehiculo"
    >
 
@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:text="Registrar Vehiculo"
                     android:textSize="25dp"
-                    android:textColor="#DA1F1F20"
+                    android:textColor="#F4F4F4"
                     android:layout_marginVertical="20dp"
                     android:textAlignment="center"
                     android:fontFamily="sans-serif-black"
@@ -42,15 +42,15 @@
                 android:layout_height="wrap_content"
                 android:text="Tipo de vehiculo:"
                 android:fontFamily="sans-serif-black"
-                android:textColor="#DA1F1F20"
-                android:textSize="15dp"
+                android:textColor="#F4F4F4"
+                android:textSize="20sp"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="vehiculo..."
-                android:textColorHint="#DA1F1F20"
-                android:textSize="15dp"
+                android:textColorHint="#F4F4F4"
+                android:textSize="20sp"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/etTipoVehiculo"
                 />
@@ -61,8 +61,8 @@
                 android:layout_height="wrap_content"
                 android:text="Imagen Vehiculo:"
                 android:fontFamily="sans-serif-black"
-                android:textSize="15dp"
-                android:textColor="#DA1F1F20"
+                android:textSize="20sp"
+                android:textColor="#F4F4F4"
                 />
             <ImageView
                 android:layout_width="match_parent"
@@ -87,15 +87,15 @@
                 android:layout_height="wrap_content"
                 android:text="Marca de vehiculo:"
                 android:fontFamily="sans-serif-black"
-                android:textSize="15dp"
-                android:textColor="#DA1F1F20"
+                android:textSize="20sp"
+                android:textColor="#F4F4F4"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="vehiculo..."
-                android:textSize="15dp"
-                android:textColorHint="#DA1F1F20"
+                android:textSize="20sp"
+                android:textColorHint="#F4F4F4"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/etMarcaVehiculo"
                 />
@@ -106,15 +106,15 @@
                 android:layout_height="wrap_content"
                 android:text="Modelo de vehiculo:"
                 android:fontFamily="sans-serif-black"
-                android:textSize="15dp"
-                android:textColor="#DA1F1F20"
+                android:textSize="20sp"
+                android:textColor="#F4F4F4"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="vehiculo..."
-                android:textColorHint="#DA1F1F20"
-                android:textSize="15dp"
+                android:textColorHint="#F4F4F4"
+                android:textSize="20sp"
                 android:layout_marginBottom="30dp"
                 android:id="@+id/etModeloVehiculo"
 

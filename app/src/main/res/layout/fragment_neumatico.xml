@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    android:background="@drawable/foadmi"
     tools:context=".fragments_registros.fragment_neumatico"
     >
 
@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:text="Registrar Neumatico"
                     android:textSize="25dp"
-                    android:textColor="#DA1F1F20"
+                    android:textColor="#F4F4F4"
                     android:layout_marginVertical="20dp"
                     android:textAlignment="center"
                     android:fontFamily="sans-serif-black"
@@ -43,8 +43,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="Precio:"
-                android:textColor="#DA1F1F20"
-                android:textSize="15dp" />
+                android:textColor="#F4F4F4"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/etprecio"
@@ -52,9 +52,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="Precio..."
-                android:textColorHint="#DA1F1F20"
+                android:textColorHint="#F4F4F4"
                 android:inputType="number|numberDecimal"
-                android:textSize="15dp" />
+                android:textSize="20sp" />
             <!--_____________________________________-->
 
             <!--stock-->
@@ -63,8 +63,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="Stock:"
-                android:textColor="#DA1F1F20"
-                android:textSize="15dp" />
+                android:textColor="#F4F4F4"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/etstock"
@@ -72,9 +72,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="Stock..."
-                android:textColorHint="#DA1F1F20"
+                android:textColorHint="#F4F4F4"
                 android:inputType="number"
-                android:textSize="15dp" />
+                android:textSize="20sp" />
             <!--_____________________________________-->
 
             <!--especificacion-->
@@ -84,8 +84,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="Detalle de Neumatico:"
-                android:textColor="#DA1F1F20"
-                android:textSize="15dp" />
+                android:textColor="#F4F4F4"
+                android:textSize="20sp" />
 
 
             <!--tipo de vehiculo-->
@@ -103,11 +103,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Detalle del neumatico..."
-                android:textColorHint="#DA1F1F20"
+                android:textColorHint="#F4F4F4"
+
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="15dp" />
+                android:textSize="20sp" />
 
 
             <LinearLayout
@@ -131,8 +132,8 @@
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-black"
                 android:text="Tipo de Vehiculo:"
-                android:textColor="#DA1F1F20"
-                android:textSize="15dp" />
+                android:textColor="#F4F4F4"
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/Spi_vehiculo"
@@ -147,12 +148,12 @@
                 android:id="@+id/Tv_ver1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="#DA1F1F20"
+                android:textColorHint="#F4F4F4"
                 android:hint="Tipo de vehiculo"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="15dp" />
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

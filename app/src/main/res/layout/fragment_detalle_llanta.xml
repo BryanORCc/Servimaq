@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    android:background="@drawable/foadmi"
     tools:context=".fragments_registros.detalle_llanta">
     <ScrollView
         android:layout_width="match_parent"
@@ -28,10 +28,10 @@
                     android:text="Registrar Detalle Neumatico"
                     android:textSize="25dp"
                     android:textStyle="bold"
-                    android:textColor="#DA1F1F20"
                     android:layout_marginVertical="20dp"
                     android:textAlignment="center"
                     android:fontFamily="sans-serif-black"
+                    android:textColor="#F4F4F4"
                     />
             </LinearLayout>
 
@@ -41,9 +41,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Marca de Neumatico:"
-                android:textColorHint="#DA1F1F20"
-                android:textSize="15dp"
-                android:shadowRadius="1.8"/>
+                android:textSize="20sp"
+                android:shadowRadius="1.8"
+                android:textColorHint="#F4F4F4"
+                />
 
             <EditText
                 android:id="@+id/EtIndiceCarga"
@@ -51,9 +52,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Indice de carga:"
-                android:textColorHint="#DA1F1F20"
+
                 android:inputType="number"
-                android:textSize="15dp" />
+                android:textSize="20sp"
+                android:textColorHint="#F4F4F4"/>
 
             <EditText
                 android:id="@+id/EtIndiceVelocidad"
@@ -62,9 +64,9 @@
                 android:layout_marginTop="10dp"
                 android:hint="Indice de Velocidad:"
                 android:inputType="text"
-                android:textColorHint="#DA1F1F20"
                 android:maxLength="1"
-                android:textSize="15dp" />
+                android:textSize="20sp"
+                android:textColorHint="#F4F4F4"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,8 +74,8 @@
                 android:text="Imagen De la LLanta:"
                 android:fontFamily="sans-serif-black"
                 android:layout_marginTop="10dp"
-                android:textSize="15dp"
-                android:textColor="#DA1F1F20"
+                android:textColor="#F4F4F4"
+                android:textSize="20sp"
                 />
 
             <ImageView
@@ -91,15 +93,16 @@
                 android:typeface="sans"
                 android:text="Seleccionar imagen"
                 android:background="@drawable/bordesredondos"
-                android:textSize="15dp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/EtConstruccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Construccion:"
-                android:textColorHint="#DA1F1F20"
-                android:textSize="15dp" />
+
+                android:textSize="20sp"
+                android:textColorHint="#F4F4F4"/>
 
             <EditText
                 android:id="@+id/EtPresionMaxima"
@@ -108,16 +111,16 @@
                 android:layout_marginTop="10dp"
                 android:inputType="number"
                 android:hint="Presion Maxima:"
-                android:textColorHint="#DA1F1F20"
-                android:textSize="15dp" />
+                android:textSize="20sp"
+                android:textColorHint="#F4F4F4"/>
             <EditText
                 android:id="@+id/EtClasificacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColorHint="#DA1F1F20"
+                android:textColorHint="#F4F4F4"
                 android:hint="Clasificacion:"
-                android:textSize="15dp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/EtFechaFabricacion"
@@ -128,19 +131,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Insertar fecha"
-                android:textColorHint="#DA1F1F20"
+                android:textColorHint="#F4F4F4"
                 android:justificationMode="inter_word"
-                android:textSize="15dp" />
+                android:textSize="20sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Id de la Medidda de la llanta:"
                 android:fontFamily="sans-serif-black"
-                android:textColor="#DA1F1F20"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
-                android:textSize="15dp"
-                />
+                android:textSize="20sp"
+                android:textColor="#F4F4F4"/>
             <Spinner
                 android:id="@+id/Spi_MedidaLlanta"
                 android:layout_width="match_parent"
@@ -156,11 +158,11 @@
                 android:layout_height="wrap_content"
                 android:hint="Datos de medida..."
                 android:layout_gravity="center"
-                android:textColor="#DA1F1F20"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="25dp"
-                android:textColorHint="#DA1F1F20"
-                android:textSize="15dp"
+                android:textColorHint="#F4F4F4"
+                android:textSize="20sp"
+                android:textColor="#F4F4F4"
                 />
 
             <LinearLayout

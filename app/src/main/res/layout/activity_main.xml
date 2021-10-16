@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_2"
+    android:background="@drawable/fondo45"
     tools:context=".MainActivity"
     android:orientation="vertical">
 
@@ -34,12 +34,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="80dp"
-            android:background="#9AFFFFFF"
+            android:background="#9A0E0E0E"
             android:hint="usuario..."
             android:padding="10dp"
             android:id="@+id/etUsuario"
             android:text="admin"
-            />
+            android:textColor="#9AFFFFFF"
+            android:textSize="20sp"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -47,11 +48,13 @@
             android:layout_marginHorizontal="80dp"
             android:layout_marginTop="15dp"
             android:padding="10dp"
-            android:background="#9AFFFFFF"
+            android:background="#9A0E0E0E"
             android:hint="contraseña..."
             android:inputType="textPassword"
             android:id="@+id/etContra"
             android:text="admin"
+            android:textColor="#9AFFFFFF"
+            android:textSize="20sp"
             >
         </EditText>
 
@@ -62,7 +65,10 @@
             android:layout_marginHorizontal="80dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/bordesredondos"
-            android:text="Ingresar"></Button>
+            android:textColor="#251111"
+            android:textColorHint="#FFFFFF"
+            android:text="Ingresar"
+            android:textSize="20sp"></Button>
 
     </LinearLayout>
 

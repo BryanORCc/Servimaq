@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fondo">
+    android:background="@drawable/foadmi">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -91,12 +91,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="ID Neumatico: "/>
+                    android:text="ID Neumatico: "
+                    android:textColorHint="#F4F4F4"
+                    />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="marca..."
-                    android:id="@+id/tvLlantaId"/>
+                    android:id="@+id/tvLlantaId"
+                    android:textColorHint="#F4F4F4"/>
             </LinearLayout>
 
             <!--BLOQUE___________________________________________________-->
@@ -108,13 +111,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textColorHint="#DA1F1F20"
+                    android:textColorHint="#F4F4F4"
                     android:text="Marca: "/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="marca..."
-                    android:textColorHint="#DA1F1F20"
+                    android:textColorHint="#F4F4F4"
                     android:id="@+id/tvMarca"/>
             </LinearLayout>
 
@@ -134,14 +137,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:textColorHint="#DA1F1F20"
+                        android:textColorHint="#F4F4F4"
                         android:text="A: "/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:hint="..."
-                        android:textColorHint="#DA1F1F20"
+                        android:textColorHint="#F4F4F4"
                         android:id="@+id/tvAncho"/>
                 </LinearLayout>
 
@@ -156,13 +159,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="D: "/>
+                        android:text="D: "
+                        android:textColorHint="#F4F4F4"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:hint="..."
-                        android:textColorHint="#DA1F1F20"
+                        android:textColorHint="#F4F4F4"
                         android:id="@+id/tvDiametro"/>
                 </LinearLayout>
 
@@ -177,13 +181,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="P: "/>
+                        android:text="P: "
+                        android:textColorHint="#F4F4F4"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:hint="..."
-                        android:textColorHint="#DA1F1F20"
+                        android:textColorHint="#F4F4F4"
                         android:id="@+id/tvPerfil"/>
                 </LinearLayout>
 
@@ -198,12 +203,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Mm de Cocada: "/>
+                    android:text="Mm de Cocada: "
+                    android:textColorHint="#F4F4F4"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="mmCocada..."
-                    android:textColorHint="#DA1F1F20"
+                    android:textColorHint="#F4F4F4"
                     android:id="@+id/tvMmCocada"/>
             </LinearLayout>
 
@@ -216,12 +222,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Precio: "/>
+                    android:text="Precio: "
+                    android:textColorHint="#F4F4F4"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="precio..."
-                    android:textColorHint="#DA1F1F20"
+                    android:textColorHint="#F4F4F4"
                     android:id="@+id/tvPrecio"/>
             </LinearLayout>
 
@@ -234,12 +241,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Stock: "/>
+                    android:text="Stock: "
+                    android:textColorHint="#F4F4F4"
+                    />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="stock..."
-                    android:textColorHint="#DA1F1F20"
+                    android:textColorHint="#F4F4F4"
                     android:id="@+id/tvStock"/>
             </LinearLayout>
 
