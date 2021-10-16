@@ -30,7 +30,7 @@ public class menu_opciones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_opciones);
 
-        final VideoView videofondo = (VideoView) findViewById(R.id.mc_fondo_video);
+        /*final VideoView videofondo = (VideoView) findViewById(R.id.mc_fondo_video);
         videofondo.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videofondo));
         videofondo.start();
 
@@ -39,7 +39,7 @@ public class menu_opciones extends AppCompatActivity {
             public void onPrepared(MediaPlayer mediaPlayer) {
                 mediaPlayer.setLooping(true);
             }
-        });
+        });*/
 
         btnProductos = findViewById(R.id.btnProductos);
         btnCatalogo = findViewById(R.id.btnCatalogo);
