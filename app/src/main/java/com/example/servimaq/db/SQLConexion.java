@@ -1,34 +1,21 @@
 package com.example.servimaq.db;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.StrictMode;
-import android.os.StrictMode.ThreadPolicy;
-import android.renderscript.Sampler;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-
 import com.example.servimaq.R;
 
-import net.sourceforge.jtds.util.BlobBuffer;
 
-import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 public class SQLConexion {
 
@@ -39,7 +26,7 @@ public class SQLConexion {
             StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
-            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.4;databaseName=Servimaq;user=mssql;password=123;");
+            conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.4;databaseName=Servimaq;user=sa;password=123;");
             //conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.0.18;databaseName=Servimaq;user=sa;password=123;");
 
         }catch (Exception e){
