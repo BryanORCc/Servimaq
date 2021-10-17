@@ -1,18 +1,14 @@
-package com.example.servimaq;
+package com.example.servimaq.op_catalogo;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.transition.Slide;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.AndroidException;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,13 +22,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
-import com.example.servimaq.db.items_lista;
-import com.example.servimaq.fragments_registros.detalle_llanta;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -430,6 +424,26 @@ public class detalle_producto extends AppCompatActivity {
                             etDiametro.setText(""+rs.getInt(15));
                             etPerfil.setText(""+rs.getInt(16));
                             etMmCocada.setText(""+rs.getInt(17));
+
+                            int x = -1;
+                            do{
+                                x++;
+                            }
+                            while (!datosVehiculo.get(x).equalsIgnoreCase(rs.getString(18)));
+                            spVehiculoId.setSelection(x);
+
+                            int y = -1;
+                            do{
+                                y++;
+                            }while (!datosMedida.get(y).equalsIgnoreCase(rs.getString(19)));
+                            spMedidaLlantaId.setSelection(y);
+
+                            int z = -1;
+                            do{
+                                z++;
+                            }while (!datosDetalle.get(z).equalsIgnoreCase(rs.getString(20)));
+                            spDetalleLlantaId.setSelection(z);
+
                         } while (rs.next());///va agregando cada ID
                     }
                     rs.close();
@@ -477,11 +491,6 @@ public class detalle_producto extends AppCompatActivity {
                     tvPerfil.setText(etPerfil.getText().toString());
                     tvMmCocada.setText(etMmCocada.getText().toString());
 
-                    int x = -1;
-                    do{
-                        x++;
-                    }while (datosMedida.get(x).equalsIgnoreCase(MedidaLlantaId));
-                    spMedidaLlantaId.setSelection(x);
                 }
                 catch (Exception e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -499,6 +508,11 @@ public class detalle_producto extends AppCompatActivity {
                     ps.setString(4,VehiculoId);
                     ps.executeUpdate();
                     ps.close();
+
+                    tvTipoVehiculo.setText(etTipoVehiculo.getText().toString());
+                    tvMarcaVehiculo.setText(etMarcaVehiculo.getText().toString());
+                    tvModeloVehiculo.setText(etModeloVehiculo.getText().toString());
+
                 }
                 catch (Exception e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -516,11 +530,20 @@ public class detalle_producto extends AppCompatActivity {
                     ps.setString(4,etConstruccion.getText().toString());
                     ps.setInt(5,Integer.parseInt(etPresionMaxima.getText().toString()));
                     ps.setString(6,etClasificacion.getText().toString());
-                    ps.setString(7,tvFechaFabricacion.getText().toString());
+                    ps.setString(7,etFechaFabricacion.getText().toString());
                     ps.setString(8,MedidaLlantaId);
                     ps.setString(9,DetalleLlantaId);
                     ps.executeUpdate();
                     ps.close();
+
+                    tvNombreMarca.setText(etNombreMarca.getText().toString());
+                    tvIndiceCarga.setText(etIndiceCarga.getText().toString());
+                    tvIndiceVelocidad.setText(etIndiceVelocidad.getText().toString());
+                    tvConstruccion.setText(etConstruccion.getText().toString());
+                    tvPresionMaxima.setText(etPresionMaxima.getText().toString());
+                    tvClasificacion.setText(etClasificacion.getText().toString());
+                    tvFechaFabricacion.setText(etFechaFabricacion.getText().toString());
+
                 }
                 catch (Exception e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -538,6 +561,10 @@ public class detalle_producto extends AppCompatActivity {
                     ps.setString(5,llantaId);
                     ps.executeUpdate();
                     ps.close();
+
+                    tvPrecio.setText(etPrecio.getText().toString());
+                    tvStock.setText(etStock.getText().toString());
+
                 }
                 catch (Exception e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -602,6 +629,27 @@ public class detalle_producto extends AppCompatActivity {
                         etDiametro.setText(""+rs.getInt(15));
                         etPerfil.setText(""+rs.getInt(16));
                         etMmCocada.setText(""+rs.getInt(17));
+
+                        int x = -1;
+                        do{
+                            x++;
+                        }
+                        while (!datosVehiculo.get(x).equalsIgnoreCase(rs.getString(18)));
+                        spVehiculoId.setSelection(x);
+
+                        int y = -1;
+                        do{
+                            y++;
+                        }while (!datosMedida.get(y).equalsIgnoreCase(rs.getString(19)));
+                        spMedidaLlantaId.setSelection(y);
+
+                        int z = -1;
+                        do{
+                            z++;
+                        }while (!datosDetalle.get(z).equalsIgnoreCase(rs.getString(20)));
+                        spDetalleLlantaId.setSelection(z);
+
+
                     } while (rs.next());///va agregando cada ID
                 }
                 rs.close();

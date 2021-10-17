@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/fondo">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
         <!--BOTONES_______________________________________________________________-->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.35"
+            android:layout_weight="0.4"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
@@ -23,37 +24,46 @@
                 android:id="@+id/ivFoto"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/no_imagen"
+                android:layout_marginHorizontal="5dp"
+                android:src="@drawable/no_imagen"
                 />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.33"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/agregar_prod"
                     android:layout_marginHorizontal="6dp"
                     android:id="@+id/btnAgregar"
                     android:foreground="?android:attr/selectableItemBackground"
+                    android:scaleY="0.7"
+                    android:scaleX="0.7"
                     />
                 <Button
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.33"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/modificar_prod"
                     android:layout_marginHorizontal="6dp"
                     android:id="@+id/btnModificar"
                     android:foreground="?android:attr/selectableItemBackground"
+                    android:scaleY="0.6"
+                    android:scaleX="0.6"
                     />
                 <Button
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.33"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/eliminar_prod"
                     android:layout_marginHorizontal="6dp"
                     android:id="@+id/btnEliminar"
                     android:foreground="?android:attr/selectableItemBackground"
+                    android:scaleY="0.6"
+                    android:scaleX="0.6"
                     />
 
             </LinearLayout>
@@ -63,7 +73,7 @@
         <!--DESC_________________________________________________________________-->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.65"
+            android:layout_weight="0.60"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="15dp"
@@ -74,7 +84,7 @@
 
             <!--BLOQUE___________________________________________________-->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -91,77 +101,99 @@
 
             <!--BLOQUE___________________________________________________-->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textColorHint="#DA1F1F20"
                     android:text="Marca: "/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="marca..."
+                    android:textColorHint="#DA1F1F20"
                     android:id="@+id/tvMarca"/>
             </LinearLayout>
 
             <!--BLOQUE____________________________________________________-->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <!--ANCHO______________________________-->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.33"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Ancho: "/>
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColorHint="#DA1F1F20"
+                        android:text="A: "/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="..."
+                        android:textColorHint="#DA1F1F20"
+                        android:id="@+id/tvAncho"/>
+                </LinearLayout>
+
+
+                <!--DIAMETRO-->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.33"
                     android:layout_height="wrap_content"
-                    android:hint="ancho..."
-                    android:id="@+id/tvAncho"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="D: "/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="..."
+                        android:textColorHint="#DA1F1F20"
+                        android:id="@+id/tvDiametro"/>
+                </LinearLayout>
+
+
+                <!--PERFL_____________________-->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.33"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="P: "/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="..."
+                        android:textColorHint="#DA1F1F20"
+                        android:id="@+id/tvPerfil"/>
+                </LinearLayout>
+
             </LinearLayout>
+
 
             <!--BLOQUE____________________________________________________-->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Diametro: "/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="diametro..."
-                    android:id="@+id/tvDiametro"/>
-            </LinearLayout>
-
-            <!--BLOQUE____________________________________________________-->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Perfil: "/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="perfil..."
-                    android:id="@+id/tvPerfil"/>
-            </LinearLayout>
-
-            <!--BLOQUE____________________________________________________-->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -171,12 +203,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="mmCocada..."
+                    android:textColorHint="#DA1F1F20"
                     android:id="@+id/tvMmCocada"/>
             </LinearLayout>
 
             <!--BLOQUE____________________________________________________-->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -188,12 +221,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="precio..."
+                    android:textColorHint="#DA1F1F20"
                     android:id="@+id/tvPrecio"/>
             </LinearLayout>
 
             <!--BLOQUE____________________________________________________-->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -205,6 +239,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="stock..."
+                    android:textColorHint="#DA1F1F20"
                     android:id="@+id/tvStock"/>
             </LinearLayout>
 

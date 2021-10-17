@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".op_pedidos.detalle_pedido"
+    android:usesCleartextTraffic="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:orientation="vertical">
+
+            <!--TITULO_______________________________________-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.85"
+                    android:layout_height="wrap_content"
+                    android:text="Edicion de Registro pedido"
+                    android:textSize="30dp"
+                    android:layout_marginVertical="25dp"
+                    android:textAlignment="center"
+                    android:fontFamily="sans-serif-black"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center"
+               >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="CODIGO DEL PEDIDO"
+                    android:textSize="15dp" />
+
+                <Spinner
+                    android:id="@+id/Spi_codigoPedido"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:baselineAligned="false"
+                    android:rotationX="-12"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="25dp"
+                android:textSize="15dp"
+                />
+            <EditText
+                android:id="@+id/EtNombreCliente"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:hint="Nombre:"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="apellidos"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="25dp"
+                android:textSize="15dp"
+                />
+            <EditText
+                android:id="@+id/EtApellidoCliente"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:hint="Apellidos:"
+                android:inputType="text"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="correo:"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="25dp"
+                android:textSize="15dp"
+                />
+            <EditText
+                android:id="@+id/EtCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Correo:"
+                android:inputType="textEmailAddress"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fecha de registro de pedido:"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="25dp"
+                android:textSize="15dp"
+                />
+            <EditText
+                android:id="@+id/EtFechaActual"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fecha de entrega:"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="25dp"
+                android:textSize="15dp"
+                />
+
+            <EditText
+                android:id="@+id/EtFechaEntrega"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:hint="Ingresar fecha de Entrega"
+                android:justificationMode="inter_word"
+                android:textSize="15dp" />
+
+            <Spinner
+                android:id="@+id/Spi_Modo_Pago"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:baselineAligned="false"
+                android:rotationX="-12"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/EtDni"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:hint="Insertar Dni:"
+                android:inputType="number"
+                android:maxLength="8"
+                android:textSize="15dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+
+                    <Button
+                        android:id="@+id/btnConfirmarP"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="wrap_content"
+                        android:text="Confirmar"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="10dp"/>
+
+            </LinearLayout><!--FIN______________________________________________________________-->
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -4,10 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="Android.permission.MANAGE_DOCUMENTS" />
     <uses-permission android:name="Android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -16,18 +14,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".detalle_producto"
-            android:parentActivityName=".Catalogo"
+            android:name=".op_catalogo.detalle_producto"
+            android:exported="true"
+            android:parentActivityName=".op_catalogo.Catalogo" />
+        <activity
+            android:name=".op_pedidos.detalle_pedido"
+            android:exported="true"
+            android:parentActivityName=".op_pedidos.Listar_pedidos" />
+        <activity
+            android:name=".op_pedidos.Listar_pedidos"
+            android:exported="true"
+            android:parentActivityName=".op_pedidos.registro_cliente" />
+        <activity
+            android:name=".op_pedidos.registro_cliente"
+            android:exported="true"
+            android:parentActivityName=".menu_opciones" />
+        <activity
+            android:parentActivityName=".menu_opciones"
+            android:name=".fragments_registros.Salida_Prod"
             android:exported="true" />
         <activity
-            android:name=".Catalogo"
+            android:name=".op_catalogo.Catalogo"
             android:parentActivityName=".menu_opciones"
             android:exported="true" />
         <activity
             android:name=".contenedores.ingreso_productos"
-            android:parentActivityName=".menu_opciones"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".menu_opciones" />
         <activity
             android:name=".menu_opciones"
             android:exported="true" />
@@ -38,10 +53,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        
     </application>
 
 </manifest>
-

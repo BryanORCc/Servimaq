@@ -1,30 +1,24 @@
-package com.example.servimaq;
+package com.example.servimaq.op_catalogo;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
+import com.example.servimaq.menu_opciones;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -35,13 +29,12 @@ public class Catalogo extends AppCompatActivity {
     TextView tvMarca, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPrecio, tvStock;
     SearchView svBusqueda;
     ListView lvListaProductos;
-    ArrayList<items_lista> lista = new ArrayList<>();;
+    ArrayList<items_lista> lista = new ArrayList<>();
     producto_catalogo prod_catalogo;
     String cadena_texto_buscar = null, tipo_busqueda = "codigo", campo_busqueda = null;
     Spinner spTipoBusqueda;
     ArrayList<String> tipos = new ArrayList<>();
-
-    int valor = 0;
+    boolean estado = false;
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -53,11 +46,17 @@ public class Catalogo extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
 
+        //QUITAR ANIMACION DE CARGA DE VISTA*****************************
+        overridePendingTransition(0, 0);
+        overridePendingTransition(0, 0);
+
+        //HABILITAR BOTON - ATRAS - EN LA BARRA DE NAVEGACION************
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -72,6 +71,7 @@ public class Catalogo extends AppCompatActivity {
         tvMmCocada = findViewById(R.id.tvMmCocada);
         tvPrecio = findViewById(R.id.tvPrecio);
         tvStock = findViewById(R.id.tvStock);
+
 
         //ELEGIR TIPO DE BUSQUEDA--------------------------------------------------------------------------------------------
         tipos.add(0,"Seleccionar busqueda por...");
@@ -106,8 +106,6 @@ public class Catalogo extends AppCompatActivity {
         //INICIAR CONEXION A LA DB--------------------------
         SQLConexion db = new SQLConexion();
 
-
-
         //CONDICION PARA MOSTRAR DATOS-------------------------------------------------------------------------------------------------------
         if(cadena_texto_buscar==null){
             //--SELECT INFORMACION NEUMATICO------------------------------------------------------------------------------
@@ -127,18 +125,17 @@ public class Catalogo extends AppCompatActivity {
                                 rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(3), rs.getInt(10), rs.getDouble(2),
                                 rs.getString(22), rs.getString(4), rs.getString(13), rs.getString(17)));
                     } while (rs.next());///va agregando cada ID
-
                 }
                 rs.close();
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
             }//FIN SELECT-------------
 
-            prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
+            prod_catalogo = new producto_catalogo(Catalogo.this,lista);
             lvListaProductos.setAdapter(prod_catalogo);
 
         }else{ //Uso del buscador---------------------------------------------
-            prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
+            prod_catalogo = new producto_catalogo(Catalogo.this,lista);
             lvListaProductos.setAdapter(prod_catalogo);
         }
 
@@ -198,7 +195,7 @@ public class Catalogo extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }//FIN SELECT-------------
 
-                prod_catalogo = new producto_catalogo(getApplicationContext(),lista);
+                prod_catalogo = new producto_catalogo(Catalogo.this,lista);
                 lvListaProductos.setAdapter(prod_catalogo);
 
 

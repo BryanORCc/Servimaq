@@ -96,7 +96,6 @@ public class fragment_neumatico extends Fragment {
         Spi_vehiculo=vista.findViewById(R.id.Spi_vehiculo);
 
 
-
         //CARGAR DATO DEL SPINNER DE VEHICULO ------------------------------------------------------------------
         try {
             SQLConexion conexion =new SQLConexion();
@@ -113,8 +112,8 @@ public class fragment_neumatico extends Fragment {
 
                     vehiculo="-TipoVehiculo: "+rs.getString(2)+
                             "\n-MarcaVehiculo: "+rs.getString(5) +
-                            "\n-ModeloVehiculo: "+rs.getString(4)+
-                            "\n-FotoVehiculo: "+rs.getString(3);
+                            "\n-ModeloVehiculo: "+rs.getString(4);
+                            //FotoVehiculo: "+rs.getString(3);
 
                     info.add(vehiculo);
                 } while (rs.next());///va agregando cada ID
@@ -163,8 +162,8 @@ public class fragment_neumatico extends Fragment {
                             "\n-PresionMaxima: "+rs.getString(7)+
                             "\n-Clasificacion: "+rs.getString(8)+
                             "\n-FechaFabricacion: "+rs.getString(9)+
-                            "\n-MedidaLlantaId: "+rs.getString(10)+
-                            "\n-FotoLlanta: "+rs.getString(5);
+                            "\n-MedidaLlantaId: "+rs.getString(10);
+                            //FotoLlanta: "+rs.getString(5);
 
                     info1.add(especificacion);
                 } while (rs.next());///va agregando cada ID
@@ -193,7 +192,6 @@ public class fragment_neumatico extends Fragment {
         });
 
 
-
         // registrar--------------------------------------------------------------------------
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,7 +203,7 @@ public class fragment_neumatico extends Fragment {
                 SQLConexion db = new SQLConexion();
                 db.RegistroLlanta(getContext(),Double.parseDouble(precio),Integer.parseInt(stock),DetalleLlantaId,VehiculoId);
                 Limpiar();
-
+                etprecio.requestFocus();
 
             }
         });

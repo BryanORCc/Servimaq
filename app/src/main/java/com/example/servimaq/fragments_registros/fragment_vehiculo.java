@@ -1,13 +1,12 @@
 package com.example.servimaq.fragments_registros;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
+
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -18,13 +17,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
-import com.example.servimaq.menu_opciones;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.File;
 
 
 public class fragment_vehiculo extends Fragment {
@@ -34,7 +38,11 @@ public class fragment_vehiculo extends Fragment {
     Button btnFoto, btnRegistrar, btnCancelar;
     ImageView ivFoto;
 
-    Uri ruta = null;
+    String ruta;
+
+    private StorageReference mStorage;
+    StorageReference FilePath;
+    Uri uri;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,6 +81,9 @@ public class fragment_vehiculo extends Fragment {
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.fragment_vehiculo, container, false);
 
+        //STORAGE FIREBASE*****************************
+        mStorage = FirebaseStorage.getInstance().getReference();
+
         etTipoVehiculo = vista.findViewById(R.id.etTipoVehiculo);
         etMarcaVehiculo = vista.findViewById(R.id.etMarcaVehiculo);
         etModeloVehiculo = vista.findViewById(R.id.etModeloVehiculo);
@@ -80,6 +91,7 @@ public class fragment_vehiculo extends Fragment {
         btnRegistrar = vista.findViewById(R.id.btnRegistrar);
         btnCancelar = vista.findViewById(R.id.btnCancelar);
         ivFoto = vista.findViewById(R.id.ivFoto);
+
 
         btnFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,17 +107,29 @@ public class fragment_vehiculo extends Fragment {
                 String TipoVehiculo = etTipoVehiculo.getText().toString(),
                         MarcaVehiculo = etMarcaVehiculo.getText().toString(),
                         ModeloVehiculo = etModeloVehiculo.getText().toString(),
-                        Foto="";
-                if(ruta==null){
-                    Foto = "";
-                }else{
-                    Foto = ruta.toString();
-                }
+                        Foto;
+
+                FilePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        ruta = taskSnapshot.getMetadata().getPath();
+                        Log.e("direccion: ","++"+ruta);
+
+                        if(ruta==null){
+                            ruta = "";
+                        }else{
+                            ruta = ruta;
+                        }
+
+                        SQLConexion db = new SQLConexion();
+                        db.RegistroVehiculo(getContext(),TipoVehiculo, ruta,MarcaVehiculo,ModeloVehiculo);
+                        Limpiar();
+                        etTipoVehiculo.requestFocus();
+                    }
+                });
 
 
-                SQLConexion db = new SQLConexion();
-                db.RegistroVehiculo(getContext(),TipoVehiculo, Foto,MarcaVehiculo,ModeloVehiculo);
-                Limpiar();
+
             }
         });
 
@@ -120,31 +144,20 @@ public class fragment_vehiculo extends Fragment {
         return vista;
     }
 
-
-    //CARGA DE IMAGEN--------------------------------------------------------------------------------------
     private void CargarImagen(){
-        Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        i.setType("image/");
-        startActivityForResult(i.createChooser(i,"seleccione la aplicación"),10);
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(intent.createChooser(intent,"seleccione la aplicación"),10);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
 
-        if(resultCode==getActivity().RESULT_OK){
-            ruta = data.getData();
-            ivFoto.setImageURI(ruta);
-            Log.e("asdasd",""+ruta);
-
-            /*try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), ruta);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
-            //bitmap = ((BitmapDrawable)ivFoto.getDrawable()).getBitmap();
-            //Log.e("afsaf",""+ruta);
-            //Imagen = bitmap.toString();
+        if( resultCode==getActivity().RESULT_OK){
+            uri = data.getData();
+            FilePath = mStorage.child("fotos").child(uri.getLastPathSegment());
+            ivFoto.setImageURI(uri);
         }
     }
 
@@ -157,4 +170,6 @@ public class fragment_vehiculo extends Fragment {
         etModeloVehiculo.setText("");
         ruta = null;
     }
+
+
 }

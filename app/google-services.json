@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "315696893533",
+    "project_id": "servimaq-d52b1",
+    "storage_bucket": "servimaq-d52b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:315696893533:android:7fb70193dcaf549b3647b4",
+        "android_client_info": {
+          "package_name": "com.example.servimaq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "315696893533-vbdjiv5akc46hp29i6lt21l8kepico0s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC3n0ShRU72wc0Rh9MefAnhebDsoeJzhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "315696893533-vbdjiv5akc46hp29i6lt21l8kepico0s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
