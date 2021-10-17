@@ -28,7 +28,6 @@ public class SQLConexion {
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
             conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.4;databaseName=Servimaq;user=sa;password=123;");
             //conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.0.18;databaseName=Servimaq;user=sa;password=123;");
-
         }catch (Exception e){
             Toast.makeText(c,"Falla de conexion",Toast.LENGTH_SHORT).show();
         }
