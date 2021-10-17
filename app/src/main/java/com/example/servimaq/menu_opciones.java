@@ -75,7 +75,7 @@ public class menu_opciones extends AppCompatActivity {
         btnSalida_Producto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(menu_opciones.this, Salida_Prod.class);
+                Intent i = new Intent(menu_opciones.this,Salida_Prod.class);
                 startActivity(i);
             }
         });

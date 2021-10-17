@@ -6,55 +6,62 @@ import java.util.ArrayList;
 
 public class items_lista_salida_P {
 
-    private String nombre,modopago;
-    private int   Stock;
-    private double Precio;
-   private String fentrega;
+   private String  tvdivision, tvnombreyapellido,tvcorreo,tvfechaentrega, tvmodopago,tvDNI;
 
-    public items_lista_salida_P(String nombre,String fentrega,String modopago ,double Precio,int Stock){
-        this.nombre = nombre;
-        this.fentrega = fentrega;
-        this.modopago = modopago;
-        this.Precio = Precio;
-        this.Stock = Stock;
-    }
+   public items_lista_salida_P(String tvdivision, String tvnombreyapellido, String tvcorreo, String tvfechaentrega, String tvmodopago, String tvDNI) {
+      this.tvdivision = tvdivision;
+      this.tvnombreyapellido = tvnombreyapellido;
+      this.tvcorreo = tvcorreo;
+      this.tvfechaentrega = tvfechaentrega;
+      this.tvmodopago = tvmodopago;
+      this.tvDNI = tvDNI;
+   }
 
+   public String getTvnombreyapellido() {
+      return tvnombreyapellido;
+   }
 
-    public String getnombre() {
-        return nombre;
-    }
+   public void setTvnombreyapellido(String tvnombreyapellido) {
+      this.tvnombreyapellido = tvnombreyapellido;
+   }
 
-    public void setnombre(String nombre) {
-        nombre = nombre;
-    }
+   public String getTvcorreo() {
+      return tvcorreo;
+   }
 
-    public String getFentrega() { return fentrega; }
+   public void setTvcorreo(String tvcorreo) {
+      this.tvcorreo = tvcorreo;
+   }
 
-    public void setFentrega(String fentrega) {
-        this.fentrega = fentrega;
-    }
+   public String getTvmodopago() {
+      return tvmodopago;
+   }
 
-    public String getmodopago() {
-        return modopago;
-    }
+   public void setTvmodopago(String tvmodopago) {
+      this.tvmodopago = tvmodopago;
+   }
 
-    public void setmodopago(String modopago) {
-        modopago = modopago;
-    }
+   public String getTvDNI() {
+      return tvDNI;
+   }
 
-    public int getStock() {
-        return Stock;
-    }
+   public void setTvDNI(String tvDNI) {
+      this.tvDNI = tvDNI;
+   }
 
-    public void setStock(int stock) {
-        Stock = stock;
-    }
+   public String getTvfechaentrega() {
+      return tvfechaentrega;
+   }
 
-    public double getPrecio() {
-        return Precio;
-    }
+   public void setTvfechaentrega(String tvfechaentrega) {
+      this.tvfechaentrega = tvfechaentrega;
+   }
 
-    public void setPrecio(double precio) {
-        Precio = precio;
-    }
+   public String getTvdivision() {
+      return tvdivision;
+   }
+
+   public void setTvdivision(String tvdivision) {
+      this.tvdivision = tvdivision;
+   }
 }

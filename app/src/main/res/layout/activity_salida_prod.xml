@@ -2,158 +2,110 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="15dp"
+    >
 
-    <ListView
-        android:id="@+id/lvSalidaProducto"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="1dp"
+            android:background="#1B1919"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar salida pedido"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:id="@+id/tvdivision"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="1dp"
+            android:background="#1B1919"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="20dp"
+        android:orientation="horizontal"
 
+        >
 
-        <!--CODIGO _________________________________________________________________-->
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvnombreyapellido"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.6"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:layout_weight="0.55"
+            android:layout_height="wrap_content"
+            android:hint="Nombres: "
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="12dp"/>
 
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Codigo: "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvcod"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="codigo..." />
-            </LinearLayout>
-
-
-            <!--BLOQUE____________________________________________________-->
-            <LinearLayout
-                android:layout_width="411dp"
-                android:layout_height="29dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nombre "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="F.Entrega "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="M.pago "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Precio "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Stock "
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-            <!--BLOQUE______******______________________________________________-->
-            <LinearLayout
-                android:layout_width="411dp"
-                android:layout_height="109dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Nombre "
-                    android:id="@+id/tvnombre"/>
-
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="F.Entrega "
-                    android:id="@+id/tventrega"
-                    />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="M.pago "
-                    android:id="@+id/tvmodopago"/>
-
-
-                <TextView
-                    android:id="@+id/tvPrecio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Precio " />
-
-
-                <EditText
-                    android:id="@+id/etstock"
-                    android:layout_width="39dp"
-                    android:layout_height="35dp"
-                    android:inputType="number"
-
-                    />
-
-
-                <LinearLayout
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnaceptar"
-                        android:layout_width="47dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:backgroundTint="#ECB309"
-                        android:minHeight="2dp"
-                        android:text="ok" />
-
-                    <Button
-                        android:id="@+id/btneliminar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:backgroundTint="#E3AE10"
-                        android:minHeight="2dp"
-                        android:text="eliminar" />
-
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+        <TextView
+            android:id="@+id/tvcorreo"
+            android:layout_width="0dp"
+            android:layout_weight="0.45"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="correo"
+            android:textSize="12dp" />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal"
+
+        >
+
+        <TextView
+            android:id="@+id/tvmodopago"
+            android:layout_width="0dp"
+            android:layout_weight="0.33"
+            android:layout_height="wrap_content"
+            android:hint="Mpago "
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="12dp"/>
+
+        <!--VISTA TEXTO:::::::::::::::::::::::::::::-->
+        <TextView
+            android:id="@+id/tvDNI"
+            android:layout_width="0dp"
+            android:layout_weight="0.33"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="DNI"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/tvfechaentrega"
+            android:layout_width="0dp"
+            android:layout_weight="0.33"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Fentrega"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+
+ <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvitems"
+        />
 
 
 </LinearLayout>
