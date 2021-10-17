@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/foadmi"
+    android:background="@drawable/fondo_pestanas"
     tools:context=".fragments_registros.fragment_medidas"
     >
 
@@ -50,12 +50,13 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ancho..."
+                android:hint="  Ancho..."
                 android:textSize="20sp"
                 android:textColorHint="#F4F4F4"
                 android:layout_marginBottom="10dp"
                 android:inputType="number"
                 android:id="@+id/etAncho"
+                android:background="@drawable/labelsgeneral"
                 />
             <!--BLOQUE_____________________________________-->
 
@@ -70,12 +71,13 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Diametro..."
+                android:hint="  Diametro..."
                 android:textSize="20sp"
                 android:textColorHint="#F4F4F4"
                 android:layout_marginBottom="10dp"
                 android:inputType="number"
                 android:id="@+id/etDiametro"
+                android:background="@drawable/labelsgeneral"
                 />
             <!--BLOQUE_____________________________________-->
             <TextView
@@ -83,19 +85,20 @@
                 android:layout_height="wrap_content"
                 android:text="Perfil:"
                 android:fontFamily="sans-serif-black"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:textColor="#F4F4F4"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Perfil..."
+                android:hint="  Perfil..."
                 android:textSize="20sp"
                 android:textColorHint="#F4F4F4"
                 android:layout_marginBottom="10dp"
                 android:inputType="number"
                 android:id="@+id/etPerfil"
                 android:textColor="#DA1F1F20"
+                android:background="@drawable/labelsgeneral"
                 />
             <!--BLOQUE_____________________________________-->
             <TextView
@@ -103,18 +106,20 @@
                 android:layout_height="wrap_content"
                 android:text="Mmcocada:"
                 android:fontFamily="sans-serif-black"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:textColor="#F4F4F4"
+
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mmcocada..."
+                android:hint="  Mmcocada..."
                 android:textSize="20sp"
                 android:textColorHint="#F4F4F4"
                 android:layout_marginBottom="30dp"
                 android:inputType="number"
                 android:id="@+id/etMmcocada"
+                android:background="@drawable/labelsgeneral"
                 />
             <LinearLayout
                 android:layout_width="match_parent"

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_pestanas">
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="0.6"
@@ -15,12 +16,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Codigo de Pedido: "/>
+                android:text="Codigo de Pedido: "
+                android:textColor="#D9D9F3"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Codigo..."
-                android:id="@+id/tvCodigo"/>
+                android:hint="  Codigo..."
+                android:id="@+id/tvCodigo"
+                android:textColorHint="#D9D9F3"
+                android:background="@drawable/labelsgeneral"/>
         </LinearLayout>
         <!--BLOQUE___________________________________________________-->
         <LinearLayout
@@ -31,12 +35,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Nombre: "/>
+                android:text="Nombre: "
+                android:textColor="#D9D9F3"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Nombre..."
-                android:id="@+id/tvNombre"/>
+                android:hint="  Nombre..."
+                android:id="@+id/tvNombre"
+                android:textColorHint="#D9D9F3"
+                android:background="@drawable/labelsgeneral"/>
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -48,12 +55,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Apellidos: "/>
+                android:text="Apellidos: "
+                android:textColor="#D9D9F3"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Apellidos..."
-                android:id="@+id/tvApellidos"/>
+                android:hint="  Apellidos..."
+                android:id="@+id/tvApellidos"
+                android:textColorHint="#D9D9F3"
+                android:background="@drawable/labelsgeneral"/>
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -65,12 +75,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Correo: "/>
+                android:text="Correo: "
+                android:textColor="#D9D9F3"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Correo..."
-                android:id="@+id/tvDCorreo"/>
+                android:hint="  Correo..."
+                android:id="@+id/tvDCorreo"
+                android:textColorHint="#D9D9F3"
+                android:background="@drawable/labelsgeneral"/>
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -82,12 +95,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Fecha Actual: "/>
+                android:text="Fecha Actual: "
+                android:textColor="#D9D9F3"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Fecha Actual..."
-                android:id="@+id/tvFechaA"/>
+                android:hint="  Fecha Actual..."
+                android:id="@+id/tvFechaA"
+                android:textColorHint="#D9D9F3"
+                android:background="@drawable/labelsgeneral"/>
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -99,12 +115,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Fecha de Entrega: "/>
+                android:text="Fecha de Entrega: "
+                android:textColor="#D9D9F3"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Fecha de Entrega..."
-                android:id="@+id/tvFechaE"/>
+                android:hint="  Fecha de Entrega..."
+                android:id="@+id/tvFechaE"
+                android:textColorHint="#D9D9F3"
+                android:background="@drawable/labelsgeneral"/>
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -116,12 +135,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Modo de pago: "/>
+                android:text="Modo de pago: "
+                android:textColor="#D9D9F3"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Modo de pago..."
-                android:id="@+id/tvModoP"/>
+                android:hint="  Modo de pago..."
+                android:id="@+id/tvModoP"
+                android:textColorHint="#D9D9F3"
+                android:background="@drawable/labelsgeneral"/>
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -133,12 +155,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Dni: "/>
+                android:text="Dni: "
+                android:textColor="#D9D9F3"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Dni..."
-                android:id="@+id/tvDni"/>
+                android:hint="  Dni..."
+                android:id="@+id/tvDni"
+                android:textColorHint="#D9D9F3"
+                android:background="@drawable/labelsgeneral"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -148,12 +173,14 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="borrar"
-                android:id="@+id/btnborrarPedido"/>
+                android:id="@+id/btnborrarPedido"
+                android:background="@drawable/botones"/>
             <Button
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Editar"
-                android:id="@+id/btneditarPedido"/>
+                android:id="@+id/btneditarPedido"
+                android:background="@drawable/botones"/>
         </LinearLayout>
 
 

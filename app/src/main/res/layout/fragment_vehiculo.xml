@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/foadmi"
+    android:background="@drawable/fondo_pestanas"
     tools:context=".fragments_registros.fragment_vehiculo"
    >
 
@@ -48,11 +48,12 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="vehiculo..."
+                android:hint="  Vehiculo..."
                 android:textColorHint="#F4F4F4"
                 android:textSize="20sp"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/etTipoVehiculo"
+                android:background="@drawable/labelsgeneral"
                 />
 
             <!--BLOQUE_____________________________________-->
@@ -93,11 +94,12 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="vehiculo..."
+                android:hint="  Marca..."
                 android:textSize="20sp"
                 android:textColorHint="#F4F4F4"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/etMarcaVehiculo"
+                android:background="@drawable/labelsgeneral"
                 />
 
             <!--BLOQUE_____________________________________-->
@@ -112,12 +114,12 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="vehiculo..."
+                android:hint="  Modelo..."
                 android:textColorHint="#F4F4F4"
                 android:textSize="20sp"
                 android:layout_marginBottom="30dp"
                 android:id="@+id/etModeloVehiculo"
-
+                android:background="@drawable/labelsgeneral"
                 />
 
             <!--BLOQUE_____________________________________-->

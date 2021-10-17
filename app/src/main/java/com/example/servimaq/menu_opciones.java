@@ -31,7 +31,7 @@ public class menu_opciones extends AppCompatActivity {
         setContentView(R.layout.activity_menu_opciones);
 
         final VideoView videofondo = (VideoView) findViewById(R.id.mc_fondo_video);
-        videofondo.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videofondo));
+        videofondo.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videomenu));
         videofondo.start();
 
         videofondo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {

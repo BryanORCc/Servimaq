@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/foadmi"
+    android:background="@drawable/fondo_pestanas"
     tools:context=".fragments_registros.fragment_neumatico"
     >
 
@@ -51,10 +51,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Precio..."
+                android:hint="  Precio..."
                 android:textColorHint="#F4F4F4"
                 android:inputType="number|numberDecimal"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:background="@drawable/labelsgeneral"/>
             <!--_____________________________________-->
 
             <!--stock-->
@@ -71,10 +72,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Stock..."
+                android:hint="  Stock..."
                 android:textColorHint="#F4F4F4"
                 android:inputType="number"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:background="@drawable/labelsgeneral"/>
             <!--_____________________________________-->
 
             <!--especificacion-->

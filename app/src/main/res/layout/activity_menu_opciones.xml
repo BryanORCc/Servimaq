@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/final3"
     tools:context=".menu_opciones"
     android:orientation="vertical">
 
@@ -12,6 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <VideoView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mc_fondo_video"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            />
 
 
         <LinearLayout
@@ -25,11 +33,12 @@
                 android:layout_weight="0.33"
                 android:layout_margin="5dp">
 
+
                 <Button
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="match_parent"
-                    android:background="@drawable/imafin"
+                    android:background="@drawable/registro"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:layout_margin="10dp"
@@ -42,7 +51,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/logon2"
+                    android:background="@drawable/catalogo"
                     android:scaleX="0.6"
                     android:scaleY="0.7" />
 
@@ -59,7 +68,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="match_parent"
-                    android:background="@drawable/logon1"
+                    android:background="@drawable/pedido"
                     android:scaleX="0.7"
                     android:scaleY="0.7"
                     android:layout_margin="10dp"
