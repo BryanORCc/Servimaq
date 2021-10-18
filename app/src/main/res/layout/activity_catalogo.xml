@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".op_catalogo.Catalogo"
+    android:background="@drawable/fondo_verde"
     android:orientation="vertical"
     android:background="#0B0A0A"
     >
@@ -36,8 +37,6 @@
             android:popupBackground="#353232"
             />
     </LinearLayout>
-
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
