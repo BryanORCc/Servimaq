@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/foadmi"
     tools:context=".op_pedidos.Listar_pedidos"
+    android:background="@drawable/fondo_verde"
     android:orientation="vertical">
 
     <SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:queryHint="ingresar texto..."
+        android:queryHint="ingresa codigo del pedido a buscar..."
         android:id="@+id/svBusquedaPedidos"
         />
 

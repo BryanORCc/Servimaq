@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/foadmi"
+    android:background="@drawable/fondo_azul"
     tools:context=".fragments_registros.fragment_neumatico"
     >
 
@@ -97,7 +97,6 @@
                 android:baselineAligned="false"
                 android:rotationX="-12"
                 android:textSize="20dp" />
-
             <TextView
                 android:id="@+id/Tv_ver"
                 android:layout_width="match_parent"

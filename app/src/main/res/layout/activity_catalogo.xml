@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/foadmi"
     tools:context=".op_catalogo.Catalogo"
+    android:background="@drawable/fondo_verde"
     android:orientation="vertical"
     >
 
@@ -33,8 +33,6 @@
             android:popupBackground="#68A3E3"
             />
     </LinearLayout>
-
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
