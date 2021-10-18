@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    android:background="@drawable/carretera_campo"
     tools:context=".fragments_registros.fragment_vehiculo"
    >
 
@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:text="Registrar Vehiculo"
                     android:textSize="25dp"
-                    android:textColor="#DA1F1F20"
+                    android:textColor="#F4F4F4"
                     android:layout_marginVertical="20dp"
                     android:textAlignment="center"
                     android:fontFamily="sans-serif-black"
@@ -37,22 +37,17 @@
             </LinearLayout>
 
             <!--BLOQUE_____________________________________-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tipo de vehiculo:"
-                android:fontFamily="sans-serif-black"
-                android:textColor="#DA1F1F20"
-                android:textSize="15dp"
-                />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="vehiculo..."
-                android:textColorHint="#DA1F1F20"
+                android:hint="Tipo de vehiculo..."
+                android:textColorHint="#F4F4F4"
                 android:textSize="15dp"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/etTipoVehiculo"
+                android:textColor="#F4F4F4"
+                android:paddingHorizontal="15dp"
                 />
 
             <!--BLOQUE_____________________________________-->
@@ -62,7 +57,7 @@
                 android:text="Imagen Vehiculo:"
                 android:fontFamily="sans-serif-black"
                 android:textSize="15dp"
-                android:textColor="#DA1F1F20"
+                android:textColor="#F4F4F4"
                 />
             <ImageView
                 android:layout_width="match_parent"
@@ -82,42 +77,29 @@
                 />
 
             <!--BLOQUE_____________________________________-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Marca de vehiculo:"
-                android:fontFamily="sans-serif-black"
-                android:textSize="15dp"
-                android:textColor="#DA1F1F20"
-                />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="vehiculo..."
+                android:hint="Marca de vehiculo..."
                 android:textSize="15dp"
-                android:textColorHint="#DA1F1F20"
+                android:textColorHint="#F4F4F4"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/etMarcaVehiculo"
+                android:paddingHorizontal="15dp"
                 />
 
             <!--BLOQUE_____________________________________-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Modelo de vehiculo:"
-                android:fontFamily="sans-serif-black"
-                android:textSize="15dp"
-                android:textColor="#DA1F1F20"
-                />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="vehiculo..."
-                android:textColorHint="#DA1F1F20"
+                android:hint="Modelo de vehiculo..."
+                android:textColorHint="#F4F4F4"
                 android:textSize="15dp"
                 android:layout_marginBottom="30dp"
                 android:id="@+id/etModeloVehiculo"
-
+                android:paddingHorizontal="15dp"
                 />
 
             <!--BLOQUE_____________________________________-->

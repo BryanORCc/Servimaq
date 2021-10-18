@@ -6,4 +6,8 @@
         <item name="android:drawable">@drawable/fondo</item>
     </style>
 
+    <style name="mySpinnerItemStyle" parent="Base.Widget.AppCompat.Spinner">
+        <item name="android:textColor">#f0f0f0</item>
+    </style>
+
 </resources>

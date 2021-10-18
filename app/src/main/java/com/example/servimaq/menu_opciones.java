@@ -23,15 +23,15 @@ import com.example.servimaq.op_pedidos.registro_cliente;
 
 public class menu_opciones extends AppCompatActivity {
 
-    Button btnProductos, btnCatalogo,btnRegistroCliente,btnSalida_Producto, btnDocumentos;
+    Button btnProductos, btnCatalogo,btnRegistroCliente,btnSalida_Producto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_opciones);
 
-        /*final VideoView videofondo = (VideoView) findViewById(R.id.mc_fondo_video);
-        videofondo.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videofondo));
+        final VideoView videofondo = (VideoView) findViewById(R.id.mc_fondo_video);
+        videofondo.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videomenu));
         videofondo.start();
 
         videofondo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -39,13 +39,12 @@ public class menu_opciones extends AppCompatActivity {
             public void onPrepared(MediaPlayer mediaPlayer) {
                 mediaPlayer.setLooping(true);
             }
-        });*/
+        });
 
         btnProductos = findViewById(R.id.btnProductos);
         btnCatalogo = findViewById(R.id.btnCatalogo);
-        btnSalida_Producto = findViewById(R.id.btnSalida_Producto);
-        btnRegistroCliente = findViewById(R.id.btnRegistroCliente);
-        btnDocumentos = findViewById(R.id.btnDocumentos);
+        btnSalida_Producto= findViewById(R.id.btnSalida_Producto);
+        btnRegistroCliente=findViewById(R.id.btnRegistroCliente);
 
         //PANTALLA REGISTROS---------------------------------------------------------------------------------
         btnProductos.setOnClickListener(view -> {
@@ -78,13 +77,6 @@ public class menu_opciones extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(menu_opciones.this, Salida_Prod.class);
                 startActivity(i);
-            }
-        });
-
-        btnDocumentos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
 
