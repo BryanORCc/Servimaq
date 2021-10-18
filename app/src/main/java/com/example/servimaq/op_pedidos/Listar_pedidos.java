@@ -4,8 +4,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.KeyEvent;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -15,6 +17,8 @@ import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 
 import com.example.servimaq.db.pedido_lista;
+import com.example.servimaq.menu_opciones;
+import com.example.servimaq.op_catalogo.Catalogo;
 
 
 import java.sql.ResultSet;
@@ -29,6 +33,15 @@ public class Listar_pedidos extends AppCompatActivity {
     Pedido_Catalogo pedi_catalogo;
     String cadena_texto_buscar = null;
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==event.KEYCODE_BACK){
+            finish();
+            Intent intent = new Intent(Listar_pedidos.this, menu_opciones.class);
+            startActivity(intent);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +94,7 @@ public class Listar_pedidos extends AppCompatActivity {
             pedi_catalogo = new Pedido_Catalogo(Listar_pedidos.this, lista);
             lvListaPedidos.setAdapter(pedi_catalogo);
         }
+
         //BUSCAR POR INGRESO DE TEXTO
         svBusquedaPedidos.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -97,7 +111,8 @@ public class Listar_pedidos extends AppCompatActivity {
                 //--SELECT INFORMACION PEDIDO------------------------------------------------------------------------------
                 try {
                     Statement st = db.ConexionDB(getApplicationContext()).createStatement();
-                    ResultSet rs = st.executeQuery("select codPedido,NombresCliente,ApellidosCliente,Correo,FechaActual,FechaEntrega,ModoPago,DNI from T_Pedido"+"where codPedido like '%"+cadena_texto_buscar+"%';");
+                    ResultSet rs = st.executeQuery("select codPedido,NombresCliente,ApellidosCliente,Correo,FechaActual,FechaEntrega,ModoPago,DNI from T_Pedido"+
+                            " where codPedido like '%"+cadena_texto_buscar+"%';");
 
                     if (!rs.next()) {
                         Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();

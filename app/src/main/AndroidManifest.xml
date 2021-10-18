@@ -26,14 +26,14 @@
         <activity
             android:name=".op_pedidos.Listar_pedidos"
             android:exported="true"
-            android:parentActivityName=".op_pedidos.registro_cliente" />
+            android:parentActivityName=".menu_opciones" />
         <activity
             android:name=".op_pedidos.registro_cliente"
             android:exported="true"
             android:parentActivityName=".menu_opciones" />
         <activity
             android:parentActivityName=".menu_opciones"
-            android:name=".fragments_registros.Salida_Prod"
+            android:name=".Salida_Prod"
             android:exported="true" />
         <activity
             android:name=".op_catalogo.Catalogo"

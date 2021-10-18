@@ -1,15 +1,11 @@
 package com.example.servimaq.op_catalogo;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -27,15 +22,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.bumptech.glide.Glide;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
-import com.example.servimaq.fragments_registros.Salida_Prod;
-import com.example.servimaq.menu_opciones;
+import com.example.servimaq.Salida_Prod;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -43,7 +35,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.zip.DeflaterInputStream;
 
 public class producto_catalogo extends BaseAdapter {
 
@@ -121,13 +112,13 @@ public class producto_catalogo extends BaseAdapter {
         StorageReference islandRef = storageRef.child(Lista.get(i).getFotoVehiculo());
 
         ArrayList<Bitmap> imagenes = new ArrayList<>();
-        final long ONE_MEGABYTE = 1024 * 1024;
+        final long ONE_MEGABYTE = 480 * 480;
         islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
                 imagenes.add(bitmap);
-                Log.e("Contar","___: "+imagenes.size());
+                //Log.e("Contar","___: "+imagenes.size());
                 ivFoto.setImageBitmap(bitmap);
             }
         }).addOnFailureListener(new OnFailureListener() {

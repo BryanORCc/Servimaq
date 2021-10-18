@@ -30,6 +30,7 @@
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/activity_detalle_producto.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/activity_ingreso_productos.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/activity_listar_pedidos.xml" value="0.24427083333333333" />
+        <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/activity_listar_salidaa_.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/activity_main.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/activity_menu_opciones.xml" value="0.2713541666666667" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/activity_registro_cliente.xml" value="0.24427083333333333" />
@@ -40,6 +41,7 @@
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/fragment_medidas.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/fragment_neumatico.xml" value="0.22" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/fragment_vehiculo.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/items_salida_producto.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/pedido_lista.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/producto_lista_catalogo.xml" value="0.2713541666666667" />
         <entry key="..\:/Users/giova/AndroidStudioProjects/Servimaq/app/src/main/res/drawable-anydpi/agregar_prod.xml" value="0.2203125" />
@@ -61,34 +63,15 @@
         <entry key="..\:/Users/giova/AndroidStudioProjects/Servimaq/app/src/main/res/layout/dialog_agregar.xml" value="0.33" />
         <entry key="..\:/Users/giova/AndroidStudioProjects/Servimaq/app/src/main/res/layout/fragment_detalle_llanta.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/giova/AndroidStudioProjects/Servimaq/app/src/main/res/layout/fragment_medidas.xml" value="0.25" />
+        <entry key="..\:/Users/giova/AndroidStudioProjects/Servimaq/app/src/main/res/layout/fragment_neumatico.xml" value="0.25" />
         <entry key="..\:/Users/giova/AndroidStudioProjects/Servimaq/app/src/main/res/layout/fragment_vehiculo.xml" value="0.25" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/activity_catalogo.xml" value="0.3609375" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/activity_detalle_pedido.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/activity_ingreso_productos.xml" value="0.34782608695652173" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/activity_listar_pedidos.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/activity_listar_salidaa_.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/activity_main.xml" value="0.34782608695652173" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/activity_menu_opciones.xml" value="0.34782608695652173" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/activity_registro_cliente.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/activity_salida_prod.xml" value="0.397212543554007" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/activity_salida_producto.xml" value="0.3609375" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/dialog_agregar.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/fragment_detalle_llanta.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/fragment_medidas.xml" value="0.24320652173913043" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/fragment_neumatico.xml" value="0.18" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/fragment_vehiculo.xml" value="0.3609375" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/items_salida_producto.xml" value="0.325" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/pedido_lista.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/producto_lista_catalogo.xml" value="0.3609375" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/producto_salida_producto.xml" value="0.27309782608695654" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/layout/salida_producto.xml" value="0.3609375" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/joseo/OneDrive/Escritorio/proyecto servimaq/Servimaq/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3770833333333333" />
+        <entry key="..\:/Users/giova/AndroidStudioProjects/Servimaq/app/src/main/res/layout/pedido_lista.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/giova/AndroidStudioProjects/Servimaq/app/src/main/res/layout/producto_lista_catalogo.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class items_lista_salida_P {
 
-   private String  tvdivision, tvnombreyapellido,tvcorreo,tvfechaentrega, tvmodopago,tvDNI;
+   private String  tvCodigo, tvnombreyapellido,tvcorreo,tvfechaentrega, tvmodopago,tvDNI;
 
-   public items_lista_salida_P(String tvdivision, String tvnombreyapellido, String tvcorreo, String tvfechaentrega, String tvmodopago, String tvDNI) {
-      this.tvdivision = tvdivision;
+   public items_lista_salida_P(String tvCodigo, String tvnombreyapellido, String tvcorreo, String tvfechaentrega, String tvmodopago, String tvDNI) {
+      this.tvCodigo = tvCodigo;
       this.tvnombreyapellido = tvnombreyapellido;
       this.tvcorreo = tvcorreo;
       this.tvfechaentrega = tvfechaentrega;
@@ -57,11 +57,11 @@ public class items_lista_salida_P {
       this.tvfechaentrega = tvfechaentrega;
    }
 
-   public String getTvdivision() {
-      return tvdivision;
+   public String getTvCodigo() {
+      return tvCodigo;
    }
 
-   public void setTvdivision(String tvdivision) {
-      this.tvdivision = tvdivision;
+   public void setTvdCodigo(String tvCodigo) {
+      this.tvCodigo = tvCodigo;
    }
 }
