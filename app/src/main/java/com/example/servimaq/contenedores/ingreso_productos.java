@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -36,6 +37,8 @@ public class ingreso_productos extends AppCompatActivity {
         btnDetalle = findViewById(R.id.btnDetalle);
         btnNeumatico = findViewById(R.id.btnNeumatico);
 
+        btnVehiculo.setBackground(getResources().getDrawable(R.drawable.fondo));
+
         btnVehiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +46,12 @@ public class ingreso_productos extends AppCompatActivity {
                 FragmentTransaction cambioFragment = getSupportFragmentManager().beginTransaction();
                 cambioFragment.replace(R.id.frgContenedor,frgVehiculo);
                 cambioFragment.commit();
+
+                //TRANSICION DE COLORES
+                btnVehiculo.setBackground(getResources().getDrawable(R.drawable.fondo));
+                btnMedida.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
+                btnDetalle.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
+                btnNeumatico.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
             }
         });
 
@@ -53,6 +62,12 @@ public class ingreso_productos extends AppCompatActivity {
                 FragmentTransaction cambioFragment = getSupportFragmentManager().beginTransaction();
                 cambioFragment.replace(R.id.frgContenedor,frgMedida);
                 cambioFragment.commit();
+
+                //TRANSICION DE COLORES
+                btnVehiculo.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
+                btnMedida.setBackground(getResources().getDrawable(R.drawable.fondo));
+                btnDetalle.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
+                btnNeumatico.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
             }
         });
 
@@ -63,6 +78,12 @@ public class ingreso_productos extends AppCompatActivity {
                 FragmentTransaction cambioFragment = getSupportFragmentManager().beginTransaction();
                 cambioFragment.replace(R.id.frgContenedor,frgDetalle);
                 cambioFragment.commit();
+
+                //TRANSICION DE COLORES
+                btnVehiculo.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
+                btnMedida.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
+                btnDetalle.setBackground(getResources().getDrawable(R.drawable.fondo));
+                btnNeumatico.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
             }
         });
 
@@ -73,6 +94,12 @@ public class ingreso_productos extends AppCompatActivity {
                 FragmentTransaction cambioFragment = getSupportFragmentManager().beginTransaction();
                 cambioFragment.replace(R.id.frgContenedor,frgNeumatico);
                 cambioFragment.commit();
+
+                //TRANSICION DE COLORES
+                btnVehiculo.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
+                btnMedida.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
+                btnDetalle.setBackground(getResources().getDrawable(R.drawable.estilo_transparente));
+                btnNeumatico.setBackground(getResources().getDrawable(R.drawable.fondo));
             }
         });
 

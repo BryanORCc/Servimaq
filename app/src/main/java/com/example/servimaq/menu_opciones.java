@@ -81,8 +81,6 @@ public class menu_opciones extends AppCompatActivity {
         });
 
 
-
-
     }
 
 

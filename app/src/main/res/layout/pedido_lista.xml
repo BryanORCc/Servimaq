@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_pestanas">
+    android:background="@drawable/fondo2">
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="0.6"
@@ -23,8 +23,7 @@
                 android:layout_height="wrap_content"
                 android:hint="  Codigo..."
                 android:id="@+id/tvCodigo"
-                android:textColorHint="#D9D9F3"
-                android:background="@drawable/labelsgeneral"/>
+                android:textColorHint="#D9D9F3"/>
         </LinearLayout>
         <!--BLOQUE___________________________________________________-->
         <LinearLayout
@@ -42,8 +41,7 @@
                 android:layout_height="wrap_content"
                 android:hint="  Nombre..."
                 android:id="@+id/tvNombre"
-                android:textColorHint="#D9D9F3"
-                android:background="@drawable/labelsgeneral"/>
+                android:textColorHint="#D9D9F3"/>
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -62,8 +60,7 @@
                 android:layout_height="wrap_content"
                 android:hint="  Apellidos..."
                 android:id="@+id/tvApellidos"
-                android:textColorHint="#D9D9F3"
-                android:background="@drawable/labelsgeneral"/>
+                android:textColorHint="#D9D9F3"/>
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -82,8 +79,7 @@
                 android:layout_height="wrap_content"
                 android:hint="  Correo..."
                 android:id="@+id/tvDCorreo"
-                android:textColorHint="#D9D9F3"
-                android:background="@drawable/labelsgeneral"/>
+                android:textColorHint="#D9D9F3"/>
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -102,8 +98,7 @@
                 android:layout_height="wrap_content"
                 android:hint="  Fecha Actual..."
                 android:id="@+id/tvFechaA"
-                android:textColorHint="#D9D9F3"
-                android:background="@drawable/labelsgeneral"/>
+                android:textColorHint="#D9D9F3"/>
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -117,13 +112,13 @@
                 android:textStyle="bold"
                 android:text="Fecha de Entrega: "
                 android:textColor="#D9D9F3"/>
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="  Fecha de Entrega..."
                 android:id="@+id/tvFechaE"
-                android:textColorHint="#D9D9F3"
-                android:background="@drawable/labelsgeneral"/>
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="  Fecha de Entrega..."
+                android:textColorHint="#D9D9F3" />
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -142,8 +137,7 @@
                 android:layout_height="wrap_content"
                 android:hint="  Modo de pago..."
                 android:id="@+id/tvModoP"
-                android:textColorHint="#D9D9F3"
-                android:background="@drawable/labelsgeneral"/>
+                android:textColorHint="#D9D9F3"/>
         </LinearLayout>
 
         <!--BLOQUE____________________________________________________-->
@@ -162,8 +156,7 @@
                 android:layout_height="wrap_content"
                 android:hint="  Dni..."
                 android:id="@+id/tvDni"
-                android:textColorHint="#D9D9F3"
-                android:background="@drawable/labelsgeneral"/>
+                android:textColorHint="#D9D9F3"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -174,13 +167,13 @@
                 android:layout_width="wrap_content"
                 android:text="borrar"
                 android:id="@+id/btnborrarPedido"
-                android:background="@drawable/botones"/>
+                android:background="#f0f0f0"/>
             <Button
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Editar"
                 android:id="@+id/btneditarPedido"
-                android:background="@drawable/botones"/>
+                android:background="@drawable/bordesredondos"/>
         </LinearLayout>
 
 

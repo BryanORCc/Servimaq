@@ -6,12 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".op_catalogo.Catalogo"
     android:orientation="vertical"
+    android:background="#0B0A0A"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@drawable/fondo2">
+
         <SearchView
             android:layout_width="0dp"
             android:layout_weight="0.15"
@@ -19,6 +22,7 @@
             android:queryHint="ingresar texto..."
             android:id="@+id/svBusqueda"
             />
+
         <Spinner
             android:layout_gravity="center"
             android:layout_width="0dp"
@@ -27,9 +31,9 @@
             android:id="@+id/spTipoBusqueda"
             android:spinnerMode="dropdown"
             android:scrollbarStyle="insideOverlay"
-            android:backgroundTint="#216CBC"
+            android:backgroundTint="#0C0C0C"
             android:backgroundTintMode="add"
-            android:popupBackground="#68A3E3"
+            android:popupBackground="#353232"
             />
     </LinearLayout>
 
@@ -38,8 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lvListaProductos"
+        android:dividerHeight="5dp"
         />
-
 
 
 </LinearLayout>

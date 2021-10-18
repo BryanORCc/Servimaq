@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_pestanas"
+    android:background="@drawable/carretera_campo"
     tools:context=".fragments_registros.fragment_vehiculo"
    >
 
@@ -37,23 +37,17 @@
             </LinearLayout>
 
             <!--BLOQUE_____________________________________-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tipo de vehiculo:"
-                android:fontFamily="sans-serif-black"
-                android:textColor="#F4F4F4"
-                android:textSize="20sp"
-                />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="  Vehiculo..."
+                android:hint="Tipo de vehiculo..."
                 android:textColorHint="#F4F4F4"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/etTipoVehiculo"
-                android:background="@drawable/labelsgeneral"
+                android:textColor="#F4F4F4"
+                android:paddingHorizontal="15dp"
                 />
 
             <!--BLOQUE_____________________________________-->
@@ -62,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:text="Imagen Vehiculo:"
                 android:fontFamily="sans-serif-black"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:textColor="#F4F4F4"
                 />
             <ImageView
@@ -83,43 +77,29 @@
                 />
 
             <!--BLOQUE_____________________________________-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Marca de vehiculo:"
-                android:fontFamily="sans-serif-black"
-                android:textSize="20sp"
-                android:textColor="#F4F4F4"
-                />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="  Marca..."
-                android:textSize="20sp"
+                android:hint="Marca de vehiculo..."
+                android:textSize="15dp"
                 android:textColorHint="#F4F4F4"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/etMarcaVehiculo"
-                android:background="@drawable/labelsgeneral"
+                android:paddingHorizontal="15dp"
                 />
 
             <!--BLOQUE_____________________________________-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Modelo de vehiculo:"
-                android:fontFamily="sans-serif-black"
-                android:textSize="20sp"
-                android:textColor="#F4F4F4"
-                />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="  Modelo..."
+                android:hint="Modelo de vehiculo..."
                 android:textColorHint="#F4F4F4"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:layout_marginBottom="30dp"
                 android:id="@+id/etModeloVehiculo"
-                android:background="@drawable/labelsgeneral"
+                android:paddingHorizontal="15dp"
                 />
 
             <!--BLOQUE_____________________________________-->

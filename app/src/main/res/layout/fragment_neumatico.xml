@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_pestanas"
+    android:background="@drawable/carretera_campo"
     tools:context=".fragments_registros.fragment_neumatico"
     >
 
@@ -44,18 +44,18 @@
                 android:fontFamily="sans-serif-black"
                 android:text="Precio:"
                 android:textColor="#F4F4F4"
-                android:textSize="20sp" />
+                android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/etprecio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="  Precio..."
+                android:hint="Precio..."
                 android:textColorHint="#F4F4F4"
                 android:inputType="number|numberDecimal"
-                android:textSize="20sp"
-                android:background="@drawable/labelsgeneral"/>
+                android:textSize="15dp"
+                android:paddingHorizontal="15dp"/>
             <!--_____________________________________-->
 
             <!--stock-->
@@ -65,18 +65,18 @@
                 android:fontFamily="sans-serif-black"
                 android:text="Stock:"
                 android:textColor="#F4F4F4"
-                android:textSize="20sp" />
+                android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/etstock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="  Stock..."
+                android:hint="Stock..."
                 android:textColorHint="#F4F4F4"
                 android:inputType="number"
-                android:textSize="20sp"
-                android:background="@drawable/labelsgeneral"/>
+                android:textSize="15dp"
+                android:paddingHorizontal="15dp"/>
             <!--_____________________________________-->
 
             <!--especificacion-->
@@ -87,7 +87,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="Detalle de Neumatico:"
                 android:textColor="#F4F4F4"
-                android:textSize="20sp" />
+                android:textSize="15dp" />
 
 
             <!--tipo de vehiculo-->
@@ -98,19 +98,18 @@
                 android:layout_marginTop="10dp"
                 android:baselineAligned="false"
                 android:rotationX="-12"
-                android:textSize="20dp" />
+                android:textSize="15dp"
+                android:paddingHorizontal="15dp"/>
 
             <TextView
-                android:id="@+id/Tv_ver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Detalle del neumatico..."
-                android:textColorHint="#F4F4F4"
-
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:textSize="20sp" />
+                android:fontFamily="sans-serif-black"
+                android:hint="detalle "
+                android:textColor="#F4F4F4"
+                android:textSize="15dp"
+                android:id="@+id/Tv_ver"
+                android:layout_marginBottom="10dp"/>
 
 
             <LinearLayout
@@ -135,7 +134,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="Tipo de Vehiculo:"
                 android:textColor="#F4F4F4"
-                android:textSize="20sp" />
+                android:textSize="15dp" />
 
             <Spinner
                 android:id="@+id/Spi_vehiculo"
@@ -144,18 +143,18 @@
                 android:layout_marginTop="10dp"
                 android:baselineAligned="false"
                 android:rotationX="-12"
-                android:textSize="20dp" />
+                android:textSize="15dp"
+                android:paddingHorizontal="15dp"/>
 
             <TextView
-                android:id="@+id/Tv_ver1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="#F4F4F4"
-                android:hint="Tipo de vehiculo"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:textSize="20sp" />
+                android:fontFamily="sans-serif-black"
+                android:hint="tipo vehiculo"
+                android:textColor="#F4F4F4"
+                android:textSize="15dp"
+                android:id="@+id/Tv_ver1"
+                android:layout_marginBottom="10dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -174,7 +173,7 @@
             <!--_______botones de registrar  y cancelar _____________________________-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:gravity="center">
 

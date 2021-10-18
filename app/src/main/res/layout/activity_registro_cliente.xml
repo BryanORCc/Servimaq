@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_pestanas"
+    android:background="@drawable/carretera_campo"
     tools:context=".op_pedidos.registro_cliente">
     <ScrollView
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:hint="Nombre:"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:textColorHint="#F4F4F4"/>
 
             <EditText
@@ -50,7 +50,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="Apellidos:"
                 android:inputType="text"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:textColorHint="#F4F4F4"/>
 
             <EditText
@@ -60,7 +60,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="Correo:"
                 android:inputType="textEmailAddress"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:textColorHint="#F4F4F4"
                 />
 
@@ -70,7 +70,7 @@
                 android:text="fecha actual:"
                 android:fontFamily="sans-serif-black"
                 android:layout_marginTop="10dp"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:textColor="#F4F4F4"
                 />
             <EditText
@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:focusable="false"
                 android:textColorHint="#F4F4F4"
                 android:hint="Ingresar fecha de actual:"/>
@@ -93,7 +93,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="Ingresar fecha de Entrega"
                 android:justificationMode="inter_word"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:textColorHint="#F4F4F4"/>
 
             <Spinner
@@ -109,11 +109,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="15dp"
                 android:hint="Insertar Dni:"
                 android:inputType="number"
                 android:maxLength="8"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:textColorHint="#F4F4F4"/>
 
 
@@ -130,7 +130,7 @@
                     android:text="Registrar"
                     android:id="@+id/btnRegistrarCliente"
                     android:background="@drawable/bordesredondos"
-                    android:textSize="16sp"/>
+                    android:textSize="15dp"/>
 
                 <Button
                     android:layout_width="wrap_content"
@@ -139,7 +139,7 @@
                     android:text="Cancelar"
                     android:id="@+id/btnCancelarCliente"
                     android:background="@drawable/bordesredondos"
-                    android:textSize="16sp"/>
+                    android:textSize="15dp"/>
 
             </LinearLayout>
 

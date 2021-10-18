@@ -79,6 +79,7 @@ public class Catalogo extends AppCompatActivity {
         tipos.add("marca");
 
         ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, tipos);
+        adapter.setDropDownViewResource(R.layout.design_spinner);
         spTipoBusqueda.setAdapter(adapter);
 
         spTipoBusqueda.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
