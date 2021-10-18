@@ -48,6 +48,7 @@ public class detalle_producto extends AppCompatActivity {
     String mensajeToast = null;
 
     boolean opcionModificar = false;
+    int estadoCancelar = 0;
 
     public static EditText etFechaFabricacion;
     public static int dia, mes, año;
@@ -385,6 +386,9 @@ public class detalle_producto extends AppCompatActivity {
         btnModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                estadoCancelar = 1;
+
                 OcultarTextView();
                 MostrarEditText();
                 btnModificar.setVisibility(View.GONE);
@@ -657,6 +661,30 @@ public class detalle_producto extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
             }//FIN SELECT-------------
         }
+
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(estadoCancelar == 1){
+                    OcultarEditText();
+                    MostrarTextView();
+                    btnModificar.setVisibility(View.VISIBLE);
+                    btnConfirmar.setVisibility(View.GONE);
+                    llOpcionVehiculoId.setVisibility(View.GONE);
+                    llOpcionDetalleLlantaId.setVisibility(View.GONE);
+                    llOpcionMedidaLlantaId.setVisibility(View.GONE);
+                    estadoCancelar = 0;
+                }else{
+                    Intent intent = new Intent(detalle_producto.this,Catalogo.class);
+                    startActivity(intent);
+
+                    //QUITAR ANIMACION DE CARGA DE VISTA*****************************
+                    overridePendingTransition(0, 0);
+                    overridePendingTransition(0, 0);
+                }
+
+            }
+        });
 
     }
 

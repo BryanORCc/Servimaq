@@ -793,7 +793,8 @@
                             android:text="Modificar"
                             android:textStyle="bold"
                             android:layout_gravity="center"
-                            android:background="@drawable/bordesredondos"/>
+                            android:background="@drawable/bordesredondos"
+                            android:foreground="?android:attr/selectableItemBackground"/>
 
                         <Button
                             android:id="@+id/btnConfirmar"
@@ -803,7 +804,8 @@
                             android:text="Confirmar"
                             android:textStyle="bold"
                             android:layout_gravity="center"
-                            android:background="@drawable/bordesredondos"/>
+                            android:background="@drawable/bordesredondos"
+                            android:foreground="?android:attr/selectableItemBackground"/>
                     </TableLayout>
 
                     <Button
@@ -815,7 +817,8 @@
                         android:textStyle="bold"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/bordesredondos"/>
+                        android:background="@drawable/bordesredondos"
+                        android:foreground="?android:attr/selectableItemBackground"/>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
 
