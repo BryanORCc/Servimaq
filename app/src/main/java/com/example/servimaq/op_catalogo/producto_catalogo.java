@@ -75,8 +75,6 @@ public class producto_catalogo extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        //OBTENER POSICION PARA EL DIALOG
-        posicion = i;
 
         TextView tvLlantaId, tvMarca, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPrecio, tvStock;
 
@@ -132,6 +130,8 @@ public class producto_catalogo extends BaseAdapter {
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //OBTENER POSICION PARA EL DIALOG
+                posicion = i;
                 datos_codPedido.clear();
                 createCustomDialog().show();
             }
@@ -403,6 +403,7 @@ public class producto_catalogo extends BaseAdapter {
                 int cantidad = 1;
                 double precio = 0.0, total = 0.0; //op_codPedido
                 String codigo = Lista.get(posicion).getLlantaId();
+                Log.e("pos:::::","__"+Lista.get(posicion).getLlantaId());
 
                 //OBTENER PRECIO DEL ITEM AGREGADO AL LISTADO***************************
                 try {
