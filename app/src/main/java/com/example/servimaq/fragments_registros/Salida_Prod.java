@@ -1,6 +1,10 @@
 package com.example.servimaq.fragments_registros;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -10,6 +14,9 @@ import android.widget.Toast;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista_salida_P;
+import com.example.servimaq.lista_salida_producto;
+import com.example.servimaq.op_catalogo.Catalogo;
+import com.example.servimaq.op_catalogo.producto_catalogo;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -17,72 +24,67 @@ import java.util.ArrayList;
 
 public class Salida_Prod extends AppCompatActivity {
 
-    EditText etstock;
-    Button btnaceptar, btneliminar;
-    TextView tventrega, tvmodopago, tvPrecio,tvnombre, tvcod;
-    ListView lvSalidaProducto;
-    String codPedido = "";
-    String salida;
-    //ArrayList<String> op = new ArrayList<>();
-  //  ArrayList<String> info = new ArrayList<>();
-    items_lista_salida_P  lp;
-ArrayList<items_lista_salida_P>lista= new ArrayList<>();
 
+    ArrayList<items_lista_salida_P>lista =new ArrayList<>();
+
+    lista_salida_producto lsp;
+
+    ListView lvSalidaProducto;
+
+    String  op_codPedido;
+    TextView tvnombreyapellido,tvcorreo,tvmodopago,tvDNI,tvfechaentrega,tvdivision;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_salida_prod);
+        setContentView(R.layout.activity_listar_salidaa_);
 
-        tvcod = findViewById(R.id.tvcod);
-        tvnombre = findViewById(R.id.tvnombre);
-        tventrega = findViewById(R.id.tventrega);
-        tvmodopago = findViewById(R.id.tvmodopago);
-        tvPrecio = findViewById(R.id.tvPrecio);
-        etstock = findViewById(R.id.etstock);
-        btnaceptar = findViewById(R.id.btnaceptar);
-        btneliminar = findViewById(R.id.btneliminar);
+        lvSalidaProducto = findViewById(R.id.lvSalidaProducto);
+        tvdivision = findViewById(R.id.tvdivision);
+        tvnombreyapellido = findViewById(R.id.tvnombreyapellido);
+        tvcorreo = findViewById(R.id.tvcorreo);
+        tvmodopago =findViewById(R.id.tvmodopago);
+        tvDNI = findViewById(R.id.tvDNI);
+        tvfechaentrega = findViewById(R.id.tvfechaentrega);
 
 
-        SQLConexion db = new SQLConexion();
+        Intent recibir_codigo = getIntent();
+
+        op_codPedido=recibir_codigo.getStringExtra("op_codPedido");
+
 
         try {
+            SQLConexion db = new SQLConexion();
             Statement st = db.ConexionDB(getApplicationContext()).createStatement();
 
-            ResultSet rs = st.executeQuery("select I.ItemId,I.Cantidad ,I.Precio, I.Total , P.codPedido,P.NombresCliente,P.ApellidosCliente,P.Correo,P.FechaActual,P.FechaEntrega,P.ModoPago,P.DNI " +
-                    "FROM T_Listado I INNER  JOIN T_Pedido P ON P.codPedido = I.codPedido  ;");
+            Log.e("error",""+st);
+
+            ResultSet rs = st.executeQuery("select codPedido,NombresCliente,ApellidosCliente,Correo,FechaEntrega,ModoPago,DNI from T_Pedido;");
+           // select codPedido,NombresCliente,ApellidosCliente,P.Correo,FechaEntrega,ModoPago,DNI from T_Pedido
+            Log.e("error",""+rs.getString(1));
 
 
             if (!rs.next()) {
-                codPedido = "";
+
                 Toast.makeText(getApplicationContext(), "No se encontraron registros", Toast.LENGTH_SHORT).show();
             } else {
                 do {
+                    lista.add(new items_lista_salida_P(rs.getString(1),rs.getString(2)+rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)));
 
-                   /* op.add(rs.getString(1));
+                    Log.e("error",""+lista.size());
 
-                    salida = "-NombresCliente: " + rs.getString(2) +
-                            "\n-FechaEntrega: " + rs.getString(6) +
-                            "\n-ModoPago: " + rs.getString(7)+
-                            "\n-Precio: " + rs.getString(7);
 
-                  info.add(salida);  */
-
-                    lista.add(new items_lista_salida_P(rs.getString(2), rs.getString(7), rs.getInt(19), rs.getDouble(7)));
                 } while (rs.next());
-
-
-             //   ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, op);
-
-
             }
+
+            //rs.close();
 
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-      // lp = new items_lista_salida_P(getApplicationContext(),lista);
 
-      //  lvSalidaProducto.setAdapter((ListAdapter) lp);
 
+      lsp= new lista_salida_producto(Salida_Prod.this,lista);
+      lvSalidaProducto.setAdapter(lsp);
 
     }
 

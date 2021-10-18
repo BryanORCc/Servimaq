@@ -31,6 +31,7 @@ import com.bumptech.glide.Glide;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
+import com.example.servimaq.fragments_registros.Salida_Prod;
 import com.example.servimaq.menu_opciones;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -431,6 +432,9 @@ public class producto_catalogo extends BaseAdapter {
                     Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }//FIN SELECT-------------
 
+
+                Intent enviar_codigo = new Intent(v.getContext(), Salida_Prod.class);
+                enviar_codigo.putExtra("op_codPedido",op_codPedido);
             }
         });
 
