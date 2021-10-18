@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
@@ -31,6 +33,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -52,6 +58,8 @@ public class producto_catalogo extends BaseAdapter {
     String op_codPedido;
     Button btnDgAgregar, btnDgCancelar;
     int posicion;
+
+    int numeros = 0;
 
     public producto_catalogo(Catalogo c, ArrayList<items_lista> Lista){
         this.c = c;
@@ -108,23 +116,34 @@ public class producto_catalogo extends BaseAdapter {
 
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference islandRef = storageRef.child(Lista.get(i).getFotoVehiculo());
-
-        ArrayList<Bitmap> imagenes = new ArrayList<>();
         final long ONE_MEGABYTE = 480 * 480;
+
         islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                imagenes.add(bitmap);
-                //Log.e("Contar","___: "+imagenes.size());
+                //numeros++;
+                //Log.e("Contar","___: "+numeros);
                 ivFoto.setImageBitmap(bitmap);
+            }
+        });
+
+
+        //OBTENER URL DE LA IMAGEN
+        /*storageRef.child(Lista.get(i).getFotoVehiculo()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                ivFoto.setImageURI(uri);
+                Log.e("Contar","___: "+Lista.get(i).getFotoVehiculo()+".jpeg");
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
             }
-        });
+        });*/
+        //Log.e("Contar","___: "+bytes);
+
 
         //BOTON AGREGAR A LISTA ------------************************------------------------------------------------------------------------XXX
         btnAgregar.setOnClickListener(new View.OnClickListener() {
