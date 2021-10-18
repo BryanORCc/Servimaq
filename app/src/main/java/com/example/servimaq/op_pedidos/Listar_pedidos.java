@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -54,6 +55,8 @@ public class Listar_pedidos extends AppCompatActivity {
         tvPModoPago = findViewById(R.id.tvModoP);
         tvDni = findViewById(R.id.tvDni);
 
+        svBusquedaPedidos.setIconified(false);
+
         SQLConexion db = new SQLConexion();
 
         if(cadena_texto_buscar==null) {
@@ -86,7 +89,10 @@ public class Listar_pedidos extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String texto_buscar) {
                 cadena_texto_buscar = texto_buscar;
+
                 return true;
+
+
             }
             @Override
             public boolean onQueryTextChange(String texto_buscar) {
@@ -97,7 +103,7 @@ public class Listar_pedidos extends AppCompatActivity {
                 //--SELECT INFORMACION PEDIDO------------------------------------------------------------------------------
                 try {
                     Statement st = db.ConexionDB(getApplicationContext()).createStatement();
-                    ResultSet rs = st.executeQuery("select codPedido,NombresCliente,ApellidosCliente,Correo,FechaActual,FechaEntrega,ModoPago,DNI from T_Pedido"+"where codPedido like '%"+cadena_texto_buscar+"%';");
+                    ResultSet rs = st.executeQuery("select codPedido,NombresCliente,ApellidosCliente,Correo,FechaActual,FechaEntrega,ModoPago,DNI from T_Pedido where codPedido like '%"+cadena_texto_buscar+"%';");
 
                     if (!rs.next()) {
                         Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
