@@ -52,6 +52,9 @@ public class Pedido_Catalogo extends BaseAdapter {
         final View itemView = inflater.inflate(R.layout.pedido_lista, viewGroup, false);
         SQLConexion db = new SQLConexion();
 
+
+
+
         tvcodigo=itemView.findViewById(R.id.tvCodigo);
         tvNombre = itemView.findViewById(R.id.tvNombre);
         tvApellido = itemView.findViewById(R.id.tvApellidos);
@@ -72,6 +75,9 @@ public class Pedido_Catalogo extends BaseAdapter {
         tvFechaEntrega.setText(""+Lista.get(i).getFechaP());
         tvPModoPago.setText(""+Lista.get(i).getModo());
         tvDni.setText(""+Lista.get(i).getDni());
+
+
+
 
 
 //BOTON MODIFICAR A LISTA -----------------------------------------------------------------------------------------------------------

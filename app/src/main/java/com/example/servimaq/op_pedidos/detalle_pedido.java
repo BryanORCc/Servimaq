@@ -81,9 +81,9 @@ public class detalle_pedido extends AppCompatActivity {
 
         ///////spinner*****
 
-        opciones.add("opcion1");
-        opciones.add("opcion2");
-        opciones.add("opcion3");
+        opciones.add("Deposito");
+        opciones.add("Efectivo");
+        opciones.add("Plazos");
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item, opciones);
         spinner1.setAdapter(adapter);
 
