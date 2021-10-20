@@ -1,15 +1,11 @@
 package com.example.servimaq.op_catalogo;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,23 +14,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.bumptech.glide.Glide;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
-import com.example.servimaq.menu_opciones;
-import com.google.android.gms.tasks.OnFailureListener;
+import com.example.servimaq.op_salida.Salida_Prod;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -42,7 +32,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.zip.DeflaterInputStream;
 
 public class producto_catalogo extends BaseAdapter {
 
@@ -60,6 +49,8 @@ public class producto_catalogo extends BaseAdapter {
     String op_codPedido;
     Button btnDgAgregar, btnDgCancelar;
     int posicion;
+
+    int numeros = 0;
 
     public producto_catalogo(Catalogo c, ArrayList<items_lista> Lista){
         this.c = c;
@@ -83,8 +74,6 @@ public class producto_catalogo extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        //OBTENER POSICION PARA EL DIALOG
-        posicion = i;
 
         TextView tvLlantaId, tvMarca, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPrecio, tvStock;
 
@@ -118,28 +107,41 @@ public class producto_catalogo extends BaseAdapter {
 
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference islandRef = storageRef.child(Lista.get(i).getFotoVehiculo());
+        final long ONE_MEGABYTE = 480 * 480;
 
-        ArrayList<Bitmap> imagenes = new ArrayList<>();
-        final long ONE_MEGABYTE = 1024 * 1024;
         islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                imagenes.add(bitmap);
-                Log.e("Contar","___: "+imagenes.size());
+                //numeros++;
+                //Log.e("Contar","___: "+numeros);
                 ivFoto.setImageBitmap(bitmap);
+            }
+        });
+
+
+        //OBTENER URL DE LA IMAGEN
+        /*storageRef.child(Lista.get(i).getFotoVehiculo()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                ivFoto.setImageURI(uri);
+                Log.e("Contar","___: "+Lista.get(i).getFotoVehiculo()+".jpeg");
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
             }
-        });
+        });*/
+        //Log.e("Contar","___: "+bytes);
+
 
         //BOTON AGREGAR A LISTA ------------************************------------------------------------------------------------------------XXX
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //OBTENER POSICION PARA EL DIALOG
+                posicion = i;
                 datos_codPedido.clear();
                 createCustomDialog().show();
             }
@@ -411,6 +413,7 @@ public class producto_catalogo extends BaseAdapter {
                 int cantidad = 1;
                 double precio = 0.0, total = 0.0; //op_codPedido
                 String codigo = Lista.get(posicion).getLlantaId();
+                Log.e("pos:::::","__"+Lista.get(posicion).getLlantaId());
 
                 //OBTENER PRECIO DEL ITEM AGREGADO AL LISTADO***************************
                 try {
@@ -431,6 +434,9 @@ public class producto_catalogo extends BaseAdapter {
                     Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }//FIN SELECT-------------
 
+
+                Intent enviar_codigo = new Intent(v.getContext(), Salida_Prod.class);
+                enviar_codigo.putExtra("op_codPedido",op_codPedido);
             }
         });
 

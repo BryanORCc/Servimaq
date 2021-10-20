@@ -17,9 +17,9 @@ import android.widget.VideoView;
 
 import com.example.servimaq.contenedores.ingreso_productos;
 import com.example.servimaq.op_catalogo.Catalogo;
-import com.example.servimaq.fragments_registros.Salida_Prod;
 import com.example.servimaq.op_pedidos.Listar_pedidos;
 import com.example.servimaq.op_pedidos.registro_cliente;
+import com.example.servimaq.op_salida.Salida_Prod;
 
 public class menu_opciones extends AppCompatActivity {
 
@@ -31,7 +31,7 @@ public class menu_opciones extends AppCompatActivity {
         setContentView(R.layout.activity_menu_opciones);
 
         final VideoView videofondo = (VideoView) findViewById(R.id.mc_fondo_video);
-        videofondo.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videofondo));
+        videofondo.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videomenu));
         videofondo.start();
 
         videofondo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -79,8 +79,6 @@ public class menu_opciones extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
 
 
     }

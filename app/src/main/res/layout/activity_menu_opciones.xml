@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menu_opciones"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,6 +20,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,23 +37,22 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="match_parent"
-                    android:background="@drawable/estilo_registro"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8"
+                    android:background="@drawable/registro_neumatico"
+                    android:scaleX="0.75"
+                    android:scaleY="0.75"
                     android:layout_margin="10dp"
                     android:id="@+id/btnProductos"
                     />
 
                 <Button
+                    android:id="@+id/btnCatalogo"
                     android:layout_width="0dp"
-                    android:layout_weight="0.5"
                     android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.5"
                     android:background="@drawable/catalogo"
                     android:scaleX="0.6"
-                    android:scaleY="0.7"
-                    android:layout_margin="10dp"
-                    android:id="@+id/btnCatalogo"
-                    />
+                    android:scaleY="0.7" />
 
 
             </LinearLayout>
@@ -78,8 +77,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="match_parent"
-                    android:background="@drawable/en_proceso"
-                    android:scaleX="0.5"
+                    android:background="@drawable/salida"
+                    android:scaleX="0.9"
                     android:scaleY="0.7"
                     android:layout_margin="10dp"
                     android:id="@+id/btnSalida_Producto"
@@ -96,8 +95,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="match_parent"
-                    android:background="@drawable/en_proceso"
-                    android:scaleX="0.5"
+                    android:background="@drawable/documentos"
+                    android:scaleX="0.7"
                     android:scaleY="0.7"
                     android:layout_margin="10dp"
                     />

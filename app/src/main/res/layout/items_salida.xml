@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/tvItemId"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="wrap_content"
+            android:hint="id"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="12dp"
+            android:textAlignment="center"/>
+
+        <EditText
+            android:id="@+id/etCantidad"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:hint="cantidad"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:digits="1234567890"
+            android:maxLength="3"
+            android:textSize="12dp"
+            android:inputType="textNoSuggestions"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/tvPrecio"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:hint="precio"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="12dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:hint="total"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="12dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/tvNombreMarca"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:hint="marca"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="12dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/tvTipoVehiculo"
+            android:layout_width="0dp"
+            android:layout_weight="0.20"
+            android:layout_height="wrap_content"
+            android:hint="tipo vehiculo"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="12dp"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

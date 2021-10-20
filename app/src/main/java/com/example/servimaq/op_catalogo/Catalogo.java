@@ -26,7 +26,6 @@ import java.util.ArrayList;
 
 public class Catalogo extends AppCompatActivity {
 
-    TextView tvMarca, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPrecio, tvStock;
     SearchView svBusqueda;
     ListView lvListaProductos;
     ArrayList<items_lista> lista = new ArrayList<>();
@@ -64,14 +63,6 @@ public class Catalogo extends AppCompatActivity {
         spTipoBusqueda = findViewById(R.id.spTipoBusqueda);
         lvListaProductos = findViewById(R.id.lvListaProductos);
 
-        tvMarca = findViewById(R.id.tvMarca);
-        tvAncho = findViewById(R.id.tvAncho);
-        tvDiametro = findViewById(R.id.tvDiametro);
-        tvPerfil = findViewById(R.id.tvPerfil);
-        tvMmCocada = findViewById(R.id.tvMmCocada);
-        tvPrecio = findViewById(R.id.tvPrecio);
-        tvStock = findViewById(R.id.tvStock);
-
 
         //ELEGIR TIPO DE BUSQUEDA--------------------------------------------------------------------------------------------
         tipos.add(0,"Seleccionar busqueda por...");
@@ -79,6 +70,7 @@ public class Catalogo extends AppCompatActivity {
         tipos.add("marca");
 
         ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, tipos);
+        adapter.setDropDownViewResource(R.layout.design_spinner);
         spTipoBusqueda.setAdapter(adapter);
 
         spTipoBusqueda.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
