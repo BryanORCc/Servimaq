@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".Salida_Prod"
+    tools:context=".op_salida.Salida_Prod"
     android:orientation="vertical"
+    android:clickable="false"
     >
 
     <ListView
         android:id="@+id/lvSalidaProducto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:dividerHeight="5dp"/>
+        android:layout_height="wrap_content"
+        android:dividerHeight="5dp"
+        android:clickable="false"/>
 
 
 </LinearLayout>

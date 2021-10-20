@@ -5,6 +5,9 @@
     android:orientation="vertical"
     android:padding="15dp"
     android:background="@drawable/fondo2"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:id="@+id/llTransicion"
     >
 
     <LinearLayout
@@ -105,11 +108,5 @@
             android:textColor="#f0f0f0"/>
 
     </LinearLayout>
-
-     <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lvitems"
-            />
 
 </LinearLayout>

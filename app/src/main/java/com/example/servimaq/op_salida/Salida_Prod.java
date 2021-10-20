@@ -1,16 +1,16 @@
-package com.example.servimaq;
+package com.example.servimaq.op_salida;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista_salida_P;
+import com.example.servimaq.seleccionar_pedido_salida;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -23,16 +23,11 @@ public class Salida_Prod extends AppCompatActivity {
     ListView lvSalidaProducto;
     int validar = 0;
 
-    String  op_codPedido;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salida_prod);
 
         lvSalidaProducto = findViewById(R.id.lvSalidaProducto);
-
-        //Intent recibir_codigo = getIntent();
-        //op_codPedido=recibir_codigo.getStringExtra("op_codPedido");
 
         SQLConexion conexion = new SQLConexion();
         try{
