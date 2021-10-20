@@ -23,7 +23,7 @@ import com.example.servimaq.op_salida.Salida_Prod;
 
 public class menu_opciones extends AppCompatActivity {
 
-    Button btnProductos, btnCatalogo,btnRegistroCliente,btnSalida_Producto;
+    Button btnProductos, btnCatalogo,btnRegistroCliente,btnSalida_Producto, btnDocumentos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,9 @@ public class menu_opciones extends AppCompatActivity {
 
         btnProductos = findViewById(R.id.btnProductos);
         btnCatalogo = findViewById(R.id.btnCatalogo);
-        btnSalida_Producto= findViewById(R.id.btnSalida_Producto);
-        btnRegistroCliente=findViewById(R.id.btnRegistroCliente);
+        btnSalida_Producto = findViewById(R.id.btnSalida_Producto);
+        btnRegistroCliente = findViewById(R.id.btnRegistroCliente);
+        btnDocumentos = findViewById(R.id.btnDocumentos);
 
         //PANTALLA REGISTROS---------------------------------------------------------------------------------
         btnProductos.setOnClickListener(view -> {
@@ -70,8 +71,7 @@ public class menu_opciones extends AppCompatActivity {
             }
         });
 
-        //  PANTALLA SALIDA DE PRODUCTO
-
+        //  PANTALLA SALIDA DE PRODUCTO--------------------------------------
         btnSalida_Producto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +80,14 @@ public class menu_opciones extends AppCompatActivity {
             }
         });
 
+        //  PANTALLA DOCUMENTOS--------------------------------------------
+        btnDocumentos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(menu_opciones.this, Documentos.class);
+                startActivity(i);
+            }
+        });
 
     }
 

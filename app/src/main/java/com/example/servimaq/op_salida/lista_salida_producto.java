@@ -2,24 +2,16 @@ package com.example.servimaq.op_salida;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.servimaq.R;
-import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista_salida_P;
-import com.example.servimaq.db.Items_Salida_set_get;
-import com.example.servimaq.seleccionar_pedido_salida;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class lista_salida_producto extends BaseAdapter {
