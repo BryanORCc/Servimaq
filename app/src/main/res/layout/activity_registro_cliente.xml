@@ -41,7 +41,8 @@
                 android:inputType="text"
                 android:hint="Nombre:"
                 android:textSize="15dp"
-                android:textColorHint="#F4F4F4"/>
+                android:textColorHint="#F4F4F4"
+                android:textColor="#F4F4F4"/>
 
             <EditText
                 android:id="@+id/EtApellidoCliente"
@@ -51,7 +52,8 @@
                 android:hint="Apellidos:"
                 android:inputType="text"
                 android:textSize="15dp"
-                android:textColorHint="#F4F4F4"/>
+                android:textColorHint="#F4F4F4"
+                android:textColor="#F4F4F4"/>
 
             <EditText
                 android:id="@+id/EtCorreo"
@@ -62,7 +64,7 @@
                 android:inputType="textEmailAddress"
                 android:textSize="15dp"
                 android:textColorHint="#F4F4F4"
-                />
+                android:textColor="#F4F4F4"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -73,6 +75,7 @@
                 android:textSize="15dp"
                 android:textColor="#F4F4F4"
                 />
+
             <EditText
                 android:id="@+id/EtFechaActual"
                 android:layout_width="match_parent"
@@ -81,7 +84,8 @@
                 android:textSize="15dp"
                 android:focusable="false"
                 android:textColorHint="#F4F4F4"
-                android:hint="Ingresar fecha de actual:"/>
+                android:hint="fecha de actual:"
+                android:textColor="#F4F4F4"/>
 
             <EditText
                 android:id="@+id/EtFechaEntrega"
@@ -91,18 +95,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="Ingresar fecha de Entrega"
+                android:hint="seleccionar fecha de Entrega"
                 android:justificationMode="inter_word"
                 android:textSize="15dp"
-                android:textColorHint="#F4F4F4"/>
+                android:textColorHint="#F4F4F4"
+                android:textColor="#F4F4F4"/>
 
             <Spinner
                 android:id="@+id/Spi_Modo_Pago"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
-                android:rotationX="-12"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:spinnerMode="dropdown"
+                android:scrollbarStyle="insideOverlay"
+                android:backgroundTint="#0C0C0C"
+                android:backgroundTintMode="add"/>
 
             <EditText
                 android:id="@+id/EtDni"
@@ -114,7 +122,8 @@
                 android:inputType="number"
                 android:maxLength="8"
                 android:textSize="15dp"
-                android:textColorHint="#F4F4F4"/>
+                android:textColorHint="#F4F4F4"
+                android:textColor="#F4F4F4"/>
 
 
             <LinearLayout
@@ -130,7 +139,9 @@
                     android:text="Registrar"
                     android:id="@+id/btnRegistrarCliente"
                     android:background="@drawable/bordesredondos"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:textColor="#F4F4F4"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
                 <Button
                     android:layout_width="wrap_content"
@@ -139,7 +150,9 @@
                     android:text="Cancelar"
                     android:id="@+id/btnCancelarCliente"
                     android:background="@drawable/bordesredondos"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:textColor="#F4F4F4"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
             </LinearLayout>
 

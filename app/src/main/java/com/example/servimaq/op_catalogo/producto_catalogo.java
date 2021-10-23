@@ -50,7 +50,10 @@ public class producto_catalogo extends BaseAdapter {
     Button btnDgAgregar, btnDgCancelar;
     int posicion;
 
-    int numeros = 0;
+    /*int n = 0;
+    if(n <= Lista.size()){
+        n++;
+    }*/
 
     public producto_catalogo(Catalogo c, ArrayList<items_lista> Lista){
         this.c = c;
@@ -292,6 +295,7 @@ public class producto_catalogo extends BaseAdapter {
 
             }
         });
+
         return itemView;
     }
 

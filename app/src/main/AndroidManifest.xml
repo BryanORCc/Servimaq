@@ -15,9 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".seleccionar_pedido_salida"
-            android:exported="false"
-            android:parentActivityName=".op_salida.Salida_Prod"/>
+            android:name=".op_documentos.Documentos"
+            android:exported="true" />
+        <activity
+            android:name=".op_documentos.GenerarDocumentoPDF"
+            android:exported="true" />
+        <activity
+            android:name=".op_salida.seleccionar_pedido_salida"
+            android:exported="true"
+            android:parentActivityName=".op_salida.Salida_Prod" />
         <activity
             android:name=".op_catalogo.detalle_producto"
             android:exported="true"

@@ -10,6 +10,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.servimaq.R;
@@ -75,7 +77,11 @@ public class registro_cliente extends AppCompatActivity {
         ///captura del dato del spinner////
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+
+                //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
                 opcion = spinner1.getItemAtPosition(position).toString();
             }
 
@@ -140,9 +146,6 @@ public class registro_cliente extends AppCompatActivity {
     {
         switch (item.getItemId())
         {
-            case R.id.mnOrdenCompra:
-                //presiono en item1
-                return true;
             case R.id.mnSalir: //presiono en item2
                 AlertDialog alertDialog = new AlertDialog.Builder(registro_cliente.this).create();
                 alertDialog.setTitle("Salir de la aplicación");

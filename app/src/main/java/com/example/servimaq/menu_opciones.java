@@ -17,13 +17,14 @@ import android.widget.VideoView;
 
 import com.example.servimaq.contenedores.ingreso_productos;
 import com.example.servimaq.op_catalogo.Catalogo;
+import com.example.servimaq.op_documentos.Documentos;
 import com.example.servimaq.op_pedidos.Listar_pedidos;
 import com.example.servimaq.op_pedidos.registro_cliente;
 import com.example.servimaq.op_salida.Salida_Prod;
 
 public class menu_opciones extends AppCompatActivity {
 
-    Button btnProductos, btnCatalogo,btnRegistroCliente,btnSalida_Producto;
+    Button btnProductos, btnCatalogo,btnRegistroCliente,btnSalida_Producto, btnDocumentos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,9 @@ public class menu_opciones extends AppCompatActivity {
 
         btnProductos = findViewById(R.id.btnProductos);
         btnCatalogo = findViewById(R.id.btnCatalogo);
-        btnSalida_Producto= findViewById(R.id.btnSalida_Producto);
-        btnRegistroCliente=findViewById(R.id.btnRegistroCliente);
+        btnSalida_Producto = findViewById(R.id.btnSalida_Producto);
+        btnRegistroCliente = findViewById(R.id.btnRegistroCliente);
+        btnDocumentos = findViewById(R.id.btnDocumentos);
 
         //PANTALLA REGISTROS---------------------------------------------------------------------------------
         btnProductos.setOnClickListener(view -> {
@@ -70,8 +72,7 @@ public class menu_opciones extends AppCompatActivity {
             }
         });
 
-        //  PANTALLA SALIDA DE PRODUCTO
-
+        //  PANTALLA SALIDA DE PRODUCTO--------------------------------------
         btnSalida_Producto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +81,14 @@ public class menu_opciones extends AppCompatActivity {
             }
         });
 
+        //  PANTALLA DOCUMENTOS--------------------------------------------
+        btnDocumentos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(menu_opciones.this, Documentos.class);
+                startActivity(i);
+            }
+        });
 
     }
 
@@ -99,9 +108,6 @@ public class menu_opciones extends AppCompatActivity {
     {
         switch (item.getItemId())
         {
-            case R.id.mnOrdenCompra: //presiono en item1
-
-                return true;
             case R.id.mnSalir: //presiono en item2
                 AlertDialog alertDialog = new AlertDialog.Builder(menu_opciones.this).create();
                 alertDialog.setTitle("Salir de la aplicación");

@@ -21,6 +21,9 @@
             android:layout_height="wrap_content"
             android:queryHint="ingresar texto..."
             android:id="@+id/svBusqueda"
+            android:searchIcon="@drawable/icon_search"
+            android:closeIcon="@drawable/icon_close"
+            android:searchHintIcon="@drawable/icon_search"
             />
 
         <Spinner

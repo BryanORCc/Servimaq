@@ -1,7 +1,6 @@
 package com.example.servimaq.op_salida;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
@@ -10,7 +9,6 @@ import android.widget.Toast;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista_salida_P;
-import com.example.servimaq.seleccionar_pedido_salida;
 
 import java.sql.ResultSet;
 import java.sql.Statement;

@@ -2,13 +2,17 @@ package com.example.servimaq.op_catalogo;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.ImageViewCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -63,6 +67,12 @@ public class Catalogo extends AppCompatActivity {
         spTipoBusqueda = findViewById(R.id.spTipoBusqueda);
         lvListaProductos = findViewById(R.id.lvListaProductos);
 
+        //CAMBIAR COLOR DE TEXTO DEL BUSCADOR-----------------------
+        int id = svBusqueda.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = (TextView) svBusqueda.findViewById(id);
+        textView.setTextColor(Color.WHITE);
+        textView.setHintTextColor(Color.WHITE);
+
 
         //ELEGIR TIPO DE BUSQUEDA--------------------------------------------------------------------------------------------
         tipos.add(0,"Seleccionar busqueda por...");
@@ -76,7 +86,12 @@ public class Catalogo extends AppCompatActivity {
         spTipoBusqueda.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
                 tipo_busqueda = tipos.get(i);
+
                 if(tipo_busqueda.equalsIgnoreCase("Seleccionar busqueda por...")){
                     campo_busqueda = "L.LlantaId";
                     svBusqueda.setQueryHint("ingresar codigo...");

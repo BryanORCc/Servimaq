@@ -5,146 +5,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".op_pedidos.detalle_pedido"
-    android:usesCleartextTraffic="true">
+    android:background="@drawable/carretera_campo">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="15dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="15dp">
 
             <!--TITULO_______________________________________-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edicion de Registro de Pedido"
+                android:textSize="25dp"
+                android:layout_marginVertical="20dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif-black"
+                android:textColor="#F4F4F4"
+                />
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.85"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
-                    android:text="Edicion de Registro pedido"
-                    android:textSize="30dp"
-                    android:layout_marginVertical="25dp"
-                    android:textAlignment="center"
                     android:fontFamily="sans-serif-black"
+                    android:text="CODIGO DEL PEDIDO: "
+                    android:textSize="15dp"
                     android:textColor="#F4F4F4"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="30dp"
-                android:layout_gravity="center"
-               >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:fontFamily="sans-serif-black"
-                    android:text="CODIGO DEL PEDIDO"
-                    android:textSize="20sp"
-                    android:textColor="#F4F4F4"/>
+                    android:layout_gravity="center"/>
 
                 <Spinner
                     android:id="@+id/Spi_codigoPedido"
-                    android:layout_width="160dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="80dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
                     android:baselineAligned="false"
-                    android:rotationX="-12"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:layout_gravity="center"
+                    android:spinnerMode="dropdown"
+                    android:scrollbarStyle="insideOverlay"
+                    android:backgroundTint="#0C0C0C"
+                    android:backgroundTintMode="add"/>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nombre"
-                android:fontFamily="sans-serif-black"
-                android:layout_marginTop="25dp"
-                android:textSize="20sp"
-                android:textColor="#F4F4F4"
-                />
             <EditText
                 android:id="@+id/EtNombreCliente"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="text"
                 android:hint="Nombre:"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:textColorHint="#F4F4F4"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="apellidos"
-                android:fontFamily="sans-serif-black"
-                android:layout_marginTop="25dp"
-                android:textSize="20sp"
-                android:textColor="#F4F4F4"
-                />
+                android:textColor="#FFFFFF"/>
+
             <EditText
                 android:id="@+id/EtApellidoCliente"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
+                android:layout_height="wrap_content"
                 android:hint="Apellidos:"
                 android:inputType="text"
-                android:textSize="20sp"
-                android:textColorHint="#F4F4F4"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="correo:"
-                android:fontFamily="sans-serif-black"
-                android:layout_marginTop="25dp"
-                android:textSize="20sp"
-                android:textColor="#F4F4F4"
-                />
+                android:textSize="15dp"
+                android:textColorHint="#F4F4F4"
+                android:textColor="#FFFFFF"/>
+
             <EditText
                 android:id="@+id/EtCorreo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="Correo:"
                 android:inputType="textEmailAddress"
-                android:textSize="20sp"
-                android:textColorHint="#F4F4F4"/>
+                android:textSize="15dp"
+                android:textColorHint="#F4F4F4"
+                android:textColor="#FFFFFF"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="fecha de registro de pedido:"
-                android:fontFamily="sans-serif-black"
-                android:layout_marginTop="25dp"
-                android:textSize="20sp"
-                android:textColor="#F4F4F4"
-                />
             <EditText
                 android:id="@+id/EtFechaActual"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="ingresar registro de pedido:"
-                android:focusable="false"
-                android:textSize="20sp"
-                android:textColorHint="#F4F4F4"
-
-                />
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="fecha de entrega:"
-                android:fontFamily="sans-serif-black"
-                android:layout_marginTop="25dp"
-                android:textSize="20sp"
-                android:textColor="#F4F4F4"
-                />
+                android:hint="registro de pedido:"
+                android:focusable="false"
+                android:textSize="15dp"
+                android:textColorHint="#F4F4F4"
+                android:textColor="#FFFFFF"/>
 
             <EditText
                 android:id="@+id/EtFechaEntrega"
@@ -152,51 +105,51 @@
                 android:focusable="false"
                 android:clickable="true"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
-                android:hint="Ingresar fecha de Entrega"
+                android:layout_height="wrap_content"
+                android:hint="seleccionar fecha de Entrega"
                 android:justificationMode="inter_word"
-                android:textSize="20sp"
-                android:textColorHint="#F4F4F4"/>
+                android:textSize="15dp"
+                android:textColorHint="#F4F4F4"
+                android:textColor="#FFFFFF"/>
 
             <Spinner
                 android:id="@+id/Spi_Modo_Pago"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="80dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_height="wrap_content"
                 android:baselineAligned="false"
-                android:rotationX="-12"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:spinnerMode="dropdown"
+                android:scrollbarStyle="insideOverlay"
+                android:backgroundTint="#0C0C0C"
+                android:backgroundTintMode="add"/>
 
             <EditText
                 android:id="@+id/EtDni"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
+                android:layout_height="wrap_content"
                 android:hint="Insertar Dni:"
                 android:inputType="number"
                 android:maxLength="8"
-                android:textSize="20sp"
-                android:textColorHint="#F4F4F4"/>
+                android:textSize="15dp"
+                android:textColorHint="#F4F4F4"
+                android:textColor="#FFFFFF"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                android:gravity="center">
 
                     <Button
                         android:id="@+id/btnConfirmarP"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.5"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Confirmar"
                         android:textStyle="bold"
                         android:layout_gravity="center"
-                        android:layout_marginRight="10dp"
                         android:background="@drawable/bordesredondos"
-                        android:textColor="#0E0E0E"/>
+                        android:textColor="#FFFFFF"/>
 
             </LinearLayout><!--FIN______________________________________________________________-->
 

@@ -6,4 +6,5 @@
     android:textSize="15dp"
     android:paddingVertical="10dp"
     android:paddingLeft="15dp"
+    android:textColorHint="#f0f0f0"
     />

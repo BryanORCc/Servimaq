@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.KeyEvent;
@@ -67,8 +68,14 @@ public class Listar_pedidos extends AppCompatActivity {
         tvPModoPago = findViewById(R.id.tvModoP);
         tvDni = findViewById(R.id.tvDni);
 
-        SQLConexion db = new SQLConexion();
+        //CAMBIAR COLOR DE TEXTO DEL BUSCADOR-----------------------
+        int id = svBusquedaPedidos.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = (TextView) svBusquedaPedidos.findViewById(id);
+        textView.setTextColor(Color.WHITE);
+        textView.setHintTextColor(Color.WHITE);
 
+        //CARGA INICIAL DE DATOS/********************************************
+        SQLConexion db = new SQLConexion();
         if(cadena_texto_buscar==null) {
             try {
                 Statement st = db.ConexionDB(getApplicationContext()).createStatement();

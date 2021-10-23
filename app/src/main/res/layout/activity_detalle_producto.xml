@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".op_catalogo.detalle_producto"
-    android:background="#787C7C"
+    android:background="@drawable/carretera_campo"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,12 +13,14 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_marginHorizontal="135dp"
+            android:layout_marginHorizontal="120dp"
             android:layout_marginTop="25dp"
+            android:layout_marginBottom="15dp"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="0.2"
-            android:background="@drawable/no_imagen"
+            android:src="@drawable/no_imagen"
+            android:id="@+id/ivFoto_Llanta"
             />
 
         <ScrollView
@@ -45,7 +47,8 @@
                         android:layout_height="wrap_content"
                         android:text="ID Neumatico: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -57,7 +60,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -74,7 +78,8 @@
                         android:layout_height="wrap_content"
                         android:text="Stock: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -86,7 +91,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -95,7 +101,8 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -113,7 +120,8 @@
                         android:layout_height="wrap_content"
                         android:text="Precio: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -125,7 +133,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -134,7 +143,8 @@
                             android:layout_height="wrap_content"
                             android:inputType="numberDecimal"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -152,7 +162,8 @@
                         android:layout_height="wrap_content"
                         android:text="ID Vehiculo: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -163,7 +174,11 @@
                             android:id="@+id/spVehiculoId"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:spinnerMode="dropdown"
+                            android:scrollbarStyle="insideOverlay"
+                            android:backgroundTint="#0C0C0C"
+                            android:backgroundTintMode="add"/>
 
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
@@ -182,7 +197,8 @@
                         android:layout_height="wrap_content"
                         android:text="Tipo de Vehiculo: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -194,7 +210,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -202,7 +219,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -220,7 +238,8 @@
                         android:layout_height="wrap_content"
                         android:text="Vehiculo compatible: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -232,7 +251,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -240,7 +260,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -258,7 +279,8 @@
                         android:layout_height="wrap_content"
                         android:text="Modelo de Vehiculo: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -270,7 +292,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -278,7 +301,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -296,7 +320,8 @@
                         android:layout_height="wrap_content"
                         android:text="ID Detalle Neumatico: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -307,7 +332,12 @@
                             android:id="@+id/spDetalleLlantaId"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"
+                            android:spinnerMode="dropdown"
+                            android:scrollbarStyle="insideOverlay"
+                            android:backgroundTint="#0C0C0C"
+                            android:backgroundTintMode="add"/>
 
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
@@ -326,7 +356,8 @@
                         android:layout_height="wrap_content"
                         android:text="Marca Neumatico: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -338,7 +369,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -346,7 +378,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -364,7 +397,8 @@
                         android:layout_height="wrap_content"
                         android:text="Indice de Carga: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -376,7 +410,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -385,7 +420,8 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -403,7 +439,8 @@
                         android:layout_height="wrap_content"
                         android:text="Indice de Velocidad: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -415,7 +452,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -425,7 +463,8 @@
                             android:inputType="text"
                             android:maxLength="1"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -443,7 +482,8 @@
                         android:layout_height="wrap_content"
                         android:text="Construccion: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -455,7 +495,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -463,7 +504,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -481,7 +523,8 @@
                         android:layout_height="wrap_content"
                         android:text="Presion Maxima: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -493,7 +536,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -501,7 +545,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -519,7 +564,8 @@
                         android:layout_height="wrap_content"
                         android:text="Clasificacion: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -531,7 +577,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -539,7 +586,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -557,7 +605,8 @@
                         android:layout_height="wrap_content"
                         android:text="Fecha de Fabricacion: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -569,7 +618,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -582,7 +632,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="Insertar Fecha..."
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -601,7 +652,8 @@
                         android:layout_height="wrap_content"
                         android:text="ID Medida Neumatico: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -612,7 +664,12 @@
                             android:id="@+id/spMedidaLlantaId"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"
+                            android:spinnerMode="dropdown"
+                            android:scrollbarStyle="insideOverlay"
+                            android:backgroundTint="#0C0C0C"
+                            android:backgroundTintMode="add"/>
 
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
@@ -631,7 +688,8 @@
                         android:layout_height="wrap_content"
                         android:text="Ancho: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -643,7 +701,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -652,7 +711,8 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -670,7 +730,8 @@
                         android:layout_height="wrap_content"
                         android:text="Diametro: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -682,7 +743,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -691,7 +753,8 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -709,7 +772,8 @@
                         android:layout_height="wrap_content"
                         android:text="Perfil: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -721,7 +785,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -730,7 +795,8 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -748,7 +814,8 @@
                         android:layout_height="wrap_content"
                         android:text="Milimetro de Cocada: "
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="#F4F4F4"/>
 
                     <TableLayout
                         android:layout_width="0dp"
@@ -760,7 +827,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
 
                         <!--EDITAR TEXTO____________________________-->
                         <EditText
@@ -769,7 +837,8 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:hint="............"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
@@ -794,7 +863,8 @@
                             android:textStyle="bold"
                             android:layout_gravity="center"
                             android:background="@drawable/bordesredondos"
-                            android:foreground="?android:attr/selectableItemBackground"/>
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:textColor="#F4F4F4"/>
 
                         <Button
                             android:id="@+id/btnConfirmar"
@@ -805,7 +875,8 @@
                             android:textStyle="bold"
                             android:layout_gravity="center"
                             android:background="@drawable/bordesredondos"
-                            android:foreground="?android:attr/selectableItemBackground"/>
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:textColor="#F4F4F4"/>
                     </TableLayout>
 
                     <Button
@@ -818,7 +889,8 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/bordesredondos"
-                        android:foreground="?android:attr/selectableItemBackground"/>
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:textColor="#F4F4F4"/>
                 </LinearLayout><!--FIN______________________________________________________________-->
 
 

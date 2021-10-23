@@ -42,7 +42,7 @@
                     android:scaleY="0.75"
                     android:layout_margin="10dp"
                     android:id="@+id/btnProductos"
-                    />
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
                 <Button
                     android:id="@+id/btnCatalogo"
@@ -52,7 +52,8 @@
                     android:layout_weight="0.5"
                     android:background="@drawable/catalogo"
                     android:scaleX="0.6"
-                    android:scaleY="0.7" />
+                    android:scaleY="0.7"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
 
             </LinearLayout>
@@ -72,7 +73,7 @@
                     android:scaleY="0.7"
                     android:layout_margin="10dp"
                     android:id="@+id/btnRegistroCliente"
-                    />
+                    android:foreground="?android:attr/selectableItemBackground"/>
                 <Button
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
@@ -82,7 +83,7 @@
                     android:scaleY="0.7"
                     android:layout_margin="10dp"
                     android:id="@+id/btnSalida_Producto"
-                    />
+                    android:foreground="?android:attr/selectableItemBackground"/>
             </LinearLayout>
 
             <LinearLayout
@@ -99,7 +100,8 @@
                     android:scaleX="0.7"
                     android:scaleY="0.7"
                     android:layout_margin="10dp"
-                    />
+                    android:id="@+id/btnDocumentos"
+                    android:foreground="?android:attr/selectableItemBackground"/>
                 <Button
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
@@ -108,7 +110,7 @@
                     android:scaleX="0.5"
                     android:scaleY="0.7"
                     android:layout_margin="10dp"
-                    />
+                    android:foreground="?android:attr/selectableItemBackground"/>
             </LinearLayout>
 
         </LinearLayout>

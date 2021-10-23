@@ -38,15 +38,6 @@
             </LinearLayout>
 
             <!--BLOQUE_____________________________________-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ancho:"
-                android:fontFamily="sans-serif-black"
-                android:textSize="15dp"
-                android:textColor="#F4F4F4"
-
-                />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,17 +48,10 @@
                 android:inputType="number"
                 android:id="@+id/etAncho"
                 android:paddingHorizontal="15dp"
-                />
-            <!--BLOQUE_____________________________________-->
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Diametro:"
-                android:fontFamily="sans-serif-black"
-                android:textSize="15dp"
                 android:textColor="#F4F4F4"
                 />
+
+            <!--BLOQUE_____________________________________-->
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,16 +62,10 @@
                 android:inputType="number"
                 android:id="@+id/etDiametro"
                 android:paddingHorizontal="15dp"
-                />
-            <!--BLOQUE_____________________________________-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Perfil:"
-                android:fontFamily="sans-serif-black"
-                android:textSize="15dp"
                 android:textColor="#F4F4F4"
                 />
+
+            <!--BLOQUE_____________________________________-->
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,19 +75,11 @@
                 android:layout_marginBottom="10dp"
                 android:inputType="number"
                 android:id="@+id/etPerfil"
-                android:textColor="#DA1F1F20"
                 android:paddingHorizontal="15dp"
-                />
-            <!--BLOQUE_____________________________________-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mmcocada:"
-                android:fontFamily="sans-serif-black"
-                android:textSize="15dp"
                 android:textColor="#F4F4F4"
-
                 />
+
+            <!--BLOQUE_____________________________________-->
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,6 +90,7 @@
                 android:inputType="number"
                 android:id="@+id/etMmcocada"
                 android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"
                 />
 
             <LinearLayout
@@ -133,7 +104,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:background="@drawable/bordesredondos"
-                    android:text="Registrar" />
+                    android:text="Registrar"
+                    android:textColor="#F4F4F4"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
                 <Button
                     android:id="@+id/btnCancelar"
@@ -141,7 +114,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:background="@drawable/bordesredondos"
-                    android:text="Cancelar" />
+                    android:text="Cancelar"
+                    android:textColor="#F4F4F4"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
             </LinearLayout>
 

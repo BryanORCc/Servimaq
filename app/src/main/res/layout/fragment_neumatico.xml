@@ -38,14 +38,6 @@
             </LinearLayout>
 
             <!--precio-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:text="Precio:"
-                android:textColor="#F4F4F4"
-                android:textSize="15dp" />
-
             <EditText
                 android:id="@+id/etprecio"
                 android:layout_width="match_parent"
@@ -55,18 +47,11 @@
                 android:textColorHint="#F4F4F4"
                 android:inputType="number|numberDecimal"
                 android:textSize="15dp"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"/>
             <!--_____________________________________-->
 
             <!--stock-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:text="Stock:"
-                android:textColor="#F4F4F4"
-                android:textSize="15dp" />
-
             <EditText
                 android:id="@+id/etstock"
                 android:layout_width="match_parent"
@@ -76,7 +61,8 @@
                 android:textColorHint="#F4F4F4"
                 android:inputType="number"
                 android:textSize="15dp"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"/>
             <!--_____________________________________-->
 
             <!--especificacion-->
@@ -97,15 +83,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:baselineAligned="false"
-                android:rotationX="-12"
                 android:textSize="15dp"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:spinnerMode="dropdown"
+                android:scrollbarStyle="insideOverlay"
+                android:backgroundTint="#0C0C0C"
+                android:backgroundTintMode="add"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:hint="detalle "
+                android:hint="Detalle neumatico: "
+                android:textColorHint="#F4F4F4"
                 android:textColor="#F4F4F4"
                 android:textSize="15dp"
                 android:id="@+id/Tv_ver"
@@ -142,15 +131,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:baselineAligned="false"
-                android:rotationX="-12"
                 android:textSize="15dp"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:spinnerMode="dropdown"
+                android:scrollbarStyle="insideOverlay"
+                android:backgroundTint="#0C0C0C"
+                android:backgroundTintMode="add"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
                 android:hint="tipo vehiculo"
+                android:textColorHint="#F4F4F4"
                 android:textColor="#F4F4F4"
                 android:textSize="15dp"
                 android:id="@+id/Tv_ver1"
@@ -183,8 +175,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:background="@drawable/bordesredondos"
-
-                    android:text="Registrar" />
+                    android:text="Registrar"
+                    android:textColor="#F4F4F4"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
                 <Button
                     android:id="@+id/btnCancelar"
@@ -192,7 +185,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:background="@drawable/bordesredondos"
-                    android:text="Cancelar" />
+                    android:text="Cancelar"
+                    android:textColor="#F4F4F4"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
             </LinearLayout>
 

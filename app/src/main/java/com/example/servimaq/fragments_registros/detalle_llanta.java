@@ -3,6 +3,7 @@ package com.example.servimaq.fragments_registros;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,24 +29,23 @@ import android.widget.Toast;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.menu_opciones;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link detalle_llanta#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class detalle_llanta extends Fragment {
     EditText MarcaVehiculo,IndiceCarga,IndiceVelocidad,Construccion,PresionMaxima,Clasificacion;
     ImageView ivFotoLlanta;
     Button BtnFotoLlanta,btnRegistrar, btnCancelar;
     Spinner spinner1;
     View vista;
-    Uri ruta = null;
+    String ruta;
     TextView Tv_cargar;
     String medidas;
     ArrayList<String> opciones = new ArrayList<>();
@@ -52,6 +53,10 @@ public class detalle_llanta extends Fragment {
     String MedidaLlantaId="";
     public static EditText Fecha;
     public static int dia, mes, año;
+
+    private StorageReference mStorage;
+    StorageReference FilePath;
+    Uri uri;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -67,14 +72,6 @@ public class detalle_llanta extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment detalle_llanta.
-     */
     // TODO: Rename and change types and number of parameters
     public static detalle_llanta newInstance(String param1, String param2) {
         detalle_llanta fragment = new detalle_llanta();
@@ -99,6 +96,10 @@ public class detalle_llanta extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.fragment_detalle_llanta, container, false);
+
+        //STORAGE FIREBASE*****************************
+        mStorage = FirebaseStorage.getInstance().getReference();
+
         MarcaVehiculo = vista.findViewById(R.id.EtNombreMarca);
         IndiceCarga = vista.findViewById(R.id.EtIndiceCarga);
         IndiceVelocidad = vista.findViewById(R.id.EtIndiceVelocidad);
@@ -127,7 +128,7 @@ public class detalle_llanta extends Fragment {
 
                     opciones.add(rs.getString(1));///jalando ID
 
-                    medidas=" Ancho: "+rs.getString(2)+" \n Diametro: "+rs.getString(3)+" \n Perfil: "+rs.getString(4)+"\n Milimetro-Cocada: "+rs.getString(5);
+                    medidas="→ Ancho: "+rs.getString(2)+" \n→ Diametro: "+rs.getString(3)+" \n→ Perfil: "+rs.getString(4)+"\n→ Milimetro-Cocada: "+rs.getString(5);
 
                     informacion.add(medidas);
                 } while (rs.next());///va agregando cada ID
@@ -144,6 +145,10 @@ public class detalle_llanta extends Fragment {
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
                 Tv_cargar.setText(informacion.get(i));
                 MedidaLlantaId=opciones.get(i);
             }
@@ -171,19 +176,25 @@ public class detalle_llanta extends Fragment {
                         Construcc = Construccion.getText().toString(),
                         PresionMax=PresionMaxima.getText().toString(),
                         Clasi=Clasificacion.getText().toString(),
-                        fech=Fecha.getText().toString(),
+                        fech=Fecha.getText().toString();
 
-                        Foto="";
-                if(ruta==null){
-                    Foto = "";
-                }else{
-                    Foto = ruta.toString();
-                }
+                FilePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        ruta = taskSnapshot.getMetadata().getPath();
+                        Log.e("direccion: ","++"+ruta);
 
-                SQLConexion db = new SQLConexion();
-                db.RegistroDetalleLlanta(getContext(),MarcaV,Integer.parseInt(IndiceCarg),IndiceVeloci,Foto,Construcc,Integer.parseInt(PresionMax),Clasi,fech ,MedidaLlantaId);
-                Limpiar();
-                MarcaVehiculo.requestFocus();
+                        if(ruta==null){
+                            ruta = "";
+                        }
+
+                        SQLConexion db = new SQLConexion();
+                        db.RegistroDetalleLlanta(getContext(),MarcaV,Integer.parseInt(IndiceCarg),IndiceVeloci,ruta,Construcc,Integer.parseInt(PresionMax),Clasi,fech ,MedidaLlantaId);
+                        Limpiar();
+                        MarcaVehiculo.requestFocus();
+                    }
+                });
+
             }
         });
 
@@ -243,7 +254,7 @@ public class detalle_llanta extends Fragment {
     //CARGA DE IMAGEN--------------------------------------------------------------------------------------
     private void CargarImagen(){
         Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        i.setType("image/");
+        i.setType("image/*");
         startActivityForResult(i.createChooser(i,"seleccione la aplicación"),10);
     }
     @Override
@@ -251,8 +262,9 @@ public class detalle_llanta extends Fragment {
         super.onActivityResult(requestCode,resultCode,data);
 
         if(resultCode==getActivity().RESULT_OK){
-            ruta = data.getData();
-            ivFotoLlanta.setImageURI(ruta);
+            uri = data.getData();
+            FilePath = mStorage.child("fotos").child(uri.getLastPathSegment());
+            ivFotoLlanta.setImageURI(uri);
         }
     }
 

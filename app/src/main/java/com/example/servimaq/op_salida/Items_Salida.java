@@ -1,36 +1,22 @@
 package com.example.servimaq.op_salida;
 
-import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import android.inputmethodservice.Keyboard;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.servimaq.R;
 import com.example.servimaq.db.Items_Salida_set_get;
 import com.example.servimaq.db.SQLConexion;
-import com.example.servimaq.db.items_lista;
-import com.example.servimaq.menu_opciones;
-import com.example.servimaq.op_catalogo.Catalogo;
-import com.example.servimaq.seleccionar_pedido_salida;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Items_Salida extends BaseAdapter {
@@ -43,11 +29,6 @@ public class Items_Salida extends BaseAdapter {
     TextView tvItemId;
     EditText etCantidad;
     TextView tvPrecio, tvTotal, tvNombreMarca, tvTipoVehiculo;
-
-    //int n = 0;
-    /*if(n <= ListaS.size()){
-            n++;
-        }*/
 
     //--ACTUALIZAR DATOS DE LOS ITEMS------------------------------------------------------------------------------
     SQLConexion conexion =new SQLConexion();
