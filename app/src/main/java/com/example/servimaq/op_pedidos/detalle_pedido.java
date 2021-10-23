@@ -40,14 +40,12 @@ public class detalle_pedido extends AppCompatActivity {
     TextView tvNombre,tvApellido,tvCorreo,tvfechaActual,tvFechapago,modopago,tvdni;
 
 
-
-
-    Button    btnConfirmarP;
+    Button  btnConfirmarP;
     Spinner spinner1;
     ArrayList<String> opciones = new ArrayList<>();
-    ArrayList<String> datosDePago = new ArrayList<>();
+    ArrayList<String> CodigoPed = new ArrayList<>();
     Spinner codigoPedido;
-    String pedidoId;
+    String pedidoId, modo;
 
 
     public static EditText FechadePago;;
@@ -88,14 +86,24 @@ public class detalle_pedido extends AppCompatActivity {
         spinner1.setAdapter(adapter);
 
         Intent datos = getIntent();
-
         pedidoId = datos.getStringExtra("codigo");
+        modo = datos.getStringExtra("modo");
+
+        //INICIAR EN LA POSICION SELECCIONADA EN LA EDICION----------------------
+        int x = -1;
+        do{
+            x++;
+        }while (!opciones.get(x).equalsIgnoreCase(modo));
+        spinner1.setSelection(x);
 
 
         //captura del dato del spinner////
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+
+                //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
 
                 opcion = spinner1.getItemAtPosition(position).toString();
             }
@@ -132,29 +140,29 @@ public class detalle_pedido extends AppCompatActivity {
         }
 
 
-//////////////cargando los ID en un array/////
+        //////////////cargando los ID en un array/////
         try {
             SQLConexion conexion =new SQLConexion();
             Statement st = conexion.ConexionDB(getApplicationContext()).createStatement();
-            Log.e("id-4","-********"+st);
             ResultSet rs = st.executeQuery("select codPedido from T_Pedido");//llena con codigos de la tabla
-            Log.e("id-4","-********"+rs);
             if (!rs.next()) {
                 Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
             }
             else {
                 do {
                     //ARRAY LIST - INFORMACION PARA EL SPINNER-------------
-                    datosDePago.add(rs.getString(1));
-                    Log.e("id5",rs.getString(1));
+                    CodigoPed.add(rs.getString(1));
+                    Log.e("id5","___ "+ pedidoId);
                 } while (rs.next());///va agregando cada ID
-                ArrayAdapter adaptador = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, datosDePago);
+                ArrayAdapter adaptador = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, CodigoPed);
                 codigoPedido.setAdapter(adaptador);
-                int x = -1;
+
+                int z = -1;
                 do{
-                    x++;
-                }while (datosDePago.get(x).equalsIgnoreCase(pedidoId));
-                codigoPedido.setSelection(x);
+                    z++;
+                }while (!CodigoPed.get(z).equalsIgnoreCase(pedidoId));
+                codigoPedido.setSelection(z);
+
             }
         }
         catch (Exception e) {
@@ -165,7 +173,11 @@ public class detalle_pedido extends AppCompatActivity {
         codigoPedido.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                pedidoId=datosDePago.get(i);
+
+                //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
+                pedidoId=CodigoPed.get(i);
 
                 //--CARGAR DATOS AL SPINNER DE PEDIDOS------------------------------------------------------------------------------
                 try {
@@ -240,7 +252,7 @@ public class detalle_pedido extends AppCompatActivity {
                 }
 
                 opcionModificar = false;
-                mensajeToast = "Producto Modificado";
+                mensajeToast = "Pedido Modificado";
                 MostrarToast(mensajeToast);
 
             }
@@ -248,16 +260,16 @@ public class detalle_pedido extends AppCompatActivity {
 
     }
 
-///////////////////////////*********
-public void MostrarToast(String mensaje){
-    Toast toast = Toast.makeText(getApplicationContext(),mensaje, Toast.LENGTH_SHORT);
-    View vista = toast.getView();
-    vista.setBackgroundResource(R.drawable.estilo_color_x);
-    toast.setGravity(Gravity.CENTER,0,0);
-    TextView text = (TextView) vista.findViewById(android.R.id.message);
-    text.setTextColor(Color.parseColor("#FFF1F9FA"));
-    toast.show();
-}
+    ///////////////////////////*********
+    public void MostrarToast(String mensaje){
+        Toast toast = Toast.makeText(getApplicationContext(),mensaje, Toast.LENGTH_SHORT);
+        View vista = toast.getView();
+        vista.setBackgroundResource(R.drawable.estilo_color_x);
+        toast.setGravity(Gravity.CENTER,0,0);
+        TextView text = (TextView) vista.findViewById(android.R.id.message);
+        text.setTextColor(Color.parseColor("#FFF1F9FA"));
+        toast.show();
+    }
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
@@ -289,7 +301,6 @@ public void MostrarToast(String mensaje){
             }
 
         }
-
 
     }
 }

@@ -17,8 +17,11 @@
         <SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:queryHint="ingresar texto..."
+            android:queryHint="Ingresar codigo a buscar..."
             android:id="@+id/svBusquedaPedidos"
+            android:searchIcon="@drawable/icon_search"
+            android:closeIcon="@drawable/icon_close"
+            android:searchHintIcon="@drawable/icon_search"
             />
 
     </LinearLayout>

@@ -18,6 +18,7 @@ import com.example.servimaq.op_pedidos.detalle_pedido;
 
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pedido_Catalogo extends BaseAdapter {
 
@@ -50,10 +51,6 @@ public class Pedido_Catalogo extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View itemView = inflater.inflate(R.layout.pedido_lista, viewGroup, false);
-        SQLConexion db = new SQLConexion();
-
-
-
 
         tvcodigo=itemView.findViewById(R.id.tvCodigo);
         tvNombre = itemView.findViewById(R.id.tvNombre);
@@ -66,7 +63,7 @@ public class Pedido_Catalogo extends BaseAdapter {
         btnborrar=itemView.findViewById(R.id.btnborrarPedido);
         btneditar=itemView.findViewById(R.id.btneditarPedido);
 
-////// listar pedidos*******
+        ////// listar pedidos*******
         tvcodigo.setText(Lista.get(i).getCodigo());
         tvNombre.setText(Lista.get(i).getNombre());
         tvApellido.setText(""+Lista.get(i).getApellidos());
@@ -77,10 +74,7 @@ public class Pedido_Catalogo extends BaseAdapter {
         tvDni.setText(""+Lista.get(i).getDni());
 
 
-
-
-
-//BOTON MODIFICAR A LISTA -----------------------------------------------------------------------------------------------------------
+        //BOTON MODIFICAR A LISTA -----------------------------------------------------------------------------------------------------------
         btneditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +96,7 @@ public class Pedido_Catalogo extends BaseAdapter {
                 detalle.putExtra("fecha de actual",fechaA);
                 detalle.putExtra("fecha de pago",fechaP);
                 detalle.putExtra("Dni",dni);
+                detalle.putExtra("modo", Lista.get(i).getModo());
                 view.getContext().startActivity(detalle);
             }
         });
