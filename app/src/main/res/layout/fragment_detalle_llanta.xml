@@ -45,6 +45,7 @@
                 android:shadowRadius="1.8"
                 android:textColorHint="#F4F4F4"
                 android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"
                 />
 
             <EditText
@@ -56,7 +57,8 @@
                 android:inputType="number"
                 android:textSize="15dp"
                 android:textColorHint="#F4F4F4"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"/>
 
             <EditText
                 android:id="@+id/EtIndiceVelocidad"
@@ -68,7 +70,8 @@
                 android:maxLength="1"
                 android:textSize="15dp"
                 android:textColorHint="#F4F4F4"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -96,7 +99,8 @@
                 android:typeface="sans"
                 android:text="Seleccionar imagen"
                 android:background="@drawable/bordesredondos"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:textColor="#F4F4F4"/>
 
             <EditText
                 android:id="@+id/EtConstruccion"
@@ -105,7 +109,8 @@
                 android:hint="Construccion:"
                 android:textSize="15dp"
                 android:textColorHint="#F4F4F4"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"/>
 
             <EditText
                 android:id="@+id/EtPresionMaxima"
@@ -116,7 +121,8 @@
                 android:hint="Presion Maxima:"
                 android:textSize="15dp"
                 android:textColorHint="#F4F4F4"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"/>
 
             <EditText
                 android:id="@+id/EtClasificacion"
@@ -126,7 +132,8 @@
                 android:textColorHint="#F4F4F4"
                 android:hint="Clasificacion:"
                 android:textSize="15dp"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"/>
 
             <EditText
                 android:id="@+id/EtFechaFabricacion"
@@ -140,7 +147,8 @@
                 android:textColorHint="#F4F4F4"
                 android:justificationMode="inter_word"
                 android:textSize="15dp"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -149,7 +157,9 @@
                 android:layout_marginTop="10dp"
                 android:textSize="15dp"
                 android:textColor="#F4F4F4"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:textStyle="bold"/>
+
             <Spinner
                 android:id="@+id/Spi_MedidaLlanta"
                 android:layout_width="match_parent"
@@ -186,7 +196,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:background="@drawable/bordesredondos"
-                    android:text="Registrar" />
+                    android:text="Registrar"
+                    android:textColor="#F4F4F4"/>
 
                 <Button
                     android:id="@+id/btnCancelar"
@@ -194,7 +205,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bordesredondos"
                     android:layout_marginHorizontal="15dp"
-                    android:text="Cancelar" />
+                    android:text="Cancelar"
+                    android:textColor="#F4F4F4"/>
 
             </LinearLayout>
 

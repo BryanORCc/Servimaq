@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Environment;
 import android.util.Log;
 
-import com.example.servimaq.GenerarDocumentoPDF;
+import com.example.servimaq.op_documentos.GenerarDocumentoPDF;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;

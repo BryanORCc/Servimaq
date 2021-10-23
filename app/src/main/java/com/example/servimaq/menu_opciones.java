@@ -17,6 +17,7 @@ import android.widget.VideoView;
 
 import com.example.servimaq.contenedores.ingreso_productos;
 import com.example.servimaq.op_catalogo.Catalogo;
+import com.example.servimaq.op_documentos.Documentos;
 import com.example.servimaq.op_pedidos.Listar_pedidos;
 import com.example.servimaq.op_pedidos.registro_cliente;
 import com.example.servimaq.op_salida.Salida_Prod;

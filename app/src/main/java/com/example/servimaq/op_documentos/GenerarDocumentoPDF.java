@@ -1,4 +1,4 @@
-package com.example.servimaq;
+package com.example.servimaq.op_documentos;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.servimaq.R;
 import com.github.barteksc.pdfviewer.PDFView;
 
 import java.io.File;

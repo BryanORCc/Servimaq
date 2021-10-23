@@ -74,6 +74,7 @@
                 android:background="@drawable/bordesredondos"
                 android:layout_marginBottom="15dp"
                 android:id="@+id/btnFoto"
+                android:textColor="#F4F4F4"
                 />
 
             <!--BLOQUE_____________________________________-->
@@ -87,6 +88,7 @@
                 android:layout_marginBottom="10dp"
                 android:id="@+id/etMarcaVehiculo"
                 android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"
                 />
 
             <!--BLOQUE_____________________________________-->
@@ -100,6 +102,7 @@
                 android:layout_marginBottom="30dp"
                 android:id="@+id/etModeloVehiculo"
                 android:paddingHorizontal="15dp"
+                android:textColor="#F4F4F4"
                 />
 
             <!--BLOQUE_____________________________________-->
@@ -115,7 +118,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:background="@drawable/bordesredondos"
-                    android:text="Registrar" />
+                    android:text="Registrar"
+                    android:textColor="#F4F4F4"/>
 
                 <Button
                     android:id="@+id/btnCancelar"
@@ -123,7 +127,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:background="@drawable/bordesredondos"
-                    android:text="Cancelar" />
+                    android:text="Cancelar"
+                    android:textColor="#F4F4F4"/>
 
             </LinearLayout>
 

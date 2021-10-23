@@ -15,10 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Documentos"
+            android:name=".op_documentos.Documentos"
             android:exported="true" />
         <activity
-            android:name=".GenerarDocumentoPDF"
+            android:name=".op_documentos.GenerarDocumentoPDF"
             android:exported="true" />
         <activity
             android:name=".op_salida.seleccionar_pedido_salida"

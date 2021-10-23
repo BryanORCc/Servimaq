@@ -1,4 +1,4 @@
-package com.example.servimaq;
+package com.example.servimaq.op_documentos;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.servimaq.R;
 import com.example.servimaq.db.TemplatePDF;
 
 import java.util.ArrayList;
