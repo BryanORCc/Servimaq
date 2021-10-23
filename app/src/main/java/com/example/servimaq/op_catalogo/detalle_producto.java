@@ -723,7 +723,8 @@ public class detalle_producto extends AppCompatActivity {
         vista.setBackgroundResource(R.drawable.estilo_color_x);
         toast.setGravity(Gravity.CENTER,0,0);
         TextView text = (TextView) vista.findViewById(android.R.id.message);
-        text.setTextColor(Color.parseColor("#FFF1F9FA"));
+        text.setTextColor(Color.parseColor("#FFFFFF"));
+        text.setTextSize(20);
         toast.show();
     }
 

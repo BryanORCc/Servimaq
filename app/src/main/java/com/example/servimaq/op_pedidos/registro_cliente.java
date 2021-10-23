@@ -146,9 +146,6 @@ public class registro_cliente extends AppCompatActivity {
     {
         switch (item.getItemId())
         {
-            case R.id.mnOrdenCompra:
-                //presiono en item1
-                return true;
             case R.id.mnSalir: //presiono en item2
                 AlertDialog alertDialog = new AlertDialog.Builder(registro_cliente.this).create();
                 alertDialog.setTitle("Salir de la aplicación");

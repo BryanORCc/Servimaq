@@ -108,9 +108,6 @@ public class menu_opciones extends AppCompatActivity {
     {
         switch (item.getItemId())
         {
-            case R.id.mnOrdenCompra: //presiono en item1
-
-                return true;
             case R.id.mnSalir: //presiono en item2
                 AlertDialog alertDialog = new AlertDialog.Builder(menu_opciones.this).create();
                 alertDialog.setTitle("Salir de la aplicación");

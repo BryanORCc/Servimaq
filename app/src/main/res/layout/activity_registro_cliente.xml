@@ -140,7 +140,8 @@
                     android:id="@+id/btnRegistrarCliente"
                     android:background="@drawable/bordesredondos"
                     android:textSize="15dp"
-                    android:textColor="#F4F4F4"/>
+                    android:textColor="#F4F4F4"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
                 <Button
                     android:layout_width="wrap_content"
@@ -150,7 +151,8 @@
                     android:id="@+id/btnCancelarCliente"
                     android:background="@drawable/bordesredondos"
                     android:textSize="15dp"
-                    android:textColor="#F4F4F4"/>
+                    android:textColor="#F4F4F4"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
             </LinearLayout>
 

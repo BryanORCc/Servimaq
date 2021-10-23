@@ -60,7 +60,8 @@ public class SQLConexion {
                 vista.setBackgroundResource(R.drawable.estilo_color_x);
                 toast.setGravity(Gravity.CENTER,0,0);
                 TextView text = (TextView) vista.findViewById(android.R.id.message);
-                text.setTextColor(Color.parseColor("#FFF1F9FA"));
+                text.setTextColor(Color.parseColor("#FFFFFF"));
+                text.setTextSize(20);
                 toast.show();
             }else{
                 Toast toast = Toast.makeText(c,"Usuario o Contraseña incorrecto", Toast.LENGTH_SHORT);
@@ -68,7 +69,8 @@ public class SQLConexion {
                 vista.setBackgroundResource(R.drawable.estilo_color_x);
                 toast.setGravity(Gravity.CENTER,0,0);
                 TextView text = (TextView) vista.findViewById(android.R.id.message);
-                text.setTextColor(Color.parseColor("#FFF1F9FA"));
+                text.setTextColor(Color.parseColor("#FFFFFF"));
+                text.setTextSize(20);
                 toast.show();
                 estado = false;
             }
@@ -116,7 +118,7 @@ public class SQLConexion {
             registro.setString(4,MarcaVehiculo);
             registro.setString(5,ModeloVehiculo);
             registro.executeUpdate();
-            Toast.makeText(c,"Registro exitoso",Toast.LENGTH_SHORT).show();
+            EstiloToast(c,"Registro exitoso");
             registro.close();
 
         } catch (Exception e) {
@@ -163,7 +165,7 @@ public class SQLConexion {
             registro.setString(9,FechaFabricacion);
             registro.setString(10,MedidaLlantaId);
             registro.executeUpdate();
-            Toast.makeText(c,"Registro exitoso",Toast.LENGTH_SHORT).show();
+            EstiloToast(c,"Registro exitoso");
             registro.close();
         } catch (Exception e) {
             Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -206,7 +208,7 @@ public class SQLConexion {
             registro.setInt(4,Perfil);
             registro.setInt(5,MmCocada);
             registro.executeUpdate();
-            Toast.makeText(c,"Registro exitoso",Toast.LENGTH_SHORT).show();
+            EstiloToast(c,"Registro exitoso");
             registro.close();
 
         } catch (Exception e) {
@@ -250,7 +252,7 @@ public class SQLConexion {
             registro.setString(4,DetalleLlantaId);
             registro.setString(5,VehiculoId);
             registro.executeUpdate();
-            Toast.makeText(c,"Registro exitoso",Toast.LENGTH_SHORT).show();
+            EstiloToast(c,"Registro exitoso");
 
             registro.close();
 
@@ -297,7 +299,7 @@ public class SQLConexion {
             registro.setString(7,ModoDePago);
             registro.setInt(8,Dni);
             registro.executeUpdate();
-            Toast.makeText(c,"Registro exitoso",Toast.LENGTH_SHORT).show();
+            EstiloToast(c,"Registro exitoso");
             registro.close();
         } catch (Exception e) {
             Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -346,7 +348,7 @@ public class SQLConexion {
                 registro.setString(5,codPedido);
                 registro.setString(6,LlantaId);
                 registro.executeUpdate();
-                Toast.makeText(c,"Agregacion exitosa",Toast.LENGTH_SHORT).show();
+                EstiloToast(c,"Agregacion exitosa");
                 registro.close();
             }
             else {
@@ -358,5 +360,15 @@ public class SQLConexion {
         }
     }
 
+    public void EstiloToast(Context c, String mensaje){
+        Toast toast = Toast.makeText(c,mensaje, Toast.LENGTH_SHORT);
+        View vista = toast.getView();
+        vista.setBackgroundResource(R.drawable.estilo_color_x);
+        toast.setGravity(Gravity.CENTER,0,0);
+        TextView text = (TextView) vista.findViewById(android.R.id.message);
+        text.setTextColor(Color.parseColor("#FFFFFF"));
+        text.setTextSize(20);
+        toast.show();
+    }
 
 }

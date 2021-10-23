@@ -176,7 +176,8 @@
                     android:layout_marginHorizontal="15dp"
                     android:background="@drawable/bordesredondos"
                     android:text="Registrar"
-                    android:textColor="#F4F4F4"/>
+                    android:textColor="#F4F4F4"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
                 <Button
                     android:id="@+id/btnCancelar"
@@ -185,7 +186,8 @@
                     android:layout_marginHorizontal="15dp"
                     android:background="@drawable/bordesredondos"
                     android:text="Cancelar"
-                    android:textColor="#F4F4F4"/>
+                    android:textColor="#F4F4F4"
+                    android:foreground="?android:attr/selectableItemBackground"/>
 
             </LinearLayout>
 
