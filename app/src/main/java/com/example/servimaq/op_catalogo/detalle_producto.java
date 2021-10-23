@@ -7,8 +7,11 @@ import androidx.fragment.app.DialogFragment;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,6 +28,9 @@ import android.widget.Toast;
 
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,6 +40,7 @@ import java.util.Calendar;
 
 public class detalle_producto extends AppCompatActivity {
 
+    ImageView ivFoto_Llanta;
     TextView tvllantaId, tvNombreMarca, tvIndiceCarga, tvIndiceVelocidad, tvConstruccion, tvClasificacion, tvFechaFabricacion, tvMarcaVehiculo,
             tvModeloVehiculo, tvAncho, tvDiametro, tvPerfil, tvMmCocada, tvPresionMaxima, tvStock, tvPrecio, tvTipoVehiculo;
     EditText etNombreMarca, etIndiceCarga, etIndiceVelocidad, etConstruccion, etClasificacion, etMarcaVehiculo,
@@ -76,28 +84,13 @@ public class detalle_producto extends AppCompatActivity {
 
         Intent datos = getIntent();
 
-         llantaId = datos.getStringExtra("llantaId");
-         String NombreMarca = datos.getStringExtra("NombreMarca"),
-                IndiceCarga = datos.getStringExtra("IndiceCarga"),
-                IndiceVelocidad = datos.getStringExtra("IndiceVelocidad"),
-                Construccion = datos.getStringExtra("Construccion"),
-                Clasificacion = datos.getStringExtra("Clasificacion"),
-                FechaFabricacion = datos.getStringExtra("FechaFabricacion"),
-                FotoLlanta = datos.getStringExtra("FotoLlanta"),
-                FotoVehiculo = datos.getStringExtra("FotoVehiculo"),
-                MarcaVehiculo = datos.getStringExtra("MarcaVehiculo"),
-                ModeloVehiculo = datos.getStringExtra("ModeloVehiculo");
-        int Ancho = datos.getIntExtra("Ancho",0),
-                Diametro = datos.getIntExtra("Diametro",0),
-                Perfil = datos.getIntExtra("Perfil",0),
-                MmCocada = datos.getIntExtra("MmCocada",0),
-                Stock = datos.getIntExtra("Stock",0),
-                PresionMaxima = datos.getIntExtra("PresionMaxima",0);
-        double Precio = datos.getDoubleExtra("Precio",0.0);
-        String TipoVehiculo = datos.getStringExtra("TipoVehiculo");
-                DetalleLlantaId = datos.getStringExtra("DetalleLlantaId");
-                VehiculoId = datos.getStringExtra("VehiculoId");
-                MedidaLlantaId = datos.getStringExtra("MedidaLlantaId");
+        llantaId = datos.getStringExtra("llantaId");
+        DetalleLlantaId = datos.getStringExtra("DetalleLlantaId");
+        VehiculoId = datos.getStringExtra("VehiculoId");
+        MedidaLlantaId = datos.getStringExtra("MedidaLlantaId");
+
+        //FOTO-----------------------------------------------
+        ivFoto_Llanta = findViewById(R.id.ivFoto_Llanta);
 
         //TEXT VIEWS ----------------------------------------------------------------
         tvllantaId = findViewById(R.id.tvllantaId);
@@ -217,6 +210,10 @@ public class detalle_producto extends AppCompatActivity {
         spVehiculoId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
                 VehiculoId=datosVehiculo.get(i);
 
                 //--CARGAR DATOS AL SPINNER DE VEHICULO------------------------------------------------------------------------------
@@ -253,6 +250,10 @@ public class detalle_producto extends AppCompatActivity {
         spDetalleLlantaId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
                 DetalleLlantaId=datosDetalle.get(i);
 
                 //--CARGAR DATOS AL SPINNER DE VEHICULO------------------------------------------------------------------------------
@@ -294,6 +295,10 @@ public class detalle_producto extends AppCompatActivity {
         spMedidaLlantaId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
                 MedidaLlantaId=datosMedida.get(i);
 
                 //--CARGAR DATOS AL SPINNER DE VEHICULO------------------------------------------------------------------------------
@@ -360,6 +365,20 @@ public class detalle_producto extends AppCompatActivity {
                     tvDiametro.setText(""+rs.getInt(15));
                     tvPerfil.setText(""+rs.getInt(16));
                     tvMmCocada.setText(""+rs.getInt(17));
+
+                    StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                    StorageReference islandRef = storageRef.child(rs.getString(22));
+                    final long ONE_MEGABYTE = 480 * 480;
+
+                    Log.e("Contar","___: "+ rs.getString(22));
+
+                    islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                            ivFoto_Llanta.setImageBitmap(bitmap);
+                        }
+                    });
                 } while (rs.next());///va agregando cada ID
             }
             rs.close();

@@ -106,8 +106,7 @@ public class fragment_vehiculo extends Fragment {
             public void onClick(View view) {
                 String TipoVehiculo = etTipoVehiculo.getText().toString(),
                         MarcaVehiculo = etMarcaVehiculo.getText().toString(),
-                        ModeloVehiculo = etModeloVehiculo.getText().toString(),
-                        Foto;
+                        ModeloVehiculo = etModeloVehiculo.getText().toString();
 
                 FilePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -117,8 +116,6 @@ public class fragment_vehiculo extends Fragment {
 
                         if(ruta==null){
                             ruta = "";
-                        }else{
-                            ruta = ruta;
                         }
 
                         SQLConexion db = new SQLConexion();
@@ -127,8 +124,6 @@ public class fragment_vehiculo extends Fragment {
                         etTipoVehiculo.requestFocus();
                     }
                 });
-
-
 
             }
         });

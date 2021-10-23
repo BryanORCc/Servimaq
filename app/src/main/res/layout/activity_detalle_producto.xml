@@ -13,12 +13,14 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_marginHorizontal="135dp"
+            android:layout_marginHorizontal="120dp"
             android:layout_marginTop="25dp"
+            android:layout_marginBottom="15dp"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="0.2"
-            android:background="@drawable/no_imagen"
+            android:src="@drawable/no_imagen"
+            android:id="@+id/ivFoto_Llanta"
             />
 
         <ScrollView
@@ -172,7 +174,11 @@
                             android:id="@+id/spVehiculoId"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:spinnerMode="dropdown"
+                            android:scrollbarStyle="insideOverlay"
+                            android:backgroundTint="#0C0C0C"
+                            android:backgroundTintMode="add"/>
 
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
@@ -327,7 +333,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="15dp"
-                            android:textColor="#F4F4F4"/>
+                            android:textColor="#F4F4F4"
+                            android:spinnerMode="dropdown"
+                            android:scrollbarStyle="insideOverlay"
+                            android:backgroundTint="#0C0C0C"
+                            android:backgroundTintMode="add"/>
 
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
@@ -655,7 +665,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="15dp"
-                            android:textColor="#F4F4F4"/>
+                            android:textColor="#F4F4F4"
+                            android:spinnerMode="dropdown"
+                            android:scrollbarStyle="insideOverlay"
+                            android:backgroundTint="#0C0C0C"
+                            android:backgroundTintMode="add"/>
 
                     </TableLayout>
                 </LinearLayout><!--FIN______________________________________________________________-->
