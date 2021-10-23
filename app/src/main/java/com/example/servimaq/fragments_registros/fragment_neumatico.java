@@ -1,6 +1,9 @@
 package com.example.servimaq.fragments_registros;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +23,9 @@ import android.widget.Toast;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.menu_opciones;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -36,6 +43,7 @@ public class fragment_neumatico extends Fragment {
     Button btnRegistrar, btnCancelar;
     Spinner Spi_especificacion,Spi_vehiculo;
     TextView Tv_ver,Tv_ver1;
+    ImageView ivFoto_neumatico, ivFoto_vehiculo;
 
     String vehiculo,especificacion;
     ArrayList<String> op = new ArrayList<>();
@@ -44,6 +52,9 @@ public class fragment_neumatico extends Fragment {
     ArrayList<String> info1 = new ArrayList<>();
     String VehiculoId="";
     String DetalleLlantaId="";
+
+    ArrayList<String> fotoVehiculo = new ArrayList<>();
+    ArrayList<String> fotoNeumatico = new ArrayList<>();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,6 +102,8 @@ public class fragment_neumatico extends Fragment {
         btnCancelar=vista.findViewById(R.id.btnCancelar);
         Tv_ver = vista.findViewById(R.id.Tv_ver);
         Tv_ver1 = vista.findViewById(R.id.Tv_ver1);
+        ivFoto_neumatico = vista.findViewById(R.id.ivFoto_neumatico);
+        ivFoto_vehiculo = vista.findViewById(R.id.ivFoto_vehiculo);
 
         Spi_especificacion=vista.findViewById(R.id.Spi_especificacion);
         Spi_vehiculo=vista.findViewById(R.id.Spi_vehiculo);
@@ -107,15 +120,13 @@ public class fragment_neumatico extends Fragment {
             }
             else {
                 do {
-
                     op.add(rs.getString(1));
-
-                    vehiculo="-TipoVehiculo: "+rs.getString(2)+
-                            "\n-MarcaVehiculo: "+rs.getString(5) +
-                            "\n-ModeloVehiculo: "+rs.getString(4);
-                            //FotoVehiculo: "+rs.getString(3);
+                    vehiculo="→ TipoVehiculo: "+rs.getString(2)+
+                            "\n→ MarcaVehiculo: "+ rs.getString(4) +
+                            "\n→ ModeloVehiculo: "+rs.getString(5);
 
                     info.add(vehiculo);
+                    fotoVehiculo.add(rs.getString(3));
                 } while (rs.next());///va agregando cada ID
 
                 ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, op);
@@ -132,6 +143,22 @@ public class fragment_neumatico extends Fragment {
         Spi_vehiculo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                StorageReference islandRef = storageRef.child(fotoVehiculo.get(i));
+                final long ONE_MEGABYTE = 480 * 480;
+
+                islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                        ivFoto_vehiculo.setImageBitmap(bitmap);
+                    }
+                });
+
                 Tv_ver1.setText(info.get(i));
                 VehiculoId=op.get(i);
             }
@@ -154,18 +181,17 @@ public class fragment_neumatico extends Fragment {
                 do {
 
                     op1.add(rs.getString(1));
-
-                    especificacion="-NombreMarca: "+rs.getString(2)+
-                            "\n-IndiceCarga: "+rs.getString(3)+
-                            "\n-IndiceVelocidad:"+rs.getString(4) +
-                            "\n-Construccion: "+rs.getString(6)+
-                            "\n-PresionMaxima: "+rs.getString(7)+
-                            "\n-Clasificacion: "+rs.getString(8)+
-                            "\n-FechaFabricacion: "+rs.getString(9)+
-                            "\n-MedidaLlantaId: "+rs.getString(10);
-                            //FotoLlanta: "+rs.getString(5);
+                    especificacion="→ NombreMarca: "+rs.getString(2)+
+                            "\n→ IndiceCarga: "+rs.getString(3)+
+                            "\n→ IndiceVelocidad:"+rs.getString(4) +
+                            "\n→ Construccion: "+rs.getString(6)+
+                            "\n→ PresionMaxima: "+rs.getString(7)+
+                            "\n→ Clasificacion: "+rs.getString(8)+
+                            "\n→ FechaFabricacion: "+rs.getString(9)+
+                            "\n→ MedidaLlantaId: "+rs.getString(10);
 
                     info1.add(especificacion);
+                    fotoNeumatico.add(rs.getString(5));
                 } while (rs.next());///va agregando cada ID
 
                 ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, op1);
@@ -181,6 +207,22 @@ public class fragment_neumatico extends Fragment {
         Spi_especificacion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                StorageReference islandRef = storageRef.child(fotoNeumatico.get(i));
+                final long ONE_MEGABYTE = 480 * 480;
+
+                islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                        ivFoto_neumatico.setImageBitmap(bitmap);
+                    }
+                });
+
                 Tv_ver.setText(info1.get(i));
                 DetalleLlantaId=op1.get(i);
             }

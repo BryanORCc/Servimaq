@@ -83,14 +83,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:baselineAligned="false"
-                android:rotationX="-12"
                 android:textSize="15dp"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:spinnerMode="dropdown"
+                android:scrollbarStyle="insideOverlay"
+                android:backgroundTint="#0C0C0C"
+                android:backgroundTintMode="add"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="detalle "
+                android:hint="Detalle neumatico: "
                 android:textColorHint="#F4F4F4"
                 android:textColor="#F4F4F4"
                 android:textSize="15dp"
@@ -128,9 +131,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:baselineAligned="false"
-                android:rotationX="-12"
                 android:textSize="15dp"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:spinnerMode="dropdown"
+                android:scrollbarStyle="insideOverlay"
+                android:backgroundTint="#0C0C0C"
+                android:backgroundTintMode="add"/>
 
             <TextView
                 android:layout_width="match_parent"

@@ -3,6 +3,7 @@ package com.example.servimaq.fragments_registros;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -127,7 +128,7 @@ public class detalle_llanta extends Fragment {
 
                     opciones.add(rs.getString(1));///jalando ID
 
-                    medidas=" Ancho: "+rs.getString(2)+" \n Diametro: "+rs.getString(3)+" \n Perfil: "+rs.getString(4)+"\n Milimetro-Cocada: "+rs.getString(5);
+                    medidas="→ Ancho: "+rs.getString(2)+" \n→ Diametro: "+rs.getString(3)+" \n→ Perfil: "+rs.getString(4)+"\n→ Milimetro-Cocada: "+rs.getString(5);
 
                     informacion.add(medidas);
                 } while (rs.next());///va agregando cada ID
@@ -144,6 +145,10 @@ public class detalle_llanta extends Fragment {
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
                 Tv_cargar.setText(informacion.get(i));
                 MedidaLlantaId=opciones.get(i);
             }

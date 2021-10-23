@@ -153,7 +153,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Id de la Medidda de la llanta:"
+                android:text="Id de la Medida de la llanta:"
                 android:layout_marginTop="10dp"
                 android:textSize="15dp"
                 android:textColor="#F4F4F4"
@@ -166,9 +166,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:baselineAligned="false"
-                android:rotationX="-12"
                 android:textSize="15dp"
-                android:paddingHorizontal="15dp"/>
+                android:paddingHorizontal="15dp"
+                android:spinnerMode="dropdown"
+                android:scrollbarStyle="insideOverlay"
+                android:backgroundTint="#0C0C0C"
+                android:backgroundTintMode="add"/>
 
             <TextView
                 android:id="@+id/Tv_cargar"
