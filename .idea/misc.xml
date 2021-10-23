@@ -23,6 +23,7 @@
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2604166666666667" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/drawable/ic_logo_background.xml" value="0.3" />
+        <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/drawable/icon_search.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/drawable/labelsgeneral.xml" value="0.33" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/drawable/toolbar.xml" value="0.2604166666666667" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/activity_catalogo.xml" value="0.24427083333333333" />
@@ -47,6 +48,9 @@
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/items_salida_producto.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/pedido_lista.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/layout/producto_lista_catalogo.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/menu/menu.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.24479166666666666" />
+        <entry key="..\:/Users/BryanORCc/StudioProjects/Servimaq/app/src/main/res/mipmap-anydpi-v26/ic_logo_round.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/giova/AndroidStudioProjects/Servimaq/app/src/main/res/drawable-anydpi/agregar_prod.xml" value="0.2203125" />
         <entry key="..\:/Users/giova/AndroidStudioProjects/Servimaq/app/src/main/res/drawable-hdpi/bordesredondos.xml" value="0.2203125" />
         <entry key="..\:/Users/giova/AndroidStudioProjects/Servimaq/app/src/main/res/drawable/bordesredondos.xml" value="0.85" />

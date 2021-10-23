@@ -30,11 +30,6 @@ public class Items_Salida extends BaseAdapter {
     EditText etCantidad;
     TextView tvPrecio, tvTotal, tvNombreMarca, tvTipoVehiculo;
 
-    //int n = 0;
-    /*if(n <= ListaS.size()){
-            n++;
-        }*/
-
     //--ACTUALIZAR DATOS DE LOS ITEMS------------------------------------------------------------------------------
     SQLConexion conexion =new SQLConexion();
     SQLConexion db = new SQLConexion();
