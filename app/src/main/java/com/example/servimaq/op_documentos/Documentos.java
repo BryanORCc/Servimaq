@@ -8,12 +8,14 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.servimaq.R;
 import com.example.servimaq.db.TemplatePDF;
@@ -29,7 +31,7 @@ public class Documentos extends AppCompatActivity {
 
     private TemplatePDF templatePDF;
 
-    private String[] cabecera = {"Codigo","Cantidad","Descripcion","Precio Unitario","Total"};
+    private String[] cabecera = {"Item","Codigo","Cant","Descripcion","P.U.","Total"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +41,15 @@ public class Documentos extends AppCompatActivity {
         spncodPedido = findViewById(R.id.spncodPedido);
         btnGenerarPdf = findViewById(R.id.btnGenerarPdf);
 
-        /*if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-            if (shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                // Explain to the user why we need to read the contacts
-            }
-            return;
-        }*/
-
         templatePDF = new TemplatePDF(getApplicationContext());
         templatePDF.OpenDocument();
         templatePDF.AddMetaData("Almacen","Salida de Neumaticos", "Servimaq S.A.C.");
-        templatePDF.AddTitles("GUIA DE REMISION", "Clientes", Calendar.getInstance().getTime().toString());
-        templatePDF.AddParagraph("Hola");
-        templatePDF.AddParagraph("descripcion de la guia de remision");
-        templatePDF.CreateTable(cabecera,getClientes());
+        templatePDF.AddTituloEmpresa("SERVIMAQ S.A.C.", "GUIA DE REMISION","CODIGO DE PEDIDO: ","COD-001" ,"20455986835");
+        templatePDF.AddTitles("Av. Mariscal castilla 1006 - Mariano Melgar","Perú - Arequipa","12/12/2021");
+        templatePDF.AddDatosCliente("Juan PErez","juan_perez@gmail.com","15/10/2022");
+        /*templatePDF.AddParagraph("Hola");
+        templatePDF.AddParagraph("descripcion de la guia de remision");*/
+        templatePDF.CreateTable(cabecera,getNeumaticos());
         templatePDF.CloseDocument();
 
         btnGenerarPdf.setOnClickListener(new View.OnClickListener() {
@@ -65,31 +61,10 @@ public class Documentos extends AppCompatActivity {
 
     }
 
-    private ArrayList<String[]> getClientes(){
+    private ArrayList<String[]> getNeumaticos(){
         ArrayList<String[]> rows = new ArrayList<>();
-        rows.add(new String[]{"1","10","Descripcion de los neumaticos","200.0","2000.0"});
+        rows.add(new String[]{"SQsdds","1","10","Descripcion de los neumaticos","200.0","2000.0"});
         return rows;
     }
-
-    /*public void Generar(){
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        startActivityForResult(intent,1);
-    }*/
-
-    /*@Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == RESULT_OK){
-            templatePDF = new TemplatePDF(getApplicationContext());
-            templatePDF.OpenDocument();
-            templatePDF.AddMetaData("Almacen","Salida de Neumaticos", "Servimaq S.A.C.");
-            templatePDF.AddTitles("GUIA DE REMISION", "Clientes", Calendar.getInstance().getTime().toString());
-            templatePDF.AddParagraph("Hola");
-            templatePDF.AddParagraph("descripcion de la guia de remision");
-            templatePDF.CreateTable(cabecera,getClientes());
-            templatePDF.CloseDocument();
-        }
-    }*/
-
 
 }
