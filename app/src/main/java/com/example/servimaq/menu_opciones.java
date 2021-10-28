@@ -103,7 +103,7 @@ public class menu_opciones extends AppCompatActivity {
                 AlertDialog alertDialog = new AlertDialog.Builder(menu_opciones.this).create();
                 alertDialog.setTitle("QUE ME TOCAS OE, CUANDO TE FALTE EL RESPETO");
                 alertDialog.setMessage("Ubícate en primer lugar cuando seas estudiante, de inicial, primaria, secundaria " +
-                        "\ny superior, ahí quiero verte mis respetos diría serenazgo así, que chucha eres webon??!! " +
+                        "\ny superior, ahí quiero verte mis respetos diría ingeniero así, que chucha eres webon??!! " +
                         "\neres del campo, un campesino, un indigente, no eres ni mierda on!!! " +
                         "\nNO ERES NI MIERDA, NO ERES NADA!!, piensa pe chato piensa, Estudia sonso!!");
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ponerse a Estudiar",
