@@ -1,16 +1,22 @@
 package com.example.servimaq.db;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Environment;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.core.content.FileProvider;
 
 import com.example.servimaq.op_documentos.GenerarDocumentoPDF;
 import com.itextpdf.text.BaseColor;
@@ -118,13 +124,13 @@ public class TemplatePDF {
         }
     }
 
-    public void AddDatosCliente(String NombreCliente, String Correo, String FechaEntrega){
+    public void AddDatosCliente(String NombreCliente, String Correo, String DNI, String FechaEntrega){
         try {
             paragraph = new Paragraph();
             AddChildP(new Paragraph("Datos del Cliente: ",fCliente));
             AddChildP(new Paragraph("Nombres y Apellidos: "+NombreCliente,fSubtitulo));
+            AddChildP(new Paragraph("Fecha limite de Entrega: "+FechaEntrega+"       DNI: "+DNI,fSubtitulo));
             AddChildP(new Paragraph("Correo: "+Correo,fSubtitulo));
-            AddChildP(new Paragraph("Fecha limite de Entrega: "+FechaEntrega,fSubtitulo));
             paragraph.setSpacingAfter(25);
             document.add(paragraph);
         } catch (Exception e){
@@ -174,7 +180,7 @@ public class TemplatePDF {
             for(int indexColumn = 0; indexColumn < cabecera.length; indexColumn++){
                 pdfPCell = new PdfPCell(new Phrase(row[indexColumn],fTexto));
                 pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                pdfPCell.setFixedHeight(25);
+                pdfPCell.setFixedHeight(55);
                 pdfPTable.addCell(pdfPCell);
             }
         }
@@ -191,6 +197,23 @@ public class TemplatePDF {
         intent.putExtra("ruta",pdfFile.getAbsolutePath());
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+
+    public void AppPDF(Activity activity) {
+        if(pdfFile.exists()){
+            Uri contentUri = FileProvider.getUriForFile(context, "xxx.fileprovider", pdfFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setDataAndType(contentUri,"application/pdf");
+            try {
+                activity.startActivity(intent);
+            }catch (ActivityNotFoundException e){
+                activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.adobe.reader")));
+                Toast.makeText(activity.getApplicationContext(),"No cuentas con la aplicacion para visualizar PDF",Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(activity.getApplicationContext(),"Archivo no encontrado",Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

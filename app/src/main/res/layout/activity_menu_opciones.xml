@@ -102,15 +102,14 @@
                     android:layout_margin="10dp"
                     android:id="@+id/btnDocumentos"
                     android:foreground="?android:attr/selectableItemBackground"/>
-                <Button
+                <ImageView
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="match_parent"
-                    android:background="@drawable/en_proceso"
-                    android:scaleX="0.5"
-                    android:scaleY="0.7"
+                    android:background="@drawable/personaje_neumatico"
                     android:layout_margin="10dp"
-                    android:foreground="?android:attr/selectableItemBackground"/>
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:id="@+id/mensajePersonaje"/>
             </LinearLayout>
 
         </LinearLayout>

@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".op_documentos.GenerarDocumentoPDF">
+    tools:context=".op_documentos.GenerarDocumentoPDF"
+    android:orientation="vertical">
 
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfVistaPrevia"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.95"/>
 
 </LinearLayout>

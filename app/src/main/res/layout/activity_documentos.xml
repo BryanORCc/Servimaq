@@ -5,45 +5,118 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".op_documentos.Documentos"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/carretera_campo">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GENERAR DOCUMENTOS"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="#f0f0f0"
+        android:paddingVertical="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginBottom="35dp">
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
-            android:id="@+id/spncodPedido"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Generar Guia de Remision"
-            android:id="@+id/btnGenerarPdf"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center">
 
-        <Spinner
+        <!--BLOQUE_____________________________________________________-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"/>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="35dp"
+            android:paddingHorizontal="25dp"
+            android:background="@drawable/design_bloque">
 
-        <Button
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:text="SELECCIONAR CODIGO: "
+                    android:textColor="#f0f0f0"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-thin"/>
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="25dp"
+                    android:id="@+id/spncodPedido"
+                    android:baselineAligned="false"
+                    android:spinnerMode="dropdown"
+                    android:scrollbarStyle="insideOverlay"
+                    android:backgroundTint="#0C0C0C"
+                    android:backgroundTintMode="add"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Abrir Guia de Remision"
+                android:id="@+id/btnGenerarPdf"
+                android:drawableLeft="@drawable/icono_mirar"
+                android:paddingLeft="25dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Abrir Guia en aplicacion PDF"
+                android:id="@+id/btnAbrirPdf"
+                android:drawableLeft="@drawable/icono_pdf"
+                android:paddingLeft="25dp"/>
+        </LinearLayout>
+
+
+        <!--BLOQUE_____________________________________________________-->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enviar documento al correo"/>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingHorizontal="25dp"
+            android:background="@drawable/design_bloque">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:text="SELECCIONAR CORREO: "
+                    android:textColor="#f0f0f0"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-thin"/>
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="25dp"
+                    android:baselineAligned="false"
+                    android:spinnerMode="dropdown"
+                    android:scrollbarStyle="insideOverlay"
+                    android:backgroundTint="#0C0C0C"
+                    android:backgroundTintMode="add"
+                    android:popupBackground="#F8F8F8"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enviar documento al correo"/>
+        </LinearLayout>
 
     </LinearLayout>
 
