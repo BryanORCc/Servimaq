@@ -3,16 +3,21 @@ package com.example.servimaq;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.example.servimaq.contenedores.ingreso_productos;
@@ -25,6 +30,7 @@ import com.example.servimaq.op_salida.Salida_Prod;
 public class menu_opciones extends AppCompatActivity {
 
     Button btnProductos, btnCatalogo,btnRegistroCliente,btnSalida_Producto, btnDocumentos;
+    ImageView mensajePersonaje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,7 @@ public class menu_opciones extends AppCompatActivity {
         btnSalida_Producto = findViewById(R.id.btnSalida_Producto);
         btnRegistroCliente = findViewById(R.id.btnRegistroCliente);
         btnDocumentos = findViewById(R.id.btnDocumentos);
+        mensajePersonaje = findViewById(R.id.mensajePersonaje);
 
         //PANTALLA REGISTROS---------------------------------------------------------------------------------
         btnProductos.setOnClickListener(view -> {
@@ -87,6 +94,42 @@ public class menu_opciones extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(menu_opciones.this, Documentos.class);
                 startActivity(i);
+            }
+        });
+
+        mensajePersonaje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog alertDialog = new AlertDialog.Builder(menu_opciones.this).create();
+                alertDialog.setTitle("QUE ME TOCAS OE, CUANDO TE FALTE EL RESPETO");
+                alertDialog.setMessage("Ubícate en primer lugar cuando seas estudiante, de inicial, primaria, secundaria " +
+                        "\ny superior, ahí quiero verte mis respetos diría serenazgo así, que chucha eres webon??!! " +
+                        "\neres del campo, un campesino, un indigente, no eres ni mierda on!!! " +
+                        "\nNO ERES NI MIERDA, NO ERES NADA!!, piensa pe chato piensa, Estudia sonso!!");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ponerse a Estudiar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Fuera CT...",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                                AlertDialog alertDialog2 = new AlertDialog.Builder(menu_opciones.this).create();
+                                LayoutInflater factory = LayoutInflater.from(menu_opciones.this);
+                                final View view = factory.inflate(R.layout.mensaje_conciencia, null);
+                                alertDialog2.setView(view);
+                                alertDialog2.setButton(AlertDialog.BUTTON_POSITIVE, "PI PI PI...",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                alertDialog2.show();
+                            }
+                        });
+                alertDialog.show();
             }
         });
 
