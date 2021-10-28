@@ -1,26 +1,46 @@
 package com.example.servimaq.op_documentos;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
+import android.view.KeyEvent;
+
 
 import com.example.servimaq.R;
+import com.example.servimaq.db.TemplatePDF;
 import com.github.barteksc.pdfviewer.PDFView;
 
 import java.io.File;
+
 
 public class GenerarDocumentoPDF extends AppCompatActivity {
 
     private PDFView pdfVistaPrevia;
     private File file;
+
+    private TemplatePDF templatePDF;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==event.KEYCODE_BACK){
+            finish();
+            Intent intent = new Intent(GenerarDocumentoPDF.this, Documentos.class);
+            startActivity(intent);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(GenerarDocumentoPDF.this, Documentos.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +49,17 @@ public class GenerarDocumentoPDF extends AppCompatActivity {
 
         pdfVistaPrevia = findViewById(R.id.pdfVistaPrevia);
 
+        //HABILITAR BOTON - ATRAS - EN LA BARRA DE NAVEGACION************
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
             file = new File(bundle.getString("ruta",""));
+
         }
         pdfVistaPrevia.fromFile(file).enableSwipe(true).swipeHorizontal(false).enableDoubletap(true).enableAntialiasing(true).load();
 
     }
 
-
-    /*@Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == RESULT_OK) {
-
-        }
-    }*/
 }
