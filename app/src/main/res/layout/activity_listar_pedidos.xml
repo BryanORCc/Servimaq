@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".op_pedidos.Listar_pedidos"
     android:orientation="vertical"
-    android:background="#0B0A0A">
+    android:background="@drawable/carretera_campo">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lvListaPedidos"
+        android:dividerHeight="5dp"
         />
 
 </LinearLayout>

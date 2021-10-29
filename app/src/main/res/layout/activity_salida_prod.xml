@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@drawable/carretera_campo"
     tools:context=".op_salida.Salida_Prod"
     android:orientation="vertical"
     android:clickable="false"
