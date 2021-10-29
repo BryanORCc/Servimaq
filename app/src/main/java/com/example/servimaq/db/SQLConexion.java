@@ -4,6 +4,7 @@ package com.example.servimaq.db;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.StrictMode;
+import android.os.StrictMode.ThreadPolicy;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
@@ -294,7 +295,8 @@ public class SQLConexion {
 
     //--REGISTRO LISTADO--------------------------------------------------------
     public void RegistroListado(Context c, int Cantidad, double Precio ,double Total, String codPedido, String LlantaId){
-        int contar= 1;
+        int contar= 1, extraer = 0;
+        String ceros = "";
         String ItemId="";
         PreparedStatement registro;
         try {
@@ -307,17 +309,26 @@ public class SQLConexion {
             }
             else {
                 do {
+                    extraer = Integer.parseInt(rs.getString(1).substring(rs.getString(1).length()-1,rs.getString(1).length()));
+                    if(extraer!=contar && contar<=9 && contar>=1){
+                        ItemId = "SVQSAC-00"+contar;
+                        break;
+                    }else if(extraer==0){
+                        extraer = Integer.parseInt(rs.getString(1).substring(rs.getString(1).length()-2,rs.getString(1).length()));
+                        ceros = rs.getString(1).substring(rs.getString(1).length()-2,rs.getString(1).length());
+                        if(extraer!=contar && contar<=99 && contar>=10){
+                            ItemId = "SVQSAC-0"+contar;
+                            break;
+                        }else if(ceros.equals("00")){
+                            extraer = Integer.parseInt(rs.getString(1).substring(rs.getString(1).length()-3,rs.getString(1).length()));
+                            if(extraer!=contar && contar<=999 && contar>=100){
+                                ItemId = "SVQSAC-" + contar;
+                                break;
+                            }
+                        }
+                    }
                     contar++;
                 } while (rs.next());
-            }
-
-            if(contar<=9){
-                ItemId = "SVQSAC-00"+contar;
-            }else if(contar>=10 && contar<=99){
-                ItemId = "SVQSAC-0"+contar;
-            }
-            else if(contar>=100 && contar<=999) {
-                ItemId = "SVQSAC-" + contar;
             }
 
             //VALIDAR DATOS REGISTRADOS------------------------------------------------------------------------

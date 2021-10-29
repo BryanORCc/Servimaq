@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".op_catalogo.Catalogo"
-    android:background="#000000"
+    android:background="@drawable/carretera_campo"
     android:orientation="vertical"
     >
 
