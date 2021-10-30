@@ -101,18 +101,24 @@ public class menu_opciones extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog alertDialog = new AlertDialog.Builder(menu_opciones.this).create();
-                alertDialog.setTitle("QUE ME TOCAS OE, CUANDO TE FALTE EL RESPETO");
-                alertDialog.setMessage("Ubícate en primer lugar cuando seas estudiante, de inicial, primaria, secundaria " +
-                        "\ny superior, ahí quiero verte mis respetos diría ingeniero así, que chucha eres webon??!! " +
-                        "\neres del campo, un campesino, un indigente, no eres ni mierda on!!! " +
-                        "\nNO ERES NI MIERDA, NO ERES NADA!!, piensa pe chato piensa, Estudia sonso!!");
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ponerse a Estudiar",
+                alertDialog.setTitle("Hola, somos el grupo 2");
+                alertDialog.setIcon(getResources().getDrawable(R.drawable.icono_scrum));
+                alertDialog.setMessage("Integrantes: \n \n→ AYALA CÁRDENAS, GIANCARLO\n" +
+                        "→ QUISPE ESTEBAN, ELIZABETH\n" +
+                        "→ RODRIGUEZ CCAMA, BRYAN OSCAR\n" +
+                        "→ VELAZCO VERA, RENATO FRANCISCO\n" +
+                        "→ OQUENDO HUANCA, JOSE\n" +
+                        "→ BERROA ATAYUPANQUI, JONATHAN\n" +
+                        "→ GAMARRA RAMOS, GIOVANI\n" +
+                        "→ VALCÁRCEL ARENAS, KATHERINE\n" +
+                        "→ YAURI DIAZ, DANIEL");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Continuar",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
                             }
                         });
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Fuera CT...",
+                /*alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Fuera CT...",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
@@ -128,7 +134,7 @@ public class menu_opciones extends AppCompatActivity {
                                         });
                                 alertDialog2.show();
                             }
-                        });
+                        });*/
                 alertDialog.show();
             }
         });

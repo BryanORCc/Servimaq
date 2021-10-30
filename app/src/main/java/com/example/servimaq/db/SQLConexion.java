@@ -328,7 +328,16 @@ public class SQLConexion {
                         }
                     }
                     contar++;
-                } while (rs.next());
+                }while (rs.next());
+
+                if(contar<=9 && extraer!=contar){
+                    ItemId = "SVQSAC-00"+contar;
+                }else if(contar>=10 && contar<=99 && extraer!=contar){
+                    ItemId = "SVQSAC-0"+contar;
+                }
+                else if(contar>=100 && contar<=999 && extraer!=contar) {
+                    ItemId = "SVQSAC-" + contar;
+                }
             }
 
             //VALIDAR DATOS REGISTRADOS------------------------------------------------------------------------
