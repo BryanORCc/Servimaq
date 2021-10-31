@@ -1,5 +1,6 @@
 package com.example.servimaq.fragments_registros;
 
+import android.content.Context;
 import android.content.Intent;
 
 import android.graphics.Color;
@@ -22,6 +23,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bumptech.glide.Glide;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
@@ -31,7 +36,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class fragment_vehiculo extends Fragment {
@@ -41,43 +52,11 @@ public class fragment_vehiculo extends Fragment {
     Button btnFoto, btnRegistrar, btnCancelar;
     ImageView ivFoto;
 
-    String ruta;
+    String ruta = null;
 
     private StorageReference mStorage;
     StorageReference FilePath;
     Uri uri;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public fragment_vehiculo() {
-        // Required empty public constructor
-    }
-
-    // TODO: Rename and change types and number of parameters
-    public static fragment_vehiculo newInstance(String param1, String param2) {
-        fragment_vehiculo fragment = new fragment_vehiculo();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -103,7 +82,7 @@ public class fragment_vehiculo extends Fragment {
             }
         });
 
-        //BOTON REGISTRO -----------------------------------------------------------------------------------------
+        //BOTON REGISTRO ***********************************************************************************************************
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,22 +90,242 @@ public class fragment_vehiculo extends Fragment {
                         MarcaVehiculo = etMarcaVehiculo.getText().toString(),
                         ModeloVehiculo = etModeloVehiculo.getText().toString();
 
-                FilePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        ruta = taskSnapshot.getMetadata().getPath();
-                        Log.e("direccion: ","++"+ruta);
+                if(ValidarCampos()){
+
+                    if(uri!=null){
+                        //EVENTO DEL FIRESTORE***********************************************************************************************************
+                        FilePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                ruta = taskSnapshot.getMetadata().getPath();
+                                Log.e("direccion: ","++"+ruta);
+
+                                Map<String,String> insertar = new HashMap<>();
+
+                                if(ruta==null){
+                                    ruta = "";
+                                }
+
+                                insertar.put("FotoVehiculo",ruta);
+
+                                //EVENTO DEL HEROKU DB SELECCION***********************************************************************************************************
+                                AndroidNetworking.initialize(getContext());
+                                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Vehiculo_POST_SELECT.php")
+                                        .setPriority(Priority.IMMEDIATE)
+                                        .build()
+                                        .getAsJSONObject(new JSONObjectRequestListener() {
+                                            @Override
+                                            public void onResponse(JSONObject response) {
+
+                                                String VehiculoId="", aux_VehiculoId="";
+                                                int contar= 1, extraer = 0;
+
+                                                try {
+                                                    String validarDatos = response.getString("data");
+                                                    Log.e("respuesta: ",""+validarDatos);
+                                                    //--VALIDAR LOGIN***********************************************************************************************************
+                                                    if(validarDatos.equals("[]")){
+                                                        VehiculoId = "VH01";
+                                                    }else{
+                                                        JSONArray array = response.getJSONArray("data");
+                                                        do {
+                                                            JSONObject object = array.getJSONObject(contar-1);
+                                                            aux_VehiculoId = object.getString("vehiculoid");
+                                                            Log.e("id del vehiculo: ",""+aux_VehiculoId);
+                                                            extraer = Integer.parseInt(aux_VehiculoId.substring(aux_VehiculoId.length()-1));
+                                                            Log.e("Extraccion: ",""+extraer);
+                                                            if(extraer!=contar && contar<=9 && contar>=1){
+                                                                VehiculoId = "VH0"+contar;
+                                                                break;
+                                                            }else if(extraer==0){
+                                                                if(extraer!=contar && contar<=99 && contar>=10){
+                                                                    VehiculoId = "VH"+contar;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            contar++;
+                                                        } while (contar <= array.length());
+
+                                                        if(contar<=9 && extraer!=contar){
+                                                            VehiculoId = "VH0"+contar;
+                                                        }else if(contar>=10 && contar<=99 && extraer!=contar){
+                                                            VehiculoId = "VH"+contar;
+                                                        }
+
+                                                        insertar.put("VehiculoId",VehiculoId);
+                                                        insertar.put("TipoVehiculo",TipoVehiculo);
+                                                        insertar.put("MarcaVehiculo",MarcaVehiculo);
+                                                        insertar.put("ModeloVehiculo",ModeloVehiculo);
+
+                                                        JSONObject datosJSON = new JSONObject(insertar);
+
+                                                        //EVENTO DEL HEROKU DB INSERCION***********************************************************************************************************
+                                                        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Vehiculo_POST_INSERT.php")
+                                                                .addJSONObjectBody(datosJSON)
+                                                                .setPriority(Priority.MEDIUM)
+                                                                .build()
+                                                                .getAsJSONObject(new JSONObjectRequestListener() {
+                                                                    @Override
+                                                                    public void onResponse(JSONObject response) {
+
+                                                                        try {
+                                                                            String validarDatos = response.getString("data");
+                                                                            Log.e("respuesta insercion: ",""+validarDatos);
+
+                                                                            EstiloToast(getContext(),"Registro de Vehiculo exitoso");
+
+                                                                        } catch (JSONException e) {
+                                                                            e.printStackTrace();
+                                                                        }
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onError(ANError anError) {
+                                                                        Toast.makeText(getContext(),"Error:" + anError.getErrorDetail(),Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                });//FIN EVENTO DEL HEROKU DB INSERCION------------------------------------------------
+                                                    }
+
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+
+
+                                            }
+
+                                            @Override
+                                            public void onError(ANError anError) {
+                                                Toast.makeText(getContext(),"Error:" + anError.getErrorDetail(),Toast.LENGTH_SHORT).show();
+                                            }
+
+                                        });//FIN EVENTO DEL HEROKU DB SELECCION------------------------------------------------
+
+                                Limpiar();
+                                etTipoVehiculo.requestFocus();
+                            }
+
+                        }); //FIN FIRESTORE----------------------
+                    }else{
+
+                        Map<String,String> insertar = new HashMap<>();
 
                         if(ruta==null){
                             ruta = "";
                         }
+                        insertar.put("FotoVehiculo",ruta);
 
-                        SQLConexion db = new SQLConexion();
-                        db.RegistroVehiculo(getContext(),TipoVehiculo, ruta,MarcaVehiculo,ModeloVehiculo);
+                        //EVENTO DEL HEROKU DB SELECCION************************************************************************************************************
+                        AndroidNetworking.initialize(getContext());
+                        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Vehiculo_POST_SELECT.php")
+                                .setPriority(Priority.IMMEDIATE)
+                                .build()
+                                .getAsJSONObject(new JSONObjectRequestListener() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+
+                                        String VehiculoId = "", aux_VehiculoId = "";
+                                        int contar = 1, extraer = 0;
+
+                                        try {
+                                            String validarDatos = response.getString("data");
+                                            Log.e("respuesta: ", "" + validarDatos);
+                                            //--VALIDAR LOGIN********************************************************************************************************
+                                            if (validarDatos.equals("[]")) {
+                                                VehiculoId = "VH01";
+                                            } else {
+                                                JSONArray array = response.getJSONArray("data");
+                                                do {
+                                                    JSONObject object = array.getJSONObject(contar-1);
+                                                    Log.e("id del vehiculo: ", "aca llegue");
+                                                    aux_VehiculoId = object.getString("vehiculoid");
+                                                    Log.e("id del vehiculo ::: ", "" + aux_VehiculoId);
+                                                    extraer = Integer.parseInt(aux_VehiculoId.substring(aux_VehiculoId.length() - 1));
+
+                                                    if (extraer != contar && contar <= 9 && contar >= 1) {
+                                                        VehiculoId = "VH0" + contar;
+                                                        break;
+                                                    } else if (extraer == 0) {
+                                                        if (extraer != contar && contar <= 99 && contar >= 10) {
+                                                            VehiculoId = "VH" + contar;
+                                                            break;
+                                                        }
+                                                    }
+                                                    contar++;
+                                                } while (contar <= array.length());
+
+                                                if (contar <= 9 && extraer != contar) {
+                                                    VehiculoId = "VH0" + contar;
+                                                } else if (contar >= 10 && contar <= 99 && extraer != contar) {
+                                                    VehiculoId = "VH" + contar;
+                                                }
+
+                                                Log.e("id del vehiculo: ", "" + VehiculoId);
+
+                                                insertar.put("VehiculoId", VehiculoId);
+                                                insertar.put("TipoVehiculo", TipoVehiculo);
+                                                insertar.put("MarcaVehiculo", MarcaVehiculo);
+                                                insertar.put("ModeloVehiculo", ModeloVehiculo);
+
+                                                JSONObject datosJSON = new JSONObject(insertar);
+
+                                                //EVENTO DEL HEROKU DB INSERCION*****************************************************************************
+                                                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Vehiculo_POST_INSERT.php")
+                                                        .addJSONObjectBody(datosJSON)
+                                                        .setPriority(Priority.MEDIUM)
+                                                        .build()
+                                                        .getAsJSONObject(new JSONObjectRequestListener() {
+                                                            @Override
+                                                            public void onResponse(JSONObject response) {
+
+                                                                try {
+                                                                    String validarDatos = response.getString("data");
+                                                                    Log.e("respuesta insercion: ", "" + validarDatos);
+
+                                                                    EstiloToast(getContext(), "Registro de Vehiculo exitoso");
+
+                                                                } catch (JSONException e) {
+                                                                    e.printStackTrace();
+                                                                }
+
+                                                            }
+
+                                                            @Override
+                                                            public void onError(ANError anError) {
+                                                                Toast.makeText(getContext(), "Error:" + anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        });//FIN EVENTO DEL HEROKU DB INSERCION------------------------------------------------
+
+                                            }
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+
+                                    }
+
+                                    @Override
+                                    public void onError(ANError anError) {
+                                        Toast.makeText(getContext(),"Error:" + anError.getErrorDetail(),Toast.LENGTH_SHORT).show();
+                                    }
+
+                                });//EVENTO DEL HEROKU DB SELECCION------------------------------------------------
+
                         Limpiar();
                         etTipoVehiculo.requestFocus();
                     }
-                });
+
+                }else{
+                    Toast toast = Toast.makeText(getContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
+                    View vista = toast.getView();
+                    vista.setBackgroundResource(R.drawable.estilo_color_x);
+                    toast.setGravity(Gravity.CENTER,0,0);
+                    TextView text = (TextView) vista.findViewById(android.R.id.message);
+                    text.setTextColor(Color.parseColor("#FFFFFF"));
+                    text.setTextSize(15);
+                    toast.show();
+                }//FIN IF----------------------
 
             }
         });
@@ -167,6 +366,21 @@ public class fragment_vehiculo extends Fragment {
         etMarcaVehiculo.setText("");
         etModeloVehiculo.setText("");
         ruta = null;
+    }
+
+    public boolean ValidarCampos(){
+        return !etTipoVehiculo.getText().toString().trim().isEmpty() && !etMarcaVehiculo.getText().toString().trim().isEmpty() && !etModeloVehiculo.getText().toString().trim().isEmpty();
+    }
+
+    public void EstiloToast(Context c, String mensaje){
+        Toast toast = Toast.makeText(c,mensaje, Toast.LENGTH_SHORT);
+        View vista = toast.getView();
+        vista.setBackgroundResource(R.drawable.estilo_color_x);
+        toast.setGravity(Gravity.CENTER,0,0);
+        TextView text = (TextView) vista.findViewById(android.R.id.message);
+        text.setTextColor(Color.parseColor("#FFFFFF"));
+        text.setTextSize(16);
+        toast.show();
     }
 
 

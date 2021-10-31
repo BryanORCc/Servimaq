@@ -129,4 +129,5 @@ public class MainActivity extends AppCompatActivity {
         return !etUsuario.getText().toString().trim().isEmpty() && !etContra.getText().toString().trim().isEmpty();
     }
 
+
 }
