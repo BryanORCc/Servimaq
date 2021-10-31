@@ -1,71 +1,40 @@
 package com.example.servimaq.fragments_registros;
 
-import android.content.Intent;
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
-import com.example.servimaq.menu_opciones;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link fragment_medidas#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class fragment_medidas extends Fragment {
 
     View vista;
     EditText etAncho, etDiametro, etPerfil, etMmcocada;
     Button  btnRegistrar, btnCancelar;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-
-    public fragment_medidas() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment fragment_medidas.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static fragment_medidas newInstance(String param1, String param2) {
-        fragment_medidas fragment = new fragment_medidas();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,15 +52,123 @@ public class fragment_medidas extends Fragment {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int Ancho=Integer.parseInt(etAncho.getText().toString());
-                int Diametro=Integer.parseInt(etDiametro.getText().toString());
-                int Perfil=Integer.parseInt(etPerfil.getText().toString());
-                int MmCocada=Integer.parseInt(etMmcocada.getText().toString());
+                String Ancho=etAncho.getText().toString(),
+                        Diametro=etDiametro.getText().toString(),
+                        Perfil=etPerfil.getText().toString(),
+                        MmCocada=etMmcocada.getText().toString();
 
-                SQLConexion db = new SQLConexion();
-                db.RegistroMedida(getContext(),Ancho,Diametro,Perfil,MmCocada);
-                Limpiar();
-                etAncho.requestFocus();
+                if(ValidarCampos()){
+
+                    Map<String,String> insertar = new HashMap<>();
+
+                    //EVENTO DEL HEROKU DB SELECCION************************************************************************************************************
+                    AndroidNetworking.initialize(getContext());
+                    AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_MedidaLlanta_POST_SELECT.php")
+                            .setPriority(Priority.IMMEDIATE)
+                            .build()
+                            .getAsJSONObject(new JSONObjectRequestListener() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+
+                                    String MedidaLlantaId = "", aux_MedidaLlantaId = "";
+                                    int contar = 1, extraer = 0;
+
+                                    try {
+                                        String validarDatos = response.getString("data");
+                                        Log.e("respuesta: ", "" + validarDatos);
+                                        //--VALIDAR LOGIN********************************************************************************************************
+                                        if (validarDatos.equals("[]")) {
+                                            MedidaLlantaId = "MD01";
+                                        } else {
+                                            JSONArray array = response.getJSONArray("data");
+                                            do {
+                                                JSONObject object = array.getJSONObject(contar-1);
+                                                Log.e("id: ", "aca llegue");
+                                                aux_MedidaLlantaId = object.getString("medidallantaid");
+                                                Log.e("id::: ", "" + aux_MedidaLlantaId);
+                                                extraer = Integer.parseInt(aux_MedidaLlantaId.substring(aux_MedidaLlantaId.length() - 1));
+
+                                                if (extraer != contar && contar <= 9 && contar >= 1) {
+                                                    MedidaLlantaId = "MD0" + contar;
+                                                    break;
+                                                } else if (extraer == 0) {
+                                                    if (extraer != contar && contar <= 99 && contar >= 10) {
+                                                        MedidaLlantaId = "MD" + contar;
+                                                        break;
+                                                    }
+                                                }
+                                                contar++;
+                                            } while (contar <= array.length());
+
+                                            if (contar <= 9 && extraer != contar) {
+                                                MedidaLlantaId = "MD0" + contar;
+                                            } else if (contar >= 10 && contar <= 99 && extraer != contar) {
+                                                MedidaLlantaId = "MD" + contar;
+                                            }
+
+                                            Log.e("id: ", "" + MedidaLlantaId);
+                                        }
+
+                                        insertar.put("MedidaLlantaId", MedidaLlantaId);
+                                        insertar.put("Ancho", Ancho);
+                                        insertar.put("Diametro", Diametro);
+                                        insertar.put("Perfil", Perfil);
+                                        insertar.put("MmCocada", MmCocada);
+
+                                        JSONObject datosJSON = new JSONObject(insertar);
+
+                                        //EVENTO DEL HEROKU DB INSERCION*****************************************************************************
+                                        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_MedidaLlanta_POST_INSERT.php")
+                                                .addJSONObjectBody(datosJSON)
+                                                .setPriority(Priority.MEDIUM)
+                                                .build()
+                                                .getAsJSONObject(new JSONObjectRequestListener() {
+                                                    @Override
+                                                    public void onResponse(JSONObject response) {
+
+                                                        try {
+                                                            String validarDatos = response.getString("data");
+                                                            Log.e("respuesta insercion: ", "" + validarDatos);
+                                                            EstiloToast(getContext(), "Registro de Medida exitoso");
+
+                                                            Limpiar();
+                                                            etAncho.requestFocus();
+
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                    }
+
+                                                    @Override
+                                                    public void onError(ANError anError) {
+                                                        Toast.makeText(getContext(), "Error:" + anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });//FIN EVENTO DEL HEROKU DB INSERCION------------------------------------------------
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                public void onError(ANError anError) {
+                                    Toast.makeText(getContext(),"Error:" + anError.getErrorDetail(),Toast.LENGTH_SHORT).show();
+                                }
+
+                            });//EVENTO DEL HEROKU DB SELECCION------------------------------------------------
+
+
+
+                }else{
+                    Toast toast = Toast.makeText(getContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
+                    View vista = toast.getView();
+                    vista.setBackgroundResource(R.drawable.estilo_color_x);
+                    toast.setGravity(Gravity.CENTER,0,0);
+                    TextView text = (TextView) vista.findViewById(android.R.id.message);
+                    text.setTextColor(Color.parseColor("#FFFFFF"));
+                    text.setTextSize(15);
+                    toast.show();
+                }//FIN IF----------------------
             }
         });
 
@@ -111,5 +188,21 @@ public class fragment_medidas extends Fragment {
         etDiametro.setText("");
         etPerfil.setText("");
         etMmcocada.setText("");
+    }
+
+    public boolean ValidarCampos(){
+        return !etAncho.getText().toString().trim().isEmpty() && !etDiametro.getText().toString().trim().isEmpty() && !etPerfil.getText().toString().trim().isEmpty()
+                && !etMmcocada.getText().toString().trim().isEmpty();
+    }
+
+    public void EstiloToast(Context c, String mensaje){
+        Toast toast = Toast.makeText(c,mensaje, Toast.LENGTH_SHORT);
+        View vista = toast.getView();
+        vista.setBackgroundResource(R.drawable.estilo_color_x);
+        toast.setGravity(Gravity.CENTER,0,0);
+        TextView text = (TextView) vista.findViewById(android.R.id.message);
+        text.setTextColor(Color.parseColor("#FFFFFF"));
+        text.setTextSize(16);
+        toast.show();
     }
 }

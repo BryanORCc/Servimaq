@@ -152,45 +152,47 @@ public class fragment_vehiculo extends Fragment {
                                                             VehiculoId = "VH"+contar;
                                                         }
 
-                                                        insertar.put("VehiculoId",VehiculoId);
-                                                        insertar.put("TipoVehiculo",TipoVehiculo);
-                                                        insertar.put("MarcaVehiculo",MarcaVehiculo);
-                                                        insertar.put("ModeloVehiculo",ModeloVehiculo);
+                                                    }//FIN IF VALIDACION REGISTROS----------------------------------------------------------------
 
-                                                        JSONObject datosJSON = new JSONObject(insertar);
+                                                    insertar.put("VehiculoId",VehiculoId);
+                                                    insertar.put("TipoVehiculo",TipoVehiculo);
+                                                    insertar.put("MarcaVehiculo",MarcaVehiculo);
+                                                    insertar.put("ModeloVehiculo",ModeloVehiculo);
 
-                                                        //EVENTO DEL HEROKU DB INSERCION***********************************************************************************************************
-                                                        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Vehiculo_POST_INSERT.php")
-                                                                .addJSONObjectBody(datosJSON)
-                                                                .setPriority(Priority.MEDIUM)
-                                                                .build()
-                                                                .getAsJSONObject(new JSONObjectRequestListener() {
-                                                                    @Override
-                                                                    public void onResponse(JSONObject response) {
+                                                    JSONObject datosJSON = new JSONObject(insertar);
 
-                                                                        try {
-                                                                            String validarDatos = response.getString("data");
-                                                                            Log.e("respuesta insercion: ",""+validarDatos);
+                                                    //EVENTO DEL HEROKU DB INSERCION***********************************************************************************************************
+                                                    AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Vehiculo_POST_INSERT.php")
+                                                            .addJSONObjectBody(datosJSON)
+                                                            .setPriority(Priority.MEDIUM)
+                                                            .build()
+                                                            .getAsJSONObject(new JSONObjectRequestListener() {
+                                                                @Override
+                                                                public void onResponse(JSONObject response) {
 
-                                                                            EstiloToast(getContext(),"Registro de Vehiculo exitoso");
+                                                                    try {
+                                                                        String validarDatos = response.getString("data");
+                                                                        Log.e("respuesta insercion: ",""+validarDatos);
 
-                                                                        } catch (JSONException e) {
-                                                                            e.printStackTrace();
-                                                                        }
+                                                                        EstiloToast(getContext(),"Registro de Vehiculo exitoso");
+                                                                        Limpiar();
+                                                                        etTipoVehiculo.requestFocus();
 
+                                                                    } catch (JSONException e) {
+                                                                        e.printStackTrace();
                                                                     }
 
-                                                                    @Override
-                                                                    public void onError(ANError anError) {
-                                                                        Toast.makeText(getContext(),"Error:" + anError.getErrorDetail(),Toast.LENGTH_SHORT).show();
-                                                                    }
-                                                                });//FIN EVENTO DEL HEROKU DB INSERCION------------------------------------------------
-                                                    }
+                                                                }
+
+                                                                @Override
+                                                                public void onError(ANError anError) {
+                                                                    Toast.makeText(getContext(),"Error:" + anError.getErrorDetail(),Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            });//FIN EVENTO DEL HEROKU DB INSERCION------------------------------------------------
 
                                                 } catch (JSONException e) {
                                                     e.printStackTrace();
                                                 }
-
 
                                             }
 
@@ -201,8 +203,6 @@ public class fragment_vehiculo extends Fragment {
 
                                         });//FIN EVENTO DEL HEROKU DB SELECCION------------------------------------------------
 
-                                Limpiar();
-                                etTipoVehiculo.requestFocus();
                             }
 
                         }); //FIN FIRESTORE----------------------
@@ -261,42 +261,43 @@ public class fragment_vehiculo extends Fragment {
                                                 }
 
                                                 Log.e("id del vehiculo: ", "" + VehiculoId);
+                                            }//FIN IF VALIDACION REGISTROS----------------------------------------------------------------
 
-                                                insertar.put("VehiculoId", VehiculoId);
-                                                insertar.put("TipoVehiculo", TipoVehiculo);
-                                                insertar.put("MarcaVehiculo", MarcaVehiculo);
-                                                insertar.put("ModeloVehiculo", ModeloVehiculo);
+                                            insertar.put("VehiculoId", VehiculoId);
+                                            insertar.put("TipoVehiculo", TipoVehiculo);
+                                            insertar.put("MarcaVehiculo", MarcaVehiculo);
+                                            insertar.put("ModeloVehiculo", ModeloVehiculo);
 
-                                                JSONObject datosJSON = new JSONObject(insertar);
+                                            JSONObject datosJSON = new JSONObject(insertar);
 
-                                                //EVENTO DEL HEROKU DB INSERCION*****************************************************************************
-                                                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Vehiculo_POST_INSERT.php")
-                                                        .addJSONObjectBody(datosJSON)
-                                                        .setPriority(Priority.MEDIUM)
-                                                        .build()
-                                                        .getAsJSONObject(new JSONObjectRequestListener() {
-                                                            @Override
-                                                            public void onResponse(JSONObject response) {
+                                            //EVENTO DEL HEROKU DB INSERCION*****************************************************************************
+                                            AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Vehiculo_POST_INSERT.php")
+                                                    .addJSONObjectBody(datosJSON)
+                                                    .setPriority(Priority.MEDIUM)
+                                                    .build()
+                                                    .getAsJSONObject(new JSONObjectRequestListener() {
+                                                        @Override
+                                                        public void onResponse(JSONObject response) {
 
-                                                                try {
-                                                                    String validarDatos = response.getString("data");
-                                                                    Log.e("respuesta insercion: ", "" + validarDatos);
+                                                            try {
+                                                                String validarDatos = response.getString("data");
+                                                                Log.e("respuesta insercion: ", "" + validarDatos);
 
-                                                                    EstiloToast(getContext(), "Registro de Vehiculo exitoso");
+                                                                EstiloToast(getContext(), "Registro de Vehiculo exitoso");
+                                                                Limpiar();
+                                                                etTipoVehiculo.requestFocus();
 
-                                                                } catch (JSONException e) {
-                                                                    e.printStackTrace();
-                                                                }
-
+                                                            } catch (JSONException e) {
+                                                                e.printStackTrace();
                                                             }
 
-                                                            @Override
-                                                            public void onError(ANError anError) {
-                                                                Toast.makeText(getContext(), "Error:" + anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        });//FIN EVENTO DEL HEROKU DB INSERCION------------------------------------------------
+                                                        }
 
-                                            }
+                                                        @Override
+                                                        public void onError(ANError anError) {
+                                                            Toast.makeText(getContext(), "Error:" + anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });//FIN EVENTO DEL HEROKU DB INSERCION------------------------------------------------
 
                                         } catch (JSONException e) {
                                             e.printStackTrace();
@@ -311,9 +312,6 @@ public class fragment_vehiculo extends Fragment {
                                     }
 
                                 });//EVENTO DEL HEROKU DB SELECCION------------------------------------------------
-
-                        Limpiar();
-                        etTipoVehiculo.requestFocus();
                     }
 
                 }else{
