@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject datosJSON = new JSONObject(datosCuenta);
                     AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Cuenta_POST_ALL.php")
                             .addJSONObjectBody(datosJSON)
-                            .setPriority(Priority.MEDIUM)
+                            .setPriority(Priority.IMMEDIATE)
                             .build()
                             .getAsJSONObject(new JSONObjectRequestListener() {
                                 @Override
