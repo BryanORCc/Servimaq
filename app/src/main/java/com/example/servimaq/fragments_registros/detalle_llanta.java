@@ -277,7 +277,7 @@ public class detalle_llanta extends Fragment {
 
                     @Override
                     public void onError(ANError anError) {
-
+                        Toast.makeText(getContext(),"Error: "+anError.toString(),Toast.LENGTH_SHORT).show();
                     }
                 });
 

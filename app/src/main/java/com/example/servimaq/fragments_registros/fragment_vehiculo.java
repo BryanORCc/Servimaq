@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ import java.util.Map;
 
 public class fragment_vehiculo extends Fragment {
 
+    ScrollView svScroll;
     View vista;
     EditText etTipoVehiculo, etMarcaVehiculo, etModeloVehiculo;
     Button btnFoto, btnRegistrar, btnCancelar;
@@ -66,6 +68,7 @@ public class fragment_vehiculo extends Fragment {
         //STORAGE FIREBASE*****************************
         mStorage = FirebaseStorage.getInstance().getReference();
 
+        svScroll = vista.findViewById(R.id.svScroll);
         etTipoVehiculo = vista.findViewById(R.id.etTipoVehiculo);
         etMarcaVehiculo = vista.findViewById(R.id.etMarcaVehiculo);
         etModeloVehiculo = vista.findViewById(R.id.etModeloVehiculo);
@@ -182,7 +185,9 @@ public class fragment_vehiculo extends Fragment {
 
                                                                         EstiloToast(getContext(),"Registro de Vehiculo exitoso");
                                                                         Limpiar();
+                                                                        svScroll.fullScroll(ScrollView.FOCUS_UP);
                                                                         etTipoVehiculo.requestFocus();
+
 
                                                                     } catch (JSONException e) {
                                                                         e.printStackTrace();
@@ -297,6 +302,7 @@ public class fragment_vehiculo extends Fragment {
 
                                                                 EstiloToast(getContext(), "Registro de Vehiculo exitoso");
                                                                 Limpiar();
+                                                                svScroll.fullScroll(ScrollView.FOCUS_UP);
                                                                 etTipoVehiculo.requestFocus();
 
                                                             } catch (JSONException e) {

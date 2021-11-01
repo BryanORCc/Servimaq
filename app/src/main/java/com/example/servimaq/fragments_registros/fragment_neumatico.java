@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.menu_opciones;
@@ -27,15 +32,15 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link fragment_neumatico#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class fragment_neumatico extends Fragment {
 
     View vista;
@@ -56,43 +61,9 @@ public class fragment_neumatico extends Fragment {
     ArrayList<String> fotoVehiculo = new ArrayList<>();
     ArrayList<String> fotoNeumatico = new ArrayList<>();
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public fragment_neumatico() {
-        // Required empty public constructor
-    }
-
-
-    // TODO: Rename and change types and number of parameters
-    public static fragment_neumatico newInstance(String param1, String param2) {
-        fragment_neumatico fragment = new fragment_neumatico();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
 
         vista = inflater.inflate(R.layout.fragment_neumatico, container, false);
 
@@ -108,36 +79,53 @@ public class fragment_neumatico extends Fragment {
         Spi_especificacion=vista.findViewById(R.id.Spi_especificacion);
         Spi_vehiculo=vista.findViewById(R.id.Spi_vehiculo);
 
+        //CARGAR DATO DEL SPINNER - VEHICULO *************************************************************************************************************************
+        //EVENTO DEL HEROKU - DB SELECCION VEHICULO ************************************************************************************************************
+        AndroidNetworking.initialize(getContext());
+        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Vehiculo_POST_SELECT_ALL.php")
+                .setPriority(Priority.IMMEDIATE)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
 
-        //CARGAR DATO DEL SPINNER DE VEHICULO ------------------------------------------------------------------
-        try {
-            SQLConexion conexion =new SQLConexion();
-            Statement st = conexion.ConexionDB(getContext()).createStatement();
-            ResultSet rs = st.executeQuery("select * from T_Vehiculo");
+                        try {
+                            String validarDatos = response.getString("data");
+                            String aux_VehiculoId = "";
+                            int contar = 1;
 
-            if (!rs.next()) {
-                VehiculoId = "";
-            }
-            else {
-                do {
-                    op.add(rs.getString(1));
-                    vehiculo="→ TipoVehiculo: "+rs.getString(2)+
-                            "\n→ MarcaVehiculo: "+ rs.getString(4) +
-                            "\n→ ModeloVehiculo: "+rs.getString(5);
+                            Log.e("respuesta: ", "" + validarDatos);
 
-                    info.add(vehiculo);
-                    fotoVehiculo.add(rs.getString(3));
-                } while (rs.next());///va agregando cada ID
+                            if (!validarDatos.equals("[]")) {
+                                JSONArray array = response.getJSONArray("data");
+                                do {
+                                    JSONObject object = array.getJSONObject(contar-1);
+                                    Log.e("Recorrido: ", "aca llegue");
+                                    aux_VehiculoId = object.getString("vehiculoid");
 
-                ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, op);
+                                    op.add(aux_VehiculoId);
+                                    vehiculo = "→ Tipo de Vehiculo: "+object.getString("tipovehiculo")+
+                                            "\n→ Marca del Vehiculo: "+ object.getString("marcavehiculo") +
+                                            "\n→ Modelo del Vehiculo: "+object.getString("modelovehiculo");
+                                    info.add(vehiculo);
+                                    fotoVehiculo.add(object.getString("fotovehiculo"));
+                                    contar++;
+                                } while (contar <= array.length());
 
-                Spi_vehiculo.setAdapter(adapter);
+                                ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, op);
+                                Spi_vehiculo.setAdapter(adapter);
+                            }
 
-            }
-        }
-        catch (Exception e) {
-            Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(getContext(),"Error: "+anError.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
         Spi_vehiculo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -147,20 +135,28 @@ public class fragment_neumatico extends Fragment {
                 //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
                 ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
 
-                StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-                StorageReference islandRef = storageRef.child(fotoVehiculo.get(i));
-                final long ONE_MEGABYTE = 480 * 480;
+                if(!fotoVehiculo.get(i).isEmpty()){
+                    StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                    StorageReference islandRef = storageRef.child(fotoVehiculo.get(i));
+                    final long ONE_MEGABYTE = 480 * 480;
 
-                islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                    @Override
-                    public void onSuccess(byte[] bytes) {
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                        ivFoto_vehiculo.setImageBitmap(bitmap);
-                    }
-                });
+                    islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                            ivFoto_vehiculo.setImageBitmap(bitmap);
 
-                Tv_ver1.setText(info.get(i));
-                VehiculoId=op.get(i);
+                            Tv_ver1.setText(info.get(i));
+                            VehiculoId=op.get(i);
+                        }
+                    });
+                }else{
+                    Tv_ver1.setText(info.get(i));
+                    VehiculoId=op.get(i);
+                    ivFoto_vehiculo.setImageDrawable(getResources().getDrawable(R.drawable.no_imagen));
+                }
+
+
             }
 
             @Override
@@ -168,6 +164,7 @@ public class fragment_neumatico extends Fragment {
 
             }
         });
+
 
         //CARGAR DATO DEL SPINNER DE DETALLE DE LLANTA  ----------------------------------------------------------------------
         try {
