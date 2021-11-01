@@ -73,6 +73,7 @@ public class fragment_medidas extends Fragment {
 
                                     try {
                                         String validarDatos = response.getString("data");
+                                        int pos = 1;
                                         Log.e("respuesta: ", "" + validarDatos);
                                         //--VALIDAR LOGIN********************************************************************************************************
                                         if (validarDatos.equals("[]")) {
@@ -84,16 +85,21 @@ public class fragment_medidas extends Fragment {
                                                 Log.e("Recorrido: ", "aca llegue");
                                                 aux_MedidaLlantaId = object.getString("medidallantaid");
                                                 Log.e("id capturado::: ", "" + aux_MedidaLlantaId);
-                                                extraer = Integer.parseInt(aux_MedidaLlantaId.substring(aux_MedidaLlantaId.length() - 1));
+                                                extraer = Integer.parseInt(aux_MedidaLlantaId.substring(aux_MedidaLlantaId.length() - pos));
 
                                                 if (extraer != contar && contar <= 9 && contar >= 1) {
                                                     MedidaLlantaId = "MD0" + contar;
                                                     break;
-                                                } else if (extraer == 0) {
-                                                    if (extraer != contar && contar <= 99 && contar >= 10) {
-                                                        MedidaLlantaId = "MD" + contar;
+                                                }else if(extraer==0){
+                                                    pos = 2;
+                                                    extraer = Integer.parseInt(aux_MedidaLlantaId.substring(aux_MedidaLlantaId.length()-pos));
+                                                    if(extraer!=contar && contar<=99 && contar>=10){
+                                                        MedidaLlantaId = "MD"+contar;
                                                         break;
                                                     }
+                                                }else if(extraer!=contar && contar<=99 && contar>=10){
+                                                    MedidaLlantaId = "MD"+contar;
+                                                    break;
                                                 }
                                                 contar++;
                                             } while (contar <= array.length());
