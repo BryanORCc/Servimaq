@@ -122,6 +122,7 @@ public class fragment_vehiculo extends Fragment {
 
                                                 try {
                                                     String validarDatos = response.getString("data");
+                                                    int pos = 1;
                                                     Log.e("respuesta: ",""+validarDatos);
                                                     //--VALIDAR LOGIN***********************************************************************************************************
                                                     if(validarDatos.equals("[]")){
@@ -131,17 +132,22 @@ public class fragment_vehiculo extends Fragment {
                                                         do {
                                                             JSONObject object = array.getJSONObject(contar-1);
                                                             aux_VehiculoId = object.getString("vehiculoid");
-                                                            Log.e("id del vehiculo: ",""+aux_VehiculoId);
-                                                            extraer = Integer.parseInt(aux_VehiculoId.substring(aux_VehiculoId.length()-1));
-                                                            Log.e("Extraccion: ",""+extraer);
+                                                            Log.e("id capturado: ",""+aux_VehiculoId);
+                                                            extraer = Integer.parseInt(aux_VehiculoId.substring(aux_VehiculoId.length()-pos));
+
                                                             if(extraer!=contar && contar<=9 && contar>=1){
                                                                 VehiculoId = "VH0"+contar;
                                                                 break;
                                                             }else if(extraer==0){
+                                                                pos = 2;
+                                                                extraer = Integer.parseInt(aux_VehiculoId.substring(aux_VehiculoId.length()-pos));
                                                                 if(extraer!=contar && contar<=99 && contar>=10){
                                                                     VehiculoId = "VH"+contar;
                                                                     break;
                                                                 }
+                                                            }else if(extraer!=contar && contar<=99 && contar>=10){
+                                                                VehiculoId = "VH"+contar;
+                                                                break;
                                                             }
                                                             contar++;
                                                         } while (contar <= array.length());
@@ -229,6 +235,7 @@ public class fragment_vehiculo extends Fragment {
 
                                         try {
                                             String validarDatos = response.getString("data");
+                                            int pos = 1;
                                             Log.e("respuesta: ", "" + validarDatos);
                                             //--VALIDAR LOGIN********************************************************************************************************
                                             if (validarDatos.equals("[]")) {
@@ -237,19 +244,24 @@ public class fragment_vehiculo extends Fragment {
                                                 JSONArray array = response.getJSONArray("data");
                                                 do {
                                                     JSONObject object = array.getJSONObject(contar-1);
-                                                    Log.e("id del vehiculo: ", "aca llegue");
+                                                    Log.e("Recorrido: ", "aca llegue");
                                                     aux_VehiculoId = object.getString("vehiculoid");
-                                                    Log.e("id del vehiculo ::: ", "" + aux_VehiculoId);
-                                                    extraer = Integer.parseInt(aux_VehiculoId.substring(aux_VehiculoId.length() - 1));
+                                                    Log.e("id capturado::: ", "" + aux_VehiculoId);
+                                                    extraer = Integer.parseInt(aux_VehiculoId.substring(aux_VehiculoId.length() - pos));
 
                                                     if (extraer != contar && contar <= 9 && contar >= 1) {
                                                         VehiculoId = "VH0" + contar;
                                                         break;
-                                                    } else if (extraer == 0) {
-                                                        if (extraer != contar && contar <= 99 && contar >= 10) {
-                                                            VehiculoId = "VH" + contar;
+                                                    }else if(extraer==0){
+                                                        pos = 2;
+                                                        extraer = Integer.parseInt(aux_VehiculoId.substring(aux_VehiculoId.length()-pos));
+                                                        if(extraer!=contar && contar<=99 && contar>=10){
+                                                            VehiculoId = "VH"+contar;
                                                             break;
                                                         }
+                                                    }else if(extraer!=contar && contar<=99 && contar>=10){
+                                                        VehiculoId = "VH"+contar;
+                                                        break;
                                                     }
                                                     contar++;
                                                 } while (contar <= array.length());
@@ -260,7 +272,7 @@ public class fragment_vehiculo extends Fragment {
                                                     VehiculoId = "VH" + contar;
                                                 }
 
-                                                Log.e("id del vehiculo: ", "" + VehiculoId);
+                                                Log.e("id a insertar: ", "" + VehiculoId);
                                             }//FIN IF VALIDACION REGISTROS----------------------------------------------------------------
 
                                             insertar.put("VehiculoId", VehiculoId);
@@ -364,6 +376,7 @@ public class fragment_vehiculo extends Fragment {
         etMarcaVehiculo.setText("");
         etModeloVehiculo.setText("");
         ruta = null;
+        uri = null;
     }
 
     public boolean ValidarCampos(){

@@ -20,7 +20,6 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.servimaq.R;
-import com.example.servimaq.db.SQLConexion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +33,6 @@ public class fragment_medidas extends Fragment {
     View vista;
     EditText etAncho, etDiametro, etPerfil, etMmcocada;
     Button  btnRegistrar, btnCancelar;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,9 +81,9 @@ public class fragment_medidas extends Fragment {
                                             JSONArray array = response.getJSONArray("data");
                                             do {
                                                 JSONObject object = array.getJSONObject(contar-1);
-                                                Log.e("id: ", "aca llegue");
+                                                Log.e("Recorrido: ", "aca llegue");
                                                 aux_MedidaLlantaId = object.getString("medidallantaid");
-                                                Log.e("id::: ", "" + aux_MedidaLlantaId);
+                                                Log.e("id capturado::: ", "" + aux_MedidaLlantaId);
                                                 extraer = Integer.parseInt(aux_MedidaLlantaId.substring(aux_MedidaLlantaId.length() - 1));
 
                                                 if (extraer != contar && contar <= 9 && contar >= 1) {
@@ -106,7 +104,7 @@ public class fragment_medidas extends Fragment {
                                                 MedidaLlantaId = "MD" + contar;
                                             }
 
-                                            Log.e("id: ", "" + MedidaLlantaId);
+                                            Log.e("id a insertar: ", "" + MedidaLlantaId);
                                         }
 
                                         insertar.put("MedidaLlantaId", MedidaLlantaId);
