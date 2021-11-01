@@ -209,8 +209,12 @@ public class fragment_neumatico extends Fragment {
                                     contar++;
                                 } while (contar <= array.length());
 
-                                ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, op1);
-                                Spi_especificacion.setAdapter(adapter);
+                                try {
+                                    ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, op1);
+                                    Spi_especificacion.setAdapter(adapter);
+                                }catch (Exception e){
+
+                                }
                             }
 
                         } catch (JSONException e) {

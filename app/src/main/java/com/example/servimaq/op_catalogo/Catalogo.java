@@ -8,6 +8,7 @@ import androidx.core.widget.ImageViewCompat;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,10 +20,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
 import com.example.servimaq.menu_opciones;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -94,13 +103,13 @@ public class Catalogo extends AppCompatActivity {
                 tipo_busqueda = tipos.get(i);
 
                 if(tipo_busqueda.equalsIgnoreCase("Seleccionar busqueda por...")){
-                    campo_busqueda = "L.LlantaId";
+                    campo_busqueda = "llantaid";
                     svBusqueda.setQueryHint("ingresar codigo...");
                 }else if(tipo_busqueda.equalsIgnoreCase("codigo")){
-                    campo_busqueda = "L.LlantaId";
+                    campo_busqueda = "llantaid";
                     svBusqueda.setQueryHint("ingresar codigo...");
                 }else if(tipo_busqueda.equalsIgnoreCase("marca")){
-                    campo_busqueda = "D.NombreMarca";
+                    campo_busqueda = "nombremarca";
                     svBusqueda.setQueryHint("ingresar marca...");
                 }
                 //Toast.makeText(getApplicationContext(),tipo_busqueda,Toast.LENGTH_SHORT).show();
@@ -114,40 +123,74 @@ public class Catalogo extends AppCompatActivity {
         //INICIAR CONEXION A LA DB--------------------------
         SQLConexion db = new SQLConexion();
 
+
+
+        //SELECT DE BUSQUEDA INICIAL - CATALOGO *****************************************************************************************************************************
         //CONDICION PARA MOSTRAR DATOS-------------------------------------------------------------------------------------------------------
         if(cadena_texto_buscar==null){
-            //--SELECT INFORMACION NEUMATICO------------------------------------------------------------------------------
-            try {
-                Statement st = db.ConexionDB(getApplicationContext()).createStatement();
-                ResultSet rs = st.executeQuery("select L.LlantaId, L.Precio, L.Stock, D.DetalleLlantaId, D.NombreMarca, D.IndiceCarga, D.IndiceVelocidad, D.FotoLlanta, D.Construccion, D.PresionMaxima,"+
-                        "D.Clasificacion, D.FechaFabricacion, V.VehiculoId, V.FotoVehiculo, V.MarcaVehiculo, V.ModeloVehiculo, M.MedidaLlantaId, M.Ancho, M.Diametro,"+
-                        "M.Perfil, M.MmCocada, V.TipoVehiculo from T_Llanta L inner join T_DetalleLlanta D on L.DetalleLlantaId = D.DetalleLlantaId "+
-                        "inner join T_Vehiculo V on L.VehiculoId = V.VehiculoId inner join T_MedidaLlanta M on M.MedidaLlantaId = D.MedidaLlantaId;");
 
-                if (!rs.next()) {
-                    Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
-                }else {
-                    do {
-                        lista.add(new items_lista(rs.getString(1), rs.getString(5), rs.getString(6),rs.getString(7), rs.getString(9),
-                                rs.getString(11), rs.getString(12), rs.getString(8), rs.getString(14), rs.getString(15), rs.getString(16),
-                                rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(3), rs.getInt(10), rs.getDouble(2),
-                                rs.getString(22), rs.getString(4), rs.getString(13), rs.getString(17)));
-                    } while (rs.next());///va agregando cada ID
-                }
-                rs.close();
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-            }//FIN SELECT-------------
+            AndroidNetworking.initialize(getApplicationContext());
+            AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/Catalogo_POST_BUSQUEDA_INICIAL.php")
+                    .setPriority(Priority.IMMEDIATE)
+                    .build()
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
-            prod_catalogo = new producto_catalogo(Catalogo.this,lista);
-            lvListaProductos.setAdapter(prod_catalogo);
+                            try {
+                                String validarDatos = response.getString("data");
+                                int contar = 1;
+
+                                if (validarDatos.equals("[]")) {
+                                    Toast.makeText(getApplicationContext(), "No se encontraron registros", Toast.LENGTH_SHORT).show();
+                                } else {
+
+                                    JSONArray array = response.getJSONArray("data");
+                                    do {
+                                        JSONObject object = array.getJSONObject(contar - 1);
+
+                                        lista.add(new items_lista(object.getString("llantaid"),object.getString("nombremarca"),object.getInt("indicecarga"),
+                                                object.getString("indicevelocidad"),object.getString("construccion"),object.getString("clasificacion"),
+                                                object.getString("fechafabricacion"),object.getString("fotollanta"),object.getString("fotovehiculo"),
+                                                object.getString("marcavehiculo"),object.getString("modelovehiculo"),object.getInt("ancho"),
+                                                object.getInt("diametro"),object.getInt("perfil"),Double.parseDouble(object.getString("mmcocada")),
+                                                object.getInt("stock"),object.getString("presionmaxima"),object.getString("precio"),
+                                                object.getString("tipovehiculo"),object.getString("detallellantaid"),object.getString("vehiculoid"),
+                                                object.getString("medidallantaid")));
+                                        contar++;
+                                    } while (contar <= array.length());
+
+                                }
+                            } catch (JSONException e) {
+                                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+
+                            try {
+                                prod_catalogo = new producto_catalogo(Catalogo.this,lista);
+                                lvListaProductos.setAdapter(prod_catalogo);
+                            }catch (Exception e){
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onError(ANError anError) {
+                            Toast.makeText(getApplicationContext(),"Error: "+anError.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
         }else{ //Uso del buscador---------------------------------------------
-            prod_catalogo = new producto_catalogo(Catalogo.this,lista);
-            lvListaProductos.setAdapter(prod_catalogo);
+            try {
+                prod_catalogo = new producto_catalogo(Catalogo.this,lista);
+                lvListaProductos.setAdapter(prod_catalogo);
+            }catch (Exception e){
+
+            }
         }
 
-        //EXPANDIR CUADRO DE BUSQUEDA*********************************************
+
+        //EXPANDIR CUADRO DE BUSQUEDA***********************************************************
         svBusqueda.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,7 +198,7 @@ public class Catalogo extends AppCompatActivity {
             }
         });
 
-        //CERRAR CUADRO DE BUSQUEDA*********************************************
+        //CERRAR CUADRO DE BUSQUEDA*************************************************************
         svBusqueda.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
@@ -178,6 +221,7 @@ public class Catalogo extends AppCompatActivity {
                 lista.clear();
                 cadena_texto_buscar = texto_buscar;
                 Toast.makeText(getApplicationContext(),texto_buscar,Toast.LENGTH_SHORT).show();
+
                 //--SELECT INFORMACION NEUMATICO------------------------------------------------------------------------------
                 try {
                     Statement st = db.ConexionDB(getApplicationContext()).createStatement();
@@ -191,10 +235,10 @@ public class Catalogo extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
                     }else {
                         do {
-                            lista.add(new items_lista(rs.getString(1), rs.getString(5), rs.getString(6),rs.getString(7), rs.getString(9),
+                            /*lista.add(new items_lista(rs.getString(1), rs.getString(5), rs.getString(6),rs.getString(7), rs.getString(9),
                                     rs.getString(11), rs.getString(12), rs.getString(8), rs.getString(14), rs.getString(15), rs.getString(16),
                                     rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(3), rs.getInt(10), rs.getDouble(2),
-                                    rs.getString(22), rs.getString(4), rs.getString(13), rs.getString(17)));
+                                    rs.getString(22), rs.getString(4), rs.getString(13), rs.getString(17)));*/
                         } while (rs.next());///va agregando cada ID
 
                     }

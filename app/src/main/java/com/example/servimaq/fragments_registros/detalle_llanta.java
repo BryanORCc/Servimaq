@@ -266,8 +266,14 @@ public class detalle_llanta extends Fragment {
                                     contar++;
                                 } while (contar <= array.length());
 
-                                ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, opciones);
-                                spinner1.setAdapter(adapter);
+
+                                try {
+                                    ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, opciones);
+                                    spinner1.setAdapter(adapter);
+                                }catch (Exception e){
+
+                                }
+
                             }
 
                         } catch (JSONException e) {

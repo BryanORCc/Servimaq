@@ -157,7 +157,6 @@ public class producto_catalogo extends BaseAdapter {
 
                 String llantaId = Lista.get(i).getLlantaId(),
                         NombreMarca = Lista.get(i).getNombreMarca(),
-                        IndiceCarga = Lista.get(i).getIndiceCarga(),
                         IndiceVelocidad = Lista.get(i).getIndiceVelocidad(),
                         Construccion = Lista.get(i).getConstruccion(),
                         Clasificacion = Lista.get(i).getClasificacion(),
@@ -165,14 +164,15 @@ public class producto_catalogo extends BaseAdapter {
                         FotoLlanta = Lista.get(i).getFotoLlanta(),
                         FotoVehiculo = Lista.get(i).getFotoVehiculo(),
                         MarcaVehiculo = Lista.get(i).getMarcaVehiculo(),
-                        ModeloVehiculo = Lista.get(i).getModeloVehiculo();
+                        ModeloVehiculo = Lista.get(i).getModeloVehiculo(),
+                        PresionMaxima = Lista.get(i).getPresionMaxima(),
+                        Precio = Lista.get(i).getPrecio();
                 int Ancho = Lista.get(i).getAncho(),
                         Diametro = Lista.get(i).getDiametro(),
                         Perfil = Lista.get(i).getPerfil(),
-                        MmCocada = Lista.get(i).getMmCocada(),
                         Stock = Lista.get(i).getStock(),
-                        PresionMaxima = Lista.get(i).getPresionMaxima();
-                double Precio = Lista.get(i).getPrecio();
+                        IndiceCarga = Lista.get(i).getIndiceCarga();
+                double MmCocada = Lista.get(i).getMmCocada();
                 String TipoVehiculo = Lista.get(i).getTipoVehiculo(),
                         DetalleLlantaId = Lista.get(i).getDetalleLlantaId(),
                         VehiculoId = Lista.get(i).getVehiculoId(),
@@ -214,23 +214,23 @@ public class producto_catalogo extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 String llantaId = Lista.get(i).getLlantaId(),
-                NombreMarca = Lista.get(i).getNombreMarca(),
-                IndiceCarga = Lista.get(i).getIndiceCarga(),
-                IndiceVelocidad = Lista.get(i).getIndiceVelocidad(),
-                Construccion = Lista.get(i).getConstruccion(),
-                Clasificacion = Lista.get(i).getClasificacion(),
-                FechaFabricacion = Lista.get(i).getFechaFabricacion(),
-                FotoLlanta = Lista.get(i).getFotoLlanta(),
-                FotoVehiculo = Lista.get(i).getFotoVehiculo(),
-                MarcaVehiculo = Lista.get(i).getMarcaVehiculo(),
-                ModeloVehiculo = Lista.get(i).getModeloVehiculo();
+                        NombreMarca = Lista.get(i).getNombreMarca(),
+                        IndiceVelocidad = Lista.get(i).getIndiceVelocidad(),
+                        Construccion = Lista.get(i).getConstruccion(),
+                        Clasificacion = Lista.get(i).getClasificacion(),
+                        FechaFabricacion = Lista.get(i).getFechaFabricacion(),
+                        FotoLlanta = Lista.get(i).getFotoLlanta(),
+                        FotoVehiculo = Lista.get(i).getFotoVehiculo(),
+                        MarcaVehiculo = Lista.get(i).getMarcaVehiculo(),
+                        ModeloVehiculo = Lista.get(i).getModeloVehiculo(),
+                        PresionMaxima = Lista.get(i).getPresionMaxima(),
+                        Precio = Lista.get(i).getPrecio();
                 int Ancho = Lista.get(i).getAncho(),
-                Diametro = Lista.get(i).getDiametro(),
-                Perfil = Lista.get(i).getPerfil(),
-                MmCocada = Lista.get(i).getMmCocada(),
-                Stock = Lista.get(i).getStock(),
-                PresionMaxima = Lista.get(i).getPresionMaxima();
-                double Precio = Lista.get(i).getPrecio();
+                        Diametro = Lista.get(i).getDiametro(),
+                        Perfil = Lista.get(i).getPerfil(),
+                        Stock = Lista.get(i).getStock(),
+                        IndiceCarga = Lista.get(i).getIndiceCarga();
+                double MmCocada = Lista.get(i).getMmCocada();
                 String TipoVehiculo = Lista.get(i).getTipoVehiculo(),
                         DetalleLlantaId = Lista.get(i).getDetalleLlantaId(),
                         VehiculoId = Lista.get(i).getVehiculoId(),

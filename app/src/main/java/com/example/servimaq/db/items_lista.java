@@ -2,15 +2,15 @@ package com.example.servimaq.db;
 
 public class items_lista {
 
-    private String LlantaId, NombreMarca, IndiceCarga, IndiceVelocidad, Construccion, Clasificacion, FechaFabricacion, FotoLlanta,
-            FotoVehiculo, MarcaVehiculo, ModeloVehiculo;
-    private int Ancho, Diametro, Perfil, MmCocada, Stock, PresionMaxima;
-    private double Precio;
+    private String LlantaId, NombreMarca, IndiceVelocidad, Construccion, Clasificacion, FechaFabricacion, FotoLlanta,
+            FotoVehiculo, MarcaVehiculo, ModeloVehiculo, PresionMaxima, Precio;
+    private int Ancho, Diametro, Perfil, Stock, IndiceCarga;
+    private double MmCocada;
     private String TipoVehiculo, DetalleLlantaId, VehiculoId, MedidaLlantaId;
 
-    public items_lista(String llantaId, String nombreMarca, String indiceCarga, String indiceVelocidad, String construccion, String clasificacion, String fechaFabricacion,
-                       String fotoLlanta, String fotoVehiculo, String marcaVehiculo, String modeloVehiculo, int ancho, int diametro, int perfil, int mmCocada, int stock,
-                       int presionMaxima, double precio, String tipoVehiculo, String detalleLlantaId, String vehiculoId, String medidaLlantaId) {
+    public items_lista(String llantaId, String nombreMarca, int indiceCarga, String indiceVelocidad, String construccion, String clasificacion, String fechaFabricacion,
+                       String fotoLlanta, String fotoVehiculo, String marcaVehiculo, String modeloVehiculo, int ancho, int diametro, int perfil, double mmCocada, int stock,
+                       String presionMaxima, String precio, String tipoVehiculo, String detalleLlantaId, String vehiculoId, String medidaLlantaId) {
         LlantaId = llantaId;
         NombreMarca = nombreMarca;
         IndiceCarga = indiceCarga;
@@ -49,14 +49,6 @@ public class items_lista {
 
     public void setNombreMarca(String nombreMarca) {
         NombreMarca = nombreMarca;
-    }
-
-    public String getIndiceCarga() {
-        return IndiceCarga;
-    }
-
-    public void setIndiceCarga(String indiceCarga) {
-        IndiceCarga = indiceCarga;
     }
 
     public String getIndiceVelocidad() {
@@ -123,6 +115,14 @@ public class items_lista {
         ModeloVehiculo = modeloVehiculo;
     }
 
+    public String getPresionMaxima() {
+        return PresionMaxima;
+    }
+
+    public void setPresionMaxima(String presionMaxima) {
+        PresionMaxima = presionMaxima;
+    }
+
     public int getAncho() {
         return Ancho;
     }
@@ -147,14 +147,6 @@ public class items_lista {
         Perfil = perfil;
     }
 
-    public int getMmCocada() {
-        return MmCocada;
-    }
-
-    public void setMmCocada(int mmCocada) {
-        MmCocada = mmCocada;
-    }
-
     public int getStock() {
         return Stock;
     }
@@ -163,20 +155,28 @@ public class items_lista {
         Stock = stock;
     }
 
-    public int getPresionMaxima() {
-        return PresionMaxima;
+    public int getIndiceCarga() {
+        return IndiceCarga;
     }
 
-    public void setPresionMaxima(int presionMaxima) {
-        PresionMaxima = presionMaxima;
+    public void setIndiceCarga(int indiceCarga) {
+        IndiceCarga = indiceCarga;
     }
 
-    public double getPrecio() {
+    public String getPrecio() {
         return Precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(String precio) {
         Precio = precio;
+    }
+
+    public double getMmCocada() {
+        return MmCocada;
+    }
+
+    public void setMmCocada(double mmCocada) {
+        MmCocada = mmCocada;
     }
 
     public String getTipoVehiculo() {
