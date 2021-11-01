@@ -49,54 +49,6 @@ public class SQLConexion {
     }
 
 
-    //--REGISTRO TIPO LLANTA--------------------------------------------------------
-    public void RegistroDetalleLlanta(Context c, String NombreMarca, int IndiceCarga, String IndiceVelocidad, String FotoLlanta, String Construccion, int PresionMaxima, String Clasificacion, String FechaFabricacion, String MedidaLlantaId){
-
-        PreparedStatement registro;
-        int contar= 1;
-        String DetalleLlantaId="";
-        try {
-            //CONTAR REGISTROS------------------------------------------------------------------------
-            Statement st = ConexionDB(c).createStatement();
-            ResultSet rs = st.executeQuery("select * from T_DetalleLlanta");
-
-            if (!rs.next()) {
-                DetalleLlantaId = "DN01";
-            }
-            else {
-                do {
-                    contar++;
-                } while (rs.next());
-            }
-
-            if(contar<=9){
-                DetalleLlantaId = "DN0"+contar;
-            }else if(contar>=10 && contar<=99){
-                DetalleLlantaId = "DN"+contar;
-            }
-
-            //REGISTRAR EN TABLA----------------------------------------------------------------------
-            registro = ConexionDB(c).prepareStatement("insert into T_DetalleLlanta values(?,?,?,?,?,?,?,?,?,?)");
-            registro.setString(1,DetalleLlantaId);
-            registro.setString(2,NombreMarca);
-            registro.setInt(3,IndiceCarga);
-            registro.setString(4,IndiceVelocidad);
-            registro.setString(5,FotoLlanta);
-            registro.setString(6,Construccion);
-            registro.setInt(7,PresionMaxima);
-            registro.setString(8,Clasificacion);
-            registro.setString(9,FechaFabricacion);
-            registro.setString(10,MedidaLlantaId);
-            registro.executeUpdate();
-            EstiloToast(c,"Registro exitoso");
-            registro.close();
-        } catch (Exception e) {
-            Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-
     //--REGISTRAR LLANTAS MAS NA --------------------------------------------------------
     public void RegistroLlanta(Context c, double Precio , int Stock ,String DetalleLlantaId,String VehiculoId){
 
