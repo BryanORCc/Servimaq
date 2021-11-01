@@ -140,6 +140,8 @@ public class fragment_neumatico extends Fragment {
 
                 //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
                 ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+                ((TextView) adapterView.getChildAt(0)).setBackgroundColor(Color.parseColor("#835E5A5A"));
+                ((TextView) adapterView.getChildAt(0)).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
                 if(!fotoVehiculo.get(i).isEmpty()){
                     StorageReference storageRef = FirebaseStorage.getInstance().getReference();
@@ -230,6 +232,8 @@ public class fragment_neumatico extends Fragment {
 
                 //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
                 ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+                ((TextView) adapterView.getChildAt(0)).setBackgroundColor(Color.parseColor("#835E5A5A"));
+                ((TextView) adapterView.getChildAt(0)).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
                 if(!fotoNeumatico.get(i).isEmpty()){
                     StorageReference storageRef = FirebaseStorage.getInstance().getReference();
