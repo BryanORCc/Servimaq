@@ -873,18 +873,31 @@ public class detalle_producto extends AppCompatActivity {
                     toast.show();
                 }
 
-                OcultarEditText();
-                MostrarTextView();
-                btnModificar.setVisibility(View.VISIBLE);
-                btnConfirmar.setVisibility(View.GONE);
-                llOpcionVehiculoId.setVisibility(View.GONE);
-                llOpcionDetalleLlantaId.setVisibility(View.GONE);
-                llOpcionMedidaLlantaId.setVisibility(View.GONE);
 
-                //CAMBIO DE ESTADO y Mostrar TOAST
-                opcionModificar = false;
-                mensajeToast = "Producto Modificado";
-                MostrarToast(mensajeToast);
+                if(ValidarCampos()){
+                    OcultarEditText();
+                    MostrarTextView();
+                    btnModificar.setVisibility(View.VISIBLE);
+                    btnConfirmar.setVisibility(View.GONE);
+                    llOpcionVehiculoId.setVisibility(View.GONE);
+                    llOpcionDetalleLlantaId.setVisibility(View.GONE);
+                    llOpcionMedidaLlantaId.setVisibility(View.GONE);
+
+                    //CAMBIO DE ESTADO y Mostrar TOAST
+                    opcionModificar = false;
+                    mensajeToast = "Producto Modificado";
+                    MostrarToast(mensajeToast);
+                }else{
+                    Toast toast = Toast.makeText(getApplicationContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
+                    View vista = toast.getView();
+                    vista.setBackgroundResource(R.drawable.estilo_color_x);
+                    toast.setGravity(Gravity.CENTER,0,0);
+                    TextView text = (TextView) vista.findViewById(android.R.id.message);
+                    text.setTextColor(Color.parseColor("#FFFFFF"));
+                    text.setTextSize(15);
+                    toast.show();
+                }
+
 
             }
         });
