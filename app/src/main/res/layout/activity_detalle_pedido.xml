@@ -63,7 +63,7 @@
                 android:id="@+id/EtNombreCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textNoSuggestions"
                 android:hint="Nombre:"
                 android:textSize="15dp"
                 android:textColorHint="#F4F4F4"
@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Apellidos:"
-                android:inputType="text"
+                android:inputType="textNoSuggestions"
                 android:textSize="15dp"
                 android:textColorHint="#F4F4F4"
                 android:textColor="#FFFFFF"/>

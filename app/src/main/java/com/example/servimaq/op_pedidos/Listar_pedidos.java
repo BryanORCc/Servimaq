@@ -14,17 +14,29 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 
+import com.example.servimaq.db.items_lista;
 import com.example.servimaq.db.pedido_lista;
 import com.example.servimaq.menu_opciones;
 import com.example.servimaq.op_catalogo.Catalogo;
+import com.example.servimaq.op_catalogo.producto_catalogo;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Listar_pedidos extends AppCompatActivity {
     TextView tvcodigo,tvNombre, tvApellido, tvCorreo, tvFechaActual, tvFechaEntrega, tvPModoPago, tvDni;
@@ -74,33 +86,65 @@ public class Listar_pedidos extends AppCompatActivity {
         textView.setTextColor(Color.WHITE);
         textView.setHintTextColor(Color.WHITE);
 
-        //CARGA INICIAL DE DATOS/********************************************
+
+        //CARGA INICIAL DE DATOS/********************************************--------------------------------::::::::::::::::::::::::::::::::::
         SQLConexion db = new SQLConexion();
+
         if(cadena_texto_buscar==null) {
+            AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Pedido_POST_SELECT_ALL.php")
+                    .setPriority(Priority.IMMEDIATE)
+                    .build()
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                String validarDatos = response.getString("data");
+                                int contar = 1;
+
+                                if (validarDatos.equals("[]")) {
+                                    Toast.makeText(getApplicationContext(), "No se encontraron registros", Toast.LENGTH_SHORT).show();
+                                } else {
+
+                                    JSONArray array = response.getJSONArray("data");
+                                    do {
+                                        JSONObject object = array.getJSONObject(contar - 1);
+                                        lista.add(new pedido_lista(object.getString("codpedido"), object.getString("nombrescliente"),
+                                                object.getString("apellidoscliente"), object.getString("correo"), object.getString("fechaactual"),
+                                                object.getString("fechaentrega"), object.getString("modopago"), object.getInt("dni")));
+                                        contar++;
+                                    } while (contar <= array.length());
+
+                                }
+                            } catch (JSONException e) {
+                                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+
+                            try {
+                                pedi_catalogo = new Pedido_Catalogo(Listar_pedidos.this, lista);
+                                lvListaPedidos.setAdapter(pedi_catalogo);
+                            }catch (Exception e){
+                                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onError(ANError anError) {
+
+                        }
+                    });//FIN SELECT - HEROKU ---------------------
+
+
+        } else { //Uso del buscador---------------------------------------------
             try {
-                Statement st = db.ConexionDB(getApplicationContext()).createStatement();
-                ResultSet rs = st.executeQuery("select codPedido,NombresCliente,ApellidosCliente,Correo,FechaActual,FechaEntrega,ModoPago,DNI from T_Pedido;");
-                if (!rs.next()) {
-                    Toast.makeText(getApplicationContext(), "No se encontraron registros", Toast.LENGTH_SHORT).show();
-                } else {
-                    do {
-                        lista.add(new pedido_lista(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
-                    } while (rs.next());///va agregando cada ID
-
-                }
-                rs.close();
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                pedi_catalogo = new Pedido_Catalogo(Listar_pedidos.this, lista);
+                lvListaPedidos.setAdapter(pedi_catalogo);
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
             }
+        }
 
-            pedi_catalogo = new Pedido_Catalogo(Listar_pedidos.this, lista);
-            lvListaPedidos.setAdapter(pedi_catalogo);
-        }
-        else
-        { //Uso del buscador---------------------------------------------
-            pedi_catalogo = new Pedido_Catalogo(Listar_pedidos.this, lista);
-            lvListaPedidos.setAdapter(pedi_catalogo);
-        }
 
         //BUSCAR POR INGRESO DE TEXTO
         svBusquedaPedidos.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -111,31 +155,66 @@ public class Listar_pedidos extends AppCompatActivity {
             }
             @Override
             public boolean onQueryTextChange(String texto_buscar) {
-                lvListaPedidos.setAdapter(null);
-                lista.clear();
                 cadena_texto_buscar = texto_buscar;
                 Toast.makeText(getApplicationContext(),texto_buscar,Toast.LENGTH_SHORT).show();
-                //--SELECT INFORMACION PEDIDO------------------------------------------------------------------------------
-                try {
-                    Statement st = db.ConexionDB(getApplicationContext()).createStatement();
-                    ResultSet rs = st.executeQuery("select codPedido,NombresCliente,ApellidosCliente,Correo,FechaActual,FechaEntrega,ModoPago,DNI from T_Pedido"+
-                            " where codPedido like '%"+cadena_texto_buscar+"%';");
 
-                    if (!rs.next()) {
-                        Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
-                    }else {
-                        do {
-                            lista.add(new pedido_lista(rs.getString(1),rs.getString(2),rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
-                        } while (rs.next());///va agregando cada ID
-                    }
-                    rs.close();
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-                }//FIN SELECT-------------
-                pedi_catalogo = new Pedido_Catalogo(Listar_pedidos.this, lista);
-                lvListaPedidos.setAdapter(pedi_catalogo);
+                Map<String,String> insertar = new HashMap<>();
+                insertar.put("Busqueda","%"+cadena_texto_buscar+"%");
+                JSONObject datosJSON = new JSONObject(insertar);
+
+                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/Pedidos_POST_BUSQUEDA_WHERE.php")
+                        .addJSONObjectBody(datosJSON)
+                        .setPriority(Priority.IMMEDIATE)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                lvListaPedidos.setAdapter(null);
+                                lista.clear();
+
+                                try {
+                                    String validarDatos = response.getString("data");
+                                    int contar = 1;
+
+                                    if (validarDatos.equals("[]")) {
+                                        Toast.makeText(getApplicationContext(), "No se encontraron productos", Toast.LENGTH_SHORT).show();
+                                    } else {
+
+                                        JSONArray array = response.getJSONArray("data");
+                                        do {
+                                            JSONObject object = array.getJSONObject(contar - 1);
+                                            lista.add(new pedido_lista(object.getString("codpedido"), object.getString("nombrescliente"),
+                                                    object.getString("apellidoscliente"), object.getString("correo"), object.getString("fechaactual"),
+                                                    object.getString("fechaentrega"), object.getString("modopago"), object.getInt("dni")));
+                                            contar++;
+                                        } while (contar <= array.length());
+
+                                    }
+                                } catch (JSONException e) {
+                                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+
+                                try {
+                                    pedi_catalogo = new Pedido_Catalogo(Listar_pedidos.this, lista);
+                                    lvListaPedidos.setAdapter(pedi_catalogo);
+                                }catch (Exception e){
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+                                Toast.makeText(getApplicationContext(),"Error: "+anError.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        });//FIN SELECT BUSQUEDA - HEROKU ------------------------
+
                 return true;
             }
-        });
+
+        });//FIN OPCION BUSQUEDA -------------------------------------------
     }
+
+
 }

@@ -21,15 +21,26 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
+import com.example.servimaq.db.pedido_lista;
 import com.example.servimaq.fragments_registros.detalle_llanta;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class detalle_pedido extends AppCompatActivity {
     public String opcion="";
@@ -54,6 +65,8 @@ public class detalle_pedido extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_pedido);
+
+        AndroidNetworking.initialize(getApplicationContext());
 
         ///////EditText*******
         nombrecliente=findViewById(R.id.EtNombreCliente);
@@ -114,99 +127,176 @@ public class detalle_pedido extends AppCompatActivity {
             }
         });
 
-        ///carga de Datos inicial
-        try {
-            SQLConexion conexion =new SQLConexion();
-            Statement st = conexion.ConexionDB(getApplicationContext()).createStatement();
-            ResultSet rs = st.executeQuery("select * from T_Pedido where codPedido ='"+pedidoId+"';");
-            if (!rs.next()) {
-                Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
-            }
-            else {
-                do {
-                    Log.e("id3",""+rs.getString(2));
-                    nombrecliente.setText(rs.getString(2));
-                    apellidocliente.setText(rs.getString(3));
-                    correo.setText(rs.getString(4));
-                    FechaActual.setText(rs.getString(5));
-                    FechadePago.setText(rs.getString(6));
-                    dni.setText(""+rs.getInt(8));
-                } while (rs.next());
+        ///carga de Datos inicial -----------------------------------*******************-----------------------------------------------------------
+        Map<String,String> insertar = new HashMap<>();
+        insertar.put("codPedido",pedidoId);
+        JSONObject datosJSON = new JSONObject(insertar);
 
-            }
-        }
-        catch (Exception e) {
-            Toast.makeText(getApplicationContext(),"errror:",Toast.LENGTH_SHORT).show();
-        }
+        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Pedido_POST_SELECT_ALL_WHERE.php")
+                .addJSONObjectBody(datosJSON)
+                .setPriority(Priority.IMMEDIATE)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            String validarDatos = response.getString("data");
+                            int contar = 1;
+
+                            if (validarDatos.equals("[]")) {
+                                Toast.makeText(getApplicationContext(), "No se encontraron pedidos", Toast.LENGTH_SHORT).show();
+                            } else {
+
+                                JSONArray array = response.getJSONArray("data");
+                                do {
+                                    JSONObject object = array.getJSONObject(contar - 1);
+
+                                    //CARGAR DATOS AL EDIT TEXT---------------------------------------------------
+                                    nombrecliente.setText(object.getString("nombrescliente"));
+                                    apellidocliente.setText(object.getString("apellidoscliente"));
+                                    correo.setText(object.getString("correo"));
+                                    FechaActual.setText(object.getString("fechaactual"));
+                                    FechadePago.setText(object.getString("fechaentrega"));
+                                    dni.setText(""+object.getInt("dni"));
+
+                                    contar++;
+                                } while (contar <= array.length());
+
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(getApplicationContext(),"Error: "+anError.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });//FIN SELECT BUSQUEDA - HEROKU ------------------------
 
 
-        //////////////cargando los ID en un array/////
-        try {
-            SQLConexion conexion =new SQLConexion();
-            Statement st = conexion.ConexionDB(getApplicationContext()).createStatement();
-            ResultSet rs = st.executeQuery("select codPedido from T_Pedido");//llena con codigos de la tabla
-            if (!rs.next()) {
-                Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
-            }
-            else {
-                do {
-                    //ARRAY LIST - INFORMACION PARA EL SPINNER-------------
-                    CodigoPed.add(rs.getString(1));
-                    Log.e("id5","___ "+ pedidoId);
-                } while (rs.next());///va agregando cada ID
-                ArrayAdapter adaptador = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, CodigoPed);
-                codigoPedido.setAdapter(adaptador);
+        //CARGA DE los ID EN EL SPINNER -------------------------------****************************--------------------------------------------------
+        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Pedido_POST_SELECT.php")
+                .setPriority(Priority.IMMEDIATE)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
 
-                int z = -1;
-                do{
-                    z++;
-                }while (!CodigoPed.get(z).equalsIgnoreCase(pedidoId));
-                codigoPedido.setSelection(z);
+                        try {
+                            String validarDatos = response.getString("data");
+                            int contar= 1;
+                            Log.e("respuesta: ",""+validarDatos);
 
-            }
-        }
-        catch (Exception e) {
-            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
+                            if (!validarDatos.equals("[]")) {
+                                JSONArray array = response.getJSONArray("data");
+                                do {
+                                    //ARRAY LIST - INFORMACION PARA EL SPINNER-------------
+                                    JSONObject object = array.getJSONObject(contar-1);
+                                    CodigoPed.add(object.getString("codpedido"));
+                                    contar++;
+                                } while (contar <= array.length());
 
-        //SELECCION DE OPCION - SPINNER DETALLE :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+                                try {
+                                    ArrayAdapter adaptador = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, CodigoPed);
+                                    codigoPedido.setAdapter(adaptador);
+
+                                    int z = -1;
+                                    do{
+                                        z++;
+                                    }while (!CodigoPed.get(z).equalsIgnoreCase(pedidoId));
+                                    codigoPedido.setSelection(z);
+
+                                }catch (Exception e){
+                                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+
+                            }else{
+                                Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(c,"Error: "+anError.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                });//FIN Carga--------------------------------------------------------------------------------
+
+
+
+        //SELECCION DE OPCION - SPINNER DETALLE :::::::::::::::*******::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         codigoPedido.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 //CAMBIAR COLOR DE TEXTO DEL SPINNER---------------------------------------
                 ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
-
+                ((TextView) adapterView.getChildAt(0)).setBackgroundColor(Color.parseColor("#835E5A5A"));
+                ((TextView) adapterView.getChildAt(0)).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 pedidoId=CodigoPed.get(i);
 
                 //--CARGAR DATOS AL SPINNER DE PEDIDOS------------------------------------------------------------------------------
-                try {
-                    SQLConexion conexion =new SQLConexion();
-                    Statement st = conexion.ConexionDB(getApplicationContext()).createStatement();
-                    ResultSet rs = st.executeQuery("select * from T_Pedido where codPedido = '"+ pedidoId +"';");
-                    if (!rs.next()) {
-                        Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        do {
-                            nombrecliente.setText(rs.getString(2));
-                            apellidocliente.setText(rs.getString(3));
-                            correo.setText(rs.getString(4));
-                            FechaActual.setText(rs.getString(5));
-                            FechadePago.setText(rs.getString(6));
-                            dni.setText(""+rs.getInt(8));
-                        } while (rs.next());///
-                    }
-                }
-                catch (Exception e) {
-                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-                }
+                Map<String,String> insertar = new HashMap<>();
+                insertar.put("codPedido",pedidoId);
+                JSONObject datosJSON = new JSONObject(insertar);
+
+                //CARGAR DATOS SELECCIONADOS POR EL SPINNER
+                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Pedido_POST_SELECT_ALL_WHERE.php")
+                        .addJSONObjectBody(datosJSON)
+                        .setPriority(Priority.IMMEDIATE)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                try {
+                                    String validarDatos = response.getString("data");
+                                    int contar= 1;
+                                    Log.e("respuesta: ",""+validarDatos);
+
+                                    if (!validarDatos.equals("[]")) {
+                                        JSONArray array = response.getJSONArray("data");
+                                        do {
+                                            //ARRAY LIST - INFORMACION PARA EL SPINNER-------------
+                                            JSONObject object = array.getJSONObject(contar-1);
+
+                                            nombrecliente.setText(object.getString("nombrescliente"));
+                                            apellidocliente.setText(object.getString("apellidoscliente"));
+                                            correo.setText(object.getString("correo"));
+                                            FechaActual.setText(object.getString("fechaactual"));
+                                            FechadePago.setText(object.getString("fechaentrega"));
+                                            dni.setText(object.getString("dni"));
+
+                                            contar++;
+                                        } while (contar <= array.length());
+
+                                    }else{
+                                        Toast.makeText(c,"No se encontraron pedidos",Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e) {
+                                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+                                Toast.makeText(getApplicationContext(),"Error: "+anError.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        });//FIN SELECT----------------------------
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        }); //FIN SELECT DE OPCION - SPINNER ------------------------------------------*******
+
 
         /////////Calendario dinamico******
         FechadePago.setOnClickListener(new View.OnClickListener() {
@@ -217,46 +307,61 @@ public class detalle_pedido extends AppCompatActivity {
             }
         });
 
-        //CONFIRMAR CAMBIOS----------------------------------------------------------------------
+
+        //CONFIRMAR CAMBIO DE DATOS ---------------------------------------********************-------------------------------
         btnConfirmarP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //--**ACTUALIZAR DATOS DE LA TABLA MEDIDA------------------------------------------------------------------------------::::
-                try {
-                    SQLConexion conexion =new SQLConexion();
-                    PreparedStatement ps = conexion.ConexionDB(getApplicationContext()).prepareStatement(
-                            "update T_Pedido set NombresCliente = ?, ApellidosCliente = ?, Correo = ?, FechaEntrega = ?,ModoPago = ?,DNI = ? where codPedido = ?;");
+                Map<String,String> insertar = new HashMap<>();
+                insertar.put("NombresCliente",nombrecliente.getText().toString());
+                insertar.put("ApellidosCliente",apellidocliente.getText().toString());
+                insertar.put("Correo",correo.getText().toString());
+                insertar.put("FechaEntrega",FechadePago.getText().toString());
+                insertar.put("ModoPago",opcion);
+                insertar.put("DNI",dni.getText().toString());
+                insertar.put("codPedido",pedidoId);
+                JSONObject datosJSON = new JSONObject(insertar);
 
-                    ps.setString(1,nombrecliente.getText().toString());
-                    ps.setString(2,apellidocliente.getText().toString());
-                    ps.setString(3,correo.getText().toString());
-                    ps.setString(4,FechadePago.getText().toString());
-                    ps.setString(5,opcion);
-                    ps.setInt(6,Integer.parseInt(dni.getText().toString()));
-                    ps.setString(7,pedidoId);
 
-                    ps.executeUpdate();
-                    ps.close();
+                //--**ACTUALIZAR DATOS DE LA TABLA PEDIDO------------------------------------------------------------------------------::::::::::::::::::::::::::::
+                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Pedido_POST_UPDATE.php")
+                        .addJSONObjectBody(datosJSON)
+                        .setPriority(Priority.MEDIUM)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
 
-                    tvNombre.setText(nombrecliente.getText().toString());
-                    tvApellido.setText(apellidocliente.getText().toString());
-                    tvCorreo.setText(correo.getText().toString());
-                    tvfechaActual.setText(FechaActual.getText().toString());
-                    tvFechapago.setText(FechadePago.getText().toString());
-                    tvdni.setText(dni.getText().toString());
+                                try {
+                                    String validarDatos = response.getString("data");
+                                    Log.e("respuesta actualizacion: ",""+validarDatos);
 
-                }
-                catch (Exception e) {
-                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-                }
+                                    Log.e("nombre: ",""+nombrecliente.getText().toString());
+                                    tvNombre.setText(nombrecliente.getText().toString());
+                                    tvApellido.setText(apellidocliente.getText().toString());
+                                    tvCorreo.setText(correo.getText().toString());
+                                    tvfechaActual.setText(FechaActual.getText().toString());
+                                    tvFechapago.setText(FechadePago.getText().toString());
+                                    tvdni.setText(dni.getText().toString());
 
-                opcionModificar = false;
-                mensajeToast = "Pedido Modificado";
-                MostrarToast(mensajeToast);
+                                    opcionModificar = false;
+                                    mensajeToast = "Pedido Modificado";
+                                    MostrarToast(mensajeToast);
 
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+                                Toast.makeText(getApplicationContext(),"Error:" + anError.getErrorDetail(),Toast.LENGTH_SHORT).show();
+                            }
+                        });//FIN DEL EVENTO DE HEROKU DB - UPDATE------------------------------------------------
             }
-        });
+        }); //FIN DEL BOTON CONFIRMAR ACTUALIZACION ------------------------------
 
     }
 

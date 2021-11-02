@@ -183,7 +183,7 @@
             <Button
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="borrar"
+                android:text="Eliminar"
                 android:id="@+id/btnborrarPedido"
                 android:background="@drawable/bordesredondos"
                 android:textColor="#FFFFFF"
@@ -191,7 +191,7 @@
             <Button
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Editar"
+                android:text="Modificar"
                 android:id="@+id/btneditarPedido"
                 android:background="@drawable/bordesredondos"
                 android:textColor="#FFFFFF"

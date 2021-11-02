@@ -74,6 +74,9 @@ public class Catalogo extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        //INICIALIZAR CONEXION CON EL SERVICIO WEB*************************
+        AndroidNetworking.initialize(getApplicationContext());
+
         svBusqueda = findViewById(R.id.svBusqueda);
         spTipoBusqueda = findViewById(R.id.spTipoBusqueda);
         lvListaProductos = findViewById(R.id.lvListaProductos);
@@ -130,8 +133,6 @@ public class Catalogo extends AppCompatActivity {
         //SELECT DE BUSQUEDA INICIAL - CATALOGO *****************************************************************************************************************************
         //CONDICION PARA MOSTRAR DATOS-------------------------------------------------------------------------------------------------------
         if(cadena_texto_buscar==null){
-
-            AndroidNetworking.initialize(getApplicationContext());
             AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/Catalogo_POST_BUSQUEDA_INICIAL.php")
                     .setPriority(Priority.IMMEDIATE)
                     .build()
@@ -223,7 +224,7 @@ public class Catalogo extends AppCompatActivity {
                 cadena_texto_buscar = texto_buscar;
                 Toast.makeText(getApplicationContext(),texto_buscar,Toast.LENGTH_SHORT).show();
 
-                AndroidNetworking.initialize(getApplicationContext());
+
                 Map<String,String> insertar = new HashMap<>();
                 insertar.put("Condicion",campo_busqueda);
                 insertar.put("Busqueda","%"+cadena_texto_buscar+"%");
