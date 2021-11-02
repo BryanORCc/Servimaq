@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="@drawable/carretera_campo"
     tools:context=".op_pedidos.registro_cliente">
+
     <ScrollView
+        android:id="@+id/svScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -34,6 +36,7 @@
                     />
             </LinearLayout>
 
+            <!--BLOQUE______________________________________________________________________-->
             <EditText
                 android:id="@+id/EtNombreCliente"
                 android:layout_width="match_parent"
@@ -44,6 +47,7 @@
                 android:textColorHint="#F4F4F4"
                 android:textColor="#F4F4F4"/>
 
+            <!--BLOQUE______________________________________________________________________-->
             <EditText
                 android:id="@+id/EtApellidoCliente"
                 android:layout_width="match_parent"
@@ -55,6 +59,7 @@
                 android:textColorHint="#F4F4F4"
                 android:textColor="#F4F4F4"/>
 
+            <!--BLOQUE______________________________________________________________________-->
             <EditText
                 android:id="@+id/EtCorreo"
                 android:layout_width="match_parent"
@@ -66,51 +71,100 @@
                 android:textColorHint="#F4F4F4"
                 android:textColor="#F4F4F4"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="fecha actual:"
-                android:fontFamily="sans-serif-black"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
-                android:textColor="#F4F4F4"
-                />
-
-            <EditText
-                android:id="@+id/EtFechaActual"
+            <!--BLOQUE______________________________________________________________________-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textSize="15dp"
-                android:focusable="false"
-                android:textColorHint="#F4F4F4"
-                android:hint="fecha de actual:"
-                android:textColor="#F4F4F4"/>
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/EtFechaEntrega"
-                android:inputType="date"
-                android:focusable="false"
-                android:clickable="true"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.4"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha del pedido:"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="15dp"
+                    android:textColor="#F4F4F4"
+                    />
+
+                <EditText
+                    android:id="@+id/EtFechaActual"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.6"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:focusable="false"
+                    android:textColorHint="#F4F4F4"
+                    android:hint="fecha de actual:"
+                    android:textColor="#F4F4F4"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <!--BLOQUE______________________________________________________________________-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="seleccionar fecha de Entrega"
-                android:justificationMode="inter_word"
-                android:textSize="15dp"
-                android:textColorHint="#F4F4F4"
-                android:textColor="#F4F4F4"/>
+                android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/Spi_Modo_Pago"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.4"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha de entrega:"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="15dp"
+                    android:textColor="#F4F4F4"
+                    />
+
+                <EditText
+                    android:id="@+id/EtFechaEntrega"
+                    android:inputType="date"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.6"
+                    android:layout_height="wrap_content"
+                    android:hint="Seleccionar Fecha de Entrega"
+                    android:justificationMode="inter_word"
+                    android:textSize="15dp"
+                    android:textColorHint="#F4F4F4"
+                    android:textColor="#F4F4F4"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+
+            <!--BLOQUE______________________________________________________________________-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:textSize="15dp"
-                android:spinnerMode="dropdown"
-                android:scrollbarStyle="insideOverlay"
-                android:backgroundTint="#0C0C0C"
-                android:backgroundTintMode="add"/>
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:text="Seleccionar modo de pago:"
+                    android:textSize="15dp"
+                    android:textColor="#F4F4F4"
+                    android:textStyle="bold"/>
+
+                <Spinner
+                    android:id="@+id/Spi_Modo_Pago"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="25dp"
+                    android:baselineAligned="false"
+                    android:textSize="15dp"
+                    android:spinnerMode="dropdown"
+                    android:scrollbarStyle="insideOverlay"
+                    android:backgroundTint="#0C0C0C"
+                    android:backgroundTintMode="add"/>
+            </LinearLayout>
+
 
             <EditText
                 android:id="@+id/EtDni"
@@ -118,7 +172,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="15dp"
-                android:hint="Insertar Dni:"
+                android:hint="Ingresar numero de Dni:"
                 android:inputType="number"
                 android:maxLength="8"
                 android:textSize="15dp"

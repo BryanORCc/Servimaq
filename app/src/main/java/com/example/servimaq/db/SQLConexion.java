@@ -96,7 +96,7 @@ public class SQLConexion {
     }
 
     //--REGISTRO LISTADO--------------------------------------------------------
-    public void RegistroListado(Context c, int Cantidad, double Precio ,double Total, String codPedido, String LlantaId){
+    /*public void RegistroListado(Context c, int Cantidad, double Precio ,double Total, String codPedido, String LlantaId){
         int contar= 1, extraer = 0;
         String ceros = "";
         String ItemId="";
@@ -166,7 +166,8 @@ public class SQLConexion {
         } catch (Exception e) {
             Toast.makeText(c,e.getMessage(),Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
+
 
     public void EstiloToast(Context c, String mensaje){
         Toast toast = Toast.makeText(c,mensaje, Toast.LENGTH_SHORT);

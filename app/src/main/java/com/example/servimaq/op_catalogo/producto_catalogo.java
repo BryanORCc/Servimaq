@@ -6,7 +6,9 @@ import android.content.Intent;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -310,6 +312,7 @@ public class producto_catalogo extends BaseAdapter {
         return itemView;
     }
 
+
     //DIALOG DE LA OPCION DE AGREGAR A LISTA DE SALIDA ------------************************------------------------------------------------------------------------XXX
     public AlertDialog createCustomDialog() {
 
@@ -498,35 +501,203 @@ public class producto_catalogo extends BaseAdapter {
         btnDgAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int cantidad = 1;
-                double precio = 0.0, total = 0.0; //op_codPedido
+
                 String codigo = Lista.get(posicion).getLlantaId();
                 Log.e("pos:::::","__"+Lista.get(posicion).getLlantaId());
 
                 //OBTENER PRECIO DEL ITEM AGREGADO AL LISTADO***************************
-                try {
-                    SQLConexion db =new SQLConexion();
-                    Statement st = db.ConexionDB(v.getContext()).createStatement();
-                    ResultSet rs = st.executeQuery("select Precio from T_Llanta where LlantaId = '"+codigo+"';");
-                    if (!rs.next()) {
-                        Toast.makeText(c,"No se encontraron registros",Toast.LENGTH_SHORT).show();
-                    }else {
-                        do {
-                            precio = rs.getDouble(1);
-                            total = precio;
-                        } while (rs.next());///va agregando cada pedido
-                    }
-                    rs.close();
-                    db.RegistroListado(v.getContext(),cantidad,precio,total,op_codPedido,codigo);
-                } catch (Exception e) {
-                    Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-                }//FIN SELECT-------------
+                Map<String,String> insertar = new HashMap<>();
+                insertar.put("LlantaId",codigo);
+                JSONObject datosJSON = new JSONObject(insertar);
+
+                Map<String,String> insertar2 = new HashMap<>();
+                insertar2.put("codPedido",op_codPedido);
+
+                Map<String,String> insertar3 = new HashMap<>();
+                insertar3.put("codPedido",op_codPedido);
+
+                Log.e("PUT 3:: ",op_codPedido+" - "+codigo);
+
+                //CARGAR PRECIO DE ITEM SELECCIONADO POR EL SPINNER ********************************************************************************************************************
+                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Llanta_POST_SELECT_PRECIO.php")
+                        .addJSONObjectBody(datosJSON)
+                        .setPriority(Priority.IMMEDIATE)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                try {
+                                    String validarDatos = response.getString("data");
+                                    int contar= 1;
+
+                                    int cantidad = 1;
+                                    String precio = "S0.00", total = "S0.00";
+
+                                    Log.e("respuesta: ",""+validarDatos);
+
+                                    if (!validarDatos.equals("[]")) {
+                                        JSONArray array = response.getJSONArray("data");
+                                        //ARRAY LIST - INFORMACION PARA EL SPINNER-------------
+                                        JSONObject object = array.getJSONObject(contar-1);
+                                        precio = object.getString("precio");
+                                        total = precio;
 
 
-                Intent enviar_codigo = new Intent(v.getContext(), Salida_Prod.class);
-                enviar_codigo.putExtra("op_codPedido",op_codPedido);
+                                        insertar3.put("Cantidad",""+cantidad);
+                                        insertar3.put("Precio",precio);
+                                        insertar3.put("Total",total);
+                                        insertar3.put("LlantaId",codigo);
+
+                                        Log.e("PUT:: ",""+cantidad +" - "+ precio+" - "+total+" - "+codigo);
+
+
+                                        //EVENTO DEL HEROKU DB SELECCION************************************************************************************************************
+                                        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Listado_POST_SELECT.php")
+                                                .setPriority(Priority.IMMEDIATE)
+                                                .build()
+                                                .getAsJSONObject(new JSONObjectRequestListener() {
+                                                    @Override
+                                                    public void onResponse(JSONObject response) {
+
+                                                        String ItemId = "", aux_ItemId = "";
+                                                        int contar = 1, extraer = 0;
+
+                                                        try {
+                                                            String validarDatos = response.getString("data");
+                                                            int pos = 1;
+                                                            Log.e("respuesta: ", "" + validarDatos);
+                                                            //--VALIDAR ********************************************************************************************************
+                                                            if (validarDatos.equals("[]")) {
+                                                                ItemId = "SVQSAC-001";
+                                                            } else {
+                                                                JSONArray array = response.getJSONArray("data");
+                                                                do {
+                                                                    JSONObject object = array.getJSONObject(contar-1);
+                                                                    Log.e("Recorrido: ", "aca llegue");
+                                                                    aux_ItemId = object.getString("itemid");
+                                                                    Log.e("id capturado::: ", "" + aux_ItemId);
+                                                                    extraer = Integer.parseInt(aux_ItemId.substring(aux_ItemId.length() - pos));
+
+                                                                    if (extraer != contar && contar <= 9 && contar >= 1) {
+                                                                        ItemId = "SVQSAC-00" + contar;
+                                                                        break;
+                                                                    }else if(extraer==0){
+                                                                        pos = 2;
+                                                                        extraer = Integer.parseInt(aux_ItemId.substring(aux_ItemId.length()-pos));
+                                                                        if(extraer!=contar && contar<=99 && contar>=10){
+                                                                            ItemId = "SVQSAC-0"+contar;
+                                                                            break;
+                                                                        }
+                                                                    }else if(extraer!=contar && contar<=99 && contar>=10){
+                                                                        ItemId = "SVQSAC-0"+contar;
+                                                                        break;
+                                                                    }
+                                                                    contar++;
+                                                                } while (contar <= array.length());
+
+                                                                if (contar <= 9 && extraer != contar) {
+                                                                    ItemId = "SVQSAC-00" + contar;
+                                                                } else if (contar >= 10 && contar <= 99 && extraer != contar) {
+                                                                    ItemId = "SVQSAC-0" + contar;
+                                                                }
+
+                                                            }//FIN IF VALIDACION REGISTROS----------------------------------------------------------------
+
+                                                            insertar3.put("ItemId",ItemId);
+
+                                                            Log.e("id a insertar: ", "" + ItemId);
+
+                                                            insertar2.put("LlantaId",codigo);
+                                                            JSONObject datosJSON2 = new JSONObject(insertar2);
+
+                                                            //VALIDACION DE REGISTROS PEDIDO y NEUMATICO EN LISTA************************************************
+                                                            AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Listado_POST_SELECT_WHERE_VAL.php")
+                                                                    .addJSONObjectBody(datosJSON2)
+                                                                    .setPriority(Priority.IMMEDIATE)
+                                                                    .build()
+                                                                    .getAsJSONObject(new JSONObjectRequestListener() {
+                                                                        @Override
+                                                                        public void onResponse(JSONObject response) {
+
+                                                                            try {
+                                                                                String validarDatos = response.getString("data");
+                                                                                Log.e("respuesta: ", "" + validarDatos);
+
+                                                                                //--VALIDAR ********************************************************************************************************
+                                                                                if (validarDatos.equals("[]")) {
+
+                                                                                    JSONObject datosJSON3 = new JSONObject(insertar3);
+                                                                                    //EVENTO DEL HEROKU DB INSERCION*****************************************************************************
+                                                                                    AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Listado_POST_INSERT.php")
+                                                                                            .addJSONObjectBody(datosJSON3)
+                                                                                            .setPriority(Priority.MEDIUM)
+                                                                                            .build()
+                                                                                            .getAsJSONObject(new JSONObjectRequestListener() {
+                                                                                                @Override
+                                                                                                public void onResponse(JSONObject response) {
+                                                                                                    EstiloToast(c,"Agregacion exitosa");
+                                                                                                    Intent enviar_codigo = new Intent(v.getContext(), Salida_Prod.class);
+                                                                                                    enviar_codigo.putExtra("op_codPedido",op_codPedido);
+                                                                                                }
+
+                                                                                                @Override
+                                                                                                public void onError(ANError anError) {
+
+                                                                                                }
+                                                                                            });
+
+                                                                                }else{
+                                                                                    Toast.makeText(c,"Neumatico ya registrado en la Lista de salida de productos\nPor favor, verificar en su listado",Toast.LENGTH_LONG).show();
+                                                                                }
+
+                                                                            }catch (Exception e){
+                                                                                e.printStackTrace();
+                                                                            }
+
+                                                                        }
+
+                                                                        @Override
+                                                                        public void onError(ANError anError) {
+
+                                                                        }
+                                                                    });
+
+
+
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+
+                                                    }
+
+                                                    @Override
+                                                    public void onError(ANError anError) {
+                                                        Toast.makeText(c,"Error:" + anError.getErrorDetail(),Toast.LENGTH_SHORT).show();
+                                                    }
+
+                                                });//EVENTO DEL HEROKU DB SELECCION------------------------------------------------
+
+
+                                    }else{
+                                        Toast.makeText(c,"No se encontraron registros",Toast.LENGTH_SHORT).show();
+                                    }
+
+
+
+                                } catch (JSONException e) {
+                                    Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+                                Toast.makeText(c,"Error: "+anError.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        });//FIN SELECT-------------
             }
-        });
+        });//FIN PRIMER SELECT--------------------------------
+
 
         btnDgCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -536,6 +707,17 @@ public class producto_catalogo extends BaseAdapter {
         });
 
         return alertDialog;
+    }
+
+    public void EstiloToast(Context c, String mensaje){
+        Toast toast = Toast.makeText(c,mensaje, Toast.LENGTH_SHORT);
+        View vista = toast.getView();
+        vista.setBackgroundResource(R.drawable.estilo_color_x);
+        toast.setGravity(Gravity.CENTER,0,0);
+        TextView text = (TextView) vista.findViewById(android.R.id.message);
+        text.setTextColor(Color.parseColor("#FFFFFF"));
+        text.setTextSize(16);
+        toast.show();
     }
 
 }

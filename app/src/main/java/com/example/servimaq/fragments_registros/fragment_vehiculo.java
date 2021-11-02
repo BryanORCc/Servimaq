@@ -242,7 +242,7 @@ public class fragment_vehiculo extends Fragment {
                                             String validarDatos = response.getString("data");
                                             int pos = 1;
                                             Log.e("respuesta: ", "" + validarDatos);
-                                            //--VALIDAR LOGIN********************************************************************************************************
+                                            //--VALIDAR ********************************************************************************************************
                                             if (validarDatos.equals("[]")) {
                                                 VehiculoId = "VH01";
                                             } else {
