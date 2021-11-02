@@ -50,7 +50,7 @@ public class SQLConexion {
 
 
     //--REGISTRO Pedido de cliente--------------------------------------------------------
-    public void RegistroPedidoCliente(Context c, String NombreCliente, String ApellidoCliente, String Correo, String FechaActual, String FechaEntrega, String ModoDePago , int Dni){
+    /*public void RegistroPedidoCliente(Context c, String NombreCliente, String ApellidoCliente, String Correo, String FechaActual, String FechaEntrega, String ModoDePago , int Dni){
 
         PreparedStatement registro;
         int contar= 1;
@@ -93,7 +93,7 @@ public class SQLConexion {
         } catch (Exception e) {
             Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
     //--REGISTRO LISTADO--------------------------------------------------------
     /*public void RegistroListado(Context c, int Cantidad, double Precio ,double Total, String codPedido, String LlantaId){
