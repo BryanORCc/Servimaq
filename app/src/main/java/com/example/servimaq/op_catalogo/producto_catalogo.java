@@ -20,6 +20,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista;
@@ -28,10 +32,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class producto_catalogo extends BaseAdapter {
 
@@ -123,22 +133,6 @@ public class producto_catalogo extends BaseAdapter {
         });
 
 
-        //OBTENER URL DE LA IMAGEN
-        /*storageRef.child(Lista.get(i).getFotoVehiculo()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                ivFoto.setImageURI(uri);
-                Log.e("Contar","___: "+Lista.get(i).getFotoVehiculo()+".jpeg");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });*/
-        //Log.e("Contar","___: "+bytes);
-
-
         //BOTON AGREGAR A LISTA ------------************************------------------------------------------------------------------------XXX
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,6 +204,7 @@ public class producto_catalogo extends BaseAdapter {
             }
         });
 
+        //BOTON DETALLE DEL PRODUCTO SELECCIONADO ------------************************------------------------------------------------------------------------XXX
         btnDetalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -269,36 +264,53 @@ public class producto_catalogo extends BaseAdapter {
             }
         });
 
+
+        //BOTON ELIMINAR PRODUCTO DE LA LISTA ------------************************------------------------------------------------------------------------XXX
         btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //--ACTUALIZAR DATOS DE LA TABLA NEUMATICO------------------------------------------------------------------------------
-                try {
-                    SQLConexion conexion =new SQLConexion();
-                    PreparedStatement ps = conexion.ConexionDB(c.getApplicationContext()).prepareStatement(
-                            "delete from T_Llanta where LlantaId = ?;");
-                    ps.setString(1,tvLlantaId.getText().toString());
-                    ps.executeUpdate();
-                    ps.close();
-                    Toast.makeText(c.getApplicationContext(),"Producto Eliminado",Toast.LENGTH_SHORT).show();
-                }
-                catch (Exception e) {
-                    Toast.makeText(c.getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-                }
+                AndroidNetworking.initialize(c);
+                Map<String,String> insertar = new HashMap<>();
+                insertar.put("LlantaId",tvLlantaId.getText().toString());
+                Log.e("ID a borrar: ",""+tvLlantaId.getText().toString());
+                JSONObject datosJSON = new JSONObject(insertar);
 
+                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Llanta_POST_DELETE_WHERE.php")
+                        .addJSONObjectBody(datosJSON)
+                        .setPriority(Priority.IMMEDIATE)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
 
-                Intent detalle = new Intent(c, Catalogo.class);
-                //Permite abrir una nueva vista
-                detalle.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                view.getContext().startActivity(detalle);
+                                try {
+                                    String validarDatos = response.getString("data");
+                                    Log.e("respuesta eliminacion: ",""+validarDatos);
+                                    Toast.makeText(c.getApplicationContext(),"Producto Eliminado",Toast.LENGTH_SHORT).show();
 
+                                    Intent detalle = new Intent(c, Catalogo.class);
+                                    //Permite abrir una nueva vista
+                                    detalle.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    view.getContext().startActivity(detalle);
+
+                                } catch (JSONException e) {
+                                    Toast.makeText(c,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+                                Toast.makeText(c,"Error: "+anError.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
 
         return itemView;
     }
 
+    //DIALOG DE LA OPCION DE AGREGAR A LISTA DE SALIDA ------------************************------------------------------------------------------------------------XXX
     public AlertDialog createCustomDialog() {
 
         final AlertDialog alertDialog;
@@ -324,51 +336,93 @@ public class producto_catalogo extends BaseAdapter {
 
         //**********CARGAR DATOS AL DIALOG ***************************************************
         //--CARGAR DATOS A LOS SPINNERS - PEDIDO ------------------------------------------------------------------------------
-        try {
-            SQLConexion conexion =new SQLConexion();
-            Statement st = conexion.ConexionDB(v.getContext()).createStatement();
-            ResultSet rs = st.executeQuery("select codPedido from T_Pedido;");
-            if (!rs.next()) {
-                Toast.makeText(c,"No se encontraron registros",Toast.LENGTH_SHORT).show();
-                op_codPedido = null;
-            }
-            else {
-                do {
-                    //ARRAY LIST - INFORMACION PARA EL SPINNER-------------
-                    datos_codPedido.add(rs.getString(1));
-                } while (rs.next());///va agregando cada ID
+        AndroidNetworking.initialize(c);
+        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Pedido_POST_SELECT.php")
+                .setPriority(Priority.IMMEDIATE)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
 
-                ArrayAdapter adapter = new ArrayAdapter(v.getContext(),android.R.layout.simple_spinner_dropdown_item, datos_codPedido);
-                spncodPedido.setAdapter(adapter);
-            }
-            rs.close();
-        }
-        catch (Exception e) {
-            Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-        }//FIN Carga--------------------------------------------------------------------------------
+                        try {
+                            String validarDatos = response.getString("data");
+                            int contar= 1;
+                            Log.e("respuesta: ",""+validarDatos);
+
+                            if (!validarDatos.equals("[]")) {
+                                JSONArray array = response.getJSONArray("data");
+                                do {
+                                    //ARRAY LIST - INFORMACION PARA EL SPINNER-------------
+                                    JSONObject object = array.getJSONObject(contar-1);
+                                    datos_codPedido.add(object.getString("codpedido"));
+                                    contar++;
+                                } while (contar <= array.length());
+
+                                ArrayAdapter adapter = new ArrayAdapter(v.getContext(),android.R.layout.simple_spinner_dropdown_item, datos_codPedido);
+                                spncodPedido.setAdapter(adapter);
+
+                            }else{
+                                Toast.makeText(c,"No se encontraron registros",Toast.LENGTH_SHORT).show();
+                                op_codPedido = null;
+                            }
+
+                        } catch (JSONException e) {
+                            Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(c,"Error: "+anError.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                });//FIN Carga--------------------------------------------------------------------------------
+
 
         //--CARGAR INICIAL DE DATOS - PEDIDO ------------------------------------------------------------------------------
-        try {
-            SQLConexion conexion =new SQLConexion();
-            Statement st = conexion.ConexionDB(v.getContext()).createStatement();
-            ResultSet rs = st.executeQuery("select * from T_Pedido where codPedido = 'COD-001';");
-            if (!rs.next()) {
-                Toast.makeText(c,"No se encontraron registros",Toast.LENGTH_SHORT).show();
-            }
-            else {
-                tvNombresCliente.setText(rs.getString(2));
-                tvApellidosCliente.setText(rs.getString(3));
-                tvCorreo.setText(rs.getString(4));
-                tvFechaActual.setText(rs.getString(5));
-                tvFechaEntrega.setText(rs.getString(6));
-                tvModoPago.setText(rs.getString(7));
-                tvDNI.setText(rs.getString(8));
-            }
-            rs.close();
-        }
-        catch (Exception e) {
-            Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-        }//FIN Carga--------------------------------------------------------------------------------
+        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Pedido_POST_SELECT_INICIAL.php")
+                .setPriority(Priority.IMMEDIATE)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            String validarDatos = response.getString("data");
+                            int contar= 1;
+                            Log.e("respuesta: ",""+validarDatos);
+
+                            if (!validarDatos.equals("[]")) {
+                                JSONArray array = response.getJSONArray("data");
+                                do {
+                                    //ARRAY LIST - INFORMACION PARA EL SPINNER-------------
+                                    JSONObject object = array.getJSONObject(contar-1);
+
+                                    tvNombresCliente.setText(object.getString("nombrescliente"));
+                                    tvApellidosCliente.setText(object.getString("apellidoscliente"));
+                                    tvCorreo.setText(object.getString("correo"));
+                                    tvFechaActual.setText(object.getString("fechaactual"));
+                                    tvFechaEntrega.setText(object.getString("fechaentrega"));
+                                    tvModoPago.setText(object.getString("modopago"));
+                                    tvDNI.setText(object.getString("dni"));
+
+                                    contar++;
+                                } while (contar <= array.length());
+
+                            }else{
+                                Toast.makeText(c,"No se encontraron pedidos",Toast.LENGTH_SHORT).show();
+                                op_codPedido = null;
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(c,"Error: "+anError.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                });//FIN Carga--------------------------------------------------------------------------------
+
 
 
         //OBTENER ID DE LA POSICION*************************************************************************
@@ -377,38 +431,68 @@ public class producto_catalogo extends BaseAdapter {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 op_codPedido = datos_codPedido.get(i);
                 Log.e("MENSAJE","____ "+op_codPedido);
-                //CARGAR DATOS SELECCIONADOS POR EL SPINNER
-                try {
-                    SQLConexion db =new SQLConexion();
-                    Statement st = db.ConexionDB(v.getContext()).createStatement();
-                    ResultSet rs = st.executeQuery("select * from T_Pedido where codPedido = '"+op_codPedido +"';");
-                    if (!rs.next()) {
-                        Toast.makeText(v.getContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
-                    }else {
-                        do {
-                            tvNombresCliente.setText(rs.getString(2));
-                            tvApellidosCliente.setText(rs.getString(3));
-                            tvCorreo.setText(rs.getString(4));
-                            tvFechaActual.setText(rs.getString(5));
-                            tvFechaEntrega.setText(rs.getString(6));
-                            tvModoPago.setText(rs.getString(7));
-                            tvDNI.setText(rs.getString(8));
-                        } while (rs.next());///va agregando cada pedido
-                    }
-                    rs.close();
-                } catch (Exception e) {
-                    Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-                }//FIN SELECT-------------
-            }
 
+                Map<String,String> insertar = new HashMap<>();
+                insertar.put("codPedido",op_codPedido);
+                JSONObject datosJSON = new JSONObject(insertar);
+
+                //CARGAR DATOS SELECCIONADOS POR EL SPINNER
+                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Pedido_POST_SELECT_ALL_WHERE.php")
+                        .addJSONObjectBody(datosJSON)
+                        .setPriority(Priority.IMMEDIATE)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                try {
+                                    String validarDatos = response.getString("data");
+                                    int contar= 1;
+                                    Log.e("respuesta: ",""+validarDatos);
+
+                                    if (!validarDatos.equals("[]")) {
+                                        JSONArray array = response.getJSONArray("data");
+                                        do {
+                                            //ARRAY LIST - INFORMACION PARA EL SPINNER-------------
+                                            JSONObject object = array.getJSONObject(contar-1);
+
+                                            tvNombresCliente.setText(object.getString("nombrescliente"));
+                                            tvApellidosCliente.setText(object.getString("apellidoscliente"));
+                                            tvCorreo.setText(object.getString("correo"));
+                                            tvFechaActual.setText(object.getString("fechaactual"));
+                                            tvFechaEntrega.setText(object.getString("fechaentrega"));
+                                            tvModoPago.setText(object.getString("modopago"));
+                                            tvDNI.setText(object.getString("dni"));
+
+                                            contar++;
+                                        } while (contar <= array.length());
+
+                                    }else{
+                                        Toast.makeText(c,"No se encontraron pedidos",Toast.LENGTH_SHORT).show();
+                                        op_codPedido = null;
+                                    }
+                                } catch (JSONException e) {
+                                    Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+                                Toast.makeText(c,"Error: "+anError.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        });//FIN SELECT-------------
+            }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
-        });
+        });//FIN seleccion codigo **************************************
+
 
         //CONSTRUCCION DE LA VISTA DIALOG************************
         builder.setView(v);
         alertDialog = builder.create();
+
 
         //BOTONES DEL DIALOG*************************************************
         btnDgAgregar.setOnClickListener(new View.OnClickListener() {
