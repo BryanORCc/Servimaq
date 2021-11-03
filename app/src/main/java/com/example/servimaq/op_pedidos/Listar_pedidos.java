@@ -91,6 +91,8 @@ public class Listar_pedidos extends AppCompatActivity {
         SQLConexion db = new SQLConexion();
 
         if(cadena_texto_buscar==null) {
+            lvListaPedidos.setAdapter(null);
+            lista.clear();
             AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Pedido_POST_SELECT_ALL.php")
                     .setPriority(Priority.IMMEDIATE)
                     .build()

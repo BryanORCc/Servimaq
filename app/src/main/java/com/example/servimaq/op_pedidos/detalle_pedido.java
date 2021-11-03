@@ -66,6 +66,7 @@ public class detalle_pedido extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_pedido);
 
+
         AndroidNetworking.initialize(getApplicationContext());
 
         ///////EditText*******
@@ -313,6 +314,8 @@ public class detalle_pedido extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                AndroidNetworking.initialize(getApplicationContext());
+
                 //--**ACTUALIZAR DATOS DE LA TABLA MEDIDA------------------------------------------------------------------------------::::
                 Map<String,String> insertar = new HashMap<>();
                 insertar.put("NombresCliente",nombrecliente.getText().toString());
@@ -339,12 +342,12 @@ public class detalle_pedido extends AppCompatActivity {
                                     Log.e("respuesta actualizacion: ",""+validarDatos);
 
                                     Log.e("nombre: ",""+nombrecliente.getText().toString());
-                                    tvNombre.setText(nombrecliente.getText().toString());
+                                    /*tvNombre.setText(nombrecliente.getText().toString());
                                     tvApellido.setText(apellidocliente.getText().toString());
                                     tvCorreo.setText(correo.getText().toString());
                                     tvfechaActual.setText(FechaActual.getText().toString());
                                     tvFechapago.setText(FechadePago.getText().toString());
-                                    tvdni.setText(dni.getText().toString());
+                                    tvdni.setText(dni.getText().toString());*/
 
                                     opcionModificar = false;
                                     mensajeToast = "Pedido Modificado";
