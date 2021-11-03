@@ -3,12 +3,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.servimaq.R;
 import com.example.servimaq.db.SQLConexion;
 import com.example.servimaq.db.items_lista_salida_P;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -27,40 +36,50 @@ public class Salida_Prod extends AppCompatActivity {
 
         lvSalidaProducto = findViewById(R.id.lvSalidaProducto);
 
-        SQLConexion conexion = new SQLConexion();
-        try{
-            Statement st = conexion.ConexionDB(getApplicationContext()).createStatement();
-            ResultSet rs = st.executeQuery("select * from T_Pedido;");
-            rs.next();
-            if(rs.getRow()>=1){
-                validar = rs.getRow();
-            }else{
-                validar = 0;
-            }
+        AndroidNetworking.initialize(getApplicationContext());
 
-           // select codPedido,NombresCliente,ApellidosCliente,P.Correo,FechaEntrega,ModoPago,DNI from T_Pedido
+        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Pedido_POST_SELECT_ALL.php")
+                .setPriority(Priority.IMMEDIATE)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
 
-            Log.e("valorrr --- ",""+validar);
+                        try {
+                            String validarDatos = response.getString("data");
+                            int contar= 1;
+                            Log.e("respuesta: ",""+validarDatos);
 
-            lista.add(new items_lista_salida_P(rs.getString(1),rs.getString(2)+ " " +rs.getString(3),rs.getString(4),
-                    rs.getString(5),rs.getString(6),rs.getString(7)));
-            if (rs.next()) {
-                do {
-                    lista.add(new items_lista_salida_P(rs.getString(1),rs.getString(2)+ " " +rs.getString(3),rs.getString(4),
-                            rs.getString(5),rs.getString(6),rs.getString(7)));
-                }while (rs.next());
-            }
-            else {
-                if(validar == 0){
-                    Toast.makeText(getApplicationContext(), "No se encontraron pedidos", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "No se encontraron registros", Toast.LENGTH_SHORT).show();
-        }
+                            if (!validarDatos.equals("[]")) {
+                                JSONArray array = response.getJSONArray("data");
+                                do {
 
-        ilsp = new lista_salida_producto(Salida_Prod.this,lista);
-        lvSalidaProducto.setAdapter(ilsp);
+                                    JSONObject object = array.getJSONObject(contar-1);
+                                    lista.add(new items_lista_salida_P(object.getString("codpedido"),object.getString("nombrescliente")+ " " +object.getString("apellidoscliente"),
+                                            object.getString("correo"),object.getString("fechaentrega"),object.getString("modopago"),object.getString("dni")));
+                                    contar++;
+                                } while (contar <= array.length());
+
+                                try {
+                                    ilsp = new lista_salida_producto(Salida_Prod.this,lista);
+                                    lvSalidaProducto.setAdapter(ilsp);
+                                }catch (Exception e){
+                                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }else{
+                                Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
 
     }
 

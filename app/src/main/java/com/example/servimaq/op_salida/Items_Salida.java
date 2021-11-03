@@ -3,6 +3,7 @@ package com.example.servimaq.op_salida;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +11,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.servimaq.R;
 import com.example.servimaq.db.Items_Salida_set_get;
 import com.example.servimaq.db.SQLConexion;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Items_Salida extends BaseAdapter {
 
@@ -29,11 +40,6 @@ public class Items_Salida extends BaseAdapter {
     TextView tvItemId;
     EditText etCantidad;
     TextView tvPrecio, tvTotal, tvNombreMarca, tvTipoVehiculo;
-
-    //--ACTUALIZAR DATOS DE LOS ITEMS------------------------------------------------------------------------------
-    SQLConexion conexion =new SQLConexion();
-    SQLConexion db = new SQLConexion();
-    PreparedStatement ps;
 
     public Items_Salida(seleccionar_pedido_salida contextoSPS, ArrayList<Items_Salida_set_get> ListaS ){
         this.contextoSPS = contextoSPS;
@@ -81,6 +87,8 @@ public class Items_Salida extends BaseAdapter {
         String codPedido = ListaS.get(i).getCodPedido(),
                 LlantaId = ListaS.get(i).getLlantaId();
 
+        Map<String,String> insertar = new HashMap<>();
+
         //ACTUALIZAR CANTIDAD*************************************
         etCantidad.addTextChangedListener(new TextWatcher() {
             @Override
@@ -89,44 +97,51 @@ public class Items_Salida extends BaseAdapter {
             @Override
             public void onTextChanged(CharSequence charSequence, int p, int i1, int i2) {
 
-
-                try {
-                    ps = conexion.ConexionDB(context).prepareStatement(
-                            "update T_Listado set Cantidad = ?, Total = ? * ? where codPedido = ? and LlantaId = ?;");
-
-                    ps.setInt(1, Integer.parseInt( String.valueOf(charSequence)));
-                    ps.setDouble(2,Precio);
-                    ps.setInt(3,Integer.parseInt( String.valueOf(charSequence)));
-                    ps.setString(4,codPedido);
-                    ps.setString(5,LlantaId);
-
-                }
-                catch (Exception e) {
-                    //Toast.makeText(contextoSPS,e.getMessage(),Toast.LENGTH_SHORT).show();
-                }
+                //--**ACTUALIZAR DATOS DE LA TABLA MEDIDA------------------------------------------------------------------------------::::
+                insertar.put("Cantidad",String.valueOf(charSequence));
+                insertar.put("Precio", String.valueOf(Precio));
+                insertar.put("Cantidad2",String.valueOf(charSequence));
+                insertar.put("codPedido",codPedido);
+                insertar.put("LlantaId",LlantaId);
             }
 
             @Override
             public void afterTextChanged(Editable editable) { }
         });
 
+        JSONObject datosJSON = new JSONObject(insertar);
         //CONFIRMAR CAMBIOS*****************************************
         etCantidad.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if(i==keyEvent.KEYCODE_ENTER){
 
-                    try {
-                        ps.executeUpdate();
-                        ps.close();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Listado_POST_UPDATE.php")
+                            .addJSONObjectBody(datosJSON)
+                            .setPriority(Priority.MEDIUM)
+                            .build()
+                            .getAsJSONObject(new JSONObjectRequestListener() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+
+                                    try {
+                                        String validarDatos = response.getString("data");
+                                        Log.e("respuesta actualizacion: ",""+validarDatos);
+                                        itemView.getContext().startActivity(contextoSPS.getIntent());
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                public void onError(ANError anError) {
+                                    Toast.makeText(contextoSPS,"Error:" + anError.getErrorDetail(),Toast.LENGTH_SHORT).show();
+                                }
+                            });//FIN DEL EVENTO DE HEROKU DB - UPDATE------------------------------------------------
 
                     //QUITAR ANIMACION DE CARGA DE VISTA*****************************
                     contextoSPS.overridePendingTransition(0, 0);
                     contextoSPS.overridePendingTransition(0, 0);
-                    itemView.getContext().startActivity(contextoSPS.getIntent());
                     return true;
                 }
                 return false;
