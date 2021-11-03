@@ -10,13 +10,24 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.servimaq.R;
 import com.example.servimaq.db.Items_Salida_set_get;
 import com.example.servimaq.db.SQLConexion;
+import com.example.servimaq.db.items_lista_salida_P;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class seleccionar_pedido_salida extends AppCompatActivity {
 
@@ -46,26 +57,57 @@ public class seleccionar_pedido_salida extends AppCompatActivity {
 
         tvcodPedido.setText(codPedido);
 
-        SQLConexion conexion = new SQLConexion();
-        try {
-            Statement st = conexion.ConexionDB(getApplicationContext()).createStatement();
-            ResultSet rs = st.executeQuery("select LS.ItemId, LS.Cantidad, LS.Precio, LS.Total, DL.NombreMarca, V.TipoVehiculo, LS.codPedido, LL.LlantaId from T_Listado LS " +
-                    "inner join T_Llanta LL on LS.LlantaId = LL.LlantaId inner join T_DetalleLlanta DL on DL.DetalleLlantaId = LL.DetalleLlantaId " +
-                    "inner join T_Vehiculo V on V.VehiculoId = LL.VehiculoId where LS.codPedido = '"+codPedido+"';");
-            Log.e("CODIGO PEDIO____","::: "+codPedido);
-            if (!rs.next()) {
-                Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
-            }else {
-                do {
-                    salida.add(new Items_Salida_set_get(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getDouble(4),rs.getString(5),rs.getString(6), rs.getString(7),rs.getString(8)));
-                    Log.e("DATOS____","::: "+rs.getString(1));
-                } while (rs.next());///va agregando cada ID
-            }
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-        }//FIN SELECT-------------
-        i_salida = new Items_Salida(seleccionar_pedido_salida.this,salida);
-        lvitems.setAdapter(i_salida);
+        //INICIAR CONEXION CON EL SERVICIO WEB - HEROKU
+        AndroidNetworking.initialize(getApplicationContext());
 
+        //--**ACTUALIZAR DATOS DE LA TABLA MEDIDA------------------------------------------------------------------------------::::
+        Map<String,String> insertar = new HashMap<>();
+        insertar.put("codPedido",codPedido);
+        JSONObject datosJSON = new JSONObject(insertar);
+
+        AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/Salida_POST_SELECT_WHERE.php")
+                .addJSONObjectBody(datosJSON)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            String validarDatos = response.getString("data");
+                            int contar= 1;
+                            Log.e("respuesta: ",""+validarDatos);
+
+                            if (!validarDatos.equals("[]")) {
+                                JSONArray array = response.getJSONArray("data");
+                                do {
+                                    JSONObject object = array.getJSONObject(contar-1);
+                                    salida.add(new Items_Salida_set_get(object.getString("itemid"),object.getInt("cantidad"),object.getString("precio"),
+                                            object.getString("total"), object.getString("nombremarca"),object.getString("tipovehiculo"),
+                                            object.getString("codpedido"), object.getString("llantaid")));
+                                    contar++;
+                                } while (contar <= array.length());
+
+                                try {
+                                    i_salida = new Items_Salida(seleccionar_pedido_salida.this,salida);
+                                    lvitems.setAdapter(i_salida);
+                                }catch (Exception e){
+                                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }else{
+                                Toast.makeText(getApplicationContext(),"No se encontraron registros",Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });//FIN SELECT - HEROKU -----------------------------------------------------
     }
 }

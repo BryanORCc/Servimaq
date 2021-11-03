@@ -3,11 +3,11 @@ package com.example.servimaq.db;
 public class Items_Salida_set_get {
     private String ItemId;
     private int Cantidad;
-    private double Precio, Total;
+    private String Precio, Total;
     private  String NombreMarca, TipoVehiculo;
     String codPedido, LlantaId;
 
-    public Items_Salida_set_get(String itemId, int cantidad, double precio, double total, String nombreMarca, String tipoVehiculo, String codPedido, String llantaId) {
+    public Items_Salida_set_get(String itemId, int cantidad, String precio, String total, String nombreMarca, String tipoVehiculo, String codPedido, String llantaId) {
         ItemId = itemId;
         Cantidad = cantidad;
         Precio = precio;
@@ -50,19 +50,19 @@ public class Items_Salida_set_get {
         Cantidad = cantidad;
     }
 
-    public double getPrecio() {
+    public String getPrecio() {
         return Precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(String precio) {
         Precio = precio;
     }
 
-    public double getTotal() {
+    public String getTotal() {
         return Total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(String total) {
         Total = total;
     }
 

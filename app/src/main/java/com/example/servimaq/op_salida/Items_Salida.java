@@ -41,6 +41,8 @@ public class Items_Salida extends BaseAdapter {
     EditText etCantidad;
     TextView tvPrecio, tvTotal, tvNombreMarca, tvTipoVehiculo;
 
+    String Cantidad;
+
     public Items_Salida(seleccionar_pedido_salida contextoSPS, ArrayList<Items_Salida_set_get> ListaS ){
         this.contextoSPS = contextoSPS;
         this.ListaS = ListaS;
@@ -83,10 +85,12 @@ public class Items_Salida extends BaseAdapter {
         tvNombreMarca.setText(""+ListaS.get(i).getNombreMarca());
         tvTipoVehiculo.setText(""+ListaS.get(i).getTipoVehiculo());
 
-        double Precio = ListaS.get(i).getPrecio();
+        String Precio = ListaS.get(i).getPrecio();
         String codPedido = ListaS.get(i).getCodPedido(),
                 LlantaId = ListaS.get(i).getLlantaId();
 
+        //INICIAR CONEXION CON EL SERVICIO WEB - HEROKU
+        AndroidNetworking.initialize(contextoSPS);
         Map<String,String> insertar = new HashMap<>();
 
         //ACTUALIZAR CANTIDAD*************************************
@@ -98,11 +102,7 @@ public class Items_Salida extends BaseAdapter {
             public void onTextChanged(CharSequence charSequence, int p, int i1, int i2) {
 
                 //--**ACTUALIZAR DATOS DE LA TABLA MEDIDA------------------------------------------------------------------------------::::
-                insertar.put("Cantidad",String.valueOf(charSequence));
-                insertar.put("Precio", String.valueOf(Precio));
-                insertar.put("Cantidad2",String.valueOf(charSequence));
-                insertar.put("codPedido",codPedido);
-                insertar.put("LlantaId",LlantaId);
+                Cantidad = String.valueOf(charSequence);
             }
 
             @Override
@@ -116,6 +116,14 @@ public class Items_Salida extends BaseAdapter {
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if(i==keyEvent.KEYCODE_ENTER){
 
+                    insertar.put("Cantidad",Cantidad);
+                    insertar.put("Precio", String.valueOf(Precio));
+                    insertar.put("Cantidad2",Cantidad);
+                    insertar.put("codPedido",codPedido);
+                    insertar.put("LlantaId",LlantaId);
+
+                    Log.e("cantidad: ",Cantidad);
+
                     AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Listado_POST_UPDATE.php")
                             .addJSONObjectBody(datosJSON)
                             .setPriority(Priority.MEDIUM)
@@ -127,10 +135,15 @@ public class Items_Salida extends BaseAdapter {
                                     try {
                                         String validarDatos = response.getString("data");
                                         Log.e("respuesta actualizacion: ",""+validarDatos);
+
+                                        //QUITAR ANIMACION DE CARGA DE VISTA*****************************
+                                        contextoSPS.overridePendingTransition(0, 0);
+                                        contextoSPS.overridePendingTransition(0, 0);
                                         itemView.getContext().startActivity(contextoSPS.getIntent());
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+
                                 }
 
                                 @Override
@@ -139,9 +152,6 @@ public class Items_Salida extends BaseAdapter {
                                 }
                             });//FIN DEL EVENTO DE HEROKU DB - UPDATE------------------------------------------------
 
-                    //QUITAR ANIMACION DE CARGA DE VISTA*****************************
-                    contextoSPS.overridePendingTransition(0, 0);
-                    contextoSPS.overridePendingTransition(0, 0);
                     return true;
                 }
                 return false;
