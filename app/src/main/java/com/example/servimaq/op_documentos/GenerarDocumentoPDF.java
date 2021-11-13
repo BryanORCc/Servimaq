@@ -56,7 +56,6 @@ public class GenerarDocumentoPDF extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
             file = new File(bundle.getString("ruta",""));
-
         }
         pdfVistaPrevia.fromFile(file).enableSwipe(true).swipeHorizontal(false).enableDoubletap(true).enableAntialiasing(true).load();
 

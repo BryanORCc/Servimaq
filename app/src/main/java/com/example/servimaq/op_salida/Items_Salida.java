@@ -41,7 +41,7 @@ public class Items_Salida extends BaseAdapter {
     EditText etCantidad;
     TextView tvPrecio, tvTotal, tvNombreMarca, tvTipoVehiculo;
 
-    String Cantidad;
+    String Cantidad = "";
 
     public Items_Salida(seleccionar_pedido_salida contextoSPS, ArrayList<Items_Salida_set_get> ListaS ){
         this.contextoSPS = contextoSPS;
@@ -109,20 +109,25 @@ public class Items_Salida extends BaseAdapter {
             public void afterTextChanged(Editable editable) { }
         });
 
-        JSONObject datosJSON = new JSONObject(insertar);
+
         //CONFIRMAR CAMBIOS*****************************************
         etCantidad.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
+
                 if(i==keyEvent.KEYCODE_ENTER){
 
+                    Log.e("cantidad: ",Cantidad);
                     insertar.put("Cantidad",Cantidad);
-                    insertar.put("Precio", String.valueOf(Precio));
                     insertar.put("Cantidad2",Cantidad);
                     insertar.put("codPedido",codPedido);
                     insertar.put("LlantaId",LlantaId);
+                    JSONObject datosJSON = new JSONObject(insertar);
 
                     Log.e("cantidad: ",Cantidad);
+                    Log.e("Cantidad2: ",Cantidad);
+                    Log.e("codPedido: ",codPedido);
+                    Log.e("LlantaId: ",LlantaId);
 
                     AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Listado_POST_UPDATE.php")
                             .addJSONObjectBody(datosJSON)
@@ -134,12 +139,9 @@ public class Items_Salida extends BaseAdapter {
 
                                     try {
                                         String validarDatos = response.getString("data");
+
                                         Log.e("respuesta actualizacion: ",""+validarDatos);
 
-                                        //QUITAR ANIMACION DE CARGA DE VISTA*****************************
-                                        contextoSPS.overridePendingTransition(0, 0);
-                                        contextoSPS.overridePendingTransition(0, 0);
-                                        itemView.getContext().startActivity(contextoSPS.getIntent());
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -151,6 +153,11 @@ public class Items_Salida extends BaseAdapter {
                                     Toast.makeText(contextoSPS,"Error:" + anError.getErrorDetail(),Toast.LENGTH_SHORT).show();
                                 }
                             });//FIN DEL EVENTO DE HEROKU DB - UPDATE------------------------------------------------
+
+                    //QUITAR ANIMACION DE CARGA DE VISTA*****************************
+                    contextoSPS.overridePendingTransition(0, 0);
+                    contextoSPS.overridePendingTransition(0, 0);
+                    itemView.getContext().startActivity(contextoSPS.getIntent());
 
                     return true;
                 }

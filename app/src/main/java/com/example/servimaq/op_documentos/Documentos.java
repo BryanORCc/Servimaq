@@ -159,12 +159,13 @@ public class Documentos extends AppCompatActivity {
                 templatePDF.OpenDocument();
                 templatePDF.AddMetaData("Almacen","Salida de Neumaticos", "Servimaq S.A.C."); //-----------------
 
+
                 //SELECCIONAR INFORMACION PARA EL PDF**************************************************
                 Map<String,String> insertar = new HashMap<>();
                 insertar.put("codPedido",codPedido);
                 JSONObject datosJSON = new JSONObject(insertar);
 
-                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/Catalogo_POST_BUSQUEDA_WHERE.php")
+                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/Documenos_POST_SELECT_ALL_WHERE.php")
                         .addJSONObjectBody(datosJSON)
                         .setPriority(Priority.IMMEDIATE)
                         .build()
@@ -192,18 +193,25 @@ public class Documentos extends AppCompatActivity {
                                             Total = object.getString("total");
                                             setNeumaticos(ItemId,LlantaId,Cantidad, Descripcion, Precio, Total);
 
-                                            NombresCliente = object.getString("nombrescliente");
+                                            NombresCliente = object.getString("nya");
                                             FechaActual = object.getString("fechaactual");
                                             FechaEntrega = object.getString("fechaentrega");
                                             DNI = ""+object.getString("dni");
                                             Correo = object.getString("correo");
-
+                                            Log.e("NOMBRE:: ",Cantidad);
                                             contar++;
                                         } while (contar <= array.length());
 
+                                        templatePDF.AddTituloEmpresa("SERVIMAQ S.A.C.", "GUIA DE REMISION","CODIGO DE PEDIDO: ",codPedido ,"20455986835");
+                                        templatePDF.AddTitles("Av. Mariscal castilla 1006 - Mariano Melgar","Perú - Arequipa",FechaActual);
+                                        templatePDF.AddDatosCliente(NombresCliente,Correo,DNI,FechaEntrega);
+                                        templatePDF.CreateTable(cabecera,getNeumaticos());
+                                        templatePDF.CloseDocument();
+                                        rows.clear();
+
                                     }
                                 } catch (JSONException e) {
-                                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),"ACA"+ e.getMessage(),Toast.LENGTH_SHORT).show();
                                 }
 
                             }
@@ -214,16 +222,6 @@ public class Documentos extends AppCompatActivity {
                             }
 
                         });//FIN SELECT--------------------------------------------------------------------------
-
-
-                templatePDF.AddTituloEmpresa("SERVIMAQ S.A.C.", "GUIA DE REMISION","CODIGO DE PEDIDO: ",codPedido ,"20455986835");
-                templatePDF.AddTitles("Av. Mariscal castilla 1006 - Mariano Melgar","Perú - Arequipa",FechaActual);
-                templatePDF.AddDatosCliente(NombresCliente,Correo,DNI,FechaEntrega);
-                /*templatePDF.AddParagraph("Hola");
-                templatePDF.AddParagraph("descripcion de la guia de remision");*/
-                templatePDF.CreateTable(cabecera,getNeumaticos());
-                templatePDF.CloseDocument();
-                rows.clear();
             }
 
             @Override
