@@ -120,19 +120,23 @@ public class producto_catalogo extends BaseAdapter {
         tvPrecio.setText(""+Lista.get(i).getPrecio());
         tvStock.setText(""+Lista.get(i).getStock());
 
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference islandRef = storageRef.child(Lista.get(i).getFotoVehiculo());
-        final long ONE_MEGABYTE = 480 * 480;
+        try {
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+            StorageReference islandRef = storageRef.child(Lista.get(i).getFotoVehiculo());
+            final long ONE_MEGABYTE = 480 * 480;
 
-        islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                //numeros++;
-                //Log.e("Contar","___: "+numeros);
-                ivFoto.setImageBitmap(bitmap);
-            }
-        });
+            islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                    //numeros++;
+                    //Log.e("Contar","___: "+numeros);
+                    ivFoto.setImageBitmap(bitmap);
+                }
+            });
+        }catch (Exception e){
+
+        }
 
 
         //BOTON AGREGAR A LISTA ------------************************------------------------------------------------------------------------XXX
