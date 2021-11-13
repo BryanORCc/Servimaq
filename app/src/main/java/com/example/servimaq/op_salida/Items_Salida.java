@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,10 +41,11 @@ public class Items_Salida extends BaseAdapter {
     TextView tvItemId;
     EditText etCantidad;
     TextView tvPrecio, tvTotal, tvNombreMarca, tvTipoVehiculo;
+    Button btnOk;
 
     String Cantidad = "";
 
-    public Items_Salida(seleccionar_pedido_salida contextoSPS, ArrayList<Items_Salida_set_get> ListaS ){
+    public Items_Salida(seleccionar_pedido_salida contextoSPS, ArrayList<Items_Salida_set_get> ListaS) {
         this.contextoSPS = contextoSPS;
         this.ListaS = ListaS;
     }
@@ -75,15 +77,16 @@ public class Items_Salida extends BaseAdapter {
         tvTotal = itemView.findViewById(R.id.tvTotal);
         tvNombreMarca = itemView.findViewById(R.id.tvNombreMarca);
         tvTipoVehiculo = itemView.findViewById(R.id.tvTipoVehiculo);
+        btnOk = itemView.findViewById(R.id.btnOk);
 
         int cantidad = (int) ListaS.get(i).getCantidad();
 
         tvItemId.setText(ListaS.get(i).getItemId());
         etCantidad.setText(String.valueOf(cantidad));
-        tvPrecio.setText(""+ListaS.get(i).getPrecio());
-        tvTotal.setText(""+ListaS.get(i).getTotal());
-        tvNombreMarca.setText(""+ListaS.get(i).getNombreMarca());
-        tvTipoVehiculo.setText(""+ListaS.get(i).getTipoVehiculo());
+        tvPrecio.setText("" + ListaS.get(i).getPrecio());
+        tvTotal.setText("" + ListaS.get(i).getTotal());
+        tvNombreMarca.setText("" + ListaS.get(i).getNombreMarca());
+        tvTipoVehiculo.setText("" + ListaS.get(i).getTipoVehiculo());
 
         String Precio = ListaS.get(i).getPrecio();
         String codPedido = ListaS.get(i).getCodPedido(),
@@ -91,12 +94,13 @@ public class Items_Salida extends BaseAdapter {
 
         //INICIAR CONEXION CON EL SERVICIO WEB - HEROKU
         AndroidNetworking.initialize(contextoSPS);
-        Map<String,String> insertar = new HashMap<>();
+        Map<String, String> insertar = new HashMap<>();
 
         //ACTUALIZAR CANTIDAD*************************************
         etCantidad.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int p, int i1, int i2) { }
+            public void beforeTextChanged(CharSequence charSequence, int p, int i1, int i2) {
+            }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int p, int i1, int i2) {
@@ -106,64 +110,60 @@ public class Items_Salida extends BaseAdapter {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) { }
+            public void afterTextChanged(Editable editable) {
+            }
         });
 
 
         //CONFIRMAR CAMBIOS*****************************************
-        etCantidad.setOnKeyListener(new View.OnKeyListener() {
+        btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+            public void onClick(View v) {
+                Log.e("cantidad: ", Cantidad);
+                insertar.put("Cantidad", Cantidad);
+                insertar.put("Cantidad2", Cantidad);
+                insertar.put("codPedido", codPedido);
+                insertar.put("LlantaId", LlantaId);
+                JSONObject datosJSON = new JSONObject(insertar);
 
-                if(i==keyEvent.KEYCODE_ENTER){
+                Log.e("cantidad: ", Cantidad);
+                Log.e("Cantidad2: ", Cantidad);
+                Log.e("codPedido: ", codPedido);
+                Log.e("LlantaId: ", LlantaId);
 
-                    Log.e("cantidad: ",Cantidad);
-                    insertar.put("Cantidad",Cantidad);
-                    insertar.put("Cantidad2",Cantidad);
-                    insertar.put("codPedido",codPedido);
-                    insertar.put("LlantaId",LlantaId);
-                    JSONObject datosJSON = new JSONObject(insertar);
+                AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Listado_POST_UPDATE.php")
+                        .addJSONObjectBody(datosJSON)
+                        .setPriority(Priority.MEDIUM)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
 
-                    Log.e("cantidad: ",Cantidad);
-                    Log.e("Cantidad2: ",Cantidad);
-                    Log.e("codPedido: ",codPedido);
-                    Log.e("LlantaId: ",LlantaId);
+                                try {
+                                    String validarDatos = response.getString("data");
 
-                    AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Listado_POST_UPDATE.php")
-                            .addJSONObjectBody(datosJSON)
-                            .setPriority(Priority.MEDIUM)
-                            .build()
-                            .getAsJSONObject(new JSONObjectRequestListener() {
-                                @Override
-                                public void onResponse(JSONObject response) {
+                                    Log.e("respuesta actualizacion: ", "" + validarDatos);
 
-                                    try {
-                                        String validarDatos = response.getString("data");
-
-                                        Log.e("respuesta actualizacion: ",""+validarDatos);
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
 
-                                @Override
-                                public void onError(ANError anError) {
-                                    Toast.makeText(contextoSPS,"Error:" + anError.getErrorDetail(),Toast.LENGTH_SHORT).show();
-                                }
-                            });//FIN DEL EVENTO DE HEROKU DB - UPDATE------------------------------------------------
+                            }
 
-                    //QUITAR ANIMACION DE CARGA DE VISTA*****************************
-                    contextoSPS.overridePendingTransition(0, 0);
-                    contextoSPS.overridePendingTransition(0, 0);
-                    itemView.getContext().startActivity(contextoSPS.getIntent());
+                            @Override
+                            public void onError(ANError anError) {
+                                Toast.makeText(contextoSPS, "Error:" + anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                            }
+                        });//FIN DEL EVENTO DE HEROKU DB - UPDATE------------------------------------------------
 
-                    return true;
-                }
-                return false;
+                //QUITAR ANIMACION DE CARGA DE VISTA*****************************
+                contextoSPS.overridePendingTransition(0, 0);
+                contextoSPS.overridePendingTransition(0, 0);
+                itemView.getContext().startActivity(contextoSPS.getIntent());
             }
         });
+
+
 
         return itemView;
     }

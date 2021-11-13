@@ -17,22 +17,30 @@
             android:hint="id"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:textSize="12dp"
+            android:textSize="10dp"
             android:textAlignment="center"/>
 
         <EditText
             android:id="@+id/etCantidad"
             android:layout_width="0dp"
-            android:layout_weight="0.15"
+            android:layout_weight="0.09"
             android:layout_height="wrap_content"
-            android:hint="cantidad"
+            android:hint="cant"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:digits="1234567890"
             android:maxLength="3"
-            android:textSize="12dp"
+            android:textSize="11dp"
             android:inputType="textNoSuggestions"
             android:textAlignment="center" />
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="0dp"
+            android:layout_weight="0.06"
+            android:layout_height="match_parent"
+            android:text="ok"
+            android:padding="0dp"
+            android:textSize="10dp"/>
 
         <TextView
             android:id="@+id/tvPrecio"
@@ -42,7 +50,7 @@
             android:hint="precio"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:textSize="12dp"
+            android:textSize="10dp"
             android:textAlignment="center"/>
 
         <TextView
@@ -53,7 +61,7 @@
             android:hint="total"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:textSize="12dp"
+            android:textSize="10dp"
             android:textAlignment="center"/>
 
         <TextView
@@ -64,7 +72,7 @@
             android:hint="marca"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:textSize="12dp"
+            android:textSize="10dp"
             android:textAlignment="center"/>
 
         <TextView
@@ -75,7 +83,7 @@
             android:hint="tipo vehiculo"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:textSize="12dp"
+            android:textSize="10dp"
             android:textAlignment="center"/>
 
     </LinearLayout>

@@ -109,9 +109,12 @@ public class Documentos extends AppCompatActivity {
                             int contar = 1;
 
                             if (validarDatos.equals("[]")) {
-                                Toast.makeText(getApplicationContext(), "No se encontraron registros", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "No se encontraron pedidos de salida de neumaticos", Toast.LENGTH_SHORT).show();
+                                btnGenerarPdf.setClickable(false);
+                                btnAbrirPdf.setClickable(false);
                             } else {
-
+                                btnGenerarPdf.setClickable(true);
+                                btnAbrirPdf.setClickable(true);
                                 JSONArray array = response.getJSONArray("data");
                                 do {
                                     JSONObject object = array.getJSONObject(contar - 1);
@@ -179,8 +182,11 @@ public class Documentos extends AppCompatActivity {
 
                                     if (validarDatos.equals("[]")) {
                                         Toast.makeText(getApplicationContext(), "No se encontraron productos", Toast.LENGTH_SHORT).show();
+                                        btnGenerarPdf.setClickable(false);
+                                        btnAbrirPdf.setClickable(false);
                                     } else {
-
+                                        btnGenerarPdf.setClickable(true);
+                                        btnAbrirPdf.setClickable(true);
                                         JSONArray array = response.getJSONArray("data");
                                         do {
                                             JSONObject object = array.getJSONObject(contar - 1);
