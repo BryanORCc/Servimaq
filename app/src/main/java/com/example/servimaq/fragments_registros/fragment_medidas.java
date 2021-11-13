@@ -133,8 +133,8 @@ public class fragment_medidas extends Fragment {
                                                         try {
                                                             String validarDatos = response.getString("data");
                                                             Log.e("respuesta insercion: ", "" + validarDatos);
-                                                            EstiloToast(getContext(), "Registro de Medida exitoso");
-
+                                                            //EstiloToast(getContext(), "Registro de Medida exitoso");
+                                                            Toast.makeText(getContext(),"Registro de Medida exitoso",Toast.LENGTH_SHORT).show();
                                                             Limpiar();
                                                             etAncho.requestFocus();
 
@@ -164,14 +164,15 @@ public class fragment_medidas extends Fragment {
 
 
                 }else{
-                    Toast toast = Toast.makeText(getContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
+                    Toast.makeText(getContext(),"Registro de Medida exitoso",Toast.LENGTH_SHORT).show();
+                    /*Toast toast = Toast.makeText(getContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
                     View vista = toast.getView();
                     vista.setBackgroundResource(R.drawable.estilo_color_x);
                     toast.setGravity(Gravity.CENTER,0,0);
                     TextView text = (TextView) vista.findViewById(android.R.id.message);
                     text.setTextColor(Color.parseColor("#FFFFFF"));
                     text.setTextSize(15);
-                    toast.show();
+                    toast.show();*/
                 }//FIN IF----------------------
             }
         });
@@ -199,7 +200,7 @@ public class fragment_medidas extends Fragment {
                 && !etMmcocada.getText().toString().trim().isEmpty();
     }
 
-    public void EstiloToast(Context c, String mensaje){
+    /*public void EstiloToast(Context c, String mensaje){
         Toast toast = Toast.makeText(c,mensaje, Toast.LENGTH_SHORT);
         View vista = toast.getView();
         vista.setBackgroundResource(R.drawable.estilo_color_x);
@@ -208,5 +209,5 @@ public class fragment_medidas extends Fragment {
         text.setTextColor(Color.parseColor("#FFFFFF"));
         text.setTextSize(16);
         toast.show();
-    }
+    }*/
 }

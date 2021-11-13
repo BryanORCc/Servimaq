@@ -354,8 +354,8 @@ public class fragment_neumatico extends Fragment {
                                                         try {
                                                             String validarDatos = response.getString("data");
                                                             Log.e("respuesta insercion: ", "" + validarDatos);
-                                                            EstiloToast(getContext(), "Registro de Neumatico exitoso");
-
+                                                            //EstiloToast(getContext(), "Registro de Neumatico exitoso");
+                                                            Toast.makeText(getContext(),"Registro de Neumatico exitoso",Toast.LENGTH_SHORT).show();
                                                             Limpiar();
                                                             etprecio.requestFocus();
                                                             svScroll.fullScroll(ScrollView.FOCUS_UP);
@@ -392,14 +392,15 @@ public class fragment_neumatico extends Fragment {
                     }else if(VehiculoId.equals("")){
                         alerta = "No tiene vehiculos registrados";
                     }
-                    Toast toast = Toast.makeText(getContext(),alerta, Toast.LENGTH_SHORT);
+                    Toast.makeText(getContext(),alerta,Toast.LENGTH_SHORT).show();
+                    /*Toast toast = Toast.makeText(getContext(),alerta, Toast.LENGTH_SHORT);
                     View vista = toast.getView();
                     vista.setBackgroundResource(R.drawable.estilo_color_x);
                     toast.setGravity(Gravity.CENTER,0,0);
                     TextView text = (TextView) vista.findViewById(android.R.id.message);
                     text.setTextColor(Color.parseColor("#FFFFFF"));
                     text.setTextSize(15);
-                    toast.show();
+                    toast.show();*/
                 }//FIN IF----------------------
 
             }
@@ -427,7 +428,7 @@ public class fragment_neumatico extends Fragment {
         return !etprecio.getText().toString().trim().isEmpty() && !etstock.getText().toString().trim().isEmpty();
     }
 
-    public void EstiloToast(Context c, String mensaje){
+    /*public void EstiloToast(Context c, String mensaje){
         Toast toast = Toast.makeText(c,mensaje, Toast.LENGTH_SHORT);
         View vista = toast.getView();
         vista.setBackgroundResource(R.drawable.estilo_color_x);
@@ -436,5 +437,5 @@ public class fragment_neumatico extends Fragment {
         text.setTextColor(Color.parseColor("#FFFFFF"));
         text.setTextSize(16);
         toast.show();
-    }
+    }*/
 }

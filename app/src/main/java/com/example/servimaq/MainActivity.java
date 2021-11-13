@@ -73,14 +73,15 @@ public class MainActivity extends AppCompatActivity {
 
                                         //--VALIDAR LOGIN------------------------------------------------------------------------------------------------
                                         if(!validarDatos.equals("[]")){
-                                            Toast toast = Toast.makeText(getApplicationContext(),"Bienvenido", Toast.LENGTH_SHORT);
+                                            Toast.makeText(getApplicationContext(),"Bienvenido",Toast.LENGTH_SHORT).show();
+                                            /*Toast toast = Toast.makeText(getApplicationContext(),"Bienvenido", Toast.LENGTH_SHORT);
                                             View vista = toast.getView();
                                             vista.setBackgroundResource(R.drawable.estilo_color_x);
                                             toast.setGravity(Gravity.CENTER,0,0);
                                             TextView text = (TextView) vista.findViewById(android.R.id.message);
                                             text.setTextColor(Color.parseColor("#FFFFFF"));
                                             text.setTextSize(20);
-                                            toast.show();
+                                            toast.show();*/
 
                                             Intent i = new Intent(MainActivity.this,menu_opciones.class);
                                             finish();
@@ -89,14 +90,15 @@ public class MainActivity extends AppCompatActivity {
                                             overridePendingTransition(0, 0);
 
                                         }else{
-                                            Toast toast = Toast.makeText(getApplicationContext(),"Usuario o Contraseña incorrecto", Toast.LENGTH_SHORT);
+                                            Toast.makeText(getApplicationContext(),"Usuario o Contraseña incorrecto",Toast.LENGTH_SHORT).show();
+                                            /*Toast toast = Toast.makeText(getApplicationContext(),"Usuario o Contraseña incorrecto", Toast.LENGTH_SHORT);
                                             View vista = toast.getView();
                                             vista.setBackgroundResource(R.drawable.estilo_color_x);
                                             toast.setGravity(Gravity.CENTER,0,0);
                                             TextView text = (TextView) vista.findViewById(android.R.id.message);
                                             text.setTextColor(Color.parseColor("#FFFFFF"));
                                             text.setTextSize(20);
-                                            toast.show();
+                                            toast.show();*/
                                         }
 
                                     } catch (JSONException e) {
@@ -110,14 +112,15 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                 }else{
-                    Toast toast = Toast.makeText(getApplicationContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(),"Debe llenar todos los campos",Toast.LENGTH_SHORT).show();
+                    /*Toast toast = Toast.makeText(getApplicationContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
                     View vista = toast.getView();
                     vista.setBackgroundResource(R.drawable.estilo_color_x);
                     toast.setGravity(Gravity.CENTER,0,0);
                     TextView text = (TextView) vista.findViewById(android.R.id.message);
                     text.setTextColor(Color.parseColor("#FFFFFF"));
                     text.setTextSize(15);
-                    toast.show();
+                    toast.show();*/
                 }
 
 

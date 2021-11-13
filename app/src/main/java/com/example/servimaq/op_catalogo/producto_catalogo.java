@@ -640,7 +640,8 @@ public class producto_catalogo extends BaseAdapter {
                                                                                             .getAsJSONObject(new JSONObjectRequestListener() {
                                                                                                 @Override
                                                                                                 public void onResponse(JSONObject response) {
-                                                                                                    EstiloToast(c,"Agregacion exitosa");
+                                                                                                    //EstiloToast(c,"Agregacion exitosa");
+                                                                                                    Toast.makeText(c,"Agregacion exitosa",Toast.LENGTH_SHORT).show();
                                                                                                     Intent enviar_codigo = new Intent(v.getContext(), Salida_Prod.class);
                                                                                                     enviar_codigo.putExtra("op_codPedido",op_codPedido);
                                                                                                 }
@@ -713,7 +714,7 @@ public class producto_catalogo extends BaseAdapter {
         return alertDialog;
     }
 
-    public void EstiloToast(Context c, String mensaje){
+    /*public void EstiloToast(Context c, String mensaje){
         Toast toast = Toast.makeText(c,mensaje, Toast.LENGTH_SHORT);
         View vista = toast.getView();
         vista.setBackgroundResource(R.drawable.estilo_color_x);
@@ -722,6 +723,6 @@ public class producto_catalogo extends BaseAdapter {
         text.setTextColor(Color.parseColor("#FFFFFF"));
         text.setTextSize(16);
         toast.show();
-    }
+    }*/
 
 }

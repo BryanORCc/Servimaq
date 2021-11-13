@@ -863,14 +863,15 @@ public class detalle_producto extends AppCompatActivity {
 
 
                 }else{
-                    Toast toast = Toast.makeText(getApplicationContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(),"Debe llenar todos los campos",Toast.LENGTH_SHORT).show();
+                    /*Toast toast = Toast.makeText(getApplicationContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
                     View vista = toast.getView();
                     vista.setBackgroundResource(R.drawable.estilo_color_x);
                     toast.setGravity(Gravity.CENTER,0,0);
                     TextView text = (TextView) vista.findViewById(android.R.id.message);
                     text.setTextColor(Color.parseColor("#FFFFFF"));
                     text.setTextSize(15);
-                    toast.show();
+                    toast.show();*/
                 }
 
 
@@ -886,16 +887,18 @@ public class detalle_producto extends AppCompatActivity {
                     //CAMBIO DE ESTADO y Mostrar TOAST
                     opcionModificar = false;
                     mensajeToast = "Producto Modificado";
-                    MostrarToast(mensajeToast);
+                    //MostrarToast(mensajeToast);
+                    Toast.makeText(getApplicationContext(),mensajeToast,Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast toast = Toast.makeText(getApplicationContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(),"Debe llenar todos los campos",Toast.LENGTH_SHORT).show();
+                    /*Toast toast = Toast.makeText(getApplicationContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
                     View vista = toast.getView();
                     vista.setBackgroundResource(R.drawable.estilo_color_x);
                     toast.setGravity(Gravity.CENTER,0,0);
                     TextView text = (TextView) vista.findViewById(android.R.id.message);
                     text.setTextColor(Color.parseColor("#FFFFFF"));
                     text.setTextSize(15);
-                    toast.show();
+                    toast.show();*/
                 }
 
 
@@ -1035,7 +1038,7 @@ public class detalle_producto extends AppCompatActivity {
     }
 
     //**MENSAJE DE CONFIRMACION*************************************************************************************
-    public void MostrarToast(String mensaje){
+    /*public void MostrarToast(String mensaje){
         Toast toast = Toast.makeText(getApplicationContext(),mensaje, Toast.LENGTH_SHORT);
         View vista = toast.getView();
         vista.setBackgroundResource(R.drawable.estilo_color_x);
@@ -1044,7 +1047,7 @@ public class detalle_producto extends AppCompatActivity {
         text.setTextColor(Color.parseColor("#FFFFFF"));
         text.setTextSize(20);
         toast.show();
-    }
+    }*/
 
     //OCULTAR EDIT TEXT DE LA PANTALLA DETALLE PRODUCTO
     public void OcultarEditText(){

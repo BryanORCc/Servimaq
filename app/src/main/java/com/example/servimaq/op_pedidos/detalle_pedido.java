@@ -351,8 +351,8 @@ public class detalle_pedido extends AppCompatActivity {
 
                                     opcionModificar = false;
                                     mensajeToast = "Pedido Modificado";
-                                    MostrarToast(mensajeToast);
-
+                                    //MostrarToast(mensajeToast);
+                                    Toast.makeText(getApplicationContext(),mensajeToast,Toast.LENGTH_SHORT).show();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -369,7 +369,7 @@ public class detalle_pedido extends AppCompatActivity {
     }
 
     ///////////////////////////*********
-    public void MostrarToast(String mensaje){
+    /*public void MostrarToast(String mensaje){
         Toast toast = Toast.makeText(getApplicationContext(),mensaje, Toast.LENGTH_SHORT);
         View vista = toast.getView();
         vista.setBackgroundResource(R.drawable.estilo_color_x);
@@ -378,7 +378,7 @@ public class detalle_pedido extends AppCompatActivity {
         text.setTextColor(Color.parseColor("#FFFFFF"));
         text.setTextSize(20);
         toast.show();
-    }
+    }*/
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 

@@ -183,7 +183,8 @@ public class fragment_vehiculo extends Fragment {
                                                                         String validarDatos = response.getString("data");
                                                                         Log.e("respuesta insercion: ",""+validarDatos);
 
-                                                                        EstiloToast(getContext(),"Registro de Vehiculo exitoso");
+                                                                        //EstiloToast(getContext(),"Registro de Vehiculo exitoso");
+                                                                        Toast.makeText(getContext(),"Registro de Vehiculo exitoso",Toast.LENGTH_SHORT).show();
                                                                         Limpiar();
                                                                         svScroll.fullScroll(ScrollView.FOCUS_UP);
                                                                         etTipoVehiculo.requestFocus();
@@ -300,7 +301,8 @@ public class fragment_vehiculo extends Fragment {
                                                                 String validarDatos = response.getString("data");
                                                                 Log.e("respuesta insercion: ", "" + validarDatos);
 
-                                                                EstiloToast(getContext(), "Registro de Vehiculo exitoso");
+                                                                //EstiloToast(getContext(), "Registro de Vehiculo exitoso");
+                                                                Toast.makeText(getContext(),"Registro de Vehiculo exitoso",Toast.LENGTH_SHORT).show();
                                                                 Limpiar();
                                                                 svScroll.fullScroll(ScrollView.FOCUS_UP);
                                                                 etTipoVehiculo.requestFocus();
@@ -332,14 +334,15 @@ public class fragment_vehiculo extends Fragment {
                     }
 
                 }else{
-                    Toast toast = Toast.makeText(getContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
+                    Toast.makeText(getContext(),"Debe llenar todos los campos",Toast.LENGTH_SHORT).show();
+                    /*Toast toast = Toast.makeText(getContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
                     View vista = toast.getView();
                     vista.setBackgroundResource(R.drawable.estilo_color_x);
                     toast.setGravity(Gravity.CENTER,0,0);
                     TextView text = (TextView) vista.findViewById(android.R.id.message);
                     text.setTextColor(Color.parseColor("#FFFFFF"));
                     text.setTextSize(15);
-                    toast.show();
+                    toast.show();*/
                 }//FIN IF----------------------
 
             }
@@ -388,7 +391,7 @@ public class fragment_vehiculo extends Fragment {
         return !etTipoVehiculo.getText().toString().trim().isEmpty() && !etMarcaVehiculo.getText().toString().trim().isEmpty() && !etModeloVehiculo.getText().toString().trim().isEmpty();
     }
 
-    public void EstiloToast(Context c, String mensaje){
+    /*public void EstiloToast(Context c, String mensaje){
         Toast toast = Toast.makeText(c,mensaje, Toast.LENGTH_SHORT);
         View vista = toast.getView();
         vista.setBackgroundResource(R.drawable.estilo_color_x);
@@ -397,7 +400,7 @@ public class fragment_vehiculo extends Fragment {
         text.setTextColor(Color.parseColor("#FFFFFF"));
         text.setTextSize(16);
         toast.show();
-    }
+    }*/
 
 
 }

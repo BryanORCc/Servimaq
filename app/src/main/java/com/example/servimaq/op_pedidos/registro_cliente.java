@@ -204,7 +204,8 @@ public class registro_cliente extends AppCompatActivity {
                                                         try {
                                                             String validarDatos = response.getString("data");
                                                             Log.e("respuesta insercion: ", "" + validarDatos);
-                                                            EstiloToast(getApplicationContext(), "Registro de pedido exitoso");
+                                                            //EstiloToast(getApplicationContext(), "Registro de pedido exitoso");
+                                                            Toast.makeText(getApplicationContext(),"Registro de pedido exitoso",Toast.LENGTH_SHORT).show();
                                                             Limpiar();
                                                             nombrecliente.requestFocus();
                                                             svScroll.fullScroll(ScrollView.FOCUS_UP);
@@ -233,14 +234,15 @@ public class registro_cliente extends AppCompatActivity {
                             });//EVENTO DEL HEROKU DB SELECCION------------------------------------------------
 
                 }else{
-                    Toast toast = Toast.makeText(getApplicationContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(),"Debe llenar todos los campos",Toast.LENGTH_SHORT).show();
+                    /*Toast toast = Toast.makeText(getApplicationContext(),"Debe llenar todos los campos", Toast.LENGTH_SHORT);
                     View vista = toast.getView();
                     vista.setBackgroundResource(R.drawable.estilo_color_x);
                     toast.setGravity(Gravity.CENTER,0,0);
                     TextView text = (TextView) vista.findViewById(android.R.id.message);
                     text.setTextColor(Color.parseColor("#FFFFFF"));
                     text.setTextSize(15);
-                    toast.show();
+                    toast.show();*/
                 }//FIN IF----------------------
 
             }
@@ -352,7 +354,7 @@ public class registro_cliente extends AppCompatActivity {
                 && !Fecha.getText().toString().trim().isEmpty() && !dni.getText().toString().trim().isEmpty();
     }
 
-    public void EstiloToast(Context c, String mensaje){
+    /*public void EstiloToast(Context c, String mensaje){
         Toast toast = Toast.makeText(c,mensaje, Toast.LENGTH_SHORT);
         View vista = toast.getView();
         vista.setBackgroundResource(R.drawable.estilo_color_x);
@@ -361,5 +363,5 @@ public class registro_cliente extends AppCompatActivity {
         text.setTextColor(Color.parseColor("#FFFFFF"));
         text.setTextSize(16);
         toast.show();
-    }
+    }*/
 }

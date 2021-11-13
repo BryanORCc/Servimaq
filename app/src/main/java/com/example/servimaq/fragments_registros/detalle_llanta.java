@@ -417,7 +417,8 @@ public class detalle_llanta extends Fragment {
                                                                         String validarDatos = response.getString("data");
                                                                         Log.e("respuesta insercion: ",""+validarDatos);
 
-                                                                        EstiloToast(getContext(),"Registro de Detalle de Neumatico Exitoso");
+                                                                        //EstiloToast(getContext(),"Registro de Detalle de Neumatico Exitoso");
+                                                                        Toast.makeText(getContext(),"Registro de Detalle de Neumatico Exitoso",Toast.LENGTH_SHORT).show();
                                                                         svScroll.fullScroll(ScrollView.FOCUS_UP);
                                                                         Limpiar();
 
@@ -535,7 +536,8 @@ public class detalle_llanta extends Fragment {
                                                                 String validarDatos = response.getString("data");
                                                                 Log.e("respuesta insercion: ",""+validarDatos);
 
-                                                                EstiloToast(getContext(),"Registro de Detalle de Neumatico Exitoso");
+                                                                //EstiloToast(getContext(),"Registro de Detalle de Neumatico Exitoso");
+                                                                Toast.makeText(getContext(),"Registro de Detalle de Neumatico Exitoso",Toast.LENGTH_SHORT).show();
                                                                 svScroll.fullScroll(ScrollView.FOCUS_UP);
                                                                 Limpiar();
 
@@ -570,14 +572,16 @@ public class detalle_llanta extends Fragment {
                     if(MedidaLlantaId.equals("")){
                         alerta = "No tiene medidas registradas";
                     }
-                    Toast toast = Toast.makeText(getContext(),alerta, Toast.LENGTH_SHORT);
+                    Toast.makeText(getContext(),alerta,Toast.LENGTH_SHORT).show();
+
+                    /*Toast toast = Toast.makeText(getContext(),alerta, Toast.LENGTH_SHORT);
                     View vista = toast.getView();
                     vista.setBackgroundResource(R.drawable.estilo_color_x);
                     toast.setGravity(Gravity.CENTER,0,0);
                     TextView text = (TextView) vista.findViewById(android.R.id.message);
                     text.setTextColor(Color.parseColor("#FFFFFF"));
                     text.setTextSize(15);
-                    toast.show();
+                    toast.show();*/
                 }//FIN IF----------------------
             }
         });
@@ -666,7 +670,7 @@ public class detalle_llanta extends Fragment {
         return !Fecha.getText().toString().trim().isEmpty() && !MedidaLlantaId.equals("");
     }
 
-    public void EstiloToast(Context c, String mensaje){
+    /*public void EstiloToast(Context c, String mensaje){
         Toast toast = Toast.makeText(c,mensaje, Toast.LENGTH_SHORT);
         View vista = toast.getView();
         vista.setBackgroundResource(R.drawable.estilo_color_x);
@@ -675,6 +679,6 @@ public class detalle_llanta extends Fragment {
         text.setTextColor(Color.parseColor("#FFFFFF"));
         text.setTextSize(16);
         toast.show();
-    }
+    }*/
 
 }
