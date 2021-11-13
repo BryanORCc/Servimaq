@@ -342,6 +342,7 @@ public class fragment_neumatico extends Fragment {
                                         JSONObject datosJSON = new JSONObject(insertar);
 
                                         //EVENTO DEL HEROKU DB INSERCION*****************************************************************************
+                                        AndroidNetworking.initialize(getContext());
                                         AndroidNetworking.post("https://whispering-sea-93962.herokuapp.com/T_Llanta_POST_INSERT.php")
                                                 .addJSONObjectBody(datosJSON)
                                                 .setPriority(Priority.MEDIUM)

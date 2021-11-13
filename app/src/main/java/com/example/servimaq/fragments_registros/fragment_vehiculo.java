@@ -321,7 +321,6 @@ public class fragment_vehiculo extends Fragment {
                                             e.printStackTrace();
                                         }
 
-
                                     }
 
                                     @Override
